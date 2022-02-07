@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <meta charset="UTF-8"/>
+        <link rel="icon" href="dashboard/favicon.ico" type="image/ico">
+        <title>Contacta con nosotros</title>
+        <style type="text/css">
+            body {color :black; font-family: Verdana, Geneva, Tahoma, sans-serif;}
+          </style>
+    </header>
+    <body>
+        <!-- Formulario a rellenar -->
+        <div class = "formulario">
+            <form>
+                <!--nombre-->
+                <label>NOMBRE : </label>
+                <input type ="text" name ="nombre" value ="">
+                <br />
+                <!--mail-->
+                <label>MAIL DE CONTACTO : </label>
+                <input type ="text" name ="mail" value ="">
+                <br />
+                <!--motivo consulta -->
+                <label>MOTIVO DE CONSULTA : </label>
+                <br />
+                <input type="radio" name="motivo" value="evaluacion" checked/> EVALUACIÓN
+                <input type="radio" name="motivo" value="sugerencias" /> SUGERENCIAS
+                <input type="radio" name="motivo" value="criticas" /> CRÍTICAS
+                <br />
+                <!--politicas leidas-->
+                <input name="leido" type="checkbox" value="marked" /> Marque esta casilla para verificar que ha leído nuestros términos y condiciones del servicio
+                <br />
+                <!--consulta-->
+                <label>CONSULTA : </label>
+                <br />
+                <textarea name="consulta" rows="10" cols="100"></textarea>
+                <!--envio de email con lo rellenado-->
+                <br />
+                <a href="mailto:vmoren04@ucm.es">Enviar e-mail con formulario</a>
+
+            </form>
+        </div>
+
+    </body>
+
+</html>
