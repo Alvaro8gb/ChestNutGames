@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
-    <header>
+    <head>
         <meta charset="UTF-8"/>
         <link rel="icon" href="img/favicon.ico" type="image/ico">
         <title>Contacta con nosotros</title>
         <style type="text/css">
-            body {color :black; font-family: Verdana, Geneva, Tahoma, sans-serif;}
+            body {color :black;
+                font-family: Verdana ,Geneva, Tahoma, sans-serif;}
+            .formulario{margin: 0 auto}
           </style>
-    </header>
+    </head>
     <body>
         <!-- Formulario a rellenar -->
         <div class = "formulario">
@@ -16,8 +18,8 @@
                 <label>NOMBRE : </label>
                 <input type ="text" name ="nombre" value ="">
                 <br />
-                <!--mail-->
-                <label>MAIL DE CONTACTO : </label>
+                <!--email-->
+                <label>EMAIL DE CONTACTO : </label>
                 <input type ="text" name ="mail" value ="">
                 <br />
                 <!--motivo consulta -->
@@ -36,8 +38,7 @@
                 <textarea name="consulta" rows="10" cols="100"></textarea>
                 <!--envio de email con lo rellenado-->
                 <br />
-                <a href="mailto:vmoren04@ucm.es">Enviar e-mail con formulario</a>
-
+                <button type = "button" onclick = 'href="mailto:sergilor@ucm.es"';>Enviar e-mail con formulario</button>
             </form>
         </div>
 
