@@ -6,7 +6,9 @@
         <title>Concepto del proyecto</title>
         <style >
             p { color: black;
-                font-family:'Verdana', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif'; }
+                font-family:'Verdana', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
+                text-align: justify; 
+            }
             body{
                 vertical-align: middle;
                 font-family: Verdana ;
@@ -15,32 +17,39 @@
                 display:block;
                 margin:auto;
             }
+            #text{
+                padding-left: 15%; 
+                width: 70%;
+            }
+            h1{
+                text-align: center; 
+                font-size: 35px;
+            }
         </style>
     </head>
     <body>
         <header>
             <nav class="header_nav_menu" style = "text-align: center;">
                 <div id = "menu">
-                    <a href="contacto.html">Contacto</a>
-                    <a href="miembros.html">Miembros</a>
-                    <a href="bocetos.html">Bocetos</a>
+                    <a class="nav_home" href="index.html">Home</a>
                     <a href="detalles.html">Detalles</a>
                     <a href="planificacion.html">Planificación</a>
-                    <a class="nav_home" href="index.html">Home</a>
+                    <a href="bocetos.html">Bocetos</a>
+                    <a href="miembros.html">Miembros</a>
+                    <a href="contacto.html">Contacto</a>            
                 </div>
               
                 <h1 style="text-align: center; font-size: 35px;">ChestNutGames</h1>
-                  
-           </nav>   
+                 
+            </nav> 
          </header>
         
         <main>
             
              <img src="img/logo/Chestnut_Logo.png" alt="logo" width = 300px; height="300px">
             
-
-            <div style="padding-left: 15%; width: 70%;">
-                <p style = "text-align: justify;">Nuestra aplicación web trata de un portal web de minijuegos que puedes disfrutar en
+            <div id="text">
+                <p >Nuestra aplicación web trata de un portal web de minijuegos que puedes disfrutar en
                 cualquier momento o lugar, enfocada a todos los públicos, nuestros minijuegos se centran
                 en darte la mejor diversión con títulos que siempre has conocido como: Las damas, La oca,
                 Conecta 4, Tres en raya, Parchís, 2048... y muchos más.
