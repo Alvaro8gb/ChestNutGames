@@ -21,9 +21,15 @@ table, th {
     margin: 2%
 }
 
-.imgdiv img{
+.imgdiv{
     width: 20%;
     margin-right: 4%
+
+}
+
+.imgdiv img{
+    width: 150px;
+    height: 180px;
 }
 
 .bocetosipv img{
@@ -33,6 +39,10 @@ table, th {
 
 .formulario{
     margin: 0 auto
+}
+
+.header_nav_menu{
+    text-align: center;
 }
 
 legend {
