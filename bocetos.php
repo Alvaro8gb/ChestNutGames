@@ -9,19 +9,9 @@
 
     <body>
         <header>
-            <nav class="header_nav_menu">
-                <div id = "menu">
-                    <a class="nav_home" href="index.html">Home</a>
-                    <a href="detalles.html">Detalles</a>
-                    <a href="planificacion.html">Planificación</a>
-                    <a href="bocetos.html">Bocetos</a>
-                    <a href="miembros.html">Miembros</a>
-                    <a href="contacto.html">Contacto</a>            
-                </div>
-              
-                <h1>ChestNutGames</h1>    
-            </nav> 
-              
+            <?php 
+                require("menu.php");       
+            ?>      
          </header>
          <main>
             <div class="bocetos"> 
