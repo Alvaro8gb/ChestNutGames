@@ -1,66 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8"/>
-    <link rel="icon" href="img/logo/Favicon.png" type="image/png">
-    <link rel="stylesheet" href="css/estilos.css" type="text/css">
-	<title>Registro</title>
-</head>
-<body>
-    <div class = "formulario">
-        <form action="" method="post">
-        <fieldset>
-            <legend>Datos personales</legend>
-                <label for="email">Correo electrónico:</label>
-                <br><input type="email" id="email" name="mail"><br>
-                Nombre:<br> <input type="text" name="nom" required><br>
-                Contraseña:<br> <input type="password" name="pas" required><br>
-                Repetir contraseña:<br> <input type="password" name="pas1" required><br>		
-        </fieldset>
-        <input type="submit" name="aceptar">	
-        </form>
-    </div>
+<?php
 
-    <?php
-        if(isset($_POST['nom']) && isset($_POST['pas']) && isset($_POST['pas1']) && isset($_POST['mail'])){
-            $db = new mysqli('localhost', 'root', '', 'chesnutgames');
+require_once __DIR__.'/includes/config.php';
 
-            if($db->connect_error){
-                echo '<h1>No se ha podido conectar a la base de datos</h1>';
-            }
-            else{
-                $usuario = $_POST['nom'];
-                $contrsenia = $_POST['pas'];
-                $contrsenia1 = $_POST['pas1'];
-                $correo = $_POST['mail'];
+$tituloPagina = 'Registro';
 
-                if($contrsenia == $contrsenia1){
-                    $sql = "INSERT INTO usuarios VALUES('$usuario','$contrsenia','$correo')";
-                    $sql1 = "SELECT correo FROM usuarios WHERE correo = '$correo'";
-                    $q1 = $db->query($sql1);
+$contenidoPrincipal = <<<EOS
+<h1>Registro de usuario</h1>
 
-                    if($q1->num_rows > 0){
-                        echo '<h1>Usuario existente, <a href = "login.php" >inicie sesión</a></h1>';
-                    }
-                    else{
-                        $q = $db->query($sql);
-                        if($q){
-                            echo '<h1>Usuario creado, inicie sesión</h1>';
-                            header("refresh:1;url=login.php");
-                        }
-                        else{
-                            echo '<h1>Error, no se ha pudido crear el usuario</h1>';
-                        }
-                    }
+<form action="procesarRegistro.php" method="POST">
+<fieldset>
+	<div class="grupo-control">
+		<label>Correo electrónico:</label> <input class="control" type="email" name="correoUsuario" />
+	</div>
+	<div class="grupo-control">
+		<label>Nombre de usuario:</label> <input class="control" type="text" name="nombreUsuario" />
+	</div>
+	<div class="grupo-control">
+		<label>Nombre completo:</label> <input class="control" type="text" name="nombre" />
+	</div>
+	<div class="grupo-control">
+		<label>Contraseña:</label> <input class="control" type="password" name="password" />
+	</div>
+	<div class="grupo-control"><label>Vuelve a introducir la contraseña:</label> <input class="control" type="password" name="password2" /><br /></div>
+	<div class="grupo-control"><button type="submit" name="registro">Registrar</button></div>
+</fieldset>
+</form>
+EOS;
 
-                    $db->close();
-                }
-                else{
-                    echo '<h1>Las contrseñas no coinciden</h1>';
-                }
-            }
-        }
-    ?>
-
-</body>
-</html>
+require __DIR__.'/includes/plantillas/plantilla.php';
