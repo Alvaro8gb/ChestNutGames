@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8"/>
-        <link rel="icon" href="img/logo/Favicon.png" type="image/png">
-        <link rel="stylesheet" href="css/estilos.css" type="text/css">
-        <title>Planificación</title>
+<?php
+require_once __DIR__.'/includes/config.php';
 
-    </head>
-    <body>
-        <header>
-            <?php 
-                require("menu.php");       
-            ?> 
-         </header>
+$tituloPagina = 'Planificación';
 
-            <h2>Proceso</h2>
+$contenidoPrincipal = <<<EOS
+        <h2>Proceso</h2>
                 <p>
                     A lo largo del proyecto con intención de regular el uso de buenas prácticas y controlar el avance del mismo, 
                     el equipo usará Scrum permitiendo así trabajar de forma colaborativa y organizada.
@@ -123,6 +113,6 @@
                         <td>  </td>
                     </tr>
                 </table>
-                
-    </body>
-</html>
+EOS;
+
+require __DIR__.'/includes/plantillas/plantilla.php';

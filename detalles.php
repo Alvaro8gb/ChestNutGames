@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8"/>
-        <link rel="icon" href="img/logo/Favicon.png" type="image/png">
-        <link rel="stylesheet" href="css/estilos.css" type="text/css">
+<?php
+require_once __DIR__.'/includes/config.php';
 
-        <title>Detalles de la pagina</title>
-    </head>
-    <body>
+$tituloPagina = 'Detalles de la pagina';
 
-        <header>
-        <?php 
-            require("menu.php");       
-        ?>
-         </header>
-
-        <main>
+$contenidoPrincipal = <<<EOS
             <h2>Introducción</h2>
             <h4>¿Qué hace la aplicación? ¿Cuáles son sus funcionalidades?</h4>
 
@@ -95,7 +83,6 @@
                     <li>Gestión de Eventos</li>
                     <li>Gestión de Puntos y Tienda</li>
                 </ul>
-                
-        </main>
-    </body>
-</html>
+EOS;
+
+require __DIR__.'/includes/plantillas/plantilla.php';
