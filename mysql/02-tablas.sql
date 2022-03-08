@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `juegos` (
   `IdJuego` int(11) NOT NULL,
-  `Nombre` varchar(100) DEFAULT NULL,
+  `Nombre` varchar(255) DEFAULT NULL,
   `Imagen` longblob DEFAULT NULL,
-  `Descripcion` varchar(100) DEFAULT NULL,
-  `Categoria` varchar(100) DEFAULT NULL
+  `Descripcion` varchar(255) DEFAULT NULL,
+  `Categoria` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
