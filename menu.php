@@ -8,7 +8,8 @@
         <a href="contacto.php">Contacto</a> 
         <a href="login.php">Login</a> 
         <a href="logout.php">Logout</a>  
-        <a href="ranking.php">Ranking</a>         
+        <a href="ranking.php">Ranking</a> 
+        <a href="juegos.php">Juegos</a>         
     </div> 
     
     <h1>ChestNutGames</h1>              

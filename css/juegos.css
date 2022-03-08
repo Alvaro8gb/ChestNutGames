@@ -1,0 +1,80 @@
+/*img {
+    height: 200px;
+    width: 200px;
+}
+
+.juego {
+    margin-left: 20px;
+}
+
+.informacion {
+    margin-left: 40px;
+    margin-top: -2px;
+}
+
+.juegos {
+    float:left; 
+    width: 43%; 
+    margin: 2%
+}*/
+
+* {
+    box-sizing: border-box;
+}
+
+.columna {
+    float: left;
+    width: 20%;
+    height: 200px;
+    margin-top: 40px;
+    padding-right: 20px;
+}
+
+.fila::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+img {
+    /* Para que sea responsiva */
+    width: 100%;
+    height: 100%;
+}
+
+.gif_centrado {
+    margin:10px auto;
+    display:block;
+    height: 180px;
+    width: 400px;
+}
+
+.boton_exit {
+    height: 70px;
+    width: 140px;
+    margin-top: 10px;
+}
+
+.boton_play_now {
+    height: 70px;
+    width: 140px;
+    margin-left: 160px;
+    margin-top: -70px;
+}
+
+.boton_ranking {
+    height: 90px;
+    width: 90px;
+    margin-left: 315px;
+    margin-top: -80px;
+}
+
+.img_juego {
+    height: 400px;
+    width: 400px;
+}
+
+.informacion {
+    margin-left: 420px;
+    margin-top: -500px;
+}
