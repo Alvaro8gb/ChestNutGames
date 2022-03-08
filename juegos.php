@@ -11,42 +11,9 @@ $contenidoPrincipal = <<<EOS
         <title>Juegos</title>
     </head>
     <body>
-        <img class="gif_centrado" src="img/play-now-games.gif" alt="Gif">
+        <img class="gif_centrado" src="img/juegos/play_now.gif" alt="Gif">
 
-        <div class="fila">
-            <div class="columna">
-                <a href="informacion.html"><img src="img/pac-man.jpg" alt="Pac Man"></a>
-            </div>
-            <div class="columna">
-                <a href="hola.php?a=hola"><img src="img/buscaminas.png" alt="Buscaminas"></a>
-            </div>
-            <div class="columna">
-                <a href="informacion.html"><img src="img/parchis.png" alt="Parchís"></a>
-            </div>
-            <div class="columna">
-                <a href="informacion.html"><img src="img/solitario.jpg" alt="Solitario"></a>
-            </div>
-            <div class="columna">
-                <a href="informacion.html"><img src="img/plants-zombies.jpg" alt="Pac Man"></a>
-            </div>
-        </div>
-        <div class="fila">
-            <div class="columna">
-                <a href="informacion.html"><img src="img/mario-bros.jpg" alt="Pac Man"></a>
-            </div>
-            <div class="columna">
-                <a href="informacion.html"><img src="img/Survival_Race.png" alt="Pac Man"></a>
-            </div>
-            <div class="columna">
-                <a href="informacion.html"><img src="img/Tres-en-linea.png" alt="Pac Man"></a>
-            </div>
-            <div class="columna">
-                <a href="informacion.html"><img src="img/wood-blocks.jpg" alt="Pac Man"></a>
-            </div>
-            <div class="columna">
-                <a href="informacion.html"><img src="img/world-cup-penalty.jpg" alt="Pac Man"></a>
-            </div>
-        </div>
+        
     </body>
 EOS;
 
