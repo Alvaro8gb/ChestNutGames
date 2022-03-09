@@ -14,9 +14,7 @@ EOS;
 
     //<body>
     echo '<img class="gif_centrado" src="img/juegos/play_now.gif" alt="Gif">';
-
-    $this->conn = new \mysqli('host', 'user', 'pass', 'bd');
-        
+     
     //$sql = "SELECT IdJuego, Imagen FROM juegos";
     //$consula = $conn->query($ql);
 
@@ -26,8 +24,6 @@ EOS;
                     $encontrado = 1;
                 }
             }
-
-        
     </body>*/
 
 require __DIR__.'/includes/plantillas/plantilla.php';
