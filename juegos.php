@@ -23,7 +23,7 @@ EOS;
         for($i = 0; $i < 5; $i++){
             $contenidoPrincipal .= <<<EOS
             <div class="columna">
-                <a href="informacion_juego.php?id=$fila[IdJuego]"><img src="data:image/png;base64, .base64_encode($fila[Imagen])"></a>
+                <a href="informacion_juego.php?id=$fila[IdJuego]"><img src="data:image/png;base64,<?php echo base64_encode($fila[Imagen]); ?>"></a>
             </div>
             EOS;
         } 
