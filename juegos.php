@@ -15,7 +15,7 @@ EOS;
     //<body>
     echo '<img class="gif_centrado" src="img/juegos/play_now.gif" alt="Gif">';
 
-   $conn = $app->conexionBd();
+   $this->conn = $app->conexionBd();
         
     //$sql = "SELECT IdJuego, Imagen FROM juegos";
     //$consula = $conn->query($ql);
