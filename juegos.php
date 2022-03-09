@@ -15,12 +15,12 @@ EOS;
     //<body>
     echo '<img class="gif_centrado" src="img/juegos/play_now.gif" alt="Gif">';
 
-   /* $conn = $app->conexionBd();
+   $conn = $app->conexionBd();
         
     $sql = "SELECT IdJuego, Imagen FROM juegos";
     $consulta = @mysqli_query($conn, $sql);
 
-    $encontrado = 0;
+    /*$encontrado = 0;
     while($fila = @mysqli_fetch_array($consulta)) {
         if($fila['Usuario'] == $username && $fila['Contrasenia'] == $password){
                     $encontrado = 1;
