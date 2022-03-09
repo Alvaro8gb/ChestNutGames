@@ -18,7 +18,7 @@ EOS;
    $conn = $app->conexionBd();
         
     $sql = "SELECT IdJuego, Imagen FROM juegos";
-    $consulta = @mysqli_query($conn, $sql);
+    $consula = $conn->query($ql);
 
     /*$encontrado = 0;
     while($fila = @mysqli_fetch_array($consulta)) {
