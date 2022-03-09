@@ -14,8 +14,8 @@ EOS;
 
     //<body>
     echo '<img class="gif_centrado" src="img/juegos/play_now.gif" alt="Gif">';
-    init($bdDatosConexion);
-    $this->conn = $app->conexionBd();
+
+    $this->conn = new \mysqli('host', 'user', 'pass', 'bd');
         
     //$sql = "SELECT IdJuego, Imagen FROM juegos";
     //$consula = $conn->query($ql);
