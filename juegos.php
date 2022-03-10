@@ -16,17 +16,30 @@ EOS;
     $conn = $app->conexionBd();
     $sql = "SELECT IdJuego, Imagen FROM juegos";
     $consulta = @mysqli_query($conn, $sql);
-    while($fila = @mysqli_fetch_array($consulta)) {
+    $parar = 0;
+    while($parar != 1) {
         $contenidoPrincipal .= <<<EOS
-        <div class="fila">
+            <div class="fila">
         EOS;
-        for($i = 0; $i < 5; $i++){
-            $contenidoPrincipal .= <<<EOS
-            <div class="columna">
-                <a href="informacion_juego.php?id=$fila[IdJuego]"><img src="data:image/png;base64,<?php echo base64_encode($fila[Imagen]); ?>"></a>
-            </div>
-            EOS;
+        $i = 1;
+        while($parar != 1 && $i <= 5){
+            if($fila = @mysqli_fetch_array($consulta)){
+                $contenidoPrincipal .= <<<EOS
+                    <div class="columna">
+                EOS;
+                $contenidoPrincipal .= '<a href="procesarJuego.php?id='.$fila["IdJuego"].'"><img src="data:image/png;base64,'.base64_encode($fila["Imagen"]).'"/>';
+                $contenidoPrincipal .= <<<EOS
+                    </div>
+                EOS;
+                $i++;
+            }
+            else{
+                $parar = 1;
+            }
         } 
+        $contenidoPrincipal .= <<<EOS
+            </div>
+        EOS;
     }
 
 require __DIR__.'/includes/plantillas/plantilla.php';
