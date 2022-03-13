@@ -19,7 +19,7 @@ $contenidoPrincipal = <<<EOS
 <head>
   <link rel="stylesheet" type="text/css" href="css/slider.css"/>
 </head>        
-<body>
+<body id="rankeo">
 <h2> Juegos </h2>
 <div class="container">
   <ul class="slider">

@@ -1,9 +1,9 @@
-body{
-  background-color: white;
+body#rankeo{
+  background-color: #fff;
   font-family: Verdana, Tahoma, sans-serif;
 }
   
-  .container{
+  div.container{
     margin: auto;
     background-color: lightgray;
     width: 800px;

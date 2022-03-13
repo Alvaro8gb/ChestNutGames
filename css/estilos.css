@@ -114,3 +114,15 @@ footer#piepagina{
     height:20vh;
     box-sizing: border-box;
 }
+
+body#rankeo{
+    background-color: #fff;
+    font-family: Verdana, Tahoma, sans-serif;
+}
+
+div.container{
+    margin: auto;
+    background-color: lightgray;
+    width: 800px;
+    padding: 30px;
+  }
