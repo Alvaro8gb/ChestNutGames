@@ -1,16 +1,20 @@
-<nav class="header_nav_menu">
-    <div id = "menu">
-        <a class="nav_home" href="index.php">Home</a>
-        <a href="detalles.php">Detalles</a>
-        <a href="planificacion.php">Planificación</a>
-        <a href="bocetos.php">Bocetos</a>
-        <a href="miembros.php">Miembros</a>
-        <a href="contacto.php">Contacto</a> 
-        <a href="login.php">Login</a> 
-        <a href="logout.php">Logout</a>  
-        <a href="ranking.php">Ranking</a> 
-        <a href="juegos.php">Juegos</a>         
-    </div> 
+<head>   
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+</head>
+
+<nav class="header_menu">
     
-    <h1>ChestNutGames</h1>              
+    <ul>
+        <li> <a class="nav_home" href="index.php">Home</a> </li>
+        <li> <a href="detalles.php">Detalles</a> </li>
+        <li> <a href="planificacion.php">Planificación</a> </li>
+        <li> <a href="bocetos.php">Bocetos</a> </li>
+        <li> <a href="miembros.php">Miembros</a> </li>
+        <li> <a href="contacto.php">Contacto</a>  </li>
+        <li> <a href="login.php">Login</a>  </li>
+        <li> <a href="logout.php">Logout</a>   </li>
+        <li> <a href="ranking.php">Ranking</a>  </li>
+        <li> <a href="juegos.php">Juegos</a>     </li>     
+    </ul>
+                    
 </nav>

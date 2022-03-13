@@ -71,16 +71,16 @@ CREATE TABLE `usuarios` (
 -- Indices de la tabla `juegos`
 --
 ALTER TABLE `juegos`
-  ADD PRIMARY KEY (`IdJuego`),
-  ADD UNIQUE KEY `Nombre` (`Nombre`);
+ADD PRIMARY KEY (`IdJuego`),
+ADD UNIQUE KEY `Nombre` (`Nombre`);
 
 --
 -- Indices de la tabla `ranking`
 --
 ALTER TABLE `ranking`
-  ADD KEY `IdJuego` (`IdJuego`),
-  ADD KEY `IdJugador` (`IdJugador`),
-  ADD KEY `IdJuego_2` (`IdJuego`),
+ADD KEY `IdJuego` (`IdJuego`),
+ADD KEY `IdJugador` (`IdJugador`),
+ADD KEY `IdJuego_2` (`IdJuego`),
   ADD KEY `IdJugador_2` (`IdJugador`);
 
 --

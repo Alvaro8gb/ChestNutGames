@@ -4,6 +4,9 @@ require_once __DIR__.'/includes/config.php';
 $tituloPagina = 'Concepto del proyecto';
 
 $contenidoPrincipal = <<<EOS
+
+<h1> ChestNutGames </h1>
+
 <img id="logo" src="img/logo/Chestnut_Logo.png" alt="logo" >
             
 <div id="text">
