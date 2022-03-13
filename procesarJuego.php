@@ -6,7 +6,7 @@ $tituloPagina = 'ProcesarJuego';
 
 $contenidoPrincipal = <<<EOS
     <head>
-        <link rel="stylesheet" type="text/css" href="css/estilo_juegos.css" />
+        <link rel="stylesheet" type="text/css" href="css/juegos.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>ProcesarJuego</title>
     </head>

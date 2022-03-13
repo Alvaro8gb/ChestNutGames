@@ -6,7 +6,7 @@ $tituloPagina = 'Juegos';
 
 $contenidoPrincipal = <<<EOS
     <head>
-        <link rel="stylesheet" type="text/css" href="css/juegos.css" />
+        <link rel="stylesheet" type="text/css" href="css/juegos.css"/>
     </head>
 
     <img class="gif_centrado" src="img/juegos/play_now.gif" alt="Gif"> 
