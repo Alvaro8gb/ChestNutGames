@@ -6,9 +6,9 @@ require_once __DIR__.'/Aplicacion.php';
  * Parámetros de conexión a la BD
  */
 define('BD_HOST', 'localhost');
-define('BD_NAME', 'chesnutgames');
-define('BD_USER', 'chesnut');
-define('BD_PASS', 'chesnut');
+define('BD_NAME', 'chestnutgames');
+define('BD_USER', 'chestnut');
+define('BD_PASS', 'chestnut');
 
 /**
  * Configuración del soporte de UTF-8, localización (idioma y país) y zona horaria

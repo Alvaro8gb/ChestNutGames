@@ -1,5 +1,5 @@
-CREATE USER 'chesnut'@'%' IDENTIFIED BY 'chesnut';
-GRANT ALL PRIVILEGES ON `chesnutgames`.* TO 'chesnut'@'%';
+CREATE USER 'chestnut'@'%' IDENTIFIED BY 'chestnut';
+GRANT ALL PRIVILEGES ON `chestnutgames`.* TO 'chestnut'@'%';
 
-CREATE USER 'chesnut'@'localhost' IDENTIFIED BY 'chesnut';
-GRANT ALL PRIVILEGES ON `chesnutgames`.* TO 'chesnut'@'localhost';
+CREATE USER 'chestnut'@'localhost' IDENTIFIED BY 'chestnut';
+GRANT ALL PRIVILEGES ON `chestnutgames`.* TO 'chestnut'@'localhost';

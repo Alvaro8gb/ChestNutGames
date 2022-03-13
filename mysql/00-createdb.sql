@@ -1,1 +1,1 @@
-CREATE DATABASE IF NOT EXISTS `chesnutgames` DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS `chestnutgames` DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
