@@ -19,6 +19,7 @@
 
 		   <footer>
 		   		<!-- Aqui ira el pie de pagina -->
+				   <?php require("includes/comun/pie.php"); ?>
 		   </footer>
 
 	</body>
