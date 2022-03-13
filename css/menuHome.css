@@ -4,9 +4,9 @@
     font-size: 30px;
     margin:auto;
     margin-top: 2%;
-    margin-bottom: 10%;
-    background-color: #2f3237;
-    color: white;
+    margin-bottom: 5%;
+    background-color: #e09141;
+    color: rgb(241, 236, 236);
 }
 
 #nav_home ul li {
@@ -18,7 +18,11 @@
 }
 
 a:visited {
-    color: white;
+    color: black;
+}
+
+a:link{
+    color:blue;
 }
 
 a:hover, a:visited, a:link, a:active {

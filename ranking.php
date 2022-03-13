@@ -17,7 +17,8 @@ while($fila = @mysqli_fetch_array($consulta)){
 
 $contenidoPrincipal = <<<EOS
 <head>
-        <link rel="stylesheet" type="text/css" href="css/slider.css" />
+  <link rel="stylesheet" type="text/css" href="css/slider.css"/>
+</head>        
 <body>
 <h2> Juegos </h2>
 <div class="container">
@@ -66,6 +67,7 @@ $contenidoPrincipal .= <<<EOS
    </ul>
    </div>
    <h2> Jugadores</h2>
+   </body>
 EOS;
 
 /*

@@ -47,7 +47,7 @@ table, th {
 }
 
 legend {
-    color: #fff;
+    color: white;
     background: #303030;
     border: 1px solid black;
     padding: 2px 6px;
@@ -75,4 +75,20 @@ h1{
 
 main{
     text-align: justify;
+}
+
+header#derecha{
+    width: 100%;
+	text-align: right;
+}
+
+header#derecha a, header#derecha a:visited {
+	color: blue;
+	font-weight: bold;
+	text-decoration: none;
+} 
+
+header#derecha div.saludo{
+    font-weight: bold;
+	text-decoration: none;
 }

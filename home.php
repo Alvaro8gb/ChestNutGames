@@ -16,6 +16,7 @@ $tituloPagina = 'Página principal';
 		   <header>
                 <img id="logo" src="img/logo/Chestnut_Logo.png" alt="logo" >
 				<?php require("menuHome.php"); ?>
+				<?php require("includes/comun/cabecera.php"); ?>
 		   </header>
 
 		   <main>

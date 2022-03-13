@@ -2,13 +2,15 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/estilos.css" />
+		<link rel="stylesheet" type="text/css" href="css/menuHome.css" />
 		<link rel="icon" href="img/logo/Favicon.png" type="image/png">
 		<title><?= $tituloPagina ?></title>
 	</head>
 	<body>
 
 		   <header>
-				<?php require("menu.php"); ?>
+				<?php require("menuHome.php"); ?>
+				<?php require("includes/comun/cabecera.php"); ?>
 		   </header>
 
 		   <main>

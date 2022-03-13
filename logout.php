@@ -15,6 +15,6 @@ $contenidoPrincipal = <<<EOS
 <h1>Hasta pronto!</h1>
 EOS;
 
-header("refresh:2;url=index.php");
+header("refresh:2;url=home.php");
 
 require __DIR__.'/includes/plantillas/plantilla.php';
