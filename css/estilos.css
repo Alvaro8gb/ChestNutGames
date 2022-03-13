@@ -10,8 +10,9 @@ table, th {
 }
 
 #logo{
-    max-width : 350px; 
-    max-height:300px;
+    max-width : 220px; 
+    max-height:200px;
+    margin-top: 40px;
     text-align: center;
 }
 
@@ -39,6 +40,10 @@ table, th {
 
 .formulario{
     margin: auto;
+}
+
+.h1_title {
+    text-align: left;
 }
 
 legend {

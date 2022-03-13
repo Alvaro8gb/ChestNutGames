@@ -82,7 +82,7 @@ if (isset($_SESSION["login"])) {
 	$contenidoPrincipal .= <<<EOS
 	<h1>Bienvenido {$_SESSION['nombre']}</h1>
 	EOS;
-	header("refresh:2;url=index.php");
+	header("refresh:2;url=home.php");
 } else {
 	$contenidoPrincipal .= <<<EOS
 	<form action="procesarRegistro.php" method="POST">
