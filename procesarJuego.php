@@ -31,9 +31,9 @@ EOS;
             <a href=""><img src="img/juegos/ranking.jpg" alt="Ranking"></a>
         </div>
         <div class = "informacion">
-            <p><b>Título:</b>$fila[Nombre].</p>
-            <p><b>Categoría:</b>$fila[Categoria]</p>
-            <p><b>Descripción:</b>$fila[Descripcion]</p>
+            <p><b>Título: </b>$fila[Nombre].</p>
+            <p><b>Categoría: </b>$fila[Categoria]</p>
+            <p><b>Descripción: </b>$fila[Descripcion]</p>
         </div>
     EOS;
 

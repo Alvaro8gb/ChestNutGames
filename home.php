@@ -16,7 +16,7 @@ $tituloPagina = 'Página principal';
 		   <header>
                 <img id="logo" src="img/logo/Chestnut_Logo.png" alt="logo" >
 				<h1> ChestNut Games </h1>
-				<?php require("menu.php"); ?>
+				<?php require("menuHome.php"); ?>
 		   </header>
 
 		   <main>
