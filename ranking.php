@@ -28,18 +28,37 @@ EOS;
 
     foreach($juegos as $id_juego => $nombre){
 
-      $sql = sprintf("SELECT Imagen FROM juegos WHERE IdJuego = '%s'", $conn->real_escape_string($id_juego));
+      $sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking WHERE IdJuego = '%s'", $conn->real_escape_string($id_juego));
       $consulta = @mysqli_query($conn, $sql);
       $fila = @mysqli_fetch_array($consulta);
 
       if ( $consulta->num_rows == 0 ) {
-        exit("tabla juegos sin imagenes");
+        exit("sin ranking");
       }
 
       $contenidoPrincipal .= <<<EOS
       <li id= {$id_juego}>
+        <table>
+        <tr>
+          <th>JUGADOR</th>
+          <th>PUNTUACION</th>
+          </tr>
       EOS;
-      $contenidoPrincipal .= '<a href="procesarJuego.php?id='.$id_juego.'"><img src="data:image/png;base64,'.base64_encode($fila["Imagen"]).'"/>';
+      
+       EOS;
+       while(i < $consulta->num_rows){
+        $contenidoPrincipal .= <<<EOS
+          <tr>
+          <td>{$fila["IdJugador"]}</td>
+          <td>{$fila["Puntuacion"]}</td>
+          </tr>
+       EOS;
+       $i++;
+       }
+      $contenidoPrincipal .= <<<EOS
+        </table>
+      </li>
+      EOS;
       $contenidoPrincipal .= <<<EOS
       </li>
       EOS;
@@ -65,7 +84,6 @@ EOS;
 $contenidoPrincipal .= <<<EOS
    </ul>
    </div>
-   <h2> Jugadores</h2>
 EOS;
 
 /*
@@ -88,11 +106,10 @@ $contenidoPrincipal .= <<<EOS
     $contenidoPrincipal .= <<<EOS
     </table>
   EOS;
-
+ */
 $contenidoPrincipal .= <<<EOS
       </body>
   EOS;
 
-  */
 
 require __DIR__.'/includes/plantillas/plantilla.php';
