@@ -25,7 +25,7 @@ EOS;
             <a href="juegos.php"><img src="img/juegos/exit.png" alt="Exit"></a>
         </div>
         <div class = "boton_play_now">
-            <a href="https://www.google.com/logos/2010/pacman10-i.html"><img src="img/juegos/play.png" alt="Play Now"></a>
+            <a href="$fila[Enlace]"><img src="img/juegos/play.png" alt="Play Now"></a>
         </div>
         <div class = "boton_ranking">
             <a href=""><img src="img/juegos/ranking.jpg" alt="Ranking"></a>
