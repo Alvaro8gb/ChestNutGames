@@ -32,7 +32,8 @@ CREATE TABLE `juegos` (
   `Nombre` varchar(255) DEFAULT NULL,
   `Imagen` longblob DEFAULT NULL,
   `Descripcion` varchar(255) DEFAULT NULL,
-  `Categoria` varchar(255) DEFAULT NULL
+  `Categoria` varchar(255) DEFAULT NULL, 
+  `Enlace` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
