@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-03-2022 a las 20:24:53
+-- Tiempo de generación: 14-03-2022 a las 11:55:15
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -18,8 +18,19 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `chesnutgames`
+-- Base de datos: `chestnutgames`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categorias`
+--
+
+CREATE TABLE `categorias` (
+  `Nombre` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 -- --------------------------------------------------------
 
@@ -32,11 +43,9 @@ CREATE TABLE `juegos` (
   `Nombre` varchar(255) DEFAULT NULL,
   `Imagen` longblob DEFAULT NULL,
   `Descripcion` varchar(255) DEFAULT NULL,
-  `Categoria` varchar(255) DEFAULT NULL, 
+  `Categoria` varchar(255) DEFAULT NULL,
   `Enlace` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
 -- --------------------------------------------------------
 
 --
@@ -48,6 +57,8 @@ CREATE TABLE `ranking` (
   `IdJugador` int(11) DEFAULT NULL,
   `Puntuacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 
 -- --------------------------------------------------------
 
@@ -64,25 +75,27 @@ CREATE TABLE `usuarios` (
   `correo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
 --
--- Índices para tablas volcadas
+-- Indices de la tabla `categorias`
 --
+ALTER TABLE `categorias`
+  ADD PRIMARY KEY (`Nombre`) USING BTREE;
 
 --
 -- Indices de la tabla `juegos`
 --
 ALTER TABLE `juegos`
-ADD PRIMARY KEY (`IdJuego`),
-ADD UNIQUE KEY `Nombre` (`Nombre`);
+  ADD PRIMARY KEY (`IdJuego`),
+  ADD UNIQUE KEY `Nombre` (`Nombre`),
+  ADD KEY `Categoria` (`Categoria`);
 
 --
 -- Indices de la tabla `ranking`
 --
 ALTER TABLE `ranking`
-ADD KEY `IdJuego` (`IdJuego`),
-ADD KEY `IdJugador` (`IdJugador`),
-ADD KEY `IdJuego_2` (`IdJuego`),
-  ADD KEY `IdJugador_2` (`IdJugador`);
+  ADD KEY `IdJuego` (`IdJuego`),
+  ADD KEY `IdJugador` (`IdJugador`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -104,11 +117,17 @@ ALTER TABLE `juegos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  ADD CONSTRAINT `categorias_ibfk_1` FOREIGN KEY (`Nombre`) REFERENCES `juegos` (`Categoria`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ranking`
@@ -121,4 +140,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
