@@ -21,7 +21,6 @@ $contenidoPrincipal = <<<EOS
 <nav >
     
     <ul>
-        <li> <a class="nav_home" href="home.php">Home</a> </li>
         <li> <a href="detalles.php">Detalles</a> </li>
         <li> <a href="planificacion.php">Planificación</a> </li>
         <li> <a href="bocetos.php">Bocetos</a> </li>

@@ -40,7 +40,7 @@ if (count($erroresFormulario) === 0) {
 				$_SESSION['nombre'] = $fila['nombre'];
 				$_SESSION['esAdmin'] = strcmp($fila['rol'], 'admin') == 0 ? true : false;
 				$rs->free();
-				header('refresh:2;url=home.php');
+				header('Location: index.php');
 				exit();
 			}
 		}
@@ -55,7 +55,7 @@ if (isset($_SESSION["login"])) {
 	$contenidoPrincipal .= <<<EOS
 	<h1>Bienvenido {$_SESSION['nombre']}</h1>
 	EOS;
-	header("refresh:2;url=home.php");
+	header("Location : index.php");
 } else {
 	$contenidoPrincipal .= <<<EOS
 	<form action="procesarLogin.php" method="POST">

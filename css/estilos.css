@@ -76,3 +76,19 @@ h1{
 main{
     text-align: justify;
 }
+
+body#rankeo{
+    background-color: #fff;
+    font-family: Verdana, Tahoma, sans-serif;
+}
+
+div.container{
+    margin: auto;
+    background-color: lightgray;
+    width: 800px;
+    padding: 30px;
+}
+
+a {
+    text-decoration: none;
+}

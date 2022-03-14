@@ -9,6 +9,7 @@ $tituloPagina = 'Página principal';
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/estilos.css" />
 		<link rel="icon" href="img/logo/Favicon.png" type="image/png">
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
 		<title><?= $tituloPagina ?></title>
 	</head>
 	<body>
@@ -16,7 +17,10 @@ $tituloPagina = 'Página principal';
 		   <header>
                 <img id="logo" src="img/logo/Chestnut_Logo.png" alt="logo" >
 				<h1> ChestNut Games </h1>
-				<?php require("menuHome.php"); ?>
+				<?php
+					$_GET['type']="home";
+					require("includes/comun/header.php");
+				 ?>
 		   </header>
 
 		   <main>

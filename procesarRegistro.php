@@ -64,7 +64,7 @@ if (count($erroresFormulario) === 0) {
 				$_SESSION['nombre'] = $nombre;
 				$rs->free();
 				echo "<h1>Bienvenido {$_SESSION['nombre']} usted se ha registrado de forma correcta, ahora inicie sesión</h1>";
-				header('refresh:3;url=login.php');
+				header('Location : login.php');
 				exit();
 			} else {
 				echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
@@ -82,7 +82,7 @@ if (isset($_SESSION["login"])) {
 	$contenidoPrincipal .= <<<EOS
 	<h1>Bienvenido {$_SESSION['nombre']}</h1>
 	EOS;
-	header("refresh:2;url=home.php");
+	header("Location : index.php");
 } else {
 	$contenidoPrincipal .= <<<EOS
 	<form action="procesarRegistro.php" method="POST">
