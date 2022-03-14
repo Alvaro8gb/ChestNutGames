@@ -6,17 +6,17 @@ $tituloPagina = 'Información ';
 
 $contenidoPrincipal = <<<EOS
 
-<h1 class = "h1_title"> · Documentación </h1>
+<h1 class = "h1_title">  Documentación </h1>
 
 <nav >
     
     <ul>
-        <li> <a class="nav_home" href="memoria.php">Documentacion</a> </li>
+        <li> <a class="nav_home" href="memoria.php">Documentación</a> </li>
     </ul>
                     
 </nav>
 
-<h1 class = "h1_title"> · Contenido de entregas anteriores </h1>
+<h1 class = "h1_title"> Contenido de entregas anteriores </h1>
 
 <nav >
     
