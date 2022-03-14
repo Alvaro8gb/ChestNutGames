@@ -17,7 +17,8 @@ while($fila = @mysqli_fetch_array($consulta)){
 
 $contenidoPrincipal = <<<EOS
 <head>
-        <link rel="stylesheet" type="text/css" href="css/slider.css" />
+        <link rel="stylesheet" type="text/css" href="css/ranking.css" />
+</head>
 <body>
 <div class="container">
   <ul class="slider">
