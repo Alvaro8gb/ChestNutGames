@@ -27,7 +27,6 @@
 .saludo a, .saludo a:visited {
 	color: blue;
 	font-weight: bold;
-	text-decoration: none;
 }
 
 .saludo a:hover, div#derecha a:hover {

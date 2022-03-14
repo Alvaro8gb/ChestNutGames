@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__.'/includes/config.php';
 
-$tituloPagina = 'Memoria';
+$tituloPagina = 'Miembros';
 
 $contenidoPrincipal = <<<EOS
 
