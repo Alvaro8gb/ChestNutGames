@@ -19,7 +19,6 @@ $contenidoPrincipal = <<<EOS
 <head>
         <link rel="stylesheet" type="text/css" href="css/slider.css" />
 <body>
-<h2> Juegos </h2>
 <div class="container">
   <ul class="slider">
 EOS;
@@ -31,25 +30,26 @@ EOS;
       $sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking WHERE IdJuego = '%s'", $conn->real_escape_string($id_juego));
       $consulta = @mysqli_query($conn, $sql);
       $fila = @mysqli_fetch_array($consulta);
-
-      if ( $consulta->num_rows == 0 ) {
-        exit("sin ranking");
-      }
+      $i = 0;
 
       $contenidoPrincipal .= <<<EOS
       <li id= {$id_juego}>
         <table>
+        <tr>
+          <th id ="nombreJuegoRanking" colspan = "2">{$nombre}</th>
         <tr>
           <th>JUGADOR</th>
           <th>PUNTUACION</th>
           </tr>
       EOS;
       
-       EOS;
-       while(i < $consulta->num_rows){
+       while($i < $consulta->num_rows){
+        $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s'", $conn->real_escape_string($fila["IdJugador"]));
+        $consulta2 = @mysqli_query($conn, $sql2);
+        $fila2 = @mysqli_fetch_array($consulta2);
         $contenidoPrincipal .= <<<EOS
           <tr>
-          <td>{$fila["IdJugador"]}</td>
+          <td>{$fila2["nombreUsuario"]}</td>
           <td>{$fila["Puntuacion"]}</td>
           </tr>
        EOS;
