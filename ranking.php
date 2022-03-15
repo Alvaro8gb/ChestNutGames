@@ -20,6 +20,32 @@ $contenidoPrincipal = <<<EOS
         <link rel="stylesheet" type="text/css" href="css/ranking.css" />
 </head>
 <body>
+<div>
+   <h1> RANKING GLOBAL </h1>
+    <table>
+      <tr>
+      <th>JUGADOR</th>
+      <th>PUNTUACION</th>
+      </tr>
+EOS;
+$sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking GROUP BY IdJugador");
+  $consulta = @mysqli_query($conn, $sql);
+
+  while($fila = @mysqli_fetch_array($consulta)){
+    $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s'", $conn->real_escape_string($fila["IdJugador"]));
+    $consulta2 = @mysqli_query($conn, $sql2);
+    $fila2 = @mysqli_fetch_array($consulta2);
+    $contenidoPrincipal .= <<<EOS
+      <tr>
+      <td>{$fila2["nombreUsuario"]}</td>
+      <td>{$fila["Puntuacion"]}</td>
+      </tr>
+    EOS;
+  }
+$contenidoPrincipal .= <<<EOS
+</table>
+</div>
+<h1> Ranking por Juego </h1>   
 <div class="container">
   <ul class="slider">
 EOS;
@@ -30,8 +56,6 @@ EOS;
 
       $sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking WHERE IdJuego = '%s'", $conn->real_escape_string($id_juego));
       $consulta = @mysqli_query($conn, $sql);
-      $fila = @mysqli_fetch_array($consulta);
-      $i = 0;
 
       $contenidoPrincipal .= <<<EOS
       <li id= {$id_juego}>
@@ -44,7 +68,7 @@ EOS;
           </tr>
       EOS;
       
-       while($i < $consulta->num_rows){
+       while($fila = @mysqli_fetch_array($consulta)){
         $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s'", $conn->real_escape_string($fila["IdJugador"]));
         $consulta2 = @mysqli_query($conn, $sql2);
         $fila2 = @mysqli_fetch_array($consulta2);
@@ -54,7 +78,6 @@ EOS;
           <td>{$fila["Puntuacion"]}</td>
           </tr>
        EOS;
-       $i++;
        }
       $contenidoPrincipal .= <<<EOS
         </table>
@@ -85,32 +108,8 @@ EOS;
 $contenidoPrincipal .= <<<EOS
    </ul>
    </div>
+   </body>
 EOS;
-
-/*
-$sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking WHERE IdJuego = '%s'", $conn->real_escape_string($jueg));
-$consulta = @mysqli_query($conn, $sql);
-
-$contenidoPrincipal .= <<<EOS
-        <table id= {$jueg}> 
-    EOS;
-    while($fila = @mysqli_fetch_array($consulta)){
-            $contenidoPrincipal .= <<<EOS
-                <tr>
-                <td>{$fila["IdJugador"]}</td>
-                <td>{$fila["Puntuacion"]}</td>
-                </tr>
-            EOS;
-            
-    }
-    
-    $contenidoPrincipal .= <<<EOS
-    </table>
-  EOS;
- */
-$contenidoPrincipal .= <<<EOS
-      </body>
-  EOS;
 
 
 require __DIR__.'/includes/plantillas/plantilla.php';
