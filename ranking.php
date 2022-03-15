@@ -28,7 +28,7 @@ $contenidoPrincipal = <<<EOS
       <th>PUNTUACION</th>
       </tr>
 EOS;
-$sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking GROUP BY IdJugador");
+$sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking GROUP BY IdJugador ORDER BY Puntuacion desc");
   $consulta = @mysqli_query($conn, $sql);
 
   while($fila = @mysqli_fetch_array($consulta)){
@@ -54,7 +54,7 @@ EOS;
 
     foreach($juegos as $id_juego => $nombre){
 
-      $sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking WHERE IdJuego = '%s'", $conn->real_escape_string($id_juego));
+      $sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking WHERE IdJuego = '%s' ORDER BY Puntuacion desc", $conn->real_escape_string($id_juego));
       $consulta = @mysqli_query($conn, $sql);
 
       $contenidoPrincipal .= <<<EOS
