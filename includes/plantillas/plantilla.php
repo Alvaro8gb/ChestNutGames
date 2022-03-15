@@ -11,7 +11,6 @@
 				<?php require("includes/comun/header.php"); ?>
 			</header>
 
-		   
 		   <main>
 				<?= $contenidoPrincipal ?>
 		   </main>

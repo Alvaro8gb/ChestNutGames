@@ -1,10 +1,7 @@
 
 <?php
 
-function enlace($elc, $name){
-    echo '<li><a href='.'"'.$elc.'">'.$name.'</a></li>';
-}
-
+require_once __DIR__.'\utils.php';
 
 if (isset( $_GET['type']) && $_GET['type'] = "home" ){
     $paginas = array('Juegos'=>'juegos.php', 'Ranking'=>'ranking.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
@@ -32,7 +29,7 @@ echo '</div>';
     <?php
         echo '<ul>';
         foreach($paginas as $name=>$enl){
-            enlace($enl, $name);
+            echo enlace($enl, $name);
         }
         echo '</ul>';    
     ?>

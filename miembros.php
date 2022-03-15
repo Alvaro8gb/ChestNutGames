@@ -1,32 +1,23 @@
 <?php
 require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/comun/utils.php';
 
 $tituloPagina = 'Miembros';
 
-$contenidoPrincipal = <<<EOS
+$miembros = array('Petar Konstantinov Ivanov'=>'#Petar', 'Sergio Lorente Bausela'=>'#Sergio', 'Álvaro García Barragán'  => '#Alvaro'  ,
+ 'David Candil Villacastín' => '#David', 'Víctor Moreno Pérez' => '#Victor' , 'Pablo Sánchez-Rodilla Serrano' => '#Pablo');
 
+$contenidoPrincipal = <<<EOS
     <div class= "memberlinks">
-        <h2>Lista de Miembros</h2>
-        <ol>
-            <li>
-                <a href="#Petar">Petar Konstantinov Ivanov</a>
-            </li>
-            <li>
-                <a href="#Sergio">Sergio Lorente Bausela</a>
-            </li>
-            <li>
-                <a href="#Alvaro">Álvaro García Barragán</a>
-            </li>
-            <li>
-                <a href="#David">David Candil Villacastín</a>
-            </li>
-            <li>
-                <a href="#Victor">Víctor Moreno Pérez</a>
-            </li>
-            <li>
-                <a href="#Pablo">Pablo Sánchez-Rodilla Serrano</a>
-            </li>
-        </ol>
+    <h2>Lista de Miembros</h2>
+    <ol>
+EOS;
+    foreach($miembros as $name=>$enl){
+        $contenidoPrincipal .= enlace($enl, $name);
+    }
+
+$contenidoPrincipal .= <<<EOS
+    </ol>
     </div>
     <div class = member>
         <!--Apartado Petar-->

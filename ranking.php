@@ -10,7 +10,6 @@ $conn = $app->conexionBd();
 $sql = "SELECT IdJuego, nombre FROM juegos";
 $consulta = @mysqli_query($conn, $sql);
 
-
 while($fila = @mysqli_fetch_array($consulta)){
   $juegos[$fila["IdJuego"]] = $fila["nombre"];
 }
@@ -49,8 +48,6 @@ $contenidoPrincipal .= <<<EOS
 <div class="container">
   <ul class="slider">
 EOS;
-
-
 
     foreach($juegos as $id_juego => $nombre){
 
@@ -110,6 +107,5 @@ $contenidoPrincipal .= <<<EOS
    </div>
    </body>
 EOS;
-
 
 require __DIR__.'/includes/plantillas/plantilla.php';
