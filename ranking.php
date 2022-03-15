@@ -28,7 +28,7 @@ $contenidoPrincipal = <<<EOS
       <th>PUNTUACION</th>
       </tr>
 EOS;
-$sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking GROUP BY IdJugador ORDER BY Puntuacion desc");
+$sql = sprintf("SELECT IdJugador, sum(Puntuacion) as SumaPuntos FROM ranking GROUP BY IdJugador ORDER BY SumaPuntos desc");
   $consulta = @mysqli_query($conn, $sql);
 
   while($fila = @mysqli_fetch_array($consulta)){
@@ -38,7 +38,7 @@ $sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking GROUP BY IdJugador ORD
     $contenidoPrincipal .= <<<EOS
       <tr>
       <td>{$fila2["nombreUsuario"]}</td>
-      <td>{$fila["Puntuacion"]}</td>
+      <td>{$fila["SumaPuntos"]}</td>
       </tr>
     EOS;
   }

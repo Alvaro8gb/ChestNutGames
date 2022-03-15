@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-03-2022 a las 11:55:15
+-- Tiempo de generación: 15-03-2022 a las 14:04:11
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -32,6 +32,7 @@ CREATE TABLE `categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +47,13 @@ CREATE TABLE `juegos` (
   `Categoria` varchar(255) DEFAULT NULL,
   `Enlace` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `juegos`
+--
+
+
+
 -- --------------------------------------------------------
 
 --
@@ -58,6 +66,9 @@ CREATE TABLE `ranking` (
   `Puntuacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `ranking`
+--
 
 
 -- --------------------------------------------------------
@@ -74,7 +85,6 @@ CREATE TABLE `usuarios` (
   `rol` varchar(10) NOT NULL,
   `correo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 
 --
 -- Indices de la tabla `categorias`
@@ -124,17 +134,17 @@ ALTER TABLE `usuarios`
 --
 
 --
--- Filtros para la tabla `categorias`
+-- Filtros para la tabla `juegos`
 --
-ALTER TABLE `categorias`
-  ADD CONSTRAINT `categorias_ibfk_1` FOREIGN KEY (`Nombre`) REFERENCES `juegos` (`Categoria`) ON UPDATE CASCADE;
+ALTER TABLE `juegos`
+  ADD CONSTRAINT `juegos_ibfk_1` FOREIGN KEY (`Categoria`) REFERENCES `categorias` (`Nombre`);
 
 --
 -- Filtros para la tabla `ranking`
 --
 ALTER TABLE `ranking`
-  ADD CONSTRAINT `ranking_ibfk_1` FOREIGN KEY (`IdJugador`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ranking_ibfk_2` FOREIGN KEY (`IdJuego`) REFERENCES `juegos` (`IdJuego`) ON DELETE CASCADE;
+  ADD CONSTRAINT `ranking_ibfk_1` FOREIGN KEY (`IdJuego`) REFERENCES `juegos` (`IdJuego`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ranking_ibfk_2` FOREIGN KEY (`IdJugador`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
