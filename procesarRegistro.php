@@ -24,6 +24,11 @@ if ( empty($nombre) || mb_strlen($nombre) < 5 ) {
 	$erroresFormulario['nombre'] = "El nombre tiene que tener una longitud de al menos 5 caracteres.";
 }
 
+$correo = isset($_POST['correoUsuario']) ? $_POST['correoUsuario'] : null;
+if (empty($correo)) {
+	$erroresFormulario['correoUsuario'] = "Introduzca correo válido o que no este ya usado";
+}
+
 $password = isset($_POST['password']) ? $_POST['password'] : null;
 if ( empty($password) || mb_strlen($password) < 8 ) {
 	$erroresFormulario['password'] = "La contraseña tiene que tener una longitud de al menos 8 caracteres.";
@@ -33,27 +38,31 @@ if ( empty($password2) || strcmp($password, $password2) !== 0 ) {
 	$erroresFormulario['password2'] = "Las contraseñas deben coincidir";
 }
 
-$correo = isset($_POST['correoUsuario']) ? $_POST['correoUsuario'] : null;
-if ( empty($password2) || strcmp($password, $password2) !== 0 ) {
-	$erroresFormulario['password2'] = "No se ha introducido correo electrónico";
-}
-
-
 
 if (count($erroresFormulario) === 0) {
 	$conn = $app->conexionBd();
 	
-	$query=sprintf("SELECT * FROM Usuarios U WHERE U.nombreUsuario = '%s'", $conn->real_escape_string($nombreUsuario));
+	$query=sprintf("SELECT * FROM usuarios U WHERE U.correo = '%s'", $conn->real_escape_string($correo));
+	$query1=sprintf("SELECT * FROM usuarios U WHERE U.nombreUsuario = '%s'", $conn->real_escape_string($nombreUsuario));
 	$rs = $conn->query($query);
-	if ($rs) {
-		if ( $rs->num_rows > 0 ) {
+	$rs1 = $conn->query($query1);
+	if ($rs && $rs1) {
+		if ( $rs->num_rows > 0) {
+			$erroresFormulario['correoUsuario'] = "El correo existe";
+			$rs->free();
+			$contenidoPrincipal .= <<<EOS
+			<h2>Inicie <a href="login.php">sesión</a></h2>
+			EOS;
+		}
+		else if($rs1->num_rows > 0){
 			$erroresFormulario[] = "El usuario ya existe";
 			$rs->free();
 			$contenidoPrincipal .= <<<EOS
 			<h2>Inicie <a href="login.php">sesión</a></h2>
 			EOS;
-		} else {
-			$query=sprintf("INSERT INTO Usuarios(nombreUsuario, nombre, password, rol, correo) VALUES('%s', '%s', '%s', '%s','%s')"
+		} 
+		else {
+			$query=sprintf("INSERT INTO usuarios(nombreUsuario, nombre, password, rol, correo) VALUES('%s', '%s', '%s', '%s','%s')"
 					, $conn->real_escape_string($nombreUsuario)
 					, $conn->real_escape_string($nombre)
 					, password_hash($password, PASSWORD_DEFAULT)
@@ -61,17 +70,19 @@ if (count($erroresFormulario) === 0) {
 					,$conn->real_escape_string($correo));
 			if ( $conn->query($query) ) {
 				$_SESSION['login'] = true;
-				$_SESSION['nombre'] = $nombre;
+				$_SESSION['nombre'] = $nombreUsuario;
 				$rs->free();
-				echo "<h1>Bienvenido {$_SESSION['nombre']} usted se ha registrado de forma correcta, ahora inicie sesión</h1>";
-				header('Location : login.php');
+				echo "<h1>Bienvenido {$_SESSION['nombre']} usted se ha registrado de forma correcta</h1>";
+				header('refresh:2;url=index.php');
 				exit();
-			} else {
+			} 
+			else {
 				echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
 				exit();
 			}
 		}		
-	} else {
+	} 
+	else {
 		echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
 		exit();
 	}
@@ -82,7 +93,7 @@ if (isset($_SESSION["login"])) {
 	$contenidoPrincipal .= <<<EOS
 	<h1>Bienvenido {$_SESSION['nombre']}</h1>
 	EOS;
-	header("Location : index.php");
+	header('refresh:2;url=index.php');
 } else {
 	$contenidoPrincipal .= <<<EOS
 	<form action="procesarRegistro.php" method="POST">
@@ -118,9 +129,17 @@ if (isset($_SESSION["login"])) {
 	if (isset($erroresFormulario['password2'])) {
 		$errorPassword2 = " <span class=\"error\">{$erroresFormulario['password2']}</span>";
 	}
+	$errorCorreo='';
+	if (isset($erroresFormulario['correoUsuario'])) {
+		$errorCorreo = " <span class=\"error\">{$erroresFormulario['correoUsuario']}</span>";
+	}
+
 	$contenidoPrincipal .= <<<EOS
 	<fieldset>
 		<legend>Usuario y contraseña</legend>
+		<div class="grupo-control">
+			<label>Correo electrónico:</label> <input type="text" name="correoUsuario" value="$correo" />$errorCorreo
+		</div>
 		<div class="grupo-control">
 			<label>Nombre de usuario:</label> <input type="text" name="nombreUsuario" value="$nombreUsuario" />$errorNombreUsuario
 		</div>
