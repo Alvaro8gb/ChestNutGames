@@ -37,7 +37,7 @@ if (count($erroresFormulario) === 0) {
 				$erroresFormulario[] = "El usuario o el password no coinciden";
 			} else {
 				$_SESSION['login'] = true;
-				$_SESSION['nombre'] = $fila['nombre'];
+				$_SESSION['nombre'] = $fila['nombreUsuario'];
 				$_SESSION['esAdmin'] = strcmp($fila['rol'], 'admin') == 0 ? true : false;
 				$rs->free();
 				header('Location: index.php');
