@@ -17,7 +17,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
     echo '<div class="saludo">'.$_SESSION['nombre'].'(<a href="logout.php">salir</a>)';
 }
 else{
-    echo 'Usuario desconocido. <a href="login.php">Login</a>.<a href="registro.php">Registro</a>';
+    echo 'Usuario desconocido. <a href="login.php"> Login </a> | <a href="registro.php"> Registro </a>';
 }
 
 echo '</div>';
