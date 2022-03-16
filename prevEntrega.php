@@ -22,7 +22,6 @@ foreach($paginas_documentacion as $name=>$enl){
 }
 
 $contenidoPrincipal .=<<<EOS
-        <li> <a class="nav_home" href="memoria.php">Documentación</a> </li>
     </ul>      
 </nav>
 <h1 class = "h1_title"> Contenido de entregas anteriores </h1>  
