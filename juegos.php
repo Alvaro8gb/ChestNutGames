@@ -38,6 +38,8 @@ EOS;
         $contenidoPrincipal .= <<<EOS
             </div>
         EOS;
+        
     }
+    $consulta->free();
 
 require __DIR__.'/includes/plantillas/plantilla.php';

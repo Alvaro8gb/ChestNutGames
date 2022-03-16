@@ -29,18 +29,22 @@ $contenidoPrincipal = <<<EOS
 EOS;
 $sql = sprintf("SELECT IdJugador, sum(Puntuacion) as SumaPuntos FROM ranking GROUP BY IdJugador ORDER BY SumaPuntos desc");
   $consulta = @mysqli_query($conn, $sql);
-
-  while($fila = @mysqli_fetch_array($consulta)){
-    $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s'", $conn->real_escape_string($fila["IdJugador"]));
-    $consulta2 = @mysqli_query($conn, $sql2);
-    $fila2 = @mysqli_fetch_array($consulta2);
-    $contenidoPrincipal .= <<<EOS
-      <tr>
-      <td>{$fila2["nombreUsuario"]}</td>
-      <td>{$fila["SumaPuntos"]}</td>
-      </tr>
-    EOS;
+  $i = 1;
+  while($i <= 5){
+    if($fila = @mysqli_fetch_array($consulta)){
+      $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s'", $conn->real_escape_string($fila["IdJugador"]));
+      $consulta2 = @mysqli_query($conn, $sql2);
+      $fila2 = @mysqli_fetch_array($consulta2);
+      $contenidoPrincipal .= <<<EOS
+        <tr>
+        <td>{$fila2["nombreUsuario"]}</td>
+        <td>{$fila["SumaPuntos"]}</td>
+        </tr>
+      EOS;
+    }
+    $i++;
   }
+  $consulta->free();
 $contenidoPrincipal .= <<<EOS
 </table>
 </div>
@@ -64,18 +68,22 @@ EOS;
           <th>PUNTUACION</th>
           </tr>
       EOS;
-      
-       while($fila = @mysqli_fetch_array($consulta)){
-        $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s'", $conn->real_escape_string($fila["IdJugador"]));
-        $consulta2 = @mysqli_query($conn, $sql2);
-        $fila2 = @mysqli_fetch_array($consulta2);
-        $contenidoPrincipal .= <<<EOS
-          <tr>
-          <td>{$fila2["nombreUsuario"]}</td>
-          <td>{$fila["Puntuacion"]}</td>
-          </tr>
-       EOS;
-       }
+      $j = 1;
+      while($j <= 5){
+        if($fila = @mysqli_fetch_array($consulta)){
+          $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s'", $conn->real_escape_string($fila["IdJugador"]));
+          $consulta2 = @mysqli_query($conn, $sql2);
+          $fila2 = @mysqli_fetch_array($consulta2);
+          $contenidoPrincipal .= <<<EOS
+              <tr>
+              <td>{$fila2["nombreUsuario"]}</td>
+              <td>{$fila["Puntuacion"]}</td>
+              </tr>
+          EOS;
+        }
+      $j++;
+      }
+      $consulta2->free();
       $contenidoPrincipal .= <<<EOS
         </table>
       </li>
