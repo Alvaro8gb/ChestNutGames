@@ -22,7 +22,7 @@ $contenidoPrincipal .= <<<EOS
 EOS;
 
 ob_start();
-require_once __DIR__.'/static/miembros.html';
+require __DIR__.'/static/miembros.html';
 $contenidoPrincipal .= ob_get_clean();
 
 

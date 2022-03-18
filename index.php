@@ -3,7 +3,6 @@ require_once __DIR__.'/includes/config.php';
 $tituloPagina = 'Página principal';
 ?>
 
-
 <!DOCTYPE html>
 <html>
 	<head>

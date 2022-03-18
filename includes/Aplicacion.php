@@ -1,25 +1,14 @@
 <?php
 
+namespace es\chestnut;
+
 /**
  * Clase que mantiene el estado global de la aplicación.
  */
-class Aplicacion
-{
+class Aplicacion{
 	const ATTRIBUTO_SESSION_ATTRIBUTOS_PETICION = 'attsPeticion';
 
 	private static $instancia;
-	
-	/**
-	 * Devuele una instancia de {@see Aplicacion}.
-	 * 
-	 * @return Applicacion Obtiene la única instancia de la <code>Aplicacion</code>
-	 */
-	public static function getSingleton() {
-		if (  !self::$instancia instanceof self) {
-			self::$instancia = new self;
-		}
-		return self::$instancia;
-	}
 
 	/**
 	 * @var array Almacena los datos de configuración de la BD
@@ -43,30 +32,39 @@ class Aplicacion
 	 */
 	private function __construct() {
 	}
+
+	/**
+	 * Devuele una instancia de {@see Aplicacion}.
+	 * 
+	 * @return Applicacion Obtiene la única instancia de la <code>Aplicacion</code>
+	 */
+	public static function getSingleton() {
+		if (  !self::$instancia instanceof self) {
+			self::$instancia = new self;
+		}
+		return self::$instancia;
+	}
 	
 	/**
 	 * Evita que se pueda utilizar el operador clone.
 	 */
-	public function __clone()
-	{
-		throw new Exception('No tiene sentido el clonado');
+	public function __clone(){
+		throw new \Exception('No tiene sentido el clonado');
 	}
 
 
 	/**
 	 * Evita que se pueda utilizar serialize().
 	 */
-	public function __sleep()
-	{
-		throw new Exception('No tiene sentido el serializar el objeto');
+	public function __sleep(){
+		throw new \Exception('No tiene sentido el serializar el objeto');
 	}
 
 	/**
 	 * Evita que se pueda utilizar unserialize().
 	 */
-	public function __wakeup()
-	{
-		throw new Exception('No tiene sentido el deserializar el objeto');
+	public function __wakeup(){
+		throw new \Exception('No tiene sentido el deserializar el objeto');
 	}
 	
 	/**
@@ -74,8 +72,7 @@ class Aplicacion
 	 * 
 	 * @param array $bdDatosConexion datos de configuración de la BD
 	 */
-	public function init($bdDatosConexion)
-	{
+	public function init($bdDatosConexion){
         if ( ! $this->inicializada ) {
     	    $this->bdDatosConexion = $bdDatosConexion;
     		session_start();
@@ -86,8 +83,7 @@ class Aplicacion
 	/**
 	 * Cierre de la aplicación.
 	 */
-	public function shutdown()
-	{
+	public function shutdown(){
 	    $this->compruebaInstanciaInicializada();
 	    if ($this->conn !== null && ! $this->conn->connect_errno) {
 	        $this->conn->close();
@@ -97,8 +93,7 @@ class Aplicacion
 	/**
 	 * Comprueba si la aplicación está inicializada. Si no lo está muestra un mensaje y termina la ejecución.
 	 */
-	private function compruebaInstanciaInicializada()
-	{
+	private function compruebaInstanciaInicializada(){
 	    if (! $this->inicializada ) {
 	        echo "Aplicacion no inicializada";
 	        exit();
@@ -110,8 +105,7 @@ class Aplicacion
 	 * 
 	 * @return \mysqli Conexión a MySQL.
 	 */
-	public function conexionBd()
-	{
+	public function conexionBd(){
 	    $this->compruebaInstanciaInicializada();
 		if (! $this->conn ) {
 			$bdHost = $this->bdDatosConexion['host'];
