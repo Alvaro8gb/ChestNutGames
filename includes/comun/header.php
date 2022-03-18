@@ -1,7 +1,7 @@
 
 <?php
 
-require_once __DIR__.'\utils.php';
+require_once __DIR__.'/utils.php';
 
 if (isset( $_GET['type']) && $_GET['type'] = "home" ){
     $paginas = array('Juegos'=>'juegos.php', 'Ranking'=>'ranking.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
@@ -14,7 +14,7 @@ if (isset( $_GET['type']) && $_GET['type'] = "home" ){
 echo '<div class="saludo">';
     
 if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
-    echo '<div class="saludo">'.$_SESSION['nombre'].'(<a href="logout.php">salir</a>)';
+    echo $_SESSION['nombre'].'(<a href="logout.php">Salir</a>)';
 }
 else{
     echo 'Usuario desconocido. <a href="login.php"> Login </a> | <a href="registro.php"> Registro </a>';
