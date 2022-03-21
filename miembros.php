@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__.'/includes/config.php';
-require_once __DIR__.'/includes/comun/utils.php';
+require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $tituloPagina = 'Miembros';
 
@@ -26,5 +26,4 @@ require __DIR__.'/static/miembros.html';
 $contenidoPrincipal .= ob_get_clean();
 
 
-require __DIR__.'/includes/plantillas/plantilla.php';
-  
+require __DIR__.'/includes/vistas/plantillas/plantilla.php';  

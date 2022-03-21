@@ -17,4 +17,4 @@ EOS;
 
 header("refresh:3;url=index.php");
 
-require __DIR__.'/includes/plantillas/plantilla.php';
+require __DIR__.'/includes/vistas/plantillas/plantilla.php';

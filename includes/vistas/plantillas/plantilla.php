@@ -8,14 +8,14 @@
 	</head>
 	<body>
 			<header>
-				<?php require("includes/comun/header.php"); ?>
+				<?php require("includes/vistas/comun/header.php"); ?>
 			</header>
 
 		   <main>
 				<?= $contenidoPrincipal ?>
 		   </main>
 
-		   <?php require("includes/comun/footer.php"); ?>
+		   <?php require("includes/vistas/comun/footer.php"); ?>
 
 	</body>
 </html>
