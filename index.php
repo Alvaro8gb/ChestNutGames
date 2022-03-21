@@ -18,7 +18,7 @@ $tituloPagina = 'Página principal';
 				<h1> ChestNut Games </h1>
 				<?php
 					$_GET['type']="home";
-					require("includes/comun/header.php");
+					require("includes/vistas/comun/header.php");
 				 ?>
 		   </header>
 
