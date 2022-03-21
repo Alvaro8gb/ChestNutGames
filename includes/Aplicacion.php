@@ -38,7 +38,7 @@ class Aplicacion{
 	 * 
 	 * @return Applicacion Obtiene la única instancia de la <code>Aplicacion</code>
 	 */
-	public static function getSingleton() {
+	public static function getInstancia() {
 		if (  !self::$instancia instanceof self) {
 			self::$instancia = new self;
 		}

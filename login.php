@@ -4,22 +4,9 @@ require_once __DIR__.'/includes/config.php';
 
 $tituloPagina = 'Login';
 
-$contenidoPrincipal = <<<EOS
-<h1>Acceso al sistema</h1>
+ob_start();
+require_once __DIR__.'/static/formLogin.html';
+$contenidoPrincipal = ob_get_clean();
 
-<form action="procesarLogin.php" method="POST">
-<fieldset>
-	<legend>Usuario y contraseña</legend>
-	<div class="grupo-control">
-		<label>Nombre de usuario:</label> <input type="text" name="nombreUsuario" />
-	</div>
-	<div class="grupo-control">
-		<label>Password:</label> <input type="password" name="password" />
-	</div>
-	<div class="grupo-control"><button type="submit" name="login">Entrar</button></div>
-</fieldset>
-</form>
-<h2>Si no tienes cuenta te puedes <a href="registro.php">registrar</a></h2
-EOS;
 
 require __DIR__.'/includes/plantillas/plantilla.php';

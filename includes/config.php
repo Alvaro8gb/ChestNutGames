@@ -46,7 +46,7 @@ setLocale(LC_ALL, 'es_ES.UTF.8');
 date_default_timezone_set('Europe/Madrid');
 
 // Inicializa la aplicación
-$app = es\chestnut\Aplicacion::getSingleton();
+$app = es\chestnut\Aplicacion::getInstancia();
 $app->init(array('host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PASS));
 
 /**
