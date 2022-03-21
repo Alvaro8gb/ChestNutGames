@@ -1,12 +1,18 @@
 <?php
 
+namespace es\chestnut;
+
 require_once __DIR__.'/includes/config.php';
+
+$form = new FormularioLogin();
 
 $tituloPagina = 'Login';
 
-ob_start();
-require_once __DIR__.'/static/formLogin.html';
-$contenidoPrincipal = ob_get_clean();
+$htmlFormLogin = $form->gestiona();
+
+$contenidoPrincipal = <<<EOF
+    $htmlFormLogin
+EOF;
 
 
 require __DIR__.'/includes/plantillas/plantilla.php';

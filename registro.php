@@ -1,30 +1,16 @@
 <?php
 
+namespace es\chestnut;
+
+//Inicio del procesamiento
 require_once __DIR__.'/includes/config.php';
 
+$form = new FormularioRegistro();
+$htmlFormRegistro = $form->gestiona();
+
 $tituloPagina = 'Registro';
+$contenidoPrincipal = <<<EOF
+		$htmlFormRegistro
+EOF;
 
-$contenidoPrincipal = <<<EOS
-<h1>Registro de usuario</h1>
-
-<form action="procesarRegistro.php" method="POST">
-<fieldset>
-	<div class="grupo-control">
-		<label>Correo electrónico:</label> <input class="control" type="email" name="correoUsuario" />
-	</div>
-	<div class="grupo-control">
-		<label>Nombre de usuario:</label> <input class="control" type="text" name="nombreUsuario" />
-	</div>
-	<div class="grupo-control">
-		<label>Nombre completo:</label> <input class="control" type="text" name="nombre" />
-	</div>
-	<div class="grupo-control">
-		<label>Contraseña:</label> <input class="control" type="password" name="password" />
-	</div>
-	<div class="grupo-control"><label>Vuelve a introducir la contraseña:</label> <input class="control" type="password" name="password2" /><br /></div>
-	<div class="grupo-control"><button type="submit" name="registro">Registrar</button></div>
-</fieldset>
-</form>
-EOS;
-
-require __DIR__.'/includes/plantillas/plantilla.php';
+include __DIR__.'/includes/plantillas/plantilla.php';

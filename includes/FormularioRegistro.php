@@ -11,6 +11,7 @@ class FormularioRegistro extends Form{
     protected function generaCamposFormulario($datos, $errores = array()){
         $nombreUsuario = $datos['nombreUsuario'] ?? '';
         $nombre = $datos['nombre'] ?? '';
+        $correoUsuario = $datos['correoUsuario'] ?? '';
 
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($errores);
@@ -18,10 +19,14 @@ class FormularioRegistro extends Form{
         $errorNombre = self::createMensajeError($errores, 'nombre', 'span', array('class' => 'error'));
         $errorPassword = self::createMensajeError($errores, 'password', 'span', array('class' => 'error'));
         $errorPassword2 = self::createMensajeError($errores, 'password2', 'span', array('class' => 'error'));
+        $errorCorreo = self::createMensajeError($errores, 'correo', 'span', array('class' => 'error'));
 
         $html = <<<EOF
             <fieldset>
                 $htmlErroresGlobales
+                <div class="grupo-control">
+                    <label>Correo electrónico:</label> <input class="control" type="email" name="correoUsuario" value="$correoUsuario" />$errorCorreo
+                </div>
                 <div class="grupo-control">
                     <label>Nombre de usuario:</label> <input class="control" type="text" name="nombreUsuario" value="$nombreUsuario" />$errorNombreUsuario
                 </div>
@@ -56,21 +61,26 @@ class FormularioRegistro extends Form{
         }
         
         $password = $datos['password'] ?? null;
-        if ( empty($password) || mb_strlen($password) < 5 ) {
-            $result['password'] = "El password tiene que tener una longitud de al menos 5 caracteres.";
+        if ( empty($password) || mb_strlen($password) < 8 ) {
+            $result['password'] = "La contraseña tiene que tener una longitud de al menos 8 caracteres.";
         }
         $password2 = $datos['password2'] ?? null;
         if ( empty($password2) || strcmp($password, $password2) !== 0 ) {
-            $result['password2'] = "Los passwords deben coincidir";
+            $result['password2'] = "Las contraseñas deben coincidir";
+        }
+
+        $correoUsuario = $datos['correoUsuario'] ?? null;
+        if (empty($correoUsuario)) {
+            $result['correoUsuario'] = "Introduzca correo válido o que no este ya usado";
         }
         
         if (count($result) === 0) {
-            $user = Usuario::crea($nombreUsuario, $nombre, $password, 'user');
+            $user = Usuario::crea($nombreUsuario, $nombre, $password, 'user',$correoUsuario);
             if ( ! $user ) {
                 $result[] = "El usuario ya existe";
             } else {
                 $_SESSION['login'] = true;
-                $_SESSION['nombre'] = $nombre;
+                $_SESSION['nombre'] = $nombreUsuario;
                 $result = 'index.php';
             }
         }
