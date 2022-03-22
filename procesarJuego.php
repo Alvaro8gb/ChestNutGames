@@ -28,7 +28,7 @@ EOS;
             <a href="$fila[Enlace]"><img src="img/juegos/play.png" alt="Play Now"></a>
         </div>
         <div class = "boton_ranking">
-            <a href="ranking.php#$fila[IdJuego]"><img src="img/juegos/ranking.jpg" alt="Ranking"></a>
+            <a href="ranking.php#$fila[IdJuego]"><img src="img/juegos/ranking.png" alt="Ranking"></a>
         </div>
         <div class = "informacion">
             <p><b>Título: </b>$fila[Nombre].</p>
