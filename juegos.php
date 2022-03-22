@@ -7,7 +7,7 @@ $tituloPagina = 'Juegos';
 
 if (!isset($_SESSION["login"])) {
 	$contenidoPrincipal = <<<EOF
-	<h1>Usuario no registrado!</h1>
+	<h1>¡Usuario no registrado!</h1>
 	<p>Debes iniciar sesión para ver el contenido.</p>
 EOF;
 } else {

@@ -9,10 +9,7 @@ $form = new FormularioLogin();
 $tituloPagina = 'Login';
 
 $htmlFormLogin = $form->gestiona();
-
-$contenidoPrincipal = <<<EOF
-    $htmlFormLogin
-EOF;
+$contenidoPrincipal = $htmlFormLogin;
 
 
 require __DIR__.'/includes/vistas/plantillas/plantilla.php';

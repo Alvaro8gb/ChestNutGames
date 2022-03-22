@@ -3,27 +3,12 @@
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
-$tituloPagina = 'Información ';
-
-$paginas_documentacion = array('Memoria'=>'memoria.php');
-
 $paginas_anteriores = array('Detalles'=>'detalles.php', 'Planificacion'=>'planificacion.php', 'Bocetos' => 'bocetos.php' , 'Miembros' => "miembros.php");
 
-$contenidoPrincipal = <<<EOS
+$tituloPagina = 'Información';
 
-<h1 class = "h1_title">  Documentación </h1>
-
-<nav >
-    <ul>
-EOS;
-
-foreach($paginas_documentacion as $name=>$enl){
-    $contenidoPrincipal .= enlace($enl, $name);
-}
-
+$contenidoPrincipal = '';
 $contenidoPrincipal .=<<<EOS
-    </ul>      
-</nav>
 <h1 class = "h1_title"> Contenido de entregas anteriores </h1>  
 <nav>
     <ul>
