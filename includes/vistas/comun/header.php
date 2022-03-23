@@ -4,10 +4,10 @@
 require_once __DIR__.'\..\helpers\utils.php';
 
 if (isset( $_GET['type']) && $_GET['type'] = "home" ){
-    $paginas = array('Juegos'=>'juegos.php', 'Ranking'=>'ranking.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
+    $paginas = array('Juegos'=>'juegos.php', 'Ranking'=>'ranking.php', 'Torneos/Eventos'=>'torneos_eventos.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
 
 }else{
-    $paginas = array('Home' => 'index.php','Juegos'=>'juegos.php', 'Ranking'=>'ranking.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
+    $paginas = array('Home' => 'index.php','Juegos'=>'juegos.php', 'Ranking'=>'ranking.php', 'Torneos/Eventos'=>'torneos_eventos.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
 
 }
 
