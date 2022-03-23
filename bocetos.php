@@ -16,7 +16,7 @@ $contenidoPrincipal = <<<EOS
     <br>
     <img src="img/bocetos/Torneos-Eventos.jpg" alt="Torneos" />
     <br>
-    <img src="img/bocetos/publicidad.jpg" alt="publicidad" />
+    <img src="img/bocetos/publicidad.jpg" alt="Publicidad" />
 
 </div>  
 EOS;
