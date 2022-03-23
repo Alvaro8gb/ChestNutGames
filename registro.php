@@ -1,16 +1,11 @@
 <?php
 
-namespace es\chestnut;
-
-//Inicio del procesamiento
 require_once __DIR__.'/includes/config.php';
 
-$form = new FormularioRegistro();
-$htmlFormRegistro = $form->gestiona();
+$form = new es\chestnut\FormularioRegistro();
+$htmlFormRegistro = 
 
 $tituloPagina = 'Registro';
-$contenidoPrincipal = <<<EOF
-		$htmlFormRegistro
-EOF;
+$contenidoPrincipal = $form->gestiona();
 
-include __DIR__.'/includes/plantillas/plantilla.php';
+include __DIR__.'/includes/vistas/plantillas/plantilla.php';
