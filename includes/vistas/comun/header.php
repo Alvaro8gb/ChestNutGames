@@ -3,12 +3,10 @@
 
 require_once __DIR__.'\..\helpers\utils.php';
 
-if (isset( $_GET['type']) && $_GET['type'] = "home" ){
-    $paginas = array('Juegos'=>'juegos.php', 'Ranking'=>'ranking.php', 'Torneos/Eventos'=>'torneos_eventos.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
+$paginas = array('Juegos'=>'juegos.php', 'Ranking'=>'ranking.php', 'Eventos'=>'eventos.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
 
-}else{
-    $paginas = array('Home' => 'index.php','Juegos'=>'juegos.php', 'Ranking'=>'ranking.php', 'Torneos/Eventos'=>'torneos_eventos.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
-
+if (!( isset( $_GET['type']) && $_GET['type'] = "home" )){
+    $paginas = array('Home' => 'index.php') + $paginas;
 }
 
 echo '<div class="saludo">';

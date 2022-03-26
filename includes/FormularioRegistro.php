@@ -25,19 +25,19 @@ class FormularioRegistro extends Form{
             <fieldset>
                 $htmlErroresGlobales
                 <div class="grupo-control">
-                    <label>Correo electrónico:</label> <input class="control" type="email" name="correoUsuario" value="$correoUsuario" />$errorCorreo
+                    <label>Correo electrónico:</label> <input class="control" type="email" name="correoUsuario" value="$correoUsuario" required />$errorCorreo
                 </div>
                 <div class="grupo-control">
-                    <label>Nombre de usuario:</label> <input class="control" type="text" name="nombreUsuario" value="$nombreUsuario" />$errorNombreUsuario
+                    <label>Nombre de usuario:</label> <input class="control" type="text" name="nombreUsuario" value="$nombreUsuario" required />$errorNombreUsuario
                 </div>
                 <div class="grupo-control">
-                    <label>Nombre completo:</label> <input class="control" type="text" name="nombre" value="$nombre" />$errorNombre
+                    <label>Nombre completo:</label> <input class="control" type="text" name="nombre" value="$nombre" required  />$errorNombre
                 </div>
                 <div class="grupo-control">
-                    <label>Password:</label> <input class="control" type="password" name="password" />$errorPassword
+                    <label>Password:</label> <input class="control" type="password" name="password" required/>$errorPassword
                 </div>
                 <div class="grupo-control">
-                    <label>Vuelve a introducir el Password:</label> <input class="control" type="password" name="password2" />$errorPassword2
+                    <label>Vuelve a introducir el Password:</label> <input class="control" type="password" name="password2" required />$errorPassword2
                 </div>
                 <div class="grupo-control"><button type="submit" name="registro">Registrar</button></div>
             </fieldset>

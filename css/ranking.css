@@ -26,7 +26,7 @@
       width: inherit;
       height: inherit;
       transition: opacity .5s;
-      background:#fff;
+      background:white;
   }
   
   ul.slider li img{

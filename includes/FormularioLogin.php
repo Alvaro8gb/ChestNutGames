@@ -21,8 +21,16 @@ class FormularioLogin extends Form{
         <fieldset>
             <legend>Usuario y contraseña</legend>
             $htmlErroresGlobales
-            <p><label>Nombre de usuario:</label> <input type="text" name="nombreUsuario" value="$nombreUsuario"/>$errorNombreUsuario</p>
-            <p><label>Password:</label> <input type="password" name="password" />$errorPassword</p>
+            <p>
+                <label>Nombre de usuario:</label> 
+                <input type="text" name="nombreUsuario" value="$nombreUsuario" required />
+                $errorNombreUsuario
+            </p>
+            <p>
+                <label>Password:</label> 
+                <input type="password" name="password" required />
+                $errorPassword
+            </p>
             <button type="submit" name="login">Entrar</button>
         </fieldset>
         EOF;

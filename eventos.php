@@ -2,7 +2,7 @@
 
 require_once __DIR__.'/includes/config.php';
 
-$tituloPagina = 'Torneos/Eventos';
+$tituloPagina = 'Eventos';
 
 
 if (!isset($_SESSION["login"])) {
@@ -14,7 +14,7 @@ EOF;
 
     $contenidoPrincipal = <<<EOS
         <head>
-            <link rel="stylesheet" type="text/css" href="css/torneos_eventos.css"/>
+            <link rel="stylesheet" type="text/css" href="css/eventos.css"/>
         </head>
     EOS;
 
