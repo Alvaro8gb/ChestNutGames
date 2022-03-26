@@ -31,7 +31,24 @@ CREATE TABLE `categorias` (
   `Nombre` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
 
+--
+-- Estructura de tabla para la tabla `RolesUsuario`
+--
+
+CREATE TABLE `RolesUsuario` (
+  `usuario` int(11) NOT NULL,
+  `rol` int(11) NOT NULL,
+  PRIMARY KEY (`usuario`,`rol`),
+  KEY `rol` (`rol`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `Roles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -82,7 +99,6 @@ CREATE TABLE `usuarios` (
   `nombreUsuario` varchar(15) NOT NULL,
   `nombre` varchar(40) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `rol` varchar(10) NOT NULL,
   `correo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

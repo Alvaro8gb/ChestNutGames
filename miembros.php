@@ -26,4 +26,5 @@ require __DIR__.'/static/miembros.html';
 $contenidoPrincipal .= ob_get_clean();
 
 
-require __DIR__.'/includes/vistas/plantillas/plantilla.php';  
+$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
+$app->generaVista('/plantillas/plantilla.php', $params);

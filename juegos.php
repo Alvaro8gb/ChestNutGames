@@ -19,7 +19,7 @@ EOF;
 
         <img class="gif_centrado" src="img/juegos/play_now.gif" alt="Gif"> 
     EOS;
-        $conn = $app->conexionBd();
+        $conn = $app->getConexionBd();
         $sql = "SELECT IdJuego, Imagen FROM juegos";
         $consulta = @mysqli_query($conn, $sql);
         $parar = 0;
@@ -50,5 +50,5 @@ EOF;
     }
     $consulta->free();
 }
-
-require_once __DIR__.'/includes/vistas/plantillas/plantilla.php';
+$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
+$app->generaVista('/plantillas/plantilla.php', $params);

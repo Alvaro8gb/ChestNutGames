@@ -21,4 +21,5 @@ $contenidoPrincipal = <<<EOS
 </div>  
 EOS;
 
-require __DIR__.'/includes/vistas/plantillas/plantilla.php';
+$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
+$app->generaVista('/plantillas/plantilla.php', $params);

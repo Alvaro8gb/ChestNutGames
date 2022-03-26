@@ -1,7 +1,9 @@
 
 <?php
 
-require_once __DIR__.'\..\helpers\utils.php';
+use es\chestnut\Aplicacion;
+use es\chestnut\src\usuarios\FormularioLogout;
+require_once __DIR__.'/utils.php';
 
 $paginas = array('Juegos'=>'juegos.php', 'Ranking'=>'ranking.php', 'Eventos'=>'eventos.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
 
@@ -9,18 +11,32 @@ if (!( isset( $_GET['type']) && $_GET['type'] = "home" )){
     $paginas = array('Home' => 'index.php') + $paginas;
 }
 
-echo '<div class="saludo">';
-    
-if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
-    echo $_SESSION['nombre'].'(<a href="logout.php">Salir</a>)';
-}
-else{
-    echo 'Usuario desconocido. <a href="login.php"> Login </a> | <a href="registro.php"> Registro </a>';
+function mostrarSaludo()
+{
+    $html = '';
+    $app = Aplicacion::getInstancia();
+    if ($app->usuarioLogueado()) {
+        $nombreUsuario = $app->nombreUsuario();
+
+        $formLogout = new FormularioLogout();
+        $htmlLogout = $formLogout->gestiona();
+        $html = "Bienvenido, ${nombreUsuario}. $htmlLogout";
+    } else {
+        $loginUrl = $app->resuelve('/login.php');
+        $registroUrl = $app->resuelve('/registro.php');
+        $html = <<<EOS
+        Usuario desconocido. <a href="{$loginUrl}">Login</a> | <a href="{$registroUrl}">Registro</a>
+      EOS;
+    }
+
+    return $html;
 }
 
-echo '</div>';
-    
 ?>
+
+<div class="saludo">
+        <?= mostrarSaludo(); ?>
+</div>
 
 <nav id = "menu">
 

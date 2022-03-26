@@ -6,7 +6,7 @@ $tituloPagina = 'Ranking';
 
 $juegos = array();
 
-$conn = $app->conexionBd();
+$conn = $app->getConexionBd();
 $sql = "SELECT IdJuego, nombre FROM juegos";
 $consulta = @mysqli_query($conn, $sql);
 
@@ -116,4 +116,5 @@ $contenidoPrincipal .= <<<EOS
    </body>
 EOS;
 
-require __DIR__.'/includes/vistas/plantillas/plantilla.php';
+$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
+$app->generaVista('/plantillas/plantilla.php', $params);

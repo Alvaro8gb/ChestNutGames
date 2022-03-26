@@ -11,7 +11,7 @@ $contenidoPrincipal = <<<EOS
         <title>ProcesarJuego</title>
     </head>
 EOS;
-    $conn = $app->conexionBd();
+    $conn = $app->getConexionBd();
     $sql = "SELECT * FROM juegos WHERE IdJuego = $_GET[id]";
     $consulta = @mysqli_query($conn, $sql);
     $fila = @mysqli_fetch_array($consulta);
@@ -37,4 +37,5 @@ EOS;
         </div>
     EOS;
 
-require __DIR__.'/includes/vistas/plantillas/plantilla.php';
+    $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
+    $app->generaVista('/plantillas/plantilla.php', $params);
