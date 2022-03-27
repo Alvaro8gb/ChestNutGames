@@ -39,7 +39,7 @@ EOF;
         En ChestnutGames no se admiten trampas de ningún tipo y el respeto entre jugadores es esencial. Nuestra comunidad está formada únicamente 
         por jugadores que cumplen las Reglas y actúan de forma deportiva. Nuestra plataforma integra sistemas de detección de tramposos, 
         obtención de resultados de forma automática desde los videojuegos y un equipo de profesionales. Defendemos la integridad de las 
-        competiciones. Que gane el mejor! 
+        competiciones. !Que gane el mejor! 
         </div>
     EOS;
         

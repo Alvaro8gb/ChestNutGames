@@ -8,12 +8,13 @@ body {
     color :black; 
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 
-    /*background-image: url("../img/backgrounds/wallpaper.jpg");*/
-    background-color:rgb(156, 158, 156,50%);
-    background-size: cover;
+    /*background-image: url("../img/backgrounds/portada_l1.jpg");*/
+    /* background-color:rgb(156, 158, 156,50%); */
+    /* background-size: cover;
     background-repeat:no-repeat;
-    background-position: center center; 
-    background-attachment: fixed;
+    background-position: center center; */
+    background-attachment: scroll; 
+    
 }
 
 table, th {
@@ -23,7 +24,7 @@ table, th {
 
 #logo{
     max-width : 220px; 
-    max-height:200px;
+    max-height: 200px;
     margin-top: 40px;
     text-align: center;
 }
