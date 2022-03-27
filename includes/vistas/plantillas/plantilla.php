@@ -7,8 +7,8 @@ $mensajes = mensajesPeticionAnterior();
 <head>
 	<meta charset="UTF-8">
     <title><?= $params['tituloPagina'] ?></title>
-	<link rel="stylesheet" type="text/css" href="<?= $params['app']->resuelve('css/estilos.css') ?>" />
-	<link rel="stylesheet" type="text/css" href="<?= $params['app']->resuelve('css/header.css') ?>" />
+	<link rel="stylesheet" type="text/css" href="<?= $params['app']->resuelve('/css/estilos.css') ?>" />
+	<link rel="stylesheet" type="text/css" href="<?= $params['app']->resuelve('/css/header.css') ?>" />
 	<link rel="icon" type="image/png" href="<?= $params['app']->resuelve('/img/logo/Favicon.png') ?>" />
 </head>
 <body>
