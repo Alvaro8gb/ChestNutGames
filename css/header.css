@@ -1,23 +1,25 @@
+header{
+    width: 100vw;
+}
+
 #menu {
     text-align: center;
-    font-size: auto;
-    margin:auto;
+    font-size: 25px;
     margin-top: 2%;
     margin-bottom: 5%;
     background-color: hsl(30, 86%, 57%);
 }
 
 #menu ul li {
+
     list-style:none; 
     display: inline-block; 
     text-align: center;
-    padding-left:1%;
     margin:auto;
-    padding: 5x;
+    padding: 10px;
 }
 
 .saludo {
-    font-weight: bold;
     width: 99%;
 	text-align: right;
 }

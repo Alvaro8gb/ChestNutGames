@@ -11,31 +11,9 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `chestnutgames`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `categorias`
---
-
 CREATE TABLE `categorias` (
   `Nombre` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `RolesUsuario`
---
 
 CREATE TABLE `RolesUsuario` (
   `usuario` int(11) NOT NULL,
@@ -44,17 +22,11 @@ CREATE TABLE `RolesUsuario` (
   KEY `rol` (`rol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE IF NOT EXISTS `Roles` (
+CREATE TABLE `Roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+  `nombre` varchar(15)  NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `juegos`
---
 
 CREATE TABLE `juegos` (
   `IdJuego` int(11) NOT NULL,
@@ -65,34 +37,22 @@ CREATE TABLE `juegos` (
   `Enlace` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `juegos`
---
-
-
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ranking`
---
+CREATE TABLE `eventos` (
+  `idEvento` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `descripcion` varchar(254) NOT NULL,
+  `fechaInicio` date NOT NULL,
+  `fechaFinal` date NOT NULL,
+  `imagen` mediumblob NOT NULL,
+  `premio` int(11) NOT NULL,
+  `IdJuego` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `ranking` (
   `IdJuego` int(11) DEFAULT NULL,
   `IdJugador` int(11) DEFAULT NULL,
   `Puntuacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `ranking`
---
-
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
@@ -102,67 +62,51 @@ CREATE TABLE `usuarios` (
   `correo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Indices de la tabla `categorias`
---
+CREATE TABLE `inscripcioneseventos` (
+  `idUsuario` int(11) NOT NULL,
+  `idEvento` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`Nombre`) USING BTREE;
 
---
--- Indices de la tabla `juegos`
---
 ALTER TABLE `juegos`
   ADD PRIMARY KEY (`IdJuego`),
   ADD UNIQUE KEY `Nombre` (`Nombre`),
   ADD KEY `Categoria` (`Categoria`);
 
---
--- Indices de la tabla `ranking`
---
 ALTER TABLE `ranking`
   ADD KEY `IdJuego` (`IdJuego`),
   ADD KEY `IdJugador` (`IdJugador`);
 
---
--- Indices de la tabla `usuarios`
---
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
+ALTER TABLE `eventos`
+  ADD PRIMARY KEY (`idEvento`);
 
---
--- AUTO_INCREMENT de la tabla `juegos`
---
+ALTER TABLE `eventos`
+  MODIFY `idEvento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 ALTER TABLE `juegos`
   MODIFY `IdJuego` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
 ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `juegos`
---
 ALTER TABLE `juegos`
   ADD CONSTRAINT `juegos_ibfk_1` FOREIGN KEY (`Categoria`) REFERENCES `categorias` (`Nombre`);
 
---
--- Filtros para la tabla `ranking`
---
 ALTER TABLE `ranking`
   ADD CONSTRAINT `ranking_ibfk_1` FOREIGN KEY (`IdJuego`) REFERENCES `juegos` (`IdJuego`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ranking_ibfk_2` FOREIGN KEY (`IdJugador`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+ALTER TABLE `inscripcioneseventos`
+  ADD KEY `idUsuario` (`idUsuario`),
+  ADD KEY `idEvento` (`idEvento`);
+
+ALTER TABLE `inscripcioneseventos`
+  ADD CONSTRAINT `inscripcioneseventos_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `inscripcioneseventos_ibfk_2` FOREIGN KEY (`idEvento`) REFERENCES `eventos` (`idEvento`);
+COMMIT;
