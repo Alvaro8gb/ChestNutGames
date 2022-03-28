@@ -22,7 +22,7 @@ $tituloPagina = 'Home';
 								<h1> ChestNut Games </h1>
 									<?php
 										$_GET['type']="home";
-										require("includes/vistas/comun/header.php");
+										$app->doInclude("/vistas/comun/header.php");
 									?>
 						</header>
 				</div>

@@ -10,7 +10,6 @@ class Usuario{
     use MagicProperties;
 
     public const ADMIN_ROLE = 1;
-
     public const USER_ROLE = 2;
 
     private $id;

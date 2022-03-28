@@ -15,8 +15,7 @@ abstract class Formulario{
      *
      * @return string El HTML asociado a los mensajes de error.
      */
-    protected static function generaListaErroresGlobales($errores = array(), $classAtt = '')
-    {
+    protected static function generaListaErroresGlobales($errores = array(), $classAtt = ''){
         $clavesErroresGlobales = array_filter(array_keys($errores), function ($elem) {
             return is_numeric($elem);
         });
@@ -266,15 +265,17 @@ abstract class Formulario{
      *
      * @return string HTML asociado al formulario.
      */
-    protected function generaFormulario(&$datos = array())
-    {
+    protected function generaFormulario(&$datos = array()){
         $htmlCamposFormularios = $this->generaCamposFormulario($datos);
 
         $classAtt = $this->classAtt != null ? "class=\"{$this->classAtt}\"" : '';
 
         $enctypeAtt = $this->enctype != null ? "enctype=\"{$this->enctype}\"" : '';
 
-        $htmlForm = <<<EOS
+        $form_css = RUTA_CSS."form.css";
+        $htmlForm = "<link rel='stylesheet' type='text/css' href=$form_css />";
+
+        $htmlForm .= <<<EOS
         <form method="{$this->method}" action="{$this->action}" id="{$this->formId}" {$classAtt} {$enctypeAtt}>
             <input type="hidden" name="tipoFormulario" value="{$this->tipoFormulario}" />
             $htmlCamposFormularios
