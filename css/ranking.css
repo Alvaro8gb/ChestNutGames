@@ -1,3 +1,12 @@
+table {
+  font-size: 25px;
+}
+
+table, th {
+  margin:auto;
+  border: 2px solid;
+}
+
 .container{
   margin: auto;
   background-color: #e09141;

@@ -32,19 +32,18 @@ function mostrarSaludo(){
 }
 
 ?>
+
+<!-- HTML HEADER -->
     <div class="saludo">
             <?= mostrarSaludo(); ?>
     </div>
 
     <nav id = "menu">
-
         <?php
             echo '<ul>';
             foreach($paginas as $name=>$enl){
                 echo enlace($enl, $name);
             }
             echo '</ul>';    
-        ?>
-                        
+        ?>                       
     </nav>
-

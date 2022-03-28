@@ -1,3 +1,2 @@
-<footer>
-		   		<!-- Aqui ira el pie de pagina -->
-</footer>
+
+		<!-- Aqui ira el pie de pagina -->

@@ -1,0 +1,117 @@
+body {
+
+    vertical-align: middle;
+    color :black; 
+    font-family: Bangers,Verdana;
+
+    /* Gracias a esto la barra ocupa toda la pantalla, para poner margenes en lo demas lo indicamos en 'main' */
+    margin:0;
+    padding:0;
+}
+main {
+    margin:1%;
+    padding:0;
+}
+@font-face {
+    font-family: Bangers;
+    src: url(fonts/Bangers-Regular.ttf);
+    font-weight: bold;
+}
+p { 
+    color:hsl(0, 1%, 37%);
+    font-family:'Verdana', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
+    text-align: justify; 
+}
+
+main{
+    text-align: justify;
+}
+
+a , a:visited {
+    text-decoration: none;
+}
+
+input:required~label::after  {
+    content: "* ";
+    color: red;
+    font-weight: bold;
+}
+
+/* Borra la barra lateral en Firefox */
+html {
+    scrollbar-width: none;
+}
+/* Borra la barra lateral en Chrome */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* TO CHANGE CSS LIST -------------------------------------------------------------------------------------------- */
+
+/* FORMULARIO.CSS */
+.formulario{
+    margin: auto;
+}
+
+legend {
+    color: #fff;
+    background: #303030;
+    border: 1px solid black;
+    padding: 2px 6px;
+}
+
+img{
+    display:block;
+    margin:auto;
+}
+
+#text{
+    padding-left: 15%; 
+    width: 70%;
+}
+
+h1{
+    text-align: center; 
+    font-size: 35px;
+}
+
+/* BOTON.CSS */
+button{
+    position:relative;
+    padding: 10px 50px;
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    border-radius: 30px;
+    border: none;
+}
+
+button:hover{
+    background: black;
+    color:white;
+}
+
+/* PR1.CSS         ------------ En realidad, este CSS no deberia ni existir, aun asi, deberiamos hacer un PR1.css e indicarle despues a cada pagina debida*/
+.memberdiv {
+    float:left; 
+    width: 43%; 
+    margin: 2%
+}
+
+.imgdiv{
+    width: 20%;
+    margin-right: 4%
+
+}
+
+.imgdiv img{
+    width: 150px;
+    height: 180px;
+}
+
+.bocetosipv img{
+    width: 600px;
+    height: 450px;
+}
+/* -------------------------------------------------------------------------------------------------------------- */
