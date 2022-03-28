@@ -3,7 +3,7 @@
 
 require_once __DIR__.'/includes/config.php';
 
-$form = new \es\chestnut\src\usuarios\FormularioLogin();
+$form = new \es\chestnut\usuarios\FormularioLogin();
 
 $tituloPagina = 'Login';
 

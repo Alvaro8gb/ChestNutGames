@@ -1,9 +1,9 @@
 <?php
 
-namespace es\chestnut\src\usuarios;
+namespace es\chestnut\usuarios;
 
 use es\chestnut\Aplicacion;
-use es\chestnut\src\Formulario;
+use es\chestnut\Formulario;
 
 class FormularioLogout extends Formulario
 {

@@ -2,7 +2,7 @@
 <?php
 
 use es\chestnut\Aplicacion;
-use es\chestnut\src\usuarios\FormularioLogout;
+use es\chestnut\usuarios\FormularioLogout;
 require_once __DIR__.'\..\helpers\utils.php';
 
 $paginas = array('Juegos'=>'juegos.php', 'Ranking'=>'ranking.php', 'Eventos'=>'eventos.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
@@ -32,21 +32,19 @@ function mostrarSaludo(){
 }
 
 ?>
+    <div class="saludo">
+            <?= mostrarSaludo(); ?>
+    </div>
 
-<div class="saludo">
-        <?= mostrarSaludo(); ?>
-</div>
+    <nav id = "menu">
 
-<nav id = "menu">
-
-    <?php
-        echo '<ul>';
-        foreach($paginas as $name=>$enl){
-            echo enlace($enl, $name);
-        }
-        echo '</ul>';    
-    ?>
-                    
-</nav>
-
+        <?php
+            echo '<ul>';
+            foreach($paginas as $name=>$enl){
+                echo enlace($enl, $name);
+            }
+            echo '</ul>';    
+        ?>
+                        
+    </nav>
 

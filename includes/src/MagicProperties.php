@@ -1,5 +1,5 @@
 <?php
-namespace es\chestnut\src;
+namespace es\chestnut;
 
 /**
  * Añade métodos mágicos para que las propiedades utilicen getters y setters.
@@ -9,10 +9,8 @@ namespace es\chestnut\src;
  *  <li><code>$var->propiedad = $valor</code>, que equivale a <code>$var->setPropiedad($valor)</code></li>
  * </ul>
  */
-trait MagicProperties
-{
-    public function __get($property)
-    {
+trait MagicProperties{
+    public function __get($property){
         $methodName = 'get' . ucfirst($property);
         if (method_exists($this, $methodName)) {
             return $this->$methodName();
@@ -21,8 +19,7 @@ trait MagicProperties
         }
     }
 
-    public function __set($property, $value)
-    {
+    public function __set($property, $value){
         $methodName = 'set' . ucfirst($property);
         if (method_exists($this, $methodName)) {
             $this->$methodName($value);

@@ -2,7 +2,7 @@
 
 require_once __DIR__.'/includes/config.php';
 
-$form = new es\chestnut\src\usuarios\FormularioRegistro();
+$form = new es\chestnut\usuarios\FormularioRegistro();
 $htmlFormRegistro = 
 
 $tituloPagina = 'Registro';

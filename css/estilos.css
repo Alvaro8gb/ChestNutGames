@@ -6,7 +6,7 @@ body {
 
     vertical-align: middle;
     color :black; 
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Bangers,Verdana;
 
     /*background-image: url("../img/backgrounds/portada_l1.jpg");*/
     /* background-color:rgb(156, 158, 156,50%); */
@@ -15,6 +15,11 @@ body {
     background-position: center center; */
     background-attachment: scroll; 
     
+}
+@font-face {
+    font-family: Bangers;
+    src: url(fonts/Bangers-Regular.ttf);
+    font-weight: bold;
 }
 
 table, th {
@@ -71,7 +76,6 @@ p {
     font-family:'Verdana', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
     text-align: justify; 
 }
-
 img{
     display:block;
     margin:auto;
@@ -117,3 +121,11 @@ button:hover{
     color:white;
 }
 
+/* Borra la barra lateral en Firefox */
+html {
+    scrollbar-width: none;
+}
+/* Borra la barra lateral en Chrome */
+body::-webkit-scrollbar {
+    display: none;
+}

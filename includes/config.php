@@ -3,6 +3,7 @@
 /**
  * Parámetros de conexión a la BD
  */
+
 define('BD_HOST', 'localhost');
 define('BD_NAME', 'chestnutgames');
 define('BD_USER', 'chestnut');
@@ -12,7 +13,7 @@ define('BD_PASS', 'chestnut');
  * Parámetros de configuración utilizados para generar las URLs y las rutas a ficheros en la aplicación
  */
 define('RAIZ_APP', __DIR__);
-define('RUTA_APP', '/ChestNutGames');
+define('RUTA_APP', '/ChestNutGames/');
 define('RUTA_IMGS', RUTA_APP.'img/');
 define('RUTA_CSS', RUTA_APP.'css/');
 define('RUTA_JS', RUTA_APP.'js/');
@@ -35,7 +36,7 @@ spl_autoload_register(function ($class) {
     $prefix = 'es\\chestnut\\';
 
     // base directory for the namespace prefix
-    $base_dir = implode(DIRECTORY_SEPARATOR, [__DIR__, '', '']);
+    $base_dir = implode(DIRECTORY_SEPARATOR, [__DIR__, 'src', '']);
 
     // does the class use the namespace prefix?
     $len = strlen($prefix);
@@ -61,12 +62,12 @@ spl_autoload_register(function ($class) {
 /* Inicialización de la aplicación */
 /* */
 
-define('INSTALADA', false);
+define('INSTALADA', true);
 
 $app = es\chestnut\Aplicacion::getInstancia();
 $app->init(array('host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PASS),RUTA_APP,RAIZ_APP);
 
-if (INSTALADA) {
+if (! INSTALADA) {
 	$app->paginaError(502, 'Error', 'Oops', 'La aplicación no está configurada. Tienes que modificar el fichero config.php');
 }
 
