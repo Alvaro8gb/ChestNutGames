@@ -6,7 +6,7 @@ require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $tituloPagina = 'Juegos';
 
-$log_info = check_log_in($_SESSION["login"]);
+$log_info = check_log_in();
 
 $ruta = RUTA_CSS.'juegos.css';
 $rutaimg = RUTA_IMGS.'juegos/';
