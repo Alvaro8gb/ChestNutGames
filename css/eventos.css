@@ -1,5 +1,5 @@
 .msg_centrado {
-    margin:10px auto;
+    margin: 10px auto;
     display: block;
     height: 100px;
     width: 500px;
@@ -23,23 +23,23 @@ img {
 
 .button_buscar {
     margin-left: 240px;
-    margin-top: -23px;
+    margin-top: -28px;
 }
 
-.footer_zone { 
-    height: 100px; 
+.footer_zone {
+    height: 100px;
     color: blueviolet;
-    background:hsl(30, 86%, 57%);
-    max-width:100%;
-    left:0; 
-    position:relative;
-    bottom:0;
+    background: hsl(30, 86%, 57%);
+    max-width: 100%;
+    left: 0;
+    position: relative;
+    bottom: 0;
     margin-top: 5%;
-    padding: 2%;  
+    padding: 2%;
 }
 
-.slider{
-    margin-top: 10%;
+.slider {
+    margin-top: 5%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -47,11 +47,13 @@ img {
     position: relative;
     overflow: hidden;
 }
-.slider img{ 
+
+.slider img {
     max-width: 95%;
-    height: 900px; 
+    height: 700px;
 }
-.slideshow{
+
+.slideshow {
     display: flex;
     transform: translate3d(0, 0, 0);
     transition: all 2500ms;
@@ -61,7 +63,8 @@ img {
     animation-fill-mode: forwards;
     animation-iteration-count: infinite;
 }
-.item-slide{
+
+.item-slide {
     position: relative;
     display: flex;
     width: 100%;
@@ -69,7 +72,8 @@ img {
     flex-shrink: 0;
     flex-grow: 0;
 }
-.pagination{
+
+.pagination {
     position: absolute;
     bottom: 20px;
     left: 0;
@@ -79,7 +83,8 @@ img {
     justify-content: center;
     width: 100%;
 }
-.pag-item{
+
+.pag-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,8 +99,12 @@ img {
     text-align: center;
     transition: all 800ms;
 }
-.pag-item:hover{ transform: scale(2); }
-.pag-item img{
+
+.pag-item:hover {
+    transform: scale(2);
+}
+
+.pag-item img {
     display: inline-block;
     max-width: none;
     height: 100%;
@@ -103,50 +112,70 @@ img {
     opacity: 0;
     transition: all 300ms;
 }
-.pag-item:hover img{
+
+.pag-item:hover img {
     opacity: 1;
 }
-input[id="1"]:checked ~ .slideshow{
+
+input[id="1"]:checked~.slideshow {
     animation: none;
-    transform: translate3d(cal(-100% * 0),0,0);
-}
-input[id="1"]:checked ~ .pagination .pag-item[for="1"]{
-    background: #FFF;
-}
-input[id="2"]:checked ~ .slideshow{
-    animation: none;
-    transform: translate3d(calc(-100% * 1),0,0);
-}
-input[id="2"]:checked ~ .pagination .pag-item[for="2"]{
-    background: #FFF;
-}
-input[id="3"]:checked ~ .slideshow{
-    animation: none;
-    transform: translate3d(calc(-100% * 2),0,0);
-}
-input[id="3"]:checked ~ .pagination .pag-item[for="3"]{
-    background: #FFF;
-}
-input[id="4"]:checked ~ .slideshow{
-    animation: none;
-    transform: translate3d(calc(-100% * 3),0,0);
-}
-input[id="4"]:checked ~ .pagination .pag-item[for="4"]{
-    background: #FFF;
-}
-input[id="5"]:checked ~ .slideshow{
-    animation: none;
-    transform: translate3d(calc(-100% * 4),0,0);
-}
-input[id="5"]:checked ~ .pagination .pag-item[for="5"]{
-    background: #FFF;
-}
-@keyframes autoplay{
-    20%{ transform: translate3d(calc(-100% * 0), 0, 0); }
-    40%{ transform: translate3d(calc(-100% * 1), 0, 0); }
-    60%{ transform: translate3d(calc(-100% * 2), 0, 0); }
-    80%{ transform: translate3d(calc(-100% * 3), 0, 0); }
-    100%{ transform: translate3d(calc(-100% * 4), 0, 0); }
+    transform: translate3d(cal(-100% * 0), 0, 0);
 }
 
+input[id="1"]:checked~.pagination .pag-item[for="1"] {
+    background: #FFF;
+}
 
+input[id="2"]:checked~.slideshow {
+    animation: none;
+    transform: translate3d(calc(-100% * 1), 0, 0);
+}
+
+input[id="2"]:checked~.pagination .pag-item[for="2"] {
+    background: #FFF;
+}
+
+input[id="3"]:checked~.slideshow {
+    animation: none;
+    transform: translate3d(calc(-100% * 2), 0, 0);
+}
+
+input[id="3"]:checked~.pagination .pag-item[for="3"] {
+    background: #FFF;
+}
+
+input[id="4"]:checked~.slideshow {
+    animation: none;
+    transform: translate3d(calc(-100% * 3), 0, 0);
+}
+
+input[id="4"]:checked~.pagination .pag-item[for="4"] {
+    background: #FFF;
+}
+
+input[id="5"]:checked~.slideshow {
+    animation: none;
+    transform: translate3d(calc(-100% * 4), 0, 0);
+}
+
+input[id="5"]:checked~.pagination .pag-item[for="5"] {
+    background: #FFF;
+}
+
+@keyframes autoplay {
+    20% {
+        transform: translate3d(calc(-100% * 0), 0, 0);
+    }
+    40% {
+        transform: translate3d(calc(-100% * 1), 0, 0);
+    }
+    60% {
+        transform: translate3d(calc(-100% * 2), 0, 0);
+    }
+    80% {
+        transform: translate3d(calc(-100% * 3), 0, 0);
+    }
+    100% {
+        transform: translate3d(calc(-100% * 4), 0, 0);
+    }
+}

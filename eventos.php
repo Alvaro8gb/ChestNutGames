@@ -4,7 +4,7 @@ require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $ruta = RUTA_CSS.'eventos.css';
-$rutaimg = RUTA_IMGS.'torneosyeventos/';
+$rutaimg = RUTA_IMGS.'eventos/';
 
 $tituloPagina = 'Eventos';
 
@@ -20,7 +20,7 @@ if(empty($log_info)){
 
     $contenidoPrincipal .= <<< EOS
         <div class = "msg_centrado">
-            <h4>Demuestra tu habilidad, gana dinero y muchos premios jugando los mejores torneos de la comunidad.</h4>
+            <h3>Demuestra tu habilidad, gana dinero y muchos premios jugando los mejores torneos de la comunidad.</h3>
         </div>
         
         <div class = "img_buscar">
@@ -64,7 +64,7 @@ if(empty($log_info)){
     for($s=0;$s<$max;$s++){ 
         $contenidoPrincipal .=
             '<label class="pag-item" for="' . $ids[$s] . '">
-                <img src="img/eventos/' . $ids[$s] . '.jpg" alt="' . $alt[$s] . '" />
+                <img src="img/eventos/' . $ids[$s] . '.jpg" alt="'. $alt[$s] .'" />
             </label>';
     }
     $contenidoPrincipal .=
