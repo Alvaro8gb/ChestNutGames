@@ -10,7 +10,7 @@ $tituloPagina = 'Información';
 $contenidoPrincipal = '';
 $contenidoPrincipal .=<<<EOS
 <h1 class = "h1_title"> Contenido de entregas anteriores </h1>  
-<nav>
+<nav id="anterior">
     <ul>
 EOS;
 

@@ -25,16 +25,25 @@ header{
 	text-align: right;
 }
 
-.saludo a, .saludo a:visited {
-	color: rgb(0, 0, 255);
+.saludo a, .saludo a:visited, nav#menu a,nav#anterior a {
+	color: blueviolet;
 	font-weight: bold;
 }
 
-.saludo a:hover, div#derecha a:hover {
-	color: grey;
+.saludo a:hover, div#derecha a:hover, nav#menu a:hover, nav#anterior a:hover {
+	color: rgb(9, 42, 105);
 	font-weight: bold;
 	text-decoration: underline;
-} 
+}
+
+p#inicio{
+    margin-left:10%;
+    margin-right: 10%;
+    background: hsl(30, 86%, 57%);
+    padding: 2%;
+    color:blueviolet;
+    border-radius: 30px;
+}
 
 /* TO DO IN HEADER */
 /* 

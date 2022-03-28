@@ -24,6 +24,17 @@ $tituloPagina = 'Home';
 										$_GET['type']="home";
 										$app->doInclude("/vistas/comun/header.php");
 									?>
+
+							<p id="inicio">
+								Nuestra aplicación web trata de un portal web de minijuegos que puedes disfrutar en
+								cualquier momento o lugar, enfocada a todos los públicos, nuestros minijuegos se centran
+								en darte la mejor diversión con títulos que siempre has conocido como: Las damas, La oca,
+								Conecta 4, Tres en raya, Parchís, 2048... y muchos más.
+								Además, si se registra podrá disfrutar de todos los maravillosos juegos y competir con otros
+								jugadores comparándose en nuestro ranking por juego.
+								La aplicación tiene como base de financiación la publicidad y la suscripción de usuarios, los
+								cuales disfrutarán de ventajas y mayores posibilidades en la web.
+                    		</p> 		
 						</header>
 				</div>
 
