@@ -5,7 +5,7 @@ namespace es\chestnut;
 /**
  * Clase que mantiene el estado global de la aplicación.
  */
-use es\chestnut\src\usuarios\Usuario;
+use es\chestnut\usuarios\Usuario;
 
 class Aplicacion{
 	const ATRIBUTOS_PETICION = 'attsPeticion';
@@ -127,8 +127,7 @@ class Aplicacion{
 	/**
 	 * Comprueba si la aplicación está inicializada. Si no lo está muestra un mensaje y termina la ejecución.
 	 */
-	private function compruebaInstanciaInicializada()
-    {
+	private function compruebaInstanciaInicializada(){
         if (!$this->inicializada && $this->generandoError) {
             $this->paginaError(502, 'Error', 'Oops', 'La aplicación no está configurada. Tienes que modificar el fichero config.php');
         }
@@ -174,15 +173,13 @@ class Aplicacion{
         return $this->rutaRaizApp . $path;
     }
 
-    public function doInclude($path = '')
-    {
+    public function doInclude($path = ''){
         $this->compruebaInstanciaInicializada();
         $params = array();
         $this->doIncludeInternal($path, $params);
     }
 
-    private function doIncludeInternal($path, &$params)
-    {
+    private function doIncludeInternal($path, &$params){
         $this->compruebaInstanciaInicializada();
 
         if (mb_strlen($path) > 0 && mb_substr($path, 0, 1) !== '/') {

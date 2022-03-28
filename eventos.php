@@ -6,16 +6,15 @@ require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $tituloPagina = 'Eventos';
 
- 
-$contenidoPrincipal = <<<EOS
+$log_info = check_log_in();
+
+if(empty($log_info)){
+
+    $contenidoPrincipal = <<<EOS
     <head>
         <link rel="stylesheet" type="text/css" href="css/eventos.css"/>
     </head>
-EOS;
-
-$log_info = log_in($_SESSION);
-
-if(empty($log_info)){
+    EOS;
 
     $contenidoPrincipal .= <<< EOS
         <div class = "msg_centrado">
@@ -42,7 +41,7 @@ if(empty($log_info)){
         </div>
 EOS;
 }else{
-    $contenidoPrincipal .= $log_info;
+    $contenidoPrincipal = $log_info;
 }
         
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];

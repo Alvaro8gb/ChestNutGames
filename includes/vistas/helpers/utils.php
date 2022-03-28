@@ -4,9 +4,9 @@ function enlace($elc, $name){
     return '<li><a href='.'"'.$elc.'">'.$name.'</a></li>';
 }
 
-function log_in($session){
+function check_log_in(){
     
-    if (!isset($session)) {
+    if (!isset($_SESSION["login"])) {
         $contenidoPrincipal = <<<EOF
         <h1>¡Usuario no registrado!</h1>
         <p>Debes iniciar sesión para ver el contenido.</p>)  
