@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__.'/includes/config.php';
-require_once __DIR__.'/includes/vistas/helpers/utils.php';
+require_once __DIR__.'/includes/vistas/comun/utils.php';
 
 $tituloPagina = 'Miembros';
 

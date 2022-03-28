@@ -18,7 +18,7 @@ EOF;
         </head>
 
         <img class="gif_centrado" src="img/juegos/play_now.gif" alt="Gif"> 
-    EOS;
+EOS;
         $conn = $app->getConexionBd();
         $sql = "SELECT IdJuego, Imagen FROM juegos";
         $consulta = @mysqli_query($conn, $sql);

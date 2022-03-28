@@ -41,7 +41,7 @@ EOF;
         obtención de resultados de forma automática desde los videojuegos y un equipo de profesionales. Defendemos la integridad de las 
         competiciones. !Que gane el mejor! 
         </div>
-    EOS;
+EOS;
         
 }
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];

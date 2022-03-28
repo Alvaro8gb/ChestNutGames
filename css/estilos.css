@@ -100,3 +100,20 @@ input:required~label::after  {
     color: red;
     font-weight: bold;
 }
+
+button{
+    position:relative;
+    padding: 10px 50px;
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    border-radius: 30px;
+    border: none;
+}
+
+button:hover{
+    background: black;
+    color:white;
+}
+

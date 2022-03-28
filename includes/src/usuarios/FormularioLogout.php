@@ -14,7 +14,13 @@ class FormularioLogout extends Formulario
     protected function generaCamposFormulario(&$datos)
     {
         $camposFormulario = <<<EOS
-            <button class="enlace" type="submit">(salir)</button>
+            <head>
+                <link rel="stylesheet" type="text/css" href="css/button.css" />
+            </head>
+            <button class="logout" type="submit">
+                <span>Salir</span>
+                <div class="liquid"></div>
+            </button>
         EOS;
         return $camposFormulario;
     }
@@ -27,7 +33,7 @@ class FormularioLogout extends Formulario
         $app = Aplicacion::getInstancia();
 
         $app->logout();
-        $mensajes = ['Hasta pronto !'];
+        $mensajes = ['Hasta pronto!'];
         $app->putAtributoPeticion('mensajes', $mensajes);
         $result = $app->resuelve('/index.php');
 

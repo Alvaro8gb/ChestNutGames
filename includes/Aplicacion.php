@@ -281,7 +281,7 @@ class Aplicacion{
      * Añade un atributo <code>$valor</code> para que esté disponible en la siguiente petición bajo la clave <code>$clave</code>.
      *
      * @param string $clave Clave bajo la que almacenar el atributo.
-     * @param any    $valor Valor a almacenar como atributo de la petición.
+     * 
      *
      */
     public function putAtributoPeticion($clave, $valor)
@@ -302,7 +302,7 @@ class Aplicacion{
      *
      * @param string $clave Clave sobre la que buscar el atributo.
      *
-     * @return any Attributo asociado a la sesión bajo la clave <code>$clave</code> o <code>null</code> si no existe.
+     * 
      */
     public function getAtributoPeticion($clave)
     {
