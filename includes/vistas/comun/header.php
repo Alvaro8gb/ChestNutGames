@@ -2,7 +2,7 @@
 <?php
 
 use es\chestnut\Aplicacion;
-use es\chestnut\src\usuarios\FormularioLogout;
+use es\chestnut\usuarios\FormularioLogout;
 require_once __DIR__.'\..\helpers\utils.php';
 
 $paginas = array('Juegos'=>'juegos.php', 'Ranking'=>'ranking.php', 'Eventos'=>'eventos.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");

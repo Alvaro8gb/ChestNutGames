@@ -6,7 +6,7 @@ $tituloPagina = 'Home';
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href= <?php echo RUTA_CSS."index.css"; ?> />
 		<link rel="stylesheet" type="text/css" href="css/header.css" />
 		<link rel="icon" href="img/logo/Favicon.png" type="image/png">
 		<title><?= $tituloPagina ?></title>
