@@ -7,8 +7,8 @@ $tituloPagina = 'Home';
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href= <?php echo RUTA_CSS."index.css"; ?> />
-		<link rel="stylesheet" type="text/css" href="css/header.css" />
-		<link rel="icon" href="img/logo/Favicon.png" type="image/png">
+		<link rel="stylesheet" type="text/css" href= <?php echo RUTA_CSS."header.css"; ?> />
+		<link rel="icon" href= <?php echo RUTA_IMGS."logo/Favicon.png"; ?> type="image/png">
 		<title><?= $tituloPagina ?></title>
 	</head>
 	<body>
@@ -18,7 +18,7 @@ $tituloPagina = 'Home';
 					<div class = "parallax_level1"></div>
 
 						<header>
-								<img id="logo" src="img/logo/Chestnut_Logo.png" alt="logo" >
+								<img id="logo" src= <?php echo RUTA_IMGS."logo/Chestnut_Logo.png"; ?> alt="logo" >
 								<h1> ChestNut Games </h1>
 									<?php
 										$_GET['type']="home";

@@ -3,20 +3,22 @@ require_once __DIR__.'/includes/config.php';
 
 $tituloPagina = 'Bocetos';
 
+$rutaimg = RUTA_IMGS.'bocetos/';
+
 $contenidoPrincipal = <<<EOS
 <div class="bocetosipv">
 
-    <img src="img/bocetos/Premium+.jpg" alt="Premium"  />
+    <img src="{$rutaimg}Premium+.jpg" alt="Premium"  />
     <br>
-    <img src="img/bocetos/Ranking.jpg" alt="Ranking " />
+    <img src="{$rutaimg}Ranking.jpg" alt="Ranking " />
     <br>
-    <img src="img/bocetos/MainPage.jpg" alt="Main Page" />
+    <img src="{$rutaimg}MainPage.jpg" alt="Main Page" />
     <br>
-    <img src="img/bocetos/Tienda.jpg" alt="Tienda " /> 
+    <img src="{$rutaimg}Tienda.jpg" alt="Tienda " /> 
     <br>
-    <img src="img/bocetos/Torneos-Eventos.jpg" alt="Torneos" />
+    <img src="{$rutaimg}Torneos-Eventos.jpg" alt="Torneos" />
     <br>
-    <img src="img/bocetos/publicidad.jpg" alt="Publicidad" />
+    <img src="{$rutaimg}publicidad.jpg" alt="Publicidad" />
 
 </div>  
 EOS;

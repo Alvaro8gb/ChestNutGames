@@ -8,14 +8,17 @@ $tituloPagina = 'Juegos';
 
 $log_info = check_log_in($_SESSION["login"]);
 
+$ruta = RUTA_CSS.'juegos.css';
+$rutaimg = RUTA_IMGS.'juegos/';
+
 if(empty($log_info)){
 
     $contenidoPrincipal = <<<EOS
         <head>
-            <link rel="stylesheet" type="text/css" href="css/juegos.css"/>
+            <link rel="stylesheet" type="text/css" href={$ruta}>
         </head>
 
-        <img class="gif_centrado" src="img/juegos/play_now.gif" alt="Gif"> 
+        <img class="gif_centrado" src="{$rutaimg}play_now.gif" alt="Gif"> 
     EOS;
     $conn = $app->getConexionBd();
     $sql = "SELECT IdJuego, Imagen FROM juegos";

@@ -13,9 +13,11 @@ class FormularioLogout extends Formulario
 
     protected function generaCamposFormulario(&$datos)
     {
+        $ruta = RUTA_CSS.'button.css';
+
         $camposFormulario = <<<EOS
             <head>
-                <link rel="stylesheet" type="text/css" href="css/button.css" />
+                <link rel="stylesheet" type="text/css" href={$ruta}>
             </head>
             <button class="logout" type="submit">
                 <span>Salir</span>

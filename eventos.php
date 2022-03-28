@@ -3,6 +3,8 @@
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
+$ruta = RUTA_CSS.'eventos.css';
+$rutaimg = RUTA_IMGS.'torneosyeventos/';
 
 $tituloPagina = 'Eventos';
 
@@ -12,7 +14,7 @@ if(empty($log_info)){
 
     $contenidoPrincipal = <<<EOS
     <head>
-        <link rel="stylesheet" type="text/css" href="css/eventos.css"/>
+        <link rel="stylesheet" type="text/css" href={$ruta}>
     </head>
     EOS;
 
@@ -22,7 +24,7 @@ if(empty($log_info)){
         </div>
         
         <div class = "img_buscar">
-        <img src="img/torneosyeventos/buscar.jpg" alt="buscar">
+        <img src="{$rutaimg}buscar.jpg" alt="buscar">
         </div>
 
         <div class = "text_buscar">

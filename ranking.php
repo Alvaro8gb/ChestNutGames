@@ -14,9 +14,11 @@ while($fila = @mysqli_fetch_array($consulta)){
   $juegos[$fila["IdJuego"]] = $fila["nombre"];
 }
 
+$ruta = RUTA_CSS.'ranking.css';
+
 $contenidoPrincipal = <<<EOS
 <head>
-        <link rel="stylesheet" type="text/css" href="css/ranking.css" />
+        <link rel="stylesheet" type="text/css" href={$ruta}>
 </head>
 <body>
 <div>
