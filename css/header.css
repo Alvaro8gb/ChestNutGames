@@ -1,6 +1,6 @@
 #menu {
     text-align: center;
-    font-size: 25px;
+    font-size: auto;
     margin:auto;
     margin-top: 2%;
     margin-bottom: 5%;
@@ -23,7 +23,7 @@
 }
 
 .saludo a, .saludo a:visited {
-	color: blue;
+	color: rgb(0, 0, 255);
 	font-weight: bold;
 }
 

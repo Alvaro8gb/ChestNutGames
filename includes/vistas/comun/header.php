@@ -3,7 +3,7 @@
 
 use es\chestnut\Aplicacion;
 use es\chestnut\src\usuarios\FormularioLogout;
-require_once __DIR__.'/utils.php';
+require_once __DIR__.'\..\helpers\utils.php';
 
 $paginas = array('Juegos'=>'juegos.php', 'Ranking'=>'ranking.php', 'Eventos'=>'eventos.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
 
@@ -11,8 +11,7 @@ if (!( isset( $_GET['type']) && $_GET['type'] = "home" )){
     $paginas = array('Home' => 'index.php') + $paginas;
 }
 
-function mostrarSaludo()
-{
+function mostrarSaludo(){
     $html = '';
     $app = Aplicacion::getInstancia();
     if ($app->usuarioLogueado()) {

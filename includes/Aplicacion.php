@@ -5,9 +5,7 @@ namespace es\chestnut;
 /**
  * Clase que mantiene el estado global de la aplicación.
  */
-use Exception;
 use es\chestnut\src\usuarios\Usuario;
-
 
 class Aplicacion{
 	const ATRIBUTOS_PETICION = 'attsPeticion';
@@ -36,7 +34,7 @@ class Aplicacion{
      *             la aplicación está accesible en http://localhost/miApp/, este
      *             parámetro debería de tomar el valor "/miApp".
      */
-	private $rutaApp;
+	private $rutaApp; //??¿¿¿?
 
     /**
      * @var string Ruta absoluta al directorio "includes" de la aplicación.
@@ -162,8 +160,7 @@ class Aplicacion{
 		return $this->conn;
 	}
 
-	public function resuelve($path = '')
-    {
+	public function resuelve($path = ''){
         $this->compruebaInstanciaInicializada();
         $rutaAppLongitudPrefijo = mb_strlen($this->rutaRaizApp);
         if (mb_substr($path, 0, $rutaAppLongitudPrefijo) === $this->rutaRaizApp) {
@@ -195,8 +192,7 @@ class Aplicacion{
         include($this->dirInstalacion . $path);
     }
 
-    public function generaVista(string $rutaVista, &$params)
-    {
+    public function generaVista(string $rutaVista, &$params){
         $this->compruebaInstanciaInicializada();
         $params['app'] = $this;
         if (mb_strlen($rutaVista) > 0 && mb_substr($rutaVista, 0, 1) !== '/') {
@@ -206,8 +202,7 @@ class Aplicacion{
         $this->doIncludeInternal($rutaVista, $params);
     }
 
-    public function login(Usuario $user)
-    {
+    public function login(Usuario $user){
         $this->compruebaInstanciaInicializada();
         $_SESSION['login'] = true;
         $_SESSION['nombre'] = $user->getNombreUsuario();
@@ -215,8 +210,7 @@ class Aplicacion{
         $_SESSION['roles'] = $user->getRoles();
     }
 
-    public function logout()
-    {
+    public function logout(){
         $this->compruebaInstanciaInicializada();
         //Doble seguridad: unset + destroy
         unset($_SESSION['login']);
@@ -229,38 +223,32 @@ class Aplicacion{
         session_start();
     }
 
-    public function usuarioLogueado()
-    {
+    public function usuarioLogueado(){
         $this->compruebaInstanciaInicializada();
         return ($_SESSION['login'] ?? false) === true;
     }
 
-    public function nombreUsuario()
-    {
+    public function nombreUsuario(){
         $this->compruebaInstanciaInicializada();
         return $_SESSION['nombre'] ?? '';
     }
 
-    public function idUsuario()
-    {
+    public function idUsuario(){
         $this->compruebaInstanciaInicializada();
         return $_SESSION['idUsuario'] ?? '';
     }
 
-    public function esAdmin()
-    {
+    public function esAdmin(){
         $this->compruebaInstanciaInicializada();
         return $this->usuarioLogueado() && (array_search(Usuario::ADMIN_ROLE, $_SESSION['roles']) !== false);
     }
 
-    public function tieneRol($rol)
-    {
+    public function tieneRol($rol){
         $this->compruebaInstanciaInicializada();
         return $this->usuarioLogueado() && (array_search($rol, $_SESSION['roles']) !== false);
     }
 
-    public function paginaError($codigoRespuesta, $tituloPagina, $mensajeError, $explicacion = '')
-    {
+    public function paginaError($codigoRespuesta, $tituloPagina, $mensajeError, $explicacion = ''){
         $this->generandoPaginaError = true;
         http_response_code($codigoRespuesta);
 
@@ -269,8 +257,7 @@ class Aplicacion{
         exit();
     }
 
-    public function verificaLogado($urlNoLogado)
-    {
+    public function verificaLogado($urlNoLogado){
         $this->compruebaInstanciaInicializada();
         if (!$this->usuarioLogueado()) {
             self::redirige($urlNoLogado);
@@ -284,8 +271,7 @@ class Aplicacion{
      * 
      *
      */
-    public function putAtributoPeticion($clave, $valor)
-    {
+    public function putAtributoPeticion($clave, $valor){
         $atts = null;
         if (isset($_SESSION[self::ATRIBUTOS_PETICION])) {
             $atts = &$_SESSION[self::ATRIBUTOS_PETICION];
@@ -304,8 +290,7 @@ class Aplicacion{
      *
      * 
      */
-    public function getAtributoPeticion($clave)
-    {
+    public function getAtributoPeticion($clave){
         $result = $this->atributosPeticion[$clave] ?? null;
         if (is_null($result) && isset($_SESSION[self::ATRIBUTOS_PETICION])) {
             $result = $_SESSION[self::ATRIBUTOS_PETICION][$clave] ?? null;
@@ -313,14 +298,12 @@ class Aplicacion{
         return $result;
     }
 
-    public static function redirige($url)
-    {
+    public static function redirige($url){
         header('Location: ' . $url);
         exit();
     }
 
-    public function buildUrl($relativeURL, $params = [])
-    {
+    public function buildUrl($relativeURL, $params = []){
         $url = $this->resuelve($relativeURL);
         $query = self::buildParams($params);
         if (!empty($query)) {
@@ -330,8 +313,7 @@ class Aplicacion{
         return $url;
     }
 
-    public static function buildParams($params, $separator = '&', $enclosing = '')
-    {
+    public static function buildParams($params, $separator = '&', $enclosing = ''){
         $query = '';
         $numParams = 0;
         foreach ($params as $param => $value) {

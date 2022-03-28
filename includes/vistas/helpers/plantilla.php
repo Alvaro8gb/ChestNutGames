@@ -2,8 +2,7 @@
 
 use es\chestnut\Aplicacion;
 
-function mensajesPeticionAnterior()
-{
+function mensajesPeticionAnterior(){
     $app = Aplicacion::getInstancia();
     $mensajes = $app->getAtributoPeticion('mensajes');
     $html = '';

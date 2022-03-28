@@ -12,7 +12,7 @@ button.logout{
    
    button span {
     position: relative;
-    color: #fff;
+    color: white;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     letter-spacing: 3px;
     z-index: 1;
@@ -29,8 +29,7 @@ button.logout{
     transition: .5s;
    }
    
-   button .liquid::after,
-   button .liquid::before {
+   button .liquid::after, button .liquid::before {
     content: '';
     width: 200%;
     height: 200%;
@@ -38,7 +37,7 @@ button.logout{
     top: 0;
     left: 50%;
     transform: translate(-50%, -75%);
-    background: #fff;
+    background: white;
    }
    
    button .liquid::before {

@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__.'/includes/config.php';
-require_once __DIR__.'/includes/vistas/comun/utils.php';
+require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $tituloPagina = 'Miembros';
 
@@ -24,7 +24,6 @@ EOS;
 ob_start();
 require __DIR__.'/static/miembros.html';
 $contenidoPrincipal .= ob_get_clean();
-
 
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
 $app->generaVista('/plantillas/plantilla.php', $params);

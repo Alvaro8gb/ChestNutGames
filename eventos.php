@@ -1,22 +1,21 @@
 <?php
 
 require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/vistas/helpers/utils.php';
+
 
 $tituloPagina = 'Eventos';
 
+ 
+$contenidoPrincipal = <<<EOS
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/eventos.css"/>
+    </head>
+EOS;
 
-if (!isset($_SESSION["login"])) {
-	$contenidoPrincipal = <<<EOF
-	<h1>¡Usuario no registrado!</h1>
-	<p>Debes iniciar sesión para ver el contenido.</p>
-EOF;
-} else {
+$log_info = log_in($_SESSION);
 
-    $contenidoPrincipal = <<<EOS
-        <head>
-            <link rel="stylesheet" type="text/css" href="css/eventos.css"/>
-        </head>
-    EOS;
+if(empty($log_info)){
 
     $contenidoPrincipal .= <<< EOS
         <div class = "msg_centrado">
@@ -42,7 +41,9 @@ EOF;
         competiciones. !Que gane el mejor! 
         </div>
 EOS;
-        
+}else{
+    $contenidoPrincipal .= $log_info;
 }
+        
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
 $app->generaVista('/plantillas/plantilla.php', $params);

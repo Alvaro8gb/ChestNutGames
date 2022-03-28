@@ -5,7 +5,7 @@ body {
     font-family: Bangers, Verdana;
     font-size: 25px;
     text-align: justify;
-    background: #fff;
+    background: white;
     
 }
 
@@ -18,7 +18,7 @@ body {
 #logo{
     max-width : 220px; 
     max-height: 200px;
-    margin-top:-15%;
+    margin-top: auto;
     text-align: center;
 }
 
