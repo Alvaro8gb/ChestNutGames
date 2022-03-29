@@ -1,0 +1,120 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.nombreEvento p {
+    font-size: 45px;
+    font-weight: bold;
+    font-family: Bangers,Verdana;
+    margin-left: 20px;
+}
+
+body {
+    background-color: white;
+}
+
+.temporizador {
+    display: flex;
+    justify-content: center;
+    margin-top: -57px;
+}
+
+.temporizador .bloque {
+    margin: 0px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.temporizador .bloque div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(36, 36, 36);
+    box-shadow: 0px 0px 6px 2px #727272 inset;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: bold;
+    width: 100px;
+    height: 70px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.temporizador .bloque p {
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(36, 36, 36);
+}
+
+.informacion {
+    margin-left: 430px;
+    margin-top: 20px;
+    height: 20px;
+    width: 550px;
+}
+
+.informacion img {
+    max-width: 5%;
+    max-height: 100%;
+    margin: 0;
+}
+
+.informacion p {
+    margin-top: -22px;
+    margin-left: 30px;
+}
+
+.fondoTransparente{
+    margin-top: -420px;
+    background-size: cover;
+}
+
+.fondoTransparente img {
+    opacity:0.2;
+    filter:alpha(opacity=40); /* For IE8 and earlier */
+    min-height: 100%;
+    min-width: 100%;
+}
+
+/*.fondoTransparente img:hover {
+    opacity:1.0;
+    filter:alpha(opacity=100); 
+}*/
+
+.descripcion {
+    margin: 10px auto;
+    margin-top: 50px;
+    width: 800px;
+}
+
+.descripcion p {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.premio {
+    margin: 10px auto;
+    margin-top: 20px;
+    width: 140px;
+}
+
+.premio p {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+.inscripcion {
+    margin: 10px auto;
+    margin-top: 30px;
+    height: 50px;
+    width: 160px;
+}
+
+.inscripcion img {
+    max-width: 100%;
+    max-height: 100%;
+}

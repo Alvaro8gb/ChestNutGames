@@ -36,8 +36,8 @@ if(empty($log_info)){
         </div>
     EOS;
 
-    $contenidoPrincipal .= 
-        '<div class="slider">';
+    $contenidoPrincipal .= '<div class="slider">';
+    
         $ids = array();
         $imgs = array();
     
@@ -57,7 +57,7 @@ if(empty($log_info)){
     for($s=0;$s<$max;$s++){ 
         $contenidoPrincipal .= 
             '<div class="item-slide">
-                <img src="data:image/png;base64,'.base64_encode($imgs[$s]).'"/>
+                <a href="procesarEvento.php?id='.$ids[$s].'"><img src="data:image/png;base64,'.base64_encode($imgs[$s]).'"/>
             </div>'; 
     }
     $contenidoPrincipal .= 
