@@ -36,7 +36,7 @@ ul.slider li {
     width: inherit;
     height: inherit;
     transition: opacity .5s;
-    background:white;
+    background-image: url("../img/ranking/fondo.jpg");
 }
 
 ul.slider li img{
