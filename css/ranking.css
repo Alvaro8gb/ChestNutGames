@@ -129,7 +129,7 @@ h1.move{
  
  h1:hover .liquid {
   top: -120px;
-  background: blueviolet;
+  background: red;
  }
  
  @keyframes animate {
