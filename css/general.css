@@ -7,6 +7,16 @@ body {
     /* Gracias a esto la barra ocupa toda la pantalla, para poner margenes en lo demas lo indicamos en 'main' */
     margin:0;
     padding:0;
+
+     /* BACKGROUND GENERAL (por ahora) */
+
+     background-image: url("../img/backgrounds/portada_l1.jpg");
+
+     position:absolute;
+     background-attachment: fixed;
+     background-size: cover;
+     z-index: -1;
+     min-height: 100%;
 }
 main {
     margin:1%;

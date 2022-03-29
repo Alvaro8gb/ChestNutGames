@@ -120,18 +120,13 @@ h1.move{
  h1 .liquid::before {
   border-radius: 45%;
   background: rgba(20, 20, 20, 1);
-  animation: animate 5s linear infinite;
+  animation: animate 10s linear infinite;
  }
  
  h1 .liquid::after {
   border-radius: 40%;
   background: rgba(20, 20, 20, .5);
-  animation: animate 10s linear infinite;
- }
- 
- h1:hover .liquid {
-  top: -120px;
-  background: red;
+  animation: animate 20s linear infinite;
  }
  
  @keyframes animate {
@@ -142,19 +137,6 @@ h1.move{
   100% {
    transform: translate(-50%, -75%) rotate(360deg);
   }
- }
- body {
-  background-image: url("../img/ranking/fondo.jpg");
-
-  position:absolute;
-  left: 0;
-  right:0;
-  top: 0;
-  bottom: 0;
-  background-size: cover;
-  background-position: center center;
-  z-index: -1;
-  min-height: 100%;
  }
 
 
