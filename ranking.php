@@ -22,7 +22,10 @@ $contenidoPrincipal = <<<EOS
 </head>
 <body>
 <div>
-   <h1> RANKING GLOBAL </h1>
+   <h1 class = "move"> 
+   <span>RANKING GLOBAL</span>
+   <div class="liquid"></div>
+   </h1>
     <table>
       <tr>
       <th>JUGADOR</th>
@@ -50,7 +53,10 @@ $sql = sprintf("SELECT IdJugador, sum(Puntuacion) as SumaPuntos FROM ranking GRO
 $contenidoPrincipal .= <<<EOS
 </table>
 </div>
-<h1> Ranking por Juego </h1>   
+<h1 class = "move"> 
+   <span>RANKING POR JUEGO</span>
+   <div class="liquid"></div>
+   </h1>  
 <div class="container">
   <ul class="slider">
 EOS;
