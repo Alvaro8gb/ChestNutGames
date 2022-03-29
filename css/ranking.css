@@ -4,6 +4,10 @@ table {
 .out{
   background-color: aqua;
 }
+
+.has{
+  background-color: rgb(120, 231, 231);
+}
 table, th {
   margin:auto;
   border: 2px solid;

@@ -9,7 +9,7 @@ function check_log_in(){
     if (!isset($_SESSION["login"])) {
         $contenidoPrincipal = <<<EOF
         <h1>¡Usuario no registrado!</h1>
-        <p>Debes iniciar sesión para ver el contenido.</p>  
+        <p id="cl">Debes iniciar sesión para ver el contenido.</p>  
         EOF;
     return $contenidoPrincipal;
     }

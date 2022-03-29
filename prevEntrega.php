@@ -11,7 +11,7 @@ $contenidoPrincipal = '';
 $contenidoPrincipal .=<<<EOS
 <h1 class = "h1_title"> Contenido de entregas anteriores </h1>  
 <nav id="anterior">
-    <ul>
+    <ul id="entregas">
 EOS;
 
 foreach($paginas_anteriores as $name=>$enl){

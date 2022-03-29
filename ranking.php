@@ -68,7 +68,7 @@ EOS;
 
       $contenidoPrincipal .= <<<EOS
       <li id= {$id_juego}>
-        <table>
+        <table class="has">
         <tr>
           <th id ="nombreJuegoRanking" colspan = "2">{$nombre}</th>
         <tr>
