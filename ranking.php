@@ -26,7 +26,7 @@ $contenidoPrincipal = <<<EOS
    <span>RANKING GLOBAL</span>
    <div class="liquid"></div>
    </h1>
-    <table>
+    <table class ="out">
       <tr>
       <th>JUGADOR</th>
       <th>PUNTUACION</th>
