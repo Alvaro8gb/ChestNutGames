@@ -18,25 +18,38 @@ class FormularioLogin extends Formulario{
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
         $erroresCampos = self::generaErroresCampos(['nombreUsuario', 'password'], $this->errores, 'span', array('class' => 'error'));
 
+        $ruta1 = RUTA_CSS.'formulario.css';
+        $ruta2 = RUTA_CSS.'button.css';
+
         // Se genera el HTML asociado a los campos del formulario y los mensajes de error.
         $html = <<<EOF
-        $htmlErroresGlobales
-        <fieldset>
-            <legend>Usuario y contraseña</legend>
-            <div>
-                <label for="nombreUsuario">Nombre de usuario:</label>
-                <input id="nombreUsuario" type="text" name="nombreUsuario" value="$nombreUsuario" />
-                {$erroresCampos['nombreUsuario']}
-            </div>
-            <div>
-                <label for="password">Contraseña:</label>
-                <input id="password" type="password" name="password" />
-                {$erroresCampos['password']}
-            </div>
-            <div>
-                <button type="submit" name="login">Entrar</button>
-            </div>
-        </fieldset>
+        <head>
+            <link rel="stylesheet" type="text/css" href={$ruta1}>
+            <link rel="stylesheet" type="text/css" href={$ruta2}>
+        </head>
+        <div class="login-page">
+        <div class="form">
+        
+            <form class="login-form">
+            $htmlErroresGlobales
+                <legend class="log">Usuario y contraseña</legend>
+                <div class="form-group">
+                    <label for="nombreUsuario">Nombre de usuario:</label>
+                    <input id="nombreUsuario" type="text" name="nombreUsuario" value="$nombreUsuario" placeholder="Introduzca nombre de usuario"/>
+                    {$erroresCampos['nombreUsuario']}
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input id="password" type="password" name="password" placeholder="Introduzca contraseña"/>
+                    {$erroresCampos['password']}
+                </div>
+                <div>
+                    <button type="submit" name="login">Entrar</button>
+                </div>
+            </form>
+        
+        </div>
+        </div>
         EOF;
         return $html;
     }
@@ -53,14 +66,14 @@ class FormularioLogin extends Formulario{
         $password = trim($datos['password'] ?? '');
         $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if ( ! $password || empty($password) ) {
-            $this->errores['password'] = 'La contraseña no puede estar vacío.';
+            $this->errores['password'] = 'La contraseña no puede estar vacía.';
         }
         
         if (count($this->errores) === 0) {
             $usuario = Usuario::login($nombreUsuario, $password, null);
         
             if (!$usuario) {
-                $this->errores[] = "El usuario o el password no coinciden";
+                $this->errores[] = "El usuario o la contraseña no coinciden";
             } else {
                 $app = Aplicacion::getInstancia();
                 $app->login($usuario);

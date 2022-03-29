@@ -38,20 +38,15 @@ if(empty($log_info)){
 
     $contenidoPrincipal .= 
         '<div class="slider">';
-
-    $ids = array();
-    $imgs = array();
-
-    $conn = $app->getConexionBd();
-    $sql = "SELECT idEvento, imagen FROM eventos";
-    $consulta = @mysqli_query($conn, $sql);
-    while($fila = @mysqli_fetch_array($consulta)){
-        $ids[] = $fila["idEvento"];
-        $imgs[] = $fila["imagen"];
-    }
-
+    $ids = array(1,2,3,4,5);
+    $alt = array(
+            "Slide 1",
+            "Slide 2",
+            "Slide 3",
+            "Slide 4",
+            "Slide 5"
+        );
     $max = count($ids);
-
     for($s=0;$s<$max;$s++){
         $contenidoPrincipal .= '<input type="radio" id="' . $ids[$s] . '" name="image-slide" hidden />';
     }
@@ -60,7 +55,7 @@ if(empty($log_info)){
     for($s=0;$s<$max;$s++){ 
         $contenidoPrincipal .= 
             '<div class="item-slide">
-                <img src="data:image/png;base64,'.base64_encode($imgs[$s]).'"/>
+                <img src="img/eventos/' . $ids[$s] . '.jpg" alt="'. $alt[$s] .'" />
             </div>'; 
     }
     $contenidoPrincipal .= 
@@ -69,7 +64,7 @@ if(empty($log_info)){
     for($s=0;$s<$max;$s++){ 
         $contenidoPrincipal .=
             '<label class="pag-item" for="' . $ids[$s] . '">
-                <img src="data:image/png;base64,'.base64_encode($imgs[$s]).'"/>
+                <img src="img/eventos/' . $ids[$s] . '.jpg" alt="'. $alt[$s] .'" />
             </label>';
     }
     $contenidoPrincipal .=
@@ -84,11 +79,9 @@ if(empty($log_info)){
         competiciones. !Que gane el mejor! 
         </div>
     EOS;
-}
-else {
+}else{
     $contenidoPrincipal = $log_info;
 }
         
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
 $app->generaVista('/plantillas/plantilla.php', $params);
-

@@ -20,39 +20,50 @@ class FormularioRegistro extends Formulario{
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
         $erroresCampos = self::generaErroresCampos(['nombreUsuario', 'nombre', 'password', 'password2', 'correo'], $this->errores, 'span', array('class' => 'error'));
 
+        $ruta1 = RUTA_CSS.'formulario.css';
+        $ruta2 = RUTA_CSS.'button.css';
+
         $html = <<<EOF
+        <head>
+            <link rel="stylesheet" type="text/css" href={$ruta1}>
+            <link rel="stylesheet" type="text/css" href={$ruta2}>
+        </head>
         $htmlErroresGlobales
-        <fieldset>
-            <legend>Datos para el registro</legend>
+        <div class="login-page">
+        <div class="form">
+        <form class="login-form">
+            <legend class="log">Datos para el registro</legend>
             <div>
                 <label for="correo">Correo electrónico:</label>
-                <input id="correoUsuario" type="email" name="correoUsuario" value="$correoUsuario" />
+                <input id="correoUsuario" type="email" name="correoUsuario" value="$correoUsuario" placeholder="Introduzca correo electrónico"/>
                 {$erroresCampos['correo']}
             </div>
             <div>
                 <label for="nombreUsuario">Nombre de usuario:</label>
-                <input id="nombreUsuario" type="text" name="nombreUsuario" value="$nombreUsuario" />
+                <input id="nombreUsuario" type="text" name="nombreUsuario" value="$nombreUsuario" placeholder="Introduzca nombre de usuario"/>
                 {$erroresCampos['nombreUsuario']}
             </div>
             <div>
                 <label for="nombre">Nombre:</label>
-                <input id="nombre" type="text" name="nombre" value="$nombre" />
+                <input id="nombre" type="text" name="nombre" value="$nombre" placeholder="Introduzca nombre completo"/>
                 {$erroresCampos['nombre']}
             </div>
             <div>
                 <label for="password">Contraseña:</label>
-                <input id="password" type="password" name="password" />
+                <input id="password" type="password" name="password" placeholder="Introduzca contraseña"/>
                 {$erroresCampos['password']}
             </div>
             <div>
                 <label for="password2">Reintroduce la contraseña:</label>
-                <input id="password2" type="password" name="password2" />
+                <input id="password2" type="password" name="password2" placeholder="Vuelva a introducir la contraseña"/>
                 {$erroresCampos['password2']}
             </div>
             <div>
                 <button type="submit" name="registro">Registrar</button>
             </div>
-        </fieldset>
+        </form>
+        </div>
+        </div>
         EOF;
         return $html;
     }
