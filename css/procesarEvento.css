@@ -84,6 +84,10 @@ body {
     filter:alpha(opacity=100); 
 }*/
 
+img#ev{
+    border-radius: 10px;
+}
+
 .descripcion {
     margin: 10px auto;
     margin-top: 50px;

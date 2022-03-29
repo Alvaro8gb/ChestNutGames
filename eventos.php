@@ -24,11 +24,11 @@ if(empty($log_info)){
         </div>
         
         <div class = "img_buscar">
-        <img src="{$rutaimg}buscar.jpg" alt="buscar">
+        <img id="ev" src="{$rutaimg}buscar.jpg" alt="buscar">
         </div>
 
         <div class = "text_buscar">
-        <input type ="text" name ="buscar" value ="">
+        <input class="evi" type ="text" name ="buscar" value ="">
         </div>
 
         <div class = "button_buscar">
@@ -37,7 +37,6 @@ if(empty($log_info)){
     EOS;
 
     $contenidoPrincipal .= '<div class="slider">';
-    
         $ids = array();
         $imgs = array();
     
@@ -57,7 +56,7 @@ if(empty($log_info)){
     for($s=0;$s<$max;$s++){ 
         $contenidoPrincipal .= 
             '<div class="item-slide">
-                <a href="procesarEvento.php?id='.$ids[$s].'"><img src="data:image/png;base64,'.base64_encode($imgs[$s]).'"/>
+            <a href="procesarEvento.php?id='.$ids[$s].'"><img src="data:image/png;base64,'.base64_encode($imgs[$s]).'"/>
             </div>'; 
     }
     $contenidoPrincipal .= 

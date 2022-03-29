@@ -72,7 +72,7 @@ if(empty($log_info)){
 
         $contenidoPrincipal .= <<< EOS
             <div class = "informacion">
-                <img src="{$rutaimg}info.png">
+                <img id="ev" src="{$rutaimg}info.png">
                 <p>Para actualizar el temporizador es necesario refrescar la página.</p>
             </div>
 
@@ -85,7 +85,7 @@ if(empty($log_info)){
             </div>
 
             <div class = "inscripcion">
-                <img src= "{$rutaimg}inscripcion.png">
+                <img id="ev" src= "{$rutaimg}inscripcion.png">
             </div>
         EOS;
 

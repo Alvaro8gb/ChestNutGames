@@ -16,6 +16,7 @@ img {
     /* Para que sea responsiva */
     width: 90%;
     height: 90%;
+    border-radius: 60px;
 }
 
 .gif_centrado {
@@ -23,6 +24,7 @@ img {
     display:block;
     height: 180px;
     width: 400px;
+    border-radius: 18px;
 }
 
 .boton_exit {
