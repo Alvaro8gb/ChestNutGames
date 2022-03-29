@@ -1,7 +1,9 @@
 table {
   font-size: 25px;
 }
-
+.out{
+  background-color: aqua;
+}
 table, th {
   margin:auto;
   border: 2px solid;
