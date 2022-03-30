@@ -32,7 +32,7 @@ if(empty($log_info)){
         </div>
 
         <div class = "button_buscar">
-        <button type = "button" name = "buscar" id = "buscar" onclick = 'href="mailto:sergilor@ucm.es"'>Buscar</button>
+        <button type = "button" name = "buscar" id = "buscar">Buscar</button>
         </div>
     EOS;
 
