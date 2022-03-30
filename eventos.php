@@ -28,22 +28,24 @@ if(empty($log_info)){
         </div>
 
         <div class = "text_buscar">
-        <input class="evi" type ="text" name ="eventToSearch" id ="eventToSearch" value ="">
+        <input class="evi" type ="text" name ="evento" value ="">
         </div>
 
         <div class = "button_buscar">
-        <button type = "button" name = "buscar" id = "buscar">Buscar</button>
+            <form action="eventos.php" method="post">
+                <input type="button" name="buscar" value="Buscar">
+            </form>
         </div>
     EOS;
 
-    if(isset($_REQUEST['buscar'])){
+    if(($_POST['buscar'])){
         // Recogemos el nombre del evento enviado a buscar
-        $eventToSearch = $_REQUEST['eventToSearch'];
+        /*$eventToSearch = $_POST["evento"];
         
         $conn = $app->getConexionBd();
         $sql = "SELECT nombre FROM eventos WHERE (nombre LIKE '%" . $eventToSearch . "%')";
         $consulta = @mysqli_query($conn, $sql);
-        $count_results = mysql_num_rows($consulta);
+        $count_results = mysqli_num_rows($consulta);
 
         // Si hay resultados
         if($count_results > 0){
@@ -55,7 +57,7 @@ if(empty($log_info)){
             // Si no hay resultados
             $contenidoPrincipal .= 
             '<p>No se encuentran resultados con los criterios de búsqueda.</p>';
-        }
+        }*/
     }
 
     $contenidoPrincipal .= '<div class="slider">';
