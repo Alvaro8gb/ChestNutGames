@@ -4,20 +4,16 @@ require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $tituloPagina = 'Juegos';
+$css = link_css(RUTA_CSS.'juegos.css');
 
 $log_info = check_log_in();
 
-$ruta = RUTA_CSS.'juegos.css';
-$rutaimg = RUTA_IMGS.'juegos/';
+$ruta_imgs = RUTA_IMGS.'juegos/';
 
 if(empty($log_info)){
 
     $contenidoPrincipal = <<<EOS
-        <head>
-            <link rel="stylesheet" type="text/css" href={$ruta}>
-        </head>
-
-        <img class="gif_centrado" src="{$rutaimg}play_now.gif" alt="Gif"> 
+        <img class="gif_centrado" src="{$ruta_imgs}play_now.gif" alt="Gif"> 
     EOS;
     $conn = $app->getConexionBd();
     $sql = "SELECT IdJuego, Imagen FROM juegos";
@@ -53,5 +49,5 @@ if(empty($log_info)){
     $contenidoPrincipal = $log_info;
 }
 
-$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
+$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css' => $css];
 $app->generaVista('/plantillas/plantilla.php', $params);

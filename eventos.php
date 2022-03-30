@@ -3,19 +3,27 @@
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
-$ruta = RUTA_CSS.'eventos.css';
 $rutaimg = RUTA_IMGS.'eventos/';
 
 $tituloPagina = 'Eventos';
+$css =  link_css(RUTA_CSS.'eventos.css');
 
 $log_info = check_log_in();
 
 if(empty($log_info)){
 
+    $eventos = array();
+
+    $conn = $app->getConexionBd();
+    $sql = "SELECT idEvento, imagen FROM eventos";
+    $consulta = @mysqli_query($conn, $sql);
+    while($fila = @mysqli_fetch_array($consulta)){
+        $eventos[$fila["idEvento"]] = $fila["imagen"];
+    }
+
+    $consulta->free();
+
     $contenidoPrincipal = <<<EOS
-    <head>
-        <link rel="stylesheet" type="text/css" href={$ruta}>
-    </head>
     EOS;
 
     $contenidoPrincipal .= <<< EOS
@@ -40,17 +48,19 @@ if(empty($log_info)){
 
     if(isset($_GET['buscar'])){
         // Recogemos el nombre del evento enviado a buscar
-        $eventToSearch = $_GET["evento"];
-    
+        $eventToSearch = filter_var(trim($_GET["evento"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        
         // Si está vacío, lo informamos, sino realizamos la búsqueda
         if(empty($eventToSearch)){
             $contenidoPrincipal .= '<br><p>No se ha ingresado un evento a buscar</p>';
         }
         else {
             // Conexión a la base de datos y seleccion de registros
+
             $conn = $app->getConexionBd();
-            $sql = "SELECT nombre FROM eventos WHERE (nombre LIKE '%" . $eventToSearch . "%')";
-            $consulta = @mysqli_query($conn, $sql);
+            $prepared = $conn->prepare("SELECT nombre FROM eventos WHERE nombre LIKE ? ");
+            $prepared->execute(array("%$eventToSearch%"));
+            $consulta = $prepared->get_result();
             $count_results = mysqli_num_rows($consulta);
     
             // Si hay resultados
@@ -68,40 +78,28 @@ if(empty($log_info)){
     }
 
     $contenidoPrincipal .= '<div class="slider">';
-        $ids = array();
-        $imgs = array();
-    
-        $conn = $app->getConexionBd();
-        $sql = "SELECT idEvento, imagen FROM eventos";
-        $consulta = @mysqli_query($conn, $sql);
-        while($fila = @mysqli_fetch_array($consulta)){
-            $ids[] = $fila["idEvento"];
-            $imgs[] = $fila["imagen"];
-        }
-    $max = count($ids);
-    for($s=0;$s<$max;$s++){
-        $contenidoPrincipal .= '<input type="radio" id="' . $ids[$s] . '" name="image-slide" hidden />';
+     
+    foreach($eventos as $id => $img ){
+        $contenidoPrincipal .= '<input type="radio" id="' . $id . '" name="image-slide" hidden />';
     }
-    $contenidoPrincipal .= 
-        '<div class="slideshow">';
-    for($s=0;$s<$max;$s++){ 
+    $contenidoPrincipal .= '<div class="slideshow">';
+
+    foreach($eventos as $id => $img ){
         $contenidoPrincipal .= 
             '<div class="item-slide">
-            <a href="procesarEvento.php?id='.$ids[$s].'"><img src="data:image/png;base64,'.base64_encode($imgs[$s]).'"/>
+            <a href="procesarEvento.php?id='.$id.'"><img src="data:image/png;base64,'.base64_encode($img).'"/>
             </div>'; 
     }
     $contenidoPrincipal .= 
         '</div>
         <div class="pagination">';
-    for($s=0;$s<$max;$s++){ 
+    foreach($eventos as $id => $img ){ 
         $contenidoPrincipal .=
-            '<label class="pag-item" for="' . $ids[$s] . '">
-                <img src="data:image/png;base64,'.base64_encode($imgs[$s]).'"/>
+            '<label class="pag-item" for="' . $id . '">
+                <img src="data:image/png;base64,'.base64_encode($img).'"/>
             </label>';
     }
-    $contenidoPrincipal .=
-        '</div>
-        </div>';
+    $contenidoPrincipal .='</div> </div>';
 
     $contenidoPrincipal .= <<< EOS
         <div class = "footer_zone">
@@ -116,5 +114,5 @@ else{
     $contenidoPrincipal = $log_info;
 }
         
-$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
+$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal,'css'=> $css];
 $app->generaVista('/plantillas/plantilla.php', $params);

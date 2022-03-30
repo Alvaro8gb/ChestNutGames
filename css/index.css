@@ -95,3 +95,12 @@ body::-webkit-scrollbar {
     z-index: -2;
     min-height: 100%;
 }
+
+#inicio{
+    margin-left:10%;
+    margin-right: 10%;
+    background: hsl(30, 86%, 57%);
+    padding: 2%;
+    color:rgb(255, 248, 248);
+    border-radius: 30px;
+}

@@ -12,4 +12,7 @@ FALTA:
 tabla relacion miembros del grupo y tareas).
 
 
+Memoria : https://ucomplutense-my.sharepoint.com:443/:w:/g/personal/davcan01_ucm_es/ETHF79_92lpNpuT01Jy4CFIBD6qCO9dEIVMkjz2kqtEmZw?e=4%3aTOj0Gr&at=9>
+
+
 

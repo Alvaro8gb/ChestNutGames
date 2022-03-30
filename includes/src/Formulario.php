@@ -270,11 +270,8 @@ abstract class Formulario{
         $classAtt = $this->classAtt != null ? "class=\"{$this->classAtt}\"" : '';
 
         $enctypeAtt = $this->enctype != null ? "enctype=\"{$this->enctype}\"" : '';
-
-        $form_css = RUTA_CSS."form.css";
-        $htmlForm = "<link rel='stylesheet' type='text/css' href=$form_css />";
-
-        $htmlForm .= <<<EOS
+      
+        $htmlForm = <<<EOS
         <form method="{$this->method}" action="{$this->action}" id="{$this->formId}" {$classAtt} {$enctypeAtt}>
             <input type="hidden" name="tipoFormulario" value="{$this->tipoFormulario}" />
             $htmlCamposFormularios

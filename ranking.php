@@ -1,8 +1,10 @@
 <?php
 
 require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $tituloPagina = 'Ranking';
+$css = link_css(RUTA_CSS.'ranking.css');
 
 $juegos = array();
 
@@ -14,13 +16,8 @@ while($fila = @mysqli_fetch_array($consulta)){
   $juegos[$fila["IdJuego"]] = $fila["nombre"];
 }
 
-$ruta = RUTA_CSS.'ranking.css';
 
 $contenidoPrincipal = <<<EOS
-<head>
-        <link rel="stylesheet" type="text/css" href={$ruta}>
-</head>
-<body>
 <div>
    <h1 class = "move"> 
    <span>RANKING GLOBAL</span>
@@ -32,7 +29,7 @@ $contenidoPrincipal = <<<EOS
       <th>PUNTUACION</th>
       </tr>
 EOS;
-$sql = sprintf("SELECT IdJugador, sum(Puntuacion) as SumaPuntos FROM ranking GROUP BY IdJugador ORDER BY SumaPuntos desc");
+  $sql = sprintf("SELECT IdJugador, sum(Puntuacion) as SumaPuntos FROM ranking GROUP BY IdJugador ORDER BY SumaPuntos desc");
   $consulta = @mysqli_query($conn, $sql);
   $i = 1;
   while($i <= 5){
@@ -121,8 +118,7 @@ EOS;
 $contenidoPrincipal .= <<<EOS
    </ul>
    </div>
-   </body>
 EOS;
 
-$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
+$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal,'css'=> $css];
 $app->generaVista('/plantillas/plantilla.php', $params);
