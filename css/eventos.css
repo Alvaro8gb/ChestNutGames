@@ -26,7 +26,7 @@ img#ev{
     font-family: Bangers;
     outline: 0;
     background: whitesmoke;
-    width: 9%;
+    width: 19%;
     border: 0;
     margin: 0 0 0;
     padding: 5px;
@@ -41,7 +41,7 @@ img#ev{
 }
 
 .button_buscar {
-    margin-left: 240px;
+    margin-left: 340px;
     margin-top: -28px;
 }
 

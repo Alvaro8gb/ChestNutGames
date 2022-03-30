@@ -28,16 +28,44 @@ if(empty($log_info)){
         <img id="ev" src="{$rutaimg}buscar.jpg" alt="buscar">
         </div>
 
-        <div class = "text_buscar">
-        <input class="evi" type ="text" name ="evento" value ="">
-        </div>
-
-        <div class = "button_buscar">
-        <button type = "button" name = "buscar" id = "buscar" onclick = 'href="procesarBisqueda.php"'>Buscar</button>
-        </div>
+        <form action="" method="get">
+            <div class = "text_buscar">
+                <input class="evi" type ="text" name ="evento" value ="">
+            </div>
+            <div class = "button_buscar">
+                <input type="submit" name="buscar" value="buscar">
+            </div>
+        </form>
     EOS;
 
+    if(isset($_GET['buscar'])){
+        // Recogemos el nombre del evento enviado a buscar
+        $eventToSearch = $_GET["evento"];
     
+        // Si está vacío, lo informamos, sino realizamos la búsqueda
+        if(empty($eventToSearch)){
+            $contenidoPrincipal .= '<br><p>No se ha ingresado un evento a buscar</p>';
+        }
+        else {
+            // Conexión a la base de datos y seleccion de registros
+            $conn = $app->getConexionBd();
+            $sql = "SELECT nombre FROM eventos WHERE (nombre LIKE '%" . $eventToSearch . "%')";
+            $consulta = @mysqli_query($conn, $sql);
+            $count_results = mysqli_num_rows($consulta);
+    
+            // Si hay resultados
+            if($count_results > 0){
+                $contenidoPrincipal .= 
+                '<br><p>El evento buscado, '.$eventToSearch.', se encuentra en nuestra página web. Deslícese sobre el siguiente
+                slide colocado a continuación hasta encontrarlo.<p>';
+            }
+            else{
+                // Si no hay resultados
+                $contenidoPrincipal .= 
+                '<br><p>No se encuentran resultados con los criterios de búsqueda.</p>';
+            }
+        }
+    }
 
     $contenidoPrincipal .= '<div class="slider">';
         $ids = array();
