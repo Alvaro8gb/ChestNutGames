@@ -10,7 +10,7 @@ $mensajes = mensajesPeticionAnterior();
     <title><?= $params['tituloPagina'] ?></title>
 	<link rel="stylesheet" type="text/css" href="<?= $params['app']->resuelve( RUTA_CSS.'general.css') ?>" />
 	<link rel="stylesheet" type="text/css" href="<?= $params['app']->resuelve(RUTA_CSS.'header.css') ?>" />
-	<link rel="icon" type="image/png" href="<?= $params['app']->resuelve(RUTA_IMGS.'logo/Favicon.png') ?>" />
+	<link rel="icon" type="image/png" href="/img/logo/favicon.ico" />
 </head>
 
 <body>
