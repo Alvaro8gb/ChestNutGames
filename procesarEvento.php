@@ -19,8 +19,13 @@ if(empty($log_info)){
     EOS;
 
     $conn = $app->getConexionBd();
-    $sql = "SELECT * FROM eventos WHERE idEvento = $_GET[id]";
-    $consulta = @mysqli_query($conn, $sql);
+    $prepared = $conn->prepare("SELECT * FROM eventos WHERE idEvento = ?");
+    $id = filter_var(trim($_GET["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $prepared->bind_param('i',$id);
+
+    $prepared->execute();
+    $consulta = $prepared->get_result();
+
     $fila = @mysqli_fetch_array($consulta);
 
     // Epoch timestamp

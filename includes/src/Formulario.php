@@ -157,8 +157,7 @@ abstract class Formulario{
      * @param string $tipoFormulario Parámetro de la petición utilizado para comprobar que el usuario ha enviado el formulario.
      * @param array $opciones (opcional) Array de opciones para el formulario (ver más arriba).
      */
-    public function __construct($tipoFormulario, $opciones = array())
-    {
+    public function __construct($tipoFormulario, $opciones = array()){
         $this->tipoFormulario = $tipoFormulario;
 
         $opcionesPorDefecto = array('action' => null, 'method' => 'POST', 'class' => null, 'enctype' => null, 'urlRedireccion' => null, 'formId' => '');

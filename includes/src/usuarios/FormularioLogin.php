@@ -27,12 +27,11 @@ class FormularioLogin extends Formulario{
             <link rel="stylesheet" type="text/css" href={$ruta1}>
             <link rel="stylesheet" type="text/css" href={$ruta2}>
         </head>
-        <div class="login-page">
-        <div class="form">
-        
-            <form class="login-form">
-            $htmlErroresGlobales
-                <legend class="log">Usuario y contraseña</legend>
+        <div class="login-page"> 
+            <div class="form">
+                <div class="log">Usuario y contraseña</div>
+
+                $htmlErroresGlobales
                 <div class="form-group">
                     <label for="nombreUsuario">Nombre de usuario:</label>
                     <input id="nombreUsuario" type="text" name="nombreUsuario" value="$nombreUsuario" placeholder="Introduzca nombre de usuario"/>
@@ -45,10 +44,8 @@ class FormularioLogin extends Formulario{
                 </div>
                 <div>
                     <button type="submit" name="login">Entrar</button>
-                </div>
-            </form>
-        
-        </div>
+                </div>        
+            </div>
         </div>
         EOF;
         return $html;

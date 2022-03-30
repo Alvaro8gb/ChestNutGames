@@ -3,7 +3,7 @@ require_once __DIR__.'/includes/config.php';
 $tituloPagina = 'Home';
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html lang='es'>
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href= <?php echo RUTA_CSS."index.css"; ?> />

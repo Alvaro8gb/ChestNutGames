@@ -19,6 +19,7 @@ if(empty($log_info)){
     EOS;
 
     $contenidoPrincipal .= <<< EOS
+        
         <div class = "msg_centrado">
             <h3>Demuestra tu habilidad, gana dinero y muchos premios jugando los mejores torneos de la comunidad.</h3>
         </div>
@@ -32,33 +33,11 @@ if(empty($log_info)){
         </div>
 
         <div class = "button_buscar">
-            <form action="eventos.php" method="post">
-                <input type="button" name="buscar" value="Buscar">
-            </form>
+        <button type = "button" name = "buscar" id = "buscar" onclick = 'href="procesarBisqueda.php"'>Buscar</button>
         </div>
     EOS;
 
-    if(($_POST['buscar'])){
-        // Recogemos el nombre del evento enviado a buscar
-        /*$eventToSearch = $_POST["evento"];
-        
-        $conn = $app->getConexionBd();
-        $sql = "SELECT nombre FROM eventos WHERE (nombre LIKE '%" . $eventToSearch . "%')";
-        $consulta = @mysqli_query($conn, $sql);
-        $count_results = mysqli_num_rows($consulta);
-
-        // Si hay resultados
-        if($count_results > 0){
-            $contenidoPrincipal .= 
-            '<p>El evento buscado, '.$eventToSearch.' se encuentra en nuestra página web. Deslícese sobre el siguiente
-            slide colocado a continuación hasta encontrarlo.<p>';
-        }
-        else{
-            // Si no hay resultados
-            $contenidoPrincipal .= 
-            '<p>No se encuentran resultados con los criterios de búsqueda.</p>';
-        }*/
-    }
+    
 
     $contenidoPrincipal .= '<div class="slider">';
         $ids = array();
