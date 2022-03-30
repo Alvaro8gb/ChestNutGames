@@ -27,37 +27,43 @@ if(empty($log_info)){
         <img id="ev" src="{$rutaimg}buscar.jpg" alt="buscar">
         </div>
 
-        <div class = "text_buscar">
-        <input class="evi" type ="text" name ="evento" value ="">
-        </div>
-
-        <div class = "button_buscar">
-            <form action="eventos.php" method="post">
-                <input type="button" name="buscar" value="Buscar">
-            </form>
-        </div>
+        <form action="" method="get">
+            <div class = "text_buscar">
+                <input class="evi" type ="text" name ="evento" value ="">
+            </div>
+            <div class = "button_buscar">
+                <input type="submit" name="buscar" value="buscar">
+            </div>
+        </form>
     EOS;
 
-    if(($_POST['buscar'])){
+    if(isset($_GET['buscar'])){
         // Recogemos el nombre del evento enviado a buscar
-        /*$eventToSearch = $_POST["evento"];
-        
-        $conn = $app->getConexionBd();
-        $sql = "SELECT nombre FROM eventos WHERE (nombre LIKE '%" . $eventToSearch . "%')";
-        $consulta = @mysqli_query($conn, $sql);
-        $count_results = mysqli_num_rows($consulta);
+        $eventToSearch = $_GET["evento"];
 
-        // Si hay resultados
-        if($count_results > 0){
-            $contenidoPrincipal .= 
-            '<p>El evento buscado, '.$eventToSearch.' se encuentra en nuestra página web. Deslícese sobre el siguiente
-            slide colocado a continuación hasta encontrarlo.<p>';
+        // Si está vacío, lo informamos, sino realizamos la búsqueda
+        if(empty($eventToSearch)){
+            $contenidoPrincipal .= '<br><p>No se ha ingresado un evento a buscar</p>';
         }
-        else{
-            // Si no hay resultados
-            $contenidoPrincipal .= 
-            '<p>No se encuentran resultados con los criterios de búsqueda.</p>';
-        }*/
+        else {
+            // Conexión a la base de datos y seleccion de registros
+            $conn = $app->getConexionBd();
+            $sql = "SELECT nombre FROM eventos WHERE (nombre LIKE '%" . $eventToSearch . "%')";
+            $consulta = @mysqli_query($conn, $sql);
+            $count_results = mysqli_num_rows($consulta);
+
+            // Si hay resultados
+            if($count_results > 0){
+                $contenidoPrincipal .= 
+                '<br><p>El evento buscado, '.$eventToSearch.', se encuentra en nuestra página web. Deslícese sobre el siguiente
+                slide colocado a continuación hasta encontrarlo.<p>';
+            }
+            else{
+                // Si no hay resultados
+                $contenidoPrincipal .= 
+                '<br><p>No se encuentran resultados con los criterios de búsqueda.</p>';
+            }
+        }
     }
 
     $contenidoPrincipal .= '<div class="slider">';
