@@ -28,13 +28,35 @@ if(empty($log_info)){
         </div>
 
         <div class = "text_buscar">
-        <input class="evi" type ="text" name ="buscar" value ="">
+        <input class="evi" type ="text" name ="eventToSearch" id ="eventToSearch" value ="">
         </div>
 
         <div class = "button_buscar">
-        <button type = "button" onclick = 'href="mailto:sergilor@ucm.es"'>Buscar</button>
+        <button type = "button" name = "buscar" id = "buscar" onclick = 'href="mailto:sergilor@ucm.es"'>Buscar</button>
         </div>
     EOS;
+
+    if(isset($_REQUEST['buscar'])){
+        // Recogemos el nombre del evento enviado a buscar
+        $eventToSearch = $_REQUEST['eventToSearch'];
+        
+        $conn = $app->getConexionBd();
+        $sql = "SELECT nombre FROM eventos WHERE (nombre LIKE '%" . $eventToSearch . "%')";
+        $consulta = @mysqli_query($conn, $sql);
+        $count_results = mysql_num_rows($consulta);
+
+        // Si hay resultados
+        if($count_results > 0){
+            $contenidoPrincipal .= 
+            '<p>El evento buscado, '.$eventToSearch.' se encuentra en nuestra página web. Deslícese sobre el siguiente
+            slide colocado a continuación hasta encontrarlo.<p>';
+        }
+        else{
+            // Si no hay resultados
+            $contenidoPrincipal .= 
+            '<p>No se encuentran resultados con los criterios de búsqueda.</p>';
+        }
+    }
 
     $contenidoPrincipal .= '<div class="slider">';
         $ids = array();
