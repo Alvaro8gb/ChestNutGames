@@ -29,7 +29,7 @@ if(empty($log_info)){
                 $contenidoPrincipal .= <<<EOS
                     <div class="columna">
                 EOS;
-                $contenidoPrincipal .= '<a href="procesarJuego.php?id='.$fila["IdJuego"].'"><img src="data:image/png;base64,'.base64_encode($fila["Imagen"]).'"/>';
+                $contenidoPrincipal .= '<a href="procesarJuego.php?id='.$fila["IdJuego"].'"><img class="juego" src="data:image/png;base64,'.base64_encode($fila["Imagen"]).'"/>';
                 $contenidoPrincipal .= <<<EOS
                     </div>
                 EOS;
