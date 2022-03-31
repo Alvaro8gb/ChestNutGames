@@ -41,7 +41,7 @@ if(empty($log_info)){
                 <input class="evi" type ="text" name ="evento" value ="">
             </div>
             <div class = "button_buscar">
-                <input type="submit" name="buscar" value="buscar">
+                <input class="search" type="submit" name="buscar" value="buscar">
             </div>
         </form>
     EOS;
