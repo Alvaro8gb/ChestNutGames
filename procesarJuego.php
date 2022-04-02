@@ -23,7 +23,7 @@ EOS;
     $fila = @mysqli_fetch_array($consulta);
 
     $contenidoPrincipal .= '<div class = "img_juego">
-        <img src="data:image/png;base64,'.base64_encode($fila["Imagen"]).'"/>
+        <img class="juego" src="data:image/png;base64,'.base64_encode($fila["Imagen"]).'"/>
         </div>';
     
     $rutaimg = RUTA_IMGS.'juegos/';

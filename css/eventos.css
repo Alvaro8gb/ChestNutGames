@@ -33,7 +33,25 @@ img#ev{
     box-sizing: border-box;
     font-size: 14px;
     border-radius: 5px;
-  }
+}
+
+.search{
+    position:relative;
+    padding: 10px 50px;
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    border-radius: 30px;
+    border: none;
+    font-family: Bangers;
+    background: rgb(107, 120, 160);
+}
+
+.search:hover{
+    background: black;
+    color:white;
+}
 
 .text_buscar {
     margin-left: 60px;
@@ -138,7 +156,7 @@ img#ev{
 
 input[id="1"]:checked~.slideshow {
     animation: none;
-    transform: translate3d(cal(-100% * 0), 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 input[id="1"]:checked~.pagination .pag-item[for="1"] {

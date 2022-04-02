@@ -36,15 +36,6 @@ header{
 	text-decoration: underline;
 }
 
-p#inicio{
-    margin-left:10%;
-    margin-right: 10%;
-    background: hsl(30, 86%, 57%);
-    padding: 2%;
-    color:blueviolet;
-    border-radius: 30px;
-}
-
 /* TO DO IN HEADER */
 /* 
 

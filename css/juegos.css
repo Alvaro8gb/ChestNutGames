@@ -3,7 +3,6 @@
     width: 20%;
     height: 200px;
     margin-top: 40px;
-    padding-right: auto;
 }
 
 .fila::after {
@@ -16,6 +15,9 @@ img {
     /* Para que sea responsiva */
     width: 90%;
     height: 90%;
+}
+
+.juego{
     border-radius: 60px;
 }
 

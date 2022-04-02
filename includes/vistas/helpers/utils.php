@@ -16,3 +16,11 @@ function check_log_in(){
     
     return "";
 }
+
+function link_css($path){
+    return "<link rel='stylesheet' type='text/css' href={$path}>";
+}
+
+function img($path, $alt){
+
+}
