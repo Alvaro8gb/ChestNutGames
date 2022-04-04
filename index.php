@@ -6,9 +6,9 @@ $tituloPagina = 'Home';
 <!DOCTYPE html>
 <html lang='es'>
 	<head>
-		<link rel="stylesheet" type="text/css" href= "<?=RUTA_CSS."index.css"?>" />
-		<link rel="stylesheet" type="text/css" href= "<?=RUTA_CSS."header.css"?>" />
-        <link rel="stylesheet" type="text/css" href="<?=RUTA_CSS.'button.css'?>" />
+		<link rel="stylesheet" type="text/css" href= "<?=$app->resuelve(RUTA_CSS."index.css")?>" />
+		<link rel="stylesheet" type="text/css" href= "<?=$app->resuelve(RUTA_CSS."header.css")?>" />
+        <link rel="stylesheet" type="text/css" href="<?=$app->resuelve(RUTA_CSS.'button.css')?>" />
     	<link rel="icon" href= "<?= RUTA_IMGS."logo/Favicon.png" ?>" type="image/png">
 		<title><?= $tituloPagina ?></title>
 	</head>
@@ -19,7 +19,7 @@ $tituloPagina = 'Home';
 					<div class = "parallax_level1"></div>
 
 						<header>
-								<img id="logo" src= "<?=RUTA_IMGS."logo/Chestnut_Logo.png"?>" alt="logo" >
+								<img id="logo" src= "<?=$app->resuelve(RUTA_IMGS."logo/Chestnut_Logo.png")?>" alt="logo" >
 								<h1> ChestNut Games </h1>
 									<?php
 										$_GET['type']="home";
