@@ -92,61 +92,62 @@ if(empty($log_info)){
             </div>
         EOS;
 
-        $idUsuario = $app->idUsuario();
+        /*$idUsuario = $app->idUsuario();
 
-        $prepared = $conn->prepare("SELECT * FROM inscripcioneseventos WHERE idEvento = $idEvento AND idUsuario = $idUsuario");
+        $prepared = $conn->prepare("SELECT * FROM inscripcioneseventos WHERE (idEvento = $idEvento AND idUsuario = $idUsuario)");
         $prepared->execute();
         $consulta = $prepared->get_result();
         $count_results = mysqli_num_rows($consulta);
         $consulta->free();
 
-        if($count_results > 0){
-            /*$contenidoPrincipal .= <<< EOS
+        if($count_results < 0){
+            $contenidoPrincipal .= <<< EOS
                 <div class = "inscripcion">
                     <img id="ev" src= "{$rutaimg}inscripcion.png">
                 </div>
-            EOS;*/
+            EOS;
         }
         else {
-            /*$contenidoPrincipal .= <<< EOS
+
+            $contenidoPrincipal .= <<< EOS
                 <form action="" method="get">
-                <div class = "inscripcion">
-                    <button type="button" name="inscribir" value="inscribir"><img id="ev" src= "{$rutaimg}inscripcion.png"></button>
-                </div>
-                </form/>
-            EOS;*/
- 
-            if(isset($_GET['inscribir'])){
+                    <div class = "inscripcion">
+                        <input class="inscripcion_button" type="submit" name="inscribir" value="Inscríbete aquí">
+                    </div>
+                </form>
+             EOS;
+
+            if(isset($_GET['buscar'])){
                 $contenidoPrincipal .= '<p>Hola</p>';
             }
 
             // Insertar en la base de datos
             //$query=sprintf("INSERT INTO inscripcioneseventos(idUsuario, idEvento) VALUES($idUsuario, $idEvento)");
-        }  
-        
+        }*/ 
+
         $contenidoPrincipal .= <<< EOS
-                <form action="" method="get">
-                <div class = "inscripcion">
-                    <input type="submit" name="inscribir" value="inscribir"><img id="ev" src= "{$rutaimg}inscripcion.png"></button>
-                </div>
-                </form/>
-            EOS;
- 
-            if(isset($_GET['inscribir'])){
+                <form action="" method="post">
+                    <div class = "inscripcion">
+                        <input class="inscripcion_button" type="submit" name="inscribir" value="h">
+                    </div>
+                </form>
+             EOS;
+
+        if(isset($_POST['inscribir'])){
+
                 $contenidoPrincipal .= '<p>Hola</p>';
             }
-            
+
         /*$contenidoPrincipal .= <<<EOS
             <div class = "inscripcion">
                 <img id="ev" src= "{$rutaimg}inscripcion.png">
             </div>
         EOS;*/
 
-         $contenidoPrincipal .= 
+        /*$contenidoPrincipal .= 
             '<div class = "fondoTransparente">
                 <img src="data:image/png;base64,'.base64_encode($fila["imagen"]).'"/>
-            </div>';
-
+            </div>';*/
     }
     else{
         $contenidoPrincipal .= '<h1>El evento ya ha comenzado!</h1>';
