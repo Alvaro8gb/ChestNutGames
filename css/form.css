@@ -18,6 +18,11 @@ img{
     padding-left: 15%; 
     width: 70%;
 }
+@font-face {
+    font-family: Carter One;
+    src: url(fonts/CarterOne-Regular.ttf);
+    font-weight: regular;
+}
 
 
 
