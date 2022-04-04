@@ -17,8 +17,8 @@ function check_log_in(){
     return "";
 }
 
-function link_css($path){
-    return "<link rel='stylesheet' type='text/css' href={$path}>". "\n\t\t";
+function link_css($app,$path){
+    return "<link rel='stylesheet' type='text/css' href={$app->resuelve($path)}>". "\n\t\t";
 }
 
 function img($path, $alt){

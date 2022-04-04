@@ -4,7 +4,7 @@ require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $tituloPagina = 'Ranking';
-$css = link_css(RUTA_CSS.'ranking.css');
+$css = link_css($app,RUTA_CSS.'ranking.css');
 
 $juegos = array();
 

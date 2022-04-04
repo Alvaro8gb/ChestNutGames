@@ -6,7 +6,7 @@ require_once __DIR__.'/includes/vistas/helpers/utils.php';
 $rutaimg = RUTA_IMGS.'eventos/';
 
 $tituloPagina = 'Eventos';
-$css =  link_css(RUTA_CSS.'eventos.css');
+$css =  link_css($app,RUTA_CSS.'eventos.css');
 
 $log_info = check_log_in();
 

@@ -5,7 +5,7 @@ use es\chestnut\Aplicacion;
 use es\chestnut\usuarios\FormularioLogout;
 require_once __DIR__.'\..\helpers\utils.php';
 
-$paginas = array('Tienda' => 'tienda.php','Juegos'=>'juegos.php', 'Ranking'=>'ranking.php', 'Eventos'=>'eventos.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
+$paginas = array('Juegos'=>'juegos.php','Tienda' => 'tienda.php', 'Ranking'=>'ranking.php', 'Eventos'=>'eventos.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
 
 if (!( isset( $_GET['type']) && $_GET['type'] = "home" )){
     $paginas = array('Home' => 'index.php') + $paginas;

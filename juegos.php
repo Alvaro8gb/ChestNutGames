@@ -4,7 +4,7 @@ require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $tituloPagina = 'Juegos';
-$css = link_css(RUTA_CSS.'juegos.css');
+$css = link_css($app,RUTA_CSS.'juegos.css');
 
 $log_info = check_log_in();
 

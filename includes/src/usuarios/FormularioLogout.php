@@ -11,14 +11,9 @@ class FormularioLogout extends Formulario
         parent::__construct('formLogout', ['urlRedireccion' => Aplicacion::getInstancia()->resuelve('/index.php')]);
     }
 
-    protected function generaCamposFormulario(&$datos)
-    {
-        $ruta = RUTA_CSS.'button.css';
+    protected function generaCamposFormulario(&$datos){
 
         $camposFormulario = <<<EOS
-            <head>
-                <link rel="stylesheet" type="text/css" href={$ruta}>
-            </head>
             <button class="logout" type="submit">
                 <span>Salir</span>
                 <div class="liquid"></div>
