@@ -1,43 +1,37 @@
 <!-- Formulario a rellenar -->
-<div class = "formulario">
         <div class="form1">
             <form class="login-form">      
                 <legend class="log">Formulario de consulta</legend>
+
                 <!--nombre-->
+
                 <label>NOMBRE : </label>
                 <input type ="text" name ="nombre" maxlength="30" value ="" required>
-                <br /><br />
 
                 <!--email-->
                 <label>EMAIL DE CONTACTO : </label>
-                <input type ="text" name ="mail" type = "email" maxlength="30" value ="" required pattern="*@ucm.es">
-                <br /><br />
+                <input type ="text" name ="mail" type = "email" maxlength="30" value ="" pattern="*@ucm.es" required >
+                
 
-                <!--email-->
+                <!--telefono-->
                 <label>NUMERO DE TELEFONO : </label>
-                <input type ="text" name ="mail" type = "number" maxlength="30" value ="" pattern="[0-9]{9}"  >
-                <br /><br />
+                <input type ="text" name ="mail" type = "number" maxlength="30" value ="" pattern="[0-9]{9}" >
 
                 <!--motivo consulta -->
                 <label>MOTIVO DE CONSULTA : </label>
-                <br />
                     <input class="campos" type="radio" name="motivo" value="evaluacion" checked/> EVALUACIÓN
                     <input class="campos" type="radio" name="motivo" value="sugerencias" /> SUGERENCIAS
                     <input class="campos" type="radio" name="motivo" value="criticas" /> CRÍTICAS
-                <br /><br />
 
                 <!--consulta-->
                 <label>CONSULTA : </label>
-                <br />
                 <textarea name="consulta" rows="10" cols="100" maxlength="200" ></textarea>
                 <!--envio de email con lo rellenado-->
-                <br /><br />
 
                 <!--politicas leidas-->
                 
                 <input class="campos" name="leido" type="checkbox" value="marked" required /> 
                 <label>He leido y acepto los términos y condiciones del servicio </label>
-                <br /><br />
 
                 <button type = "button" onclick = 'href="mailto:sergilor@ucm.es"'>Enviar consulta</button>
             </form>
