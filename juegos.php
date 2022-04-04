@@ -13,7 +13,7 @@ $ruta_imgs = RUTA_IMGS.'juegos/';
 if(empty($log_info)){
 
     $contenidoPrincipal = <<<EOS
-        <img class="gif_centrado" src="{$ruta_imgs}play_now.gif" alt="Gif"> 
+        <img class="gif_centrado" src="{$ruta_imgs}play.gif" alt="Gif"> 
     EOS;
     $conn = $app->getConexionBd();
     $sql = "SELECT IdJuego, Imagen FROM juegos";
