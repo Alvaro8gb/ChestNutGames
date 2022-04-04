@@ -76,18 +76,19 @@ img#ev{
 }
 
 .slider {
-    margin-top: 5%;
-    width: 100%;
-    display: flex;
+    width: 60%;
+    height: 50%;
+    display: block;
     align-items: center;
     justify-content: center;
     position: relative;
+    margin: 5% auto;
     overflow: hidden;
 }
 
 .slider img {
     max-width: 95%;
-    height: 700px;
+    height: 500px;
 }
 
 .slideshow {
@@ -145,9 +146,10 @@ img#ev{
     display: inline-block;
     max-width: none;
     height: 100%;
-    transform: scale(1);
+    transform: scale(100);
     opacity: 0;
     transition: all 300ms;
+    margin:auto;
 }
 
 .pag-item:hover img {

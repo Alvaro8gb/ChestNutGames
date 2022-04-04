@@ -1,39 +1,49 @@
 <!-- Formulario a rellenar -->
-        <div class="form1">
-            <form class="login-form">      
-                <legend class="log">Formulario de consulta</legend>
+<div class = "formulario">
+    <div class="form1">
+        <form class="login-form">      
+            <legend class="log">Formulario de consulta</legend>
 
-                <!--nombre-->
+            <div class="consulta">
+            <!--nombre-->
+            <label>NOMBRE : </label>
+            <input type ="text" name ="nombre" maxlength="30" value ="" required="true">
+            </div>
 
-                <label>NOMBRE : </label>
-                <input type ="text" name ="nombre" maxlength="30" value ="" required>
+            <div class="consulta">
+            <!--email-->
+            <label>EMAIL DE CONTACTO : </label>
+            <input type ="text" name ="mail" type = "email" maxlength="30" value ="" required="true" pattern="*@ucm.es">
+            </div>
 
-                <!--email-->
-                <label>EMAIL DE CONTACTO : </label>
-                <input type ="text" name ="mail" type = "email" maxlength="30" value ="" pattern="*@ucm.es" required >
-                
+            <div class="consulta">
+            <!--email-->
+            <label>NUMERO DE TELEFONO : </label>
+            <input type ="text" name ="mail" type = "number" maxlength="30" value ="" pattern="[0-9]{9}" >
+            </div>
 
-                <!--telefono-->
-                <label>NUMERO DE TELEFONO : </label>
-                <input type ="text" name ="mail" type = "number" maxlength="30" value ="" pattern="[0-9]{9}" >
-
-                <!--motivo consulta -->
-                <label>MOTIVO DE CONSULTA : </label>
-                    <input class="campos" type="radio" name="motivo" value="evaluacion" checked/> EVALUACIÓN
-                    <input class="campos" type="radio" name="motivo" value="sugerencias" /> SUGERENCIAS
-                    <input class="campos" type="radio" name="motivo" value="criticas" /> CRÍTICAS
-
-                <!--consulta-->
-                <label>CONSULTA : </label>
-                <textarea name="consulta" rows="10" cols="100" maxlength="200" ></textarea>
-                <!--envio de email con lo rellenado-->
-
-                <!--politicas leidas-->
-                
-                <input class="campos" name="leido" type="checkbox" value="marked" required /> 
-                <label>He leido y acepto los términos y condiciones del servicio </label>
-
-                <button type = "button" onclick = 'href="mailto:sergilor@ucm.es"'>Enviar consulta</button>
-            </form>
-        </div>
+            <div class="consulta">
+            <!--motivo consulta -->
+            <label>MOTIVO DE CONSULTA : </label>
+            
+                <input class="campos" type="radio" name="motivo" value="evaluacion" checked/> EVALUACIÓN
+                <input class="campos" type="radio" name="motivo" value="sugerencias" /> SUGERENCIAS
+                <input class="campos" type="radio" name="motivo" value="criticas" /> CRÍTICAS
+            
+            </div>
+            <!--consulta-->
+            <label>CONSULTA : </label>
+           
+            <textarea name="consulta" rows="10" cols="100" maxlength="200" ></textarea>
+            <!--envio de email con lo rellenado-->
+           
+            <div class="consulta">
+            <!--politicas leidas-->
+            
+            <input class="campos" name="leido" type="checkbox" value="marked" required="true" /> 
+            <label>He leido y acepto los términos y condiciones del servicio </label>
+            </div>
+            <button type = "button" onclick = 'href="mailto:sergilor@ucm.es"'>Enviar consulta</button>
+        </form>
+    </div>
 </div>

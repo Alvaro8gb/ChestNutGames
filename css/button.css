@@ -1,13 +1,14 @@
-button.logout{
+div.logout{
     position: relative;
-    padding: 10px 50px;
+    padding: 20px 50px;
     display: block;
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
     border-radius: 30px;
     border: none;
-    margin-left: auto;
+    width:4%;
+    float:right;
    }
    
    button span {
@@ -18,7 +19,7 @@ button.logout{
     z-index: 1;
    }
    
-   button .liquid {
+   .liquid {
     position: absolute;
     top: -80px;
     left: 0;
@@ -29,7 +30,7 @@ button.logout{
     transition: .5s;
    }
    
-   button .liquid::after, button .liquid::before {
+   .liquid::after,.liquid::before {
     content: '';
     width: 200%;
     height: 200%;
@@ -40,20 +41,19 @@ button.logout{
     background: white;
    }
    
-   button .liquid::before {
-    border-radius: 45%;
+   .liquid::before {
+    border-radius: 50%;
     background: rgba(20, 20, 20, 1);
     animation: animate 5s linear infinite;
    }
    
-   button .liquid::after {
-    border-radius: 40%;
+   .liquid::after {
+    border-radius: 50%;
     background: rgba(20, 20, 20, .5);
     animation: animate 10s linear infinite;
    }
    
-   button:hover .liquid {
-    top: -120px;
+   .logout:hover .liquid {
     background: blueviolet;
    }
    
