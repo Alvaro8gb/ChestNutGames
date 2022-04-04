@@ -6,13 +6,13 @@
 
             <div class="consulta">
             <!--nombre-->
-            <label>NOMBRE : </label>
+            <label class="req">NOMBRE : </label>
             <input type ="text" name ="nombre" maxlength="30" value ="" required="true">
             </div>
 
             <div class="consulta">
             <!--email-->
-            <label>EMAIL DE CONTACTO : </label>
+            <label class="req">EMAIL DE CONTACTO : </label>
             <input type ="text" name ="mail" type = "email" maxlength="30" value ="" required="true" pattern="*@ucm.es">
             </div>
 
@@ -24,7 +24,7 @@
 
             <div class="consulta">
             <!--motivo consulta -->
-            <label>MOTIVO DE CONSULTA : </label>
+            <label class="req">MOTIVO DE CONSULTA : </label>
             
                 <input class="campos" type="radio" name="motivo" value="evaluacion" checked/> EVALUACIÓN
                 <input class="campos" type="radio" name="motivo" value="sugerencias" /> SUGERENCIAS
@@ -32,7 +32,7 @@
             
             </div>
             <!--consulta-->
-            <label>CONSULTA : </label>
+            <label class="req">CONSULTA : </label>
            
             <textarea name="consulta" rows="10" cols="100" maxlength="200" ></textarea>
             <!--envio de email con lo rellenado-->
@@ -41,7 +41,7 @@
             <!--politicas leidas-->
             
             <input class="campos" name="leido" type="checkbox" value="marked" required="true" /> 
-            <label>He leido y acepto los términos y condiciones del servicio </label>
+            <label class="req">He leido y acepto los términos y condiciones del servicio </label>
             </div>
             <button type = "button" onclick = 'href="mailto:sergilor@ucm.es"'>Enviar consulta</button>
         </form>
