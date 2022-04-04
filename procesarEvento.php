@@ -20,13 +20,15 @@ if(empty($log_info)){
 
     $conn = $app->getConexionBd();
     $prepared = $conn->prepare("SELECT * FROM eventos WHERE idEvento = ?");
-    $id = filter_var(trim($_GET["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $prepared->bind_param('i',$id);
+    $idEvento = filter_var(trim($_GET["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $prepared->bind_param('i',$idEvento);
 
     $prepared->execute();
     $consulta = $prepared->get_result();
 
     $fila = @mysqli_fetch_array($consulta);
+
+    $consulta->free();
 
     // Epoch timestamp
     $waiting_day = 1649120580;
@@ -88,11 +90,57 @@ if(empty($log_info)){
             <div class = "premio">
                 <p>Premio: $fila[premio]$</p>
             </div>
+        EOS;
 
+        $idUsuario = $app->idUsuario();
+
+        $prepared = $conn->prepare("SELECT * FROM inscripcioneseventos WHERE idEvento = $idEvento AND idUsuario = $idUsuario");
+        $prepared->execute();
+        $consulta = $prepared->get_result();
+        $count_results = mysqli_num_rows($consulta);
+        $consulta->free();
+
+        if($count_results > 0){
+            /*$contenidoPrincipal .= <<< EOS
+                <div class = "inscripcion">
+                    <img id="ev" src= "{$rutaimg}inscripcion.png">
+                </div>
+            EOS;*/
+        }
+        else {
+            /*$contenidoPrincipal .= <<< EOS
+                <form action="" method="get">
+                <div class = "inscripcion">
+                    <button type="button" name="inscribir" value="inscribir"><img id="ev" src= "{$rutaimg}inscripcion.png"></button>
+                </div>
+                </form/>
+            EOS;*/
+ 
+            if(isset($_GET['inscribir'])){
+                $contenidoPrincipal .= '<p>Hola</p>';
+            }
+
+            // Insertar en la base de datos
+            //$query=sprintf("INSERT INTO inscripcioneseventos(idUsuario, idEvento) VALUES($idUsuario, $idEvento)");
+        }  
+        
+        $contenidoPrincipal .= <<< EOS
+                <form action="" method="get">
+                <div class = "inscripcion">
+                    <input type="submit" name="inscribir" value="inscribir"><img id="ev" src= "{$rutaimg}inscripcion.png"></button>
+                </div>
+                </form/>
+            EOS;
+ 
+            if(isset($_GET['inscribir'])){
+                $contenidoPrincipal .= '<p>Hola</p>';
+            }
+            
+        /*$contenidoPrincipal .= <<<EOS
             <div class = "inscripcion">
                 <img id="ev" src= "{$rutaimg}inscripcion.png">
             </div>
-        EOS;
+        EOS;*/
 
          $contenidoPrincipal .= 
             '<div class = "fondoTransparente">

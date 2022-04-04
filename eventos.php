@@ -56,7 +56,6 @@ if(empty($log_info)){
         }
         else {
             // Conexión a la base de datos y seleccion de registros
-
             $conn = $app->getConexionBd();
             $prepared = $conn->prepare("SELECT nombre FROM eventos WHERE nombre LIKE ? ");
             $prepared->execute(array("%$eventToSearch%"));
