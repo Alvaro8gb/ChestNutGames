@@ -18,15 +18,9 @@ class FormularioLogin extends Formulario{
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
         $erroresCampos = self::generaErroresCampos(['nombreUsuario', 'password'], $this->errores, 'span', array('class' => 'error'));
 
-        $ruta1 = RUTA_CSS.'formulario.css';
-        $ruta2 = RUTA_CSS.'button.css';
-
         // Se genera el HTML asociado a los campos del formulario y los mensajes de error.
         $html = <<<EOF
-        <head>
-            <link rel="stylesheet" type="text/css" href={$ruta1}>
-            <link rel="stylesheet" type="text/css" href={$ruta2}>
-        </head>
+        
         <div class="login-page"> 
             <div class="form">
                 <div class="log">Usuario y contraseña</div>

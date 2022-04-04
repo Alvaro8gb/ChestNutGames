@@ -8,7 +8,7 @@ $tituloPagina = 'Home';
 	<head>
 		<link rel="stylesheet" type="text/css" href= <?php echo RUTA_CSS."index.css"; ?> />
 		<link rel="stylesheet" type="text/css" href= <?php echo RUTA_CSS."header.css"; ?> />
-		<link rel="icon" href= <?php echo RUTA_IMGS."logo/Favicon.png"; ?> type="image/png">
+		<link rel="icon" href= <?= RUTA_IMGS."logo/Favicon.png" ?> type="image/png">
 		<title><?= $tituloPagina ?></title>
 	</head>
 	<body>

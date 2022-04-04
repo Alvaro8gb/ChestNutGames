@@ -41,7 +41,7 @@
   }
 
   .form1 input, textarea{
-    font-family: Bangers;
+    font-family: sans-serif;
     outline: 0;
     background: whitesmoke;
     width: 60%;
@@ -127,4 +127,5 @@
     color: #000000;
     text-decoration: none;
   }
+
   
