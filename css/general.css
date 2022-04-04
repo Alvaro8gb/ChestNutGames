@@ -28,20 +28,20 @@ body {
     src: url(fonts/CarterOne-Regular.ttf);
     font-weight: regular;
 }
-main {
+
+header{
+    width: 100vw;
+}
+main{
     margin:1%;
     padding:0;
+    text-align: justify;
 }
 p { 
     color:black;
     font-family:Carter One;
     text-align: justify; 
 }
-
-main{
-    text-align: justify;
-}
-
 a , a:visited {
     text-decoration: none;
 }

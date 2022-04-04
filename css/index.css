@@ -21,6 +21,10 @@ body {
     text-align: center;
 }
 
+header{
+    width: 100vw;
+}
+
 img{ 
     display:block;
     margin:auto;
@@ -62,6 +66,7 @@ body::-webkit-scrollbar {
     justify-content: center;
     align-items: center;
     display: flex;
+    flex-direction: column;
     overflow: hidden;
     transform-style:preserve-3d;
 
