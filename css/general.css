@@ -18,18 +18,23 @@ body {
      z-index: -1;
      min-height: 100%;
 }
-main {
-    margin:1%;
-    padding:0;
-}
 @font-face {
     font-family: Bangers;
     src: url(fonts/Bangers-Regular.ttf);
     font-weight: bold;
 }
+@font-face {
+    font-family: Carter One;
+    src: url(fonts/CarterOne-Regular.ttf);
+    font-weight: regular;
+}
+main {
+    margin:1%;
+    padding:0;
+}
 p { 
     color:black;
-    font-family:Bangers;
+    font-family:Carter One;
     text-align: justify; 
 }
 

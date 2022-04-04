@@ -18,7 +18,7 @@ function check_log_in(){
 }
 
 function link_css($path){
-    return "<link rel='stylesheet' type='text/css' href={$path}>";
+    return "<link rel='stylesheet' type='text/css' href={$path}>". "\n\t\t";
 }
 
 function img($path, $alt){

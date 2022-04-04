@@ -28,7 +28,7 @@
     border-radius: 30px;
   }
   .form input {
-    font-family: Bangers;
+    font-family: Carter One;
     outline: 0;
     background: whitesmoke;
     width: 100%;
@@ -41,7 +41,7 @@
   }
 
   .form1 input, textarea{
-    font-family: Bangers;
+    font-family: Carter One;
     outline: 0;
     background: whitesmoke;
     width: 60%;
@@ -54,7 +54,7 @@
   }
 
   input.campos{
-    font-family: Bangers;
+    font-family: Carter One;
     outline: 0;
     background: whitesmoke;
     width:2%;
@@ -127,4 +127,10 @@
     color: #000000;
     text-decoration: none;
   }
+  
+  @font-face {
+    font-family: Carter One;
+    src: url(fonts/CarterOne-Regular.ttf);
+    font-weight: regular;
+}
   
