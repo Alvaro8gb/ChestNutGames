@@ -1,6 +1,6 @@
 Las funcionalidades de nuestra aplicación son:
 
-	- Gestión de Juegos		    - Implementada
+	- Gestión de Juegos		- Implementada
 	- Gestión de Usuarios		- Implementada
 	- Gestión de Ranking		- Implementada
 	- Gestión de Publicidad
