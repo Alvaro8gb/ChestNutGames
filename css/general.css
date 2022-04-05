@@ -70,11 +70,6 @@ ul#entregas{
     display:grid;
 }
 
-.req::after{
-    content: "* ";
-    color: red;
-    font-weight: bold;
-}
 
 /* TO CHANGE CSS LIST -------------------------------------------------------------------------------------------- */
 /* BOTON.CSS */

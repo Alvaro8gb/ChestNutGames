@@ -214,7 +214,6 @@ class Aplicacion{
         unset($_SESSION['idUsuario']);
         unset($_SESSION['roles']);
 
-
         session_destroy();
         session_start();
     }

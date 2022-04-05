@@ -27,7 +27,7 @@
   position:relative;
   z-index: 1;
   background: #57dfe9;
-  max-width: 1060px;
+  max-width: 1000px;
   margin: 0 auto 100px;
   padding: 45px;
   text-align: left;
@@ -151,4 +151,10 @@ input.campos{
   font-family: Carter One;
   src: url(fonts/CarterOne-Regular.ttf);
   font-weight: regular;
+}
+
+.req::after{
+  content: " * ";
+  color: red;
+  font-weight: bold;
 }

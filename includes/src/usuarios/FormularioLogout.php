@@ -26,8 +26,7 @@ class FormularioLogout extends Formulario
     /**
      * Procesa los datos del formulario.
      */
-    protected function procesaFormulario(&$datos)
-    {
+    protected function procesaFormulario(&$datos){
         $app = Aplicacion::getInstancia();
 
         $app->logout();
