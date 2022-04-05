@@ -16,8 +16,6 @@ $mensajes = mensajesPeticionAnterior();
 	</head>
 
 	<body>
-		<?= $mensajes ?>
-		
 		<header>
 			<?php
 				$params['app']->doInclude('/vistas/comun/header.php');
@@ -26,6 +24,7 @@ $mensajes = mensajesPeticionAnterior();
 
 		<main>
 			<article>
+				<?= $mensajes ?>
 				<?= $params['contenidoPrincipal'] ?>
 			</article>
 		</main>

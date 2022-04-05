@@ -11,3 +11,7 @@ function link_css($app,$path){
 function img($path, $alt){
 
 }
+
+function redirectIndex(){
+    return header("refresh:4;url=index.php");
+}

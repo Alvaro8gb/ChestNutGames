@@ -8,7 +8,9 @@ use es\chestnut\Formulario;
 class FormularioLogout extends Formulario
 {
     public function __construct() {
-        parent::__construct('formLogout', ['urlRedireccion' => Aplicacion::getInstancia()->resuelve('/index.php')]);
+        parent::__construct('formLogout', [
+            'action' =>  Aplicacion::getInstancia()->resuelve('/logout.php'),
+            'urlRedireccion' => Aplicacion::getInstancia()->resuelve('/cierre.php')]);
     }
 
     protected function generaCamposFormulario(&$datos){
@@ -28,7 +30,6 @@ class FormularioLogout extends Formulario
      */
     protected function procesaFormulario(&$datos){
         $app = Aplicacion::getInstancia();
-
         $app->logout();
         $mensajes = ['Hasta pronto!'];
         $app->putAtributoPeticion('mensajes', $mensajes);

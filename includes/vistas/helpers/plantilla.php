@@ -15,8 +15,7 @@ function mensajesPeticionAnterior(){
             $html .= <<<EOS
             <input id="$idMensaje" type="checkbox">
             <div class="mensaje">
-                <div class="cabecera"><label for="$idMensaje"></label></div>
-                <div class="contenido">$mensaje</div>
+            <div class="contenido">$mensaje</div>
             </div>
             EOS;
         }
@@ -25,3 +24,5 @@ function mensajesPeticionAnterior(){
 
     return $html;
 }
+
+

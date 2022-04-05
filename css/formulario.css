@@ -40,6 +40,12 @@
   margin:auto 2% auto 0;
 }
 
+.error{
+  color: red;
+  font-weight: bold;
+  margin: auto;
+}
+
 .form input {
   font-family: Carter One;
   outline: 0;
