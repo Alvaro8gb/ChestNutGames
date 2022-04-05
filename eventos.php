@@ -8,8 +8,7 @@ $rutaimg = RUTA_IMGS.'eventos/';
 $tituloPagina = 'Eventos';
 $css =  link_css($app,RUTA_CSS.'eventos.css');
 
-
-$app->verificaLogado("noLogeado.php");
+$app->verificaLogado($app->buildUrl("noLogeado.php"));
 
 $eventos = array();
 

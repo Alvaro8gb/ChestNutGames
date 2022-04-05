@@ -8,7 +8,7 @@ $rutaimg = RUTA_IMGS.'eventos/';
 
 $tituloPagina = 'Procesar Evento';
 
-$app->verificaLogado("noLogeado.php");
+$app->verificaLogado($app->buildUrl("noLogeado.php"));
 
 $contenidoPrincipal = <<<EOS
 <head>
