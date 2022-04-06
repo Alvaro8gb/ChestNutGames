@@ -1,6 +1,7 @@
 <?php
 $params['app']->doInclude('/vistas/helpers/plantilla.php');
 $mensajes = mensajesPeticionAnterior();
+ 
 ?>
 <!DOCTYPE html>
 <html lang='es'>
@@ -37,3 +38,8 @@ $mensajes = mensajesPeticionAnterior();
 
 	</body>
 </html>
+
+<?php 
+
+
+?>

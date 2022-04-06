@@ -3,8 +3,10 @@
 
 use es\chestnut\Aplicacion;
 use es\chestnut\usuarios\FormularioLogout;
-require_once __DIR__.'\..\helpers\utils.php';
+require_once __DIR__.'/../helpers/utils.php';
 
+
+$app = Aplicacion::getInstancia();
 $paginas = array('Juegos'=>'juegos.php','Tienda' => 'tienda.php', 'Ranking'=>'ranking.php', 'Eventos'=>'eventos.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
 
 if (!( isset( $_GET['type']) && $_GET['type'] = "home" )){

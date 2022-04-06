@@ -9,10 +9,14 @@ $rutaimg = RUTA_IMGS.'juegos/';
 
 $tituloPagina = 'Juegos';
 $css = link_css($app,RUTA_CSS.'juegos.css');
+      
+try{
+    $juegos = new \es\chestnut\juegos\Juegos($rutaimg);
+    $contenidoPrincipal = $juegos->gestiona();      
 
-$juegos = new \es\chestnut\juegos\Juegos($rutaimg);
-
-$contenidoPrincipal = $juegos->gestiona();
+}catch(\Exception $e){
+    $app->paginaError(501,'Error',"Error en juegos: ".$e->getMessage(),$e->getTrace());
+}
 
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css' => $css];
 $app->generaVista('/plantillas/plantilla.php', $params);

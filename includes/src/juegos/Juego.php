@@ -15,8 +15,8 @@ class Juego{
         $this->nombre = $nombre;
         $this->imagen = $imagen;
         $this->desc = $desc;
-        $this->categoria=$categoria;
-        $this->enlace=$enlace;
+        $this->categoria = $categoria;
+        $this->enlace = $enlace;
     }
 
     public function getId(){

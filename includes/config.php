@@ -1,4 +1,16 @@
 <?php
+# error_reporting(E_ERROR | E_PARSE); quitar warnings
+
+set_error_handler(function($errno, $errstr, $errfile, $errline){
+    if($errno === E_WARNING){
+        // make it more serious than a warning so it can be caught
+        new Exception($errstr);
+        return true;
+    } else {
+        // fallback to default php error handler
+        return false;
+    }
+});
 
 /**
  * Parámetros de conexión a la BD
