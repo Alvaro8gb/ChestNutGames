@@ -21,12 +21,10 @@ class FormularioRegistro extends Formulario{
         $erroresCampos = self::generaErroresCampos(['nombreUsuario', 'nombre', 'password', 'password2', 'correo'], $this->errores, 'span', array('class' => 'error'));
 
         $html = <<<EOF
-    
-        $htmlErroresGlobales
         <div class="login-page">
         <div class="form">
         <form class="login-form">
-            <legend class="log">Datos para el registro</legend>
+            <legend class="log">Datos para el registro</legend>{$htmlErroresGlobales}
             <div>
                 <label for="correo">Correo electrónico:</label>
                 <input id="correoUsuario" type="email" name="correoUsuario" value="$correoUsuario" placeholder="Introduzca correo electrónico"/>

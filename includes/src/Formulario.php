@@ -27,7 +27,7 @@ abstract class Formulario{
 
         $html = "<ul class=\"$classAtt\">";
         foreach ($clavesErroresGlobales as $clave) {
-            $html .= "<li>$errores[$clave]</li>";
+            $html .= "<li class='error'>$errores[$clave]</li>";
         }
         $html .= '</ul>';
 
