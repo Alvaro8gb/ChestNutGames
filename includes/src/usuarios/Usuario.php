@@ -9,22 +9,22 @@ class Usuario{
 
     use MagicProperties;
 
-    public const ADMIN_ROLE = 1;
-    public const USER_ROLE = 2;
+    public const ADMIN_ROLE = 'admin';
+    public const USER_ROLE = 'user';
 
     private $id;
     private $nombreUsuario;
     private $password;
     private $nombre;
-    private $roles;
+    private $rol;
     private $correo;
 
-    private function __construct($nombreUsuario, $nombre, $password,$correo, $id = null, $roles = []){
+    private function __construct($nombreUsuario, $nombre, $password,$correo, $id = null, $rol){
         $this->id = $id;
         $this->nombreUsuario= $nombreUsuario;
         $this->nombre = $nombre;
         $this->password = $password;
-        $this->roles = $roles;
+        $this->rol = $rol;
         $this->correo = $correo;
     }
 
@@ -47,13 +47,13 @@ class Usuario{
             if ( $rs->num_rows == 1) {
                 $fila = $rs->fetch_assoc();
                 if($fila){
-                    $result = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['correo'], $fila['id']);
+                    $result = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['correo'], $fila['id'], $fila['rol']);
                 }    
             }
             else if($rs1->num_rows==1){
                 $fila = $rs1->fetch_assoc();
                 if($fila){
-                    $result = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['correo'], $fila['id']);
+                    $result = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['correo'], $fila['id'], $fila['rol']);
                 }   
             }
             $rs->free();
@@ -73,7 +73,7 @@ class Usuario{
         if ($rs) {
             $fila = $rs->fetch_assoc();
             if($fila){
-                $result = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['correo'], $fila['id']);
+                $result = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['correo'], $fila['id'], $fila['rol']);
             }   
             $rs->free();
         } else {
@@ -82,30 +82,6 @@ class Usuario{
         return $result;
     }
 
-    private static function cargaRoles($usuario)
-    {
-        $roles=[];
-            
-        $conn = Aplicacion::getInstancia()->getConexionBd();
-        $query = sprintf("SELECT RU.rol FROM RolesUsuario RU WHERE RU.usuario=%d"
-            , $usuario->id
-        );
-        $rs = $conn->query($query);
-        if ($rs) {
-            $roles = $rs->fetch_all(MYSQLI_ASSOC);
-            $rs->free();
-
-            $usuario->roles = [];
-            foreach($roles as $rol) {
-                $usuario->roles[] = $rol['rol'];
-            }
-            return $usuario;
-
-        } else {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }
-        return false;
-    }
 
     private static function hashPassword($password)
     {
@@ -114,8 +90,7 @@ class Usuario{
 
     public static function crea($nombreUsuario, $nombre, $password, $correo, $rol){
 
-        $user = new Usuario($nombreUsuario, $nombre, self::hashPassword($password), $correo);
-        $user->añadeRol($rol);
+        $user = new Usuario($nombreUsuario, $nombre, self::hashPassword($password), $correo, null, $rol);
         return $user->guarda();
     }
     
@@ -123,32 +98,17 @@ class Usuario{
     private static function inserta($usuario){
         $result = false;
         $conn = Aplicacion::getInstancia()->getConexionBd();
-        $query=sprintf("INSERT INTO Usuarios(nombreUsuario, nombre, password, correo) VALUES('%s', '%s', '%s', '%s')"
+        $query=sprintf("INSERT INTO usuarios(nombreUsuario, nombre, password, correo, rol) VALUES('%s', '%s', '%s', '%s', '%s')"
             , $conn->real_escape_string($usuario->nombreUsuario)
             , $conn->real_escape_string($usuario->nombre)
             , $conn->real_escape_string($usuario->password)
-            ,$conn->real_escape_string($usuario->correo));
+            ,$conn->real_escape_string($usuario->correo)
+            ,$conn->real_escape_string($usuario->rol));
         if ( $conn->query($query) ) {
             $usuario->id = $conn->insert_id;
-            $result = self::insertaRoles($usuario);
+            
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }
-        return $result;
-    }
-
-    private static function insertaRoles($usuario)
-    {
-        $conn = Aplicacion::getInstancia()->getConexionBd();
-        foreach($usuario->roles as $rol) {
-            $query = sprintf("INSERT INTO RolesUsuario(usuario, rol) VALUES (%d, %d)"
-            , $usuario->id
-            ,$rol
-            );
-            if (!$conn->query($query) ) {
-                error_log("Error BD ({$conn->errno}): {$conn->error}");
-                return false;
-            }
         }
         return $usuario;
     }
@@ -163,27 +123,11 @@ class Usuario{
             , $conn->real_escape_string($usuario->correo)
             , $usuario->id);
             if ( $conn->query($query) ) {
-                $result = self::borraRoles($usuario);
-                if ($result) {
-                    $result = self::insertaRoles($usuario);
-                }
+                $result = true;
             } else {
                 error_log("Error BD ({$conn->errno}): {$conn->error}");
             }
         
-        return $result;
-    }
-
-    private static function borraRoles($usuario)
-    {
-        $conn = Aplicacion::getInstancia()->getConexionBd();
-        $query = sprintf("DELETE FROM RolesUsuario RU WHERE RU.usuario = %d"
-            , $usuario->id
-        );
-        if ( ! $conn->query($query) ) {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
-            return false;
-        }
         return $usuario;
     }
    
@@ -217,21 +161,8 @@ class Usuario{
         return $this->nombre;
     }
 
-    public function añadeRol($role)
-    {
-        $this->roles[] = $role;
-    }
-
     public function getRoles(){
-        return $this->roles;
-    }
-
-    public function tieneRol($role)
-    {
-        if ($this->roles == null) {
-            self::cargaRoles($this);
-        }
-        return array_search($role, $this->roles) !== false;
+        return $this->rol;
     }
 
     public function getCorreo(){
