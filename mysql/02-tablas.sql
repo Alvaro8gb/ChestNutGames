@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-04-2022 a las 19:30:45
+-- Tiempo de generación: 06-04-2022 a las 11:32:25
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -98,6 +98,19 @@ CREATE TABLE `juegos` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `publicidad`
+--
+
+CREATE TABLE `publicidad` (
+  `IdPublicidad` int(11) NOT NULL,
+  `nombreEmpresa` varchar(255) NOT NULL,
+  `enlace` varchar(254) NOT NULL,
+  `descripcion` varchar(254) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `ranking`
 --
 
@@ -124,7 +137,7 @@ CREATE TABLE `tienda` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`s
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -136,7 +149,153 @@ CREATE TABLE `usuarios` (
   `rol` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Índices para tablas volcadas
+--
 
+--
+-- Indices de la tabla `categoriasjuegos`
+--
+ALTER TABLE `categoriasjuegos`
+  ADD PRIMARY KEY (`nombre`);
+
+--
+-- Indices de la tabla `categoriastienda`
+--
+ALTER TABLE `categoriastienda`
+  ADD PRIMARY KEY (`nombre`);
+
+--
+-- Indices de la tabla `compras`
+--
+ALTER TABLE `compras`
+  ADD KEY `IdUsuario` (`IdUsuario`),
+  ADD KEY `IdProducto` (`IdProducto`);
+
+--
+-- Indices de la tabla `eventos`
+--
+ALTER TABLE `eventos`
+  ADD PRIMARY KEY (`IdEvento`),
+  ADD KEY `IdJuego` (`IdJuego`);
+
+--
+-- Indices de la tabla `inscripcioneseventos`
+--
+ALTER TABLE `inscripcioneseventos`
+  ADD KEY `IdUsuario` (`IdUsuario`),
+  ADD KEY `IdEvento` (`IdEvento`);
+
+--
+-- Indices de la tabla `juegos`
+--
+ALTER TABLE `juegos`
+  ADD PRIMARY KEY (`IdJuego`),
+  ADD KEY `Categoria` (`Categoria`);
+
+--
+-- Indices de la tabla `publicidad`
+--
+ALTER TABLE `publicidad`
+  ADD PRIMARY KEY (`IdPublicidad`);
+
+--
+-- Indices de la tabla `ranking`
+--
+ALTER TABLE `ranking`
+  ADD KEY `IdJuego` (`IdJuego`),
+  ADD KEY `IdJugador` (`IdJugador`);
+
+--
+-- Indices de la tabla `tienda`
+--
+ALTER TABLE `tienda`
+  ADD PRIMARY KEY (`IdProducto`),
+  ADD KEY `categoria` (`categoria`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`IdUsuario`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `eventos`
+--
+ALTER TABLE `eventos`
+  MODIFY `IdEvento` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `juegos`
+--
+ALTER TABLE `juegos`
+  MODIFY `IdJuego` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `publicidad`
+--
+ALTER TABLE `publicidad`
+  MODIFY `IdPublicidad` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tienda`
+--
+ALTER TABLE `tienda`
+  MODIFY `IdProducto` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `compras`
+--
+ALTER TABLE `compras`
+  ADD CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`IdProducto`) REFERENCES `tienda` (`IdProducto`),
+  ADD CONSTRAINT `compras_ibfk_2` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`);
+
+--
+-- Filtros para la tabla `eventos`
+--
+ALTER TABLE `eventos`
+  ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`IdJuego`) REFERENCES `juegos` (`IdJuego`);
+
+--
+-- Filtros para la tabla `inscripcioneseventos`
+--
+ALTER TABLE `inscripcioneseventos`
+  ADD CONSTRAINT `inscripcioneseventos_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`),
+  ADD CONSTRAINT `inscripcioneseventos_ibfk_2` FOREIGN KEY (`IdEvento`) REFERENCES `eventos` (`IdEvento`);
+
+--
+-- Filtros para la tabla `juegos`
+--
+ALTER TABLE `juegos`
+  ADD CONSTRAINT `juegos_ibfk_1` FOREIGN KEY (`Categoria`) REFERENCES `categoriasjuegos` (`nombre`);
+
+--
+-- Filtros para la tabla `ranking`
+--
+ALTER TABLE `ranking`
+  ADD CONSTRAINT `ranking_ibfk_1` FOREIGN KEY (`IdJuego`) REFERENCES `juegos` (`IdJuego`),
+  ADD CONSTRAINT `ranking_ibfk_2` FOREIGN KEY (`IdJugador`) REFERENCES `usuarios` (`IdUsuario`);
+
+--
+-- Filtros para la tabla `tienda`
+--
+ALTER TABLE `tienda`
+  ADD CONSTRAINT `tienda_ibfk_1` FOREIGN KEY (`categoria`) REFERENCES `categoriastienda` (`nombre`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
