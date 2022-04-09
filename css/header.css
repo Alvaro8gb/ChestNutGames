@@ -29,7 +29,7 @@
 .saludo a:hover, div#derecha a:hover, nav#menu a:hover, nav#anterior a:hover {
 	color: rgb(9, 42, 105);
 	font-weight: bold;
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 /* TO DO IN HEADER */
