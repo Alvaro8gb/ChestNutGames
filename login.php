@@ -10,7 +10,7 @@ $tituloPagina = 'Login';
 $htmlFormLogin = $form->gestiona();
 $contenidoPrincipal = $htmlFormLogin;
 
-$css = link_css($app, RUTA_CSS.'formulario.css');
+$css = link_css($app->resuelve(RUTA_CSS.'formulario.css'));
 
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css' => $css];
 $app->generaVista('/plantillas/plantilla.php', $params);

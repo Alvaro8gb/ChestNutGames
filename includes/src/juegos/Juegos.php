@@ -12,6 +12,7 @@ class Juegos{
         self::$RUTA_IMAGENES = $ruta_imagenes;
         self::$list_juegos = array();
         self::cargarJuegos();
+
     }
 
     private static function juegoEnviado($datos){
@@ -31,29 +32,25 @@ class Juegos{
     }
 
     private static function comprobarInicializada(){
-        return count(self::$list_juegos)>0;
+        if( count(self::$list_juegos)>0){
+            exit();
+        }
     }
     
-    public static function cargarJuegos(){
+    private static function cargarJuegos(){
 
-        if( !self::comprobarInicializada()){
-            $app = Aplicacion::getInstancia();
-            $conn = $app->getConexionBd();
-            $sql = "SELECT * FROM juegos";
-            $conn = @mysqli_query($conn, $sql);
-
-            $i = 0;
-            while($fila = @mysqli_fetch_array($conn)){
-
-                $juego = new Juego($fila["IdJuego"],$fila["Nombre"],$fila["Imagen"],$fila["Descripcion"],$fila["Categoria"],$fila["Enlace"]);
-                
-                self::$list_juegos = array_merge(self::$list_juegos, array( $i=> $juego));
-
-
-                $i++;
-            }
-            $conn->free();
+        self::comprobarInicializada();
+        $app = Aplicacion::getInstancia();
+        $conn = $app->getConexionBd();
+        $sql = "SELECT * FROM juegos";
+        $conn = @mysqli_query($conn, $sql);
+        $i = 0;
+        while($fila = @mysqli_fetch_array($conn)){
+            $juego = new Juego($fila["IdJuego"],$fila["Nombre"],$fila["Imagen"],$fila["Descripcion"],$fila["Categoria"],$fila["Enlace"]);
+            self::$list_juegos = array_merge(self::$list_juegos, array( $i=> $juego));
+            $i++;
         }
+        $conn->free();
         
     }
 

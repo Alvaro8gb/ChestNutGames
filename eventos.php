@@ -3,10 +3,10 @@
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
-$rutaimg = RUTA_IMGS.'eventos/';
+$rutaimg = $app->resuelve(RUTA_IMGS.'eventos/');
 
 $tituloPagina = 'Eventos';
-$css =  link_css($app,RUTA_CSS.'eventos.css');
+$css =  link_css($app->resuelve(RUTA_CSS.'eventos.css'));
 
 $app->verificaLogado($app->buildUrl("noLogeado.php"));
 

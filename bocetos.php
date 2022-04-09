@@ -3,7 +3,7 @@ require_once __DIR__.'/includes/config.php';
 
 $tituloPagina = 'Bocetos';
 
-$rutaimg = RUTA_IMGS.'bocetos/';
+$rutaimg = $app->resuelve(RUTA_IMGS.'bocetos/');
 
 $contenidoPrincipal = <<<EOS
 <div class="bocetosipv">
