@@ -12,7 +12,7 @@ class FormularioLogin extends Formulario{
     
     protected function generaCamposFormulario(&$datos){
         // Se reutiliza el nombre de usuario introducido previamente o se deja en blanco
-        $nombreUsuario =$datos['nombreUsuario'] ?? '';
+        $nombreUsuario = $datos['nombreUsuario'] ?? '';
 
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);

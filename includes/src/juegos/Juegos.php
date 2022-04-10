@@ -2,74 +2,45 @@
 
 namespace es\chestnut\juegos;
 use es\chestnut\Aplicacion;
+use es\chestnut\Lista;
 use Exception;
 
-class Juegos{
-    private static $list_juegos ;
+class Juegos extends Lista{
     private static $ruta_imagenes;
+    private const TABLE ="Juegos";
 
     public function __construct(){
-        self::$list_juegos = array();
-        self::cargarJuegos();
+        parent::__construct(self::TABLE);
         $app = Aplicacion::getInstancia();
         self::$ruta_imagenes = $app->resuelve(RUTA_IMGS.'juegos/');
-
     }
 
-    private static function juegoEnviado($datos){
-        return isset($datos['id']);
+    protected function crearElem($fila){
+        return new Juego($fila["IdJuego"],$fila["Nombre"],$fila["Imagen"],$fila["Descripcion"],$fila["Categoria"],$fila["Enlace"]);
     }
-    public static function gestiona(){
+    public function gestiona(){
 
         $datos = &$_GET;
         
-        if (!self::juegoEnviado($datos)) {
-            return self::mostrarJuegos();
+        if (!$this->juegoEnviado($datos)) {
+            return $this->mostrarJuegos();
         }
         else{
-            return self::mostrarJuego($datos);
+            return $this->mostrarJuego($datos);
         }
 
     }
 
-    private static function comprobarInicializada(){
-        if( count(self::$list_juegos)>0){
-            exit();
-        }
-    }
-    
-    private static function cargarJuegos(){
-
-        self::comprobarInicializada();
-        $app = Aplicacion::getInstancia();
-        $conn = $app->getConexionBd();
-        $sql = "SELECT * FROM juegos";
-        $conn = @mysqli_query($conn, $sql);
-        $i = 0;
-        while($fila = @mysqli_fetch_array($conn)){
-            $juego = new Juego($fila["IdJuego"],$fila["Nombre"],$fila["Imagen"],$fila["Descripcion"],$fila["Categoria"],$fila["Enlace"]);
-            self::$list_juegos = array_merge(self::$list_juegos, array( $i=> $juego));
-            $i++;
-        }
-        $conn->free();
-        
+    private function juegoEnviado($datos){
+        return isset($datos['id']);
     }
 
-    public static function getJuego($id){
-
-        if ($id < 0 || $id > count(self::$list_juegos) ){
-            throw new Exception("No ids for this game");
-        }
-        return self::$list_juegos[$id];
-
-    }
-
-    public static function mostrarJuegos(){
+    private function mostrarJuegos(){
         $path = self::$ruta_imagenes;
         $html = "<img class='gif_centrado' src='{$path}play.gif' alt='Gif'>"; 
         $i = 0;
         
-        foreach(self::$list_juegos as $id => $juego){
+        foreach($this->lista as $id => $juego){
 
             $imagen = $juego->getImagen();
             $alt = "imagen_".$juego->getNombre();
@@ -107,11 +78,11 @@ class Juegos{
         return $html;
     }
 
-    public static function mostrarJuego($datos){
+    private function mostrarJuego($datos){
 
         $ruta_imagenes = self::$ruta_imagenes;
         $id_juego = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
-        $juego = self::getJuego($id_juego);
+        $juego = parent::getElement($id_juego);
        
         $html = '<div class = "img_juego">
         <img class="juego" src="data:image/png;base64,'.base64_encode($juego->getImagen()).'"/>

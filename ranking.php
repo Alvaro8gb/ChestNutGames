@@ -1,22 +1,22 @@
 <?php
 
+use es\chestnut\Aplicacion;
+
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $tituloPagina = 'Ranking';
 $css = link_css($app->resuelve(RUTA_CSS.'ranking.css'));
 
-$juegos = array();
+$maxNumJugadores = 5;
 
-$conn = $app->getConexionBd();
-$sql = "SELECT IdJuego, nombre FROM juegos";
-$consulta = @mysqli_query($conn, $sql);
+$juegos = new \es\chestnut\juegos\Juegos();
+$nombre_juegos = array();
 
-while($fila = @mysqli_fetch_array($consulta)){
-  $juegos[$fila["IdJuego"]] = $fila["nombre"];
+for($i = 0; $i<$juegos->getNumElements();$i++){
+  $nombre_juegos[$i] = $juegos->getElement($i)->getNombre();
 }
-
-
+ 
 $contenidoPrincipal = <<<EOS
 <div>
    <h1 class = "move"> 
@@ -29,24 +29,22 @@ $contenidoPrincipal = <<<EOS
       <th>PUNTUACION</th>
       </tr>
 EOS;
-  $sql = sprintf("SELECT IdJugador, sum(Puntuacion) as SumaPuntos FROM ranking GROUP BY IdJugador ORDER BY SumaPuntos desc");
-  $consulta = @mysqli_query($conn, $sql);
-  $i = 1;
-  while($i <= 5){
-    if($fila = @mysqli_fetch_array($consulta)){
-      $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s'", $conn->real_escape_string($fila["IdJugador"]));
-      $consulta2 = @mysqli_query($conn, $sql2);
-      $fila2 = @mysqli_fetch_array($consulta2);
-      $contenidoPrincipal .= <<<EOS
-        <tr>
-        <td>{$fila2["nombreUsuario"]}</td>
-        <td>{$fila["SumaPuntos"]}</td>
-        </tr>
-      EOS;
-    }
-    $i++;
-  }
-  $consulta->free();
+$conn = $app->getConexionBd();
+$sql = sprintf("SELECT IdJugador, sum(Puntuacion) as SumaPuntos FROM ranking GROUP BY IdJugador ORDER BY SumaPuntos desc LIMIT $maxNumJugadores ");
+$consulta = @mysqli_query($conn, $sql);
+while($fila = @mysqli_fetch_array($consulta)){
+    $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s'", $conn->real_escape_string($fila["IdJugador"]));
+    $consulta2 = @mysqli_query($conn, $sql2);
+    $fila2 = @mysqli_fetch_array($consulta2);
+    $contenidoPrincipal .= <<<EOS
+      <tr>
+      <td>{$fila2["nombreUsuario"]}</td>
+      <td>{$fila["SumaPuntos"]}</td>
+      </tr>
+    EOS;
+}
+
+$consulta->free();
 $contenidoPrincipal .= <<<EOS
 </table>
 </div>
@@ -58,7 +56,7 @@ $contenidoPrincipal .= <<<EOS
   <ul class="slider">
 EOS;
 
-    foreach($juegos as $id_juego => $nombre){
+    foreach($nombre_juegos as $id_juego => $nombre){
 
       $sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking WHERE IdJuego = '%s' ORDER BY Puntuacion desc", $conn->real_escape_string($id_juego));
       $consulta = @mysqli_query($conn, $sql);
@@ -73,10 +71,10 @@ EOS;
           <th>PUNTUACION</th>
           </tr>
       EOS;
-      $j = 1;
-      while($j <= 5){
-        if($fila = @mysqli_fetch_array($consulta)){
-          $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s'", $conn->real_escape_string($fila["IdJugador"]));
+     
+      while($fila = @mysqli_fetch_array($consulta)){
+
+          $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s' LIMIT %d", $conn->real_escape_string($fila["IdJugador"]),$maxNumJugadores);
           $consulta2 = @mysqli_query($conn, $sql2);
           $fila2 = @mysqli_fetch_array($consulta2);
           $contenidoPrincipal .= <<<EOS
@@ -85,8 +83,7 @@ EOS;
               <td>{$fila["Puntuacion"]}</td>
               </tr>
           EOS;
-        }
-      $j++;
+      
       }
       $consulta2->free();
       $contenidoPrincipal .= <<<EOS
@@ -104,10 +101,9 @@ $contenidoPrincipal .= <<<EOS
    <ul class="menu">
 EOS;
 
-  foreach($juegos as $id_juego => $nombre){
+  foreach($nombre_juegos as $id_juego => $nombre){
       $concat = "#";
       $concat.= $id_juego;
-
       $contenidoPrincipal .= <<<EOS
           <li>
           <a href= {$concat} onclick= "tabla({$id_juego})"> $nombre</a>
