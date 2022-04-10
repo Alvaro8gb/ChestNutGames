@@ -15,10 +15,8 @@ $contenidoPrincipal = <<<EOS
 EOS;
 
 try{
-    $buscador = new \es\chestnut\eventos\BuscadorEventos();
-    $contenidoPrincipal .= $buscador->gestiona();
     $eventos = new \es\chestnut\eventos\Eventos();
-    $contenidoPrincipal .= $eventos->mostrarEventos();      
+    $contenidoPrincipal .= $eventos->gestiona();      
 
 }catch(\Exception $e){
     $app->paginaError(501,'Error',"Error en eventos: ".$e->getMessage(),$e->getTrace());
