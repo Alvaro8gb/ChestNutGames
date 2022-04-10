@@ -34,7 +34,7 @@ EOS;
   $i = 1;
   while($i <= 5){
     if($fila = @mysqli_fetch_array($consulta)){
-      $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s'", $conn->real_escape_string($fila["IdJugador"]));
+      $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE IdUsuario = '%s'", $conn->real_escape_string($fila["IdJugador"]));
       $consulta2 = @mysqli_query($conn, $sql2);
       $fila2 = @mysqli_fetch_array($consulta2);
       $contenidoPrincipal .= <<<EOS
@@ -76,7 +76,7 @@ EOS;
       $j = 1;
       while($j <= 5){
         if($fila = @mysqli_fetch_array($consulta)){
-          $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s'", $conn->real_escape_string($fila["IdJugador"]));
+          $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE IdUsuario = '%s'", $conn->real_escape_string($fila["IdJugador"]));
           $consulta2 = @mysqli_query($conn, $sql2);
           $fila2 = @mysqli_fetch_array($consulta2);
           $contenidoPrincipal .= <<<EOS

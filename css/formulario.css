@@ -93,6 +93,7 @@ input.campos{
 }
 
 .form button {
+  position: relative;
   text-transform: uppercase;
   outline: 0;
   width: 100%;
@@ -102,6 +103,38 @@ input.campos{
   font-size: 14px;
   transition: all ease;
   cursor: pointer;
+  display: block;
+  text-decoration: none;
+  overflow:hidden;
+  border-radius: 30px;
+  font-family: Bangers;
+  background: rgb(107, 120, 160);
+}
+
+.form1 button{
+  
+    position: relative;
+    text-transform: uppercase;
+    outline: 0;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: white;
+    font-size: 14px;
+    transition: all ease;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    overflow:hidden;
+    border-radius: 30px;
+    font-family: Bangers;
+    background: rgb(107, 120, 160);
+  }
+
+
+.form button:hover, .form1 button:hover{
+  color: white;
+  background:black;
 }
 
 .form .message {
