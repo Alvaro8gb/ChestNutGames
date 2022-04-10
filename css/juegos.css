@@ -3,6 +3,7 @@
     width: 20%;
     height: 200px;
     margin-top: 40px;
+    text-align: center;
 }
 
 .fila::after {

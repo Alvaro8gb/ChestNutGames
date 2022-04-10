@@ -16,7 +16,7 @@ body {
      background-attachment: fixed;
      background-size: cover;
      z-index: -1;
-     min-height: 100%;
+     height: 100vh;
 }
 @font-face {
     font-family: Bangers;
@@ -70,42 +70,21 @@ ul#entregas{
     display:grid;
 }
 
+.productos {
 
-/* POP UP CSS */
+    height: 10vw;
+}
+
+/* DIV PRINCIPAL POPUP */
 
 .pop_up{
 
     width: 100%;
-    height: 100vw;
+    height: auto;
     overflow: visible;
-    background: rgba(0, 0, 0, 0.8);
     padding-top: 20px;
-
+    opacity: 0.2;
 }
-
-.pop_up_window{
-
-    width: 100%;
-    max-width: 800px;
-    height: 500px;
-    position: relative;
-    display: flex;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-150%);
-    align-content: center;
-    text-align: center;
-    z-index:1;
-
-    background: orange;
-    padding: 45px;
-    box-shadow: 0 0 10px 0 rgb(226, 183, 43), 0 2px 2px 0 rgb(226, 183, 43);
-    border-radius: 30px;
-
-}
-
-
-
 
 /* PR1.CSS */
 

@@ -73,11 +73,11 @@ class Juegos{
 
             $imagen = $juego->getImagen();
             $alt = "imagen_".$juego->getNombre();
-            $htmlImagen = '<a href="juegos.php?id='.$id.'"><img class="juego" src="data:image/png;base64,'.base64_encode($imagen).'" alt ="'.$alt.'"/>';
+            $htmlImagen = '<a href="juegos.php?id='.$id.'"><img class="juego" src="data:image/png;base64,'.base64_encode($imagen).'" alt ="'.$alt.'"></a>';
 
             if ($i % 5 == 0){
                 $html.= <<<EOS
-                <div class="fila">
+                    <div class="fila">
                 EOS;
             }
 
@@ -89,7 +89,7 @@ class Juegos{
 
             if($i%5 == 4){
                 $html .= <<<EOS
-                </div>
+                    </div>
                 EOS;
             }
             
@@ -112,7 +112,8 @@ class Juegos{
         $ruta_imagenes = self::$ruta_imagenes;
         $id_juego = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
         $juego = self::getJuego($id_juego);
-       
+
+        $html = "";
         $html = '<div class = "img_juego">
         <img class="juego" src="data:image/png;base64,'.base64_encode($juego->getImagen()).'"/>
         </div>';

@@ -1,12 +1,6 @@
-<?php
-
-
-
-?>
 
 <!-- HTML POP UP -->
-
-    <div class = "pop_up_window">
+    <div class = "pop_up_window" id = "modal">
         <div class = "pop_up_container">
             
             <div class = "pop_up_title">
@@ -16,7 +10,7 @@
             <div class = "pop_up_main">
                 <div class = "pop_up_image"> 
                     <!-- IMAGEN POP UP -->
-                    <a href="eventos.php"><img src="../../../img/backgrounds/portada_l1.jpg" alt =""/></a>
+                    <a href="eventos.php"><img src="../../../img/backgrounds/portada_l1.jpg" alt =""/></a> 
                 </div>
 
                 <div class = "pop_up_desc"> 
@@ -25,8 +19,11 @@
                 </div>
             </div>
 
-            <div class = "pop_up_closebutton"></div>
+            <div class = "pop_up_closebutton">
+                <div class = "popup_button">
+                    <button type="button" class = "popup_button_link" onclick="advert_close()"> Cerrar </button>
+                </div>
+            </div>
 
         </div>
     </div>
-
