@@ -12,9 +12,10 @@ $contenidoPrincipal = <<<EOS
     <h2>Lista de Miembros</h2>
     <ol>
 EOS;
-    foreach($miembros as $name=>$enl){
-        $contenidoPrincipal .= enlace($enl, $name);
-    }
+
+foreach($miembros as $name=>$enl){
+    $contenidoPrincipal .= link_lista($enl, $name);
+}
 
 $contenidoPrincipal .= <<<EOS
     </ol>

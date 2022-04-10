@@ -1,27 +1,20 @@
 <?php
 require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/vistas/helpers/utils.php';
+
 
 $tituloPagina = 'Bocetos';
 
-$rutaimg = $app->resuelve(RUTA_IMGS.'bocetos/');
+$path = $app->resuelve(RUTA_IMGS.'bocetos/');
+$imagenes = array("Premium","Ranking","MainPage","Tienda","Eventos","Publicidad");
 
-$contenidoPrincipal = <<<EOS
-<div class="bocetosipv">
+$contenidoPrincipal = '<div class="bocetosipv">';
 
-    <img src="{$rutaimg}Premium+.jpg" alt="Premium"  />
-    <br>
-    <img src="{$rutaimg}Ranking.jpg" alt="Ranking " />
-    <br>
-    <img src="{$rutaimg}MainPage.jpg" alt="Main Page" />
-    <br>
-    <img src="{$rutaimg}Tienda.jpg" alt="Tienda " /> 
-    <br>
-    <img src="{$rutaimg}Torneos-Eventos.jpg" alt="Torneos" />
-    <br>
-    <img src="{$rutaimg}publicidad.jpg" alt="Publicidad" />
+foreach($imagenes as $img){
+    $contenidoPrincipal.= link_img($path.$img.".jpg",$img);
+}
 
-</div>  
-EOS;
+$contenidoPrincipal .= "</div>";  
 
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
 $app->generaVista('/plantillas/plantilla.php', $params);

@@ -44,7 +44,7 @@ function mostrarSaludo(){
         <?php
             echo '<ul>';
             foreach($paginas as $name=>$enl){
-                echo enlace($enl, $name);
+                echo link_lista($enl, $name);
             }
             echo '</ul>';    
         ?>                       

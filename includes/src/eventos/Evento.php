@@ -1,6 +1,6 @@
 <?php
 
-namespace es\chestnut\juegos;
+namespace es\chestnut\eventos;
 
 class Evento{
     private $idEvento;

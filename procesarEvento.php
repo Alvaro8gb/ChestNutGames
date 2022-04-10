@@ -3,8 +3,8 @@
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
-$ruta = RUTA_CSS.'procesarEvento.css';
-$rutaimg = RUTA_IMGS.'eventos/';
+$ruta = $app->resuelve(RUTA_CSS.'procesarEvento.css');
+$rutaimg = $app->resuelve(RUTA_IMGS.'eventos/');
 
 $tituloPagina = 'Procesar Evento';
 

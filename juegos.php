@@ -5,13 +5,11 @@ require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $app->verificaLogado($app->buildUrl("noLogeado.php"));
 
-$rutaimg = $app->resuelve(RUTA_IMGS.'juegos/');
-
 $tituloPagina = 'Juegos';
 $css = link_css($app->resuelve(RUTA_CSS.'juegos.css'));
       
 try{
-    $juegos = new \es\chestnut\juegos\Juegos($rutaimg);
+    $juegos = new \es\chestnut\juegos\Juegos();
     $contenidoPrincipal = $juegos->gestiona();      
 
 }catch(\Exception $e){

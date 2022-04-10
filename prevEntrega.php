@@ -15,7 +15,7 @@ $contenidoPrincipal .=<<<EOS
 EOS;
 
 foreach($paginas_anteriores as $name=>$enl){
-    $contenidoPrincipal .= enlace($enl, $name);
+    $contenidoPrincipal .= link_lista($enl, $name);
 }
 
 $contenidoPrincipal.= <<<EOS

@@ -5,13 +5,14 @@ use es\chestnut\Aplicacion;
 use Exception;
 
 class Juegos{
-    private static $RUTA_IMAGENES;
     private static $list_juegos ;
+    private static $ruta_imagenes;
 
-    public function __construct($ruta_imagenes){
-        self::$RUTA_IMAGENES = $ruta_imagenes;
+    public function __construct(){
         self::$list_juegos = array();
         self::cargarJuegos();
+        $app = Aplicacion::getInstancia();
+        self::$ruta_imagenes = $app->resuelve(RUTA_IMGS.'juegos/');
 
     }
 
@@ -64,9 +65,8 @@ class Juegos{
     }
 
     public static function mostrarJuegos(){
-
-        $ruta_imagenes = self::$RUTA_IMAGENES; 
-        $html = "<img class='gif_centrado' src='{$ruta_imagenes}play.gif' alt='Gif'>"; 
+        $path = self::$ruta_imagenes;
+        $html = "<img class='gif_centrado' src='{$path}play.gif' alt='Gif'>"; 
         $i = 0;
         
         foreach(self::$list_juegos as $id => $juego){
@@ -109,7 +109,7 @@ class Juegos{
 
     public static function mostrarJuego($datos){
 
-        $ruta_imagenes = self::$RUTA_IMAGENES;
+        $ruta_imagenes = self::$ruta_imagenes;
         $id_juego = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
         $juego = self::getJuego($id_juego);
        
