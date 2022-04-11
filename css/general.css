@@ -8,7 +8,7 @@ body {
     margin:0;
     padding:0;
 
-     /* BACKGROUND GENERAL (por ahora) */
+     /* BACKGROUND GENERAL */
 
      background-image: url("../img/backgrounds/portada_l1.jpg");
 
@@ -83,7 +83,7 @@ ul#entregas{
     height: auto;
     overflow: visible;
     padding-top: 20px;
-    opacity: 0.2;
+    opacity: 1;
 }
 
 /* PR1.CSS */
