@@ -33,7 +33,7 @@ $conn = $app->getConexionBd();
 $sql = sprintf("SELECT IdJugador, sum(Puntuacion) as SumaPuntos FROM ranking GROUP BY IdJugador ORDER BY SumaPuntos desc LIMIT $maxNumJugadores ");
 $consulta = @mysqli_query($conn, $sql);
 while($fila = @mysqli_fetch_array($consulta)){
-    $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s'", $conn->real_escape_string($fila["IdJugador"]));
+    $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE IdUsuario = '%s'", $conn->real_escape_string($fila["IdJugador"]));
     $consulta2 = @mysqli_query($conn, $sql2);
     $fila2 = @mysqli_fetch_array($consulta2);
     $contenidoPrincipal .= <<<EOS
@@ -74,7 +74,7 @@ EOS;
      
       while($fila = @mysqli_fetch_array($consulta)){
 
-          $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE id = '%s' LIMIT %d", $conn->real_escape_string($fila["IdJugador"]),$maxNumJugadores);
+          $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE IdUsuario = '%s' LIMIT %d", $conn->real_escape_string($fila["IdJugador"]),$maxNumJugadores);
           $consulta2 = @mysqli_query($conn, $sql2);
           $fila2 = @mysqli_fetch_array($consulta2);
           $contenidoPrincipal .= <<<EOS
