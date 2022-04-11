@@ -1,8 +1,10 @@
 <?php
+
 $params['app']->doInclude('/vistas/helpers/plantilla.php');
 $mensajes = mensajesPeticionAnterior();
- 
+
 ?>
+
 <!DOCTYPE html>
 <html lang='es'>
 
@@ -24,10 +26,10 @@ $mensajes = mensajesPeticionAnterior();
 	<body>
 
 		<!-- POP UP  -->
-		<?php
-			$params['app']->doInclude('/vistas/comun/popup_plantilla.php');
-		?> 
-
+		<?php		
+			$params['app']->doInclude('/vistas/comun/popup.php');			
+		?> 	
+	
 		<div class = "pop_up" id = "pop_up">
 
 			<header>
@@ -51,6 +53,12 @@ $mensajes = mensajesPeticionAnterior();
 			</footer>
 
 		</div>
+
+		<!-- Mostrar anuncio -->
+		<?php 
+			if($params['app']->show_advert())
+				echo '<script type="text/javascript"> advert_show(); </script>';	
+		?>
 	</body>
 </html>
 
