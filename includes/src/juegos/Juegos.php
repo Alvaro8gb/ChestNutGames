@@ -44,11 +44,11 @@ class Juegos extends Lista{
 
             $imagen = $juego->getImagen();
             $alt = "imagen_".$juego->getNombre();
-            $htmlImagen = '<a href="juegos.php?id='.$id.'"><img class="juego" src="data:image/png;base64,'.base64_encode($imagen).'" alt ="'.$alt.'"/>';
+            $htmlImagen = '<a href="juegos.php?id='.$id.'"><img class="juego" src="data:image/png;base64,'.base64_encode($imagen).'" alt ="'.$alt.'"></a>';
 
             if ($i % 5 == 0){
                 $html.= <<<EOS
-                <div class="fila">
+                    <div class="fila">
                 EOS;
             }
 
@@ -60,7 +60,7 @@ class Juegos extends Lista{
 
             if($i%5 == 4){
                 $html .= <<<EOS
-                </div>
+                    </div>
                 EOS;
             }
             

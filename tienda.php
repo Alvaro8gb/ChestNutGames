@@ -3,7 +3,7 @@ require_once __DIR__.'/includes/config.php';
 
 $tituloPagina = 'Tienda';
 
-$contenidoPrincipal = '<h1 id="cl"> Productos de la tienda. No disponible todavía </h1>';
+$contenidoPrincipal = '<div class = "productos"> <h1 id="cl"> Productos de la tienda. No disponible todavía </h1></div>';
 
 #CSS grid
 

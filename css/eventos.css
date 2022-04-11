@@ -71,7 +71,7 @@ img#ev{
     left: 0;
     position: relative;
     bottom: 0;
-    margin-top: 5%;
+    margin-top: -5%;
     padding: 2%;
 }
 
@@ -220,7 +220,7 @@ input[id="5"]:checked~.pagination .pag-item[for="5"] {
 }
 
 
-/*** pORCESAR eVENTO*/
+/* Procesar Evento */
 
 * {
     margin: 0px;
