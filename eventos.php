@@ -22,7 +22,7 @@ try{
     $app->paginaError(501,'Error',"Error en eventos: ".$e->getMessage(),$e->getTrace());
 }
 
-$contenidoPrincipal .= '<div class="slider">';
+/*$contenidoPrincipal .= '<div class="slider">';
     
 foreach($eventos as $id => $img ){
     $contenidoPrincipal .= '<input type="radio" id="' . $id . '" name="image-slide" hidden />';
@@ -44,7 +44,7 @@ foreach($eventos as $id => $img ){
             <img src="data:image/png;base64,'.base64_encode($img).'">
         </label>';
 }
-$contenidoPrincipal .='</div> </div>';
+$contenidoPrincipal .='</div> </div>';*/
 
 $contenidoPrincipal .= <<< EOS
     <div class = "footer_zone">
