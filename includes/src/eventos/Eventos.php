@@ -5,8 +5,6 @@ use es\chestnut\Aplicacion;
 use es\chestnut\eventos\BuscadorEventos;
 use es\chestnut\Lista;
 
-use Exception;
-
 class Eventos extends Lista{
     private static $ruta_imagenes;
     private const TABLE= "eventos";
@@ -15,28 +13,26 @@ class Eventos extends Lista{
         parent::__construct(self::TABLE);
         $app = Aplicacion::getInstancia();
         self::$ruta_imagenes = $app->resuelve(RUTA_IMGS.'eventos/');
-
     }
+    public function gestiona(){
+        $datos = &$_GET;
 
+        if (!$this->eventoEnviado($datos)) {
+            $buscador = new BuscadorEventos();
+            $html = $buscador->gestiona();
+            $html .= $this->mostrarEventos();
+            return $html;
+        }
+        else{
+            return $this->mostrarEvento($datos);
+        }
+    }
     private function eventoEnviado($datos){
         return isset($datos["id"]);
     }
 
     protected function crearElem($fila){
         return new Evento($fila["idEvento"],$fila["nombre"],$fila["imagen"],$fila["descripcion"],$fila["fechaInicio"],$fila["fechaFinal"],$fila["idJuego"]);
-    }
-    public function gestiona(){
-        $datos = &$_GET;
-
-        if (!self::eventoEnviado($datos)) {
-            $buscador = new BuscadorEventos();
-            $html = $buscador->gestiona();
-            $html .= self::mostrarEventos();
-            return $html;
-        }
-        else{
-            return self::mostrarEvento($datos);
-        }
     }
     private static function contador($remainingTime){
 
@@ -155,7 +151,6 @@ class Eventos extends Lista{
                     EOS;
 
             if(isset($_POST['inscribir'])){
-
                     $html .= '<p>Hola</p>';
             }
 
@@ -171,7 +166,7 @@ class Eventos extends Lista{
                 </div>';*/
         }
         else{
-            $html .= '<h1>El evento ya ha comenzado!</h1>';
+            $html .= '<h1> El evento ya ha comenzado! </h1>';
         } 
         
         return $html;

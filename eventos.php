@@ -22,30 +22,6 @@ try{
     $app->paginaError(501,'Error',"Error en eventos: ".$e->getMessage(),$e->getTrace());
 }
 
-/*$contenidoPrincipal .= '<div class="slider">';
-    
-foreach($eventos as $id => $img ){
-    $contenidoPrincipal .= '<input type="radio" id="' . $id . '" name="image-slide" hidden />';
-}
-$contenidoPrincipal .= '<div class="slideshow">';
-
-foreach($eventos as $id => $img ){
-    $contenidoPrincipal .= 
-        '<div class="item-slide">
-        <a href="procesarEvento.php?id='.$id.'"><img src="data:image/png;base64,'.base64_encode($img).'"></a>
-        </div>'; 
-}
-$contenidoPrincipal .= 
-    '</div>
-    <div class="pagination">';
-foreach($eventos as $id => $img ){ 
-    $contenidoPrincipal .=
-        '<label class="pag-item" for="' . $id . '">
-            <img src="data:image/png;base64,'.base64_encode($img).'">
-        </label>';
-}
-$contenidoPrincipal .='</div> </div>';*/
-
 $contenidoPrincipal .= <<< EOS
     <div class = "footer_zone">
     En ChestnutGames no se admiten trampas de ningún tipo y el respeto entre jugadores es esencial. Nuestra comunidad está formada únicamente 
