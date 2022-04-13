@@ -187,12 +187,11 @@ class Eventos extends Lista{
             $html .= '<div class="slideshow">';
             foreach($this->lista as $id => $evento ){
                 $html .= '<div class="item-slide">
-                    <a href="eventos.php?id='.$id.'"><img src="data:image/png;base64,'.base64_encode($evento->getImagen()).'"/>
+                    <a href="eventos.php?id='.$id.'"><img src="data:image/png;base64,'.base64_encode($evento->getImagen()).'"></a>
                 </div>'; 
             }
-            $html .= '</div>
-
-            <div class="pagination">';
+            $html .= '</div> <div class="pagination">';
+            
             foreach($this->lista as $id => $evento ){ 
                 $html .= '<label class="pag-item" for="' . $id . '">
                         <img src="data:image/png;base64,'.base64_encode($evento->getImagen()).'"/>
