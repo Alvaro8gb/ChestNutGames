@@ -62,8 +62,8 @@ CREATE TABLE `eventos` (
   `IdEvento` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `descripcion` varchar(254) NOT NULL,
-  `fechaInicio` int(255) NOT NULL,
-  `fechaFinal` int(255) NOT NULL,
+  `fechaInicio` date NOT NULL,
+  `fechaFinal` date NOT NULL,
   `imagen` mediumblob NOT NULL,
   `premio` int(11) NOT NULL,
   `IdJuego` int(11) NOT NULL
@@ -105,7 +105,8 @@ CREATE TABLE `publicidad` (
   `IdPublicidad` int(11) NOT NULL,
   `nombreEmpresa` varchar(255) NOT NULL,
   `enlace` varchar(254) NOT NULL,
-  `descripcion` varchar(254) NOT NULL
+  `descripcion` varchar(254) NOT NULL,
+  `imagen` longblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
