@@ -6,6 +6,7 @@ use es\chestnut\eventos\BuscadorEventos;
 use es\chestnut\Lista;
 
 class Eventos extends Lista{
+
     private static $ruta_imagenes;
     private const TABLE= "eventos";
 
@@ -14,7 +15,9 @@ class Eventos extends Lista{
         $app = Aplicacion::getInstancia();
         self::$ruta_imagenes = $app->resuelve(RUTA_IMGS.'eventos/');
     }
+
     public function gestiona(){
+       
         $datos = &$_GET;
 
         if (!$this->eventoEnviado($datos)) {
@@ -177,29 +180,28 @@ class Eventos extends Lista{
 
         $html = '<div class="slider">';
     
-        foreach($this->lista as $id => $evento ){
-            $html .= '<input type="radio" id="' . $id . '" name="image-slide" hidden />';
-        }
-        $html .= '<div class="slideshow">';
+            foreach($this->lista as $id => $evento ){
+                $html .= '<input type="radio" id="' . $id . '" name="image-slide" hidden />';
+            }
 
-        foreach($this->lista as $id => $evento ){
-            $html .= 
-                '<div class="item-slide">
-                <a href="eventos.php?id='.$id.'"><img src="data:image/png;base64,'.base64_encode($evento->getImagen()).'"/>
+            $html .= '<div class="slideshow">';
+            foreach($this->lista as $id => $evento ){
+                $html .= '<div class="item-slide">
+                    <a href="eventos.php?id='.$id.'"><img src="data:image/png;base64,'.base64_encode($evento->getImagen()).'"/>
                 </div>'; 
-        }
-        $html .= 
-            '</div>
+            }
+            $html .= '</div>
+
             <div class="pagination">';
-        foreach($this->lista as $id => $evento ){ 
-            $html .=
-                '<label class="pag-item" for="' . $id . '">
-                    <img src="data:image/png;base64,'.base64_encode($evento->getImagen()).'"/>
+            foreach($this->lista as $id => $evento ){ 
+                $html .= '<label class="pag-item" for="' . $id . '">
+                        <img src="data:image/png;base64,'.base64_encode($evento->getImagen()).'"/>
                 </label>';
-        }
-        $html .='</div> </div>';
+            }
+            $html .='</div>';
+
+        $html .='</div>';
 
         return $html;
     }
-
 }

@@ -3,12 +3,12 @@
 namespace es\chestnut\eventos;
 use es\chestnut\Aplicacion;
 
-
 class BuscadorEventos{
 
     private static function eventoBuscado($datos){
         return isset($_GET['buscar']);
     }
+
     public static function gestiona(){
 
         $datos = &$_GET;
@@ -20,47 +20,49 @@ class BuscadorEventos{
         }
 
         return $html;
-
     }
+
     private static function mostrarBuscador(){
+
         $app = Aplicacion::getInstancia();
+
         $rutaimg = $app->resuelve(RUTA_IMGS.'eventos/');
 
         $html = <<<EOS
-         
-    
-        <div class = "img_buscar">
-        <img id="ev" src="{$rutaimg}buscar.jpg" alt="buscar">
-        </div>
+            <div class = "img_buscar">
+                <img id="ev" src="{$rutaimg}buscar.jpg" alt="buscar">
+            </div>
 
-        <form action="" method="get">
-            <div class = "text_buscar">
-                <input class="evi" type ="text" name ="evento" value ="">
-            </div>
-            <div class = "button_buscar">
-                <input class="search" type="submit" name="buscar" value="buscar">
-            </div>
-        </form>
+            <form action="" method="get">
+                <div class = "text_buscar">
+                    <input class="evi" type ="text" name ="evento" value ="">
+                </div>
+                <div class = "button_buscar">
+                    <input class="search" type="submit" name="buscar" value="buscar">
+                </div>
+            </form>
         EOS;
 
         return $html;
-
     }
 
     private static function procesarBusqueda(){
+
         $app = Aplicacion::getInstancia();
+
         $html = "";
+
         $eventToSearch = filter_var(trim($_GET["evento"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             
             // Si está vacío, lo informamos, sino realizamos la búsqueda
             if(empty($eventToSearch)){
-                $html .= '<br><p>No se ha ingresado un evento a buscar</p>';
+                $html .= '<br><p>No se ha ingresado ningún evento a buscar</p>';
             }
             else {
                 // Conexión a la base de datos y seleccion de registros
                 $conn = $app->getConexionBd();
                 $prepared = $conn->prepare("SELECT nombre FROM eventos WHERE nombre LIKE ? ");
-                $prepared->execute(array("%$eventToSearch%"));
+                $prepared->execute(array("$eventToSearch"));
                 $consulta = $prepared->get_result();
                 $count_results = mysqli_num_rows($consulta);
         
@@ -75,9 +77,7 @@ class BuscadorEventos{
                     $html .= '<br><p>No se encuentran resultados con los criterios de búsqueda.</p>';
                 }
             }
-        return $html;  
-    }
 
-    
-    
+        return $html;  
+    }   
 }

@@ -3,6 +3,7 @@
 namespace es\chestnut\eventos;
 
 class Evento{
+    
     private $idEvento;
     private $nombre;
     private $imagen;
