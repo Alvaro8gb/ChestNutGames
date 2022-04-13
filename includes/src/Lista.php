@@ -40,7 +40,5 @@ abstract class Lista{
             $i++;
         }
         $conn->free();
-
     }
-
 }
