@@ -190,14 +190,9 @@ class Eventos extends Lista{
                     <a href="eventos.php?id='.$id.'"><img src="data:image/png;base64,'.base64_encode($evento->getImagen()).'"></a>
                 </div>'; 
             }
-<<<<<<< Updated upstream
-            $html .= '</div> <div class="pagination">';
-            
-=======
-            $html .= '</div>
-            
+            $html .= '</div> 
             <div class="pagination">';
->>>>>>> Stashed changes
+            
             foreach($this->lista as $id => $evento ){ 
                 $html .= '<label class="pag-item" for="' . $id . '">
                         <img src="data:image/png;base64,'.base64_encode($evento->getImagen()).'"/>
