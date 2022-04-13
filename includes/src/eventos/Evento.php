@@ -13,7 +13,7 @@ class Evento{
     private $premio;
     private $idJuego;
 
-    public function __construct($idEvento, $nombre, $imagen, $desc, $fechaInicio, $fechaFin, $idJuego ){
+    public function __construct($idEvento, $nombre, $imagen, $desc, $fechaInicio, $fechaFin, $idJuego, $premio ){
         $this->id = $idEvento;
         $this->nombre = $nombre;
         $this->imagen = $imagen;
@@ -21,6 +21,7 @@ class Evento{
         $this->fechaInicio = $fechaInicio;
         $this->fechaFin = $fechaFin;
         $this->idJuego = $idJuego;
+        $this->premio = $premio;
     }
 
     public function getId(){

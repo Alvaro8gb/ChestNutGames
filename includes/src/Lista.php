@@ -14,7 +14,7 @@ abstract class Lista{
         return count($this->lista);
     }
     public function getElement($id){
-        if ($id < 0 || $id > count($this->lista) ){
+        if ($id < 0 || $id >= count($this->lista) ){
             throw new \Exception("Error accediendo a lista ");
         }
         return $this->lista[$id];

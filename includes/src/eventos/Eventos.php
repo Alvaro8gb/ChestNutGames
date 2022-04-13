@@ -21,9 +21,22 @@ class Eventos extends Lista{
         $datos = &$_GET;
 
         if (!$this->eventoEnviado($datos)) {
+            $html = <<<EOS
+                <div class = "msg_centrado">
+                    <h3>Demuestra tu habilidad, gana dinero y muchos premios jugando los mejores torneos de la comunidad.</h3>
+                </div>
+            EOS;
             $buscador = new BuscadorEventos();
-            $html = $buscador->gestiona();
+            $html .= $buscador->gestiona();
             $html .= $this->mostrarEventos();
+            $html .= <<< EOS
+                <div class = "footer_zone">
+                En ChestnutGames no se admiten trampas de ningún tipo y el respeto entre jugadores es esencial. Nuestra comunidad está formada únicamente 
+                por jugadores que cumplen las Reglas y actúan de forma deportiva. Nuestra plataforma integra sistemas de detección de tramposos, 
+                obtención de resultados de forma automática desde los videojuegos y un equipo de profesionales. Defendemos la integridad de las 
+                competiciones. !Que gane el mejor! 
+                </div>
+            EOS;
             return $html;
         }
         else{
@@ -35,7 +48,7 @@ class Eventos extends Lista{
     }
 
     protected function crearElem($fila){
-        return new Evento($fila["idEvento"],$fila["nombre"],$fila["imagen"],$fila["descripcion"],$fila["fechaInicio"],$fila["fechaFinal"],$fila["idJuego"]);
+        return new Evento($fila["idEvento"],$fila["nombre"],$fila["imagen"],$fila["descripcion"],$fila["fechaInicio"],$fila["fechaFinal"],$fila["idJuego"],$premio["premio"]);
     }
     private static function contador($remainingTime){
 
@@ -55,15 +68,18 @@ class Eventos extends Lista{
     }
 
     private function mostrarEvento($datos){
-        $id = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
-        $evento = $this->getElement($id);
+        $idEvento = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
+        $evento = $this->getElement($idEvento);
         $html = "";
 
         // Epoch timestamp
         
-        $fechaFin = strtotime($evento->getFechaFin());
-        $remainingTime = $fechaFin - time();
+        /*$fechaFin = $evento->getFechaFin();
+        $remainingTime = $fechaFin - time();*/
+
+        //$remainingTime = $evento->getFechaInicio() - time();
         
+        $remainingTime = 1;
         if($remainingTime > 0) {
        
             $contador = self::contador($remainingTime);
@@ -93,9 +109,6 @@ class Eventos extends Lista{
                     </div>
                 </div>';
 
-            /*Comprobar si el jugador ya está inscrito. Si está inscrito el boton para inscribirse no se puede pinchar, es una mera imagen, y se muestra un mensaje que diga
-            Usted ya está insrito en este evento.
-            Si no está insrito y pulsa el boton, inscribirle.*/ 
             $path = self::$ruta_imagenes;
             $html .= <<< EOS
                 <div class = "informacion">
@@ -112,68 +125,40 @@ class Eventos extends Lista{
                 </div>
             EOS;
 
-            /*$idUsuario = $app->idUsuario();
+            $app = Aplicacion::getInstancia();
+            $idUsuario = $app->idUsuario();
 
-            $prepared = $conn->prepare("SELECT * FROM inscripcioneseventos WHERE (idEvento = $idEvento AND idUsuario = $idUsuario)");
+            $conn = $app->getConexionBd();
+            $prepared = $conn->prepare("SELECT * FROM inscripcioneseventos WHERE IdEvento = $idEvento AND IdUsuario = $idUsuario");
             $prepared->execute();
             $consulta = $prepared->get_result();
             $count_results = mysqli_num_rows($consulta);
             $consulta->free();
 
-            if($count_results < 0){
-                $contenidoPrincipal .= <<< EOS
-                    <div class = "inscripcion">
-                        <img id="ev" src= "{$rutaimg}inscripcion.png">
-                    </div>
-                EOS;
-            }
-            else {
-
-                $contenidoPrincipal .= <<< EOS
-                    <form action="" method="get">
+            $html .= <<< EOS
+                    <form action="" method="post">
                         <div class = "inscripcion">
                             <input class="inscripcion_button" type="submit" name="inscribir" value="Inscríbete aquí">
                         </div>
                     </form>
-                    EOS;
-
-                if(isset($_GET['buscar'])){
-                    $contenidoPrincipal .= '<p>Hola</p>';
-                }
-
-                // Insertar en la base de datos
-                //$query=sprintf("INSERT INTO inscripcioneseventos(idUsuario, idEvento) VALUES($idUsuario, $idEvento)");
-            }*/ 
-
-            $html .= <<< EOS
-                    <form action="" method="post">
-                        <div class = "inscripcion">
-                            <input class="inscripcion_button" type="submit" name="inscribir" value="h">
-                        </div>
-                    </form>
-                    EOS;
+            EOS;
 
             if(isset($_POST['inscribir'])){
-                    $html .= '<p>Hola</p>';
+                if($count_results <= 0){
+                    // Insertar en la base de datos
+                    $query=sprintf("INSERT INTO inscripcioneseventos(idUsuario, idEvento) VALUES($idUsuario, $idEvento)");
+                    $html .= '<p>La insripción a este evento se ha realizado con éxito. Muchas gracias.</p>';
+                }
+                else {
+                    $html .= '<p>Usted ya está inscrito a este evento.</p>';
+                }
             }
-
-            /*$contenidoPrincipal .= <<<EOS
-                <div class = "inscripcion">
-                    <img id="ev" src= "{$rutaimg}inscripcion.png">
-                </div>
-            EOS;*/
-
-            /*$contenidoPrincipal .= 
-                '<div class = "fondoTransparente">
-                    <img src="data:image/png;base64,'.base64_encode($fila["imagen"]).'"/>
-                </div>';*/
         }
         else{
-            $html .= '<h1> El evento ya ha comenzado! </h1>';
+            $html .= '<p>El evento ya ha comenzado!</p>';
         } 
         
         return $html;
-
     }
 
     public function mostrarEventos(){
@@ -191,8 +176,8 @@ class Eventos extends Lista{
                 </div>'; 
             }
             $html .= '</div> 
-            <div class="pagination">';
-            
+
+            <div class="pagination">';          
             foreach($this->lista as $id => $evento ){ 
                 $html .= '<label class="pag-item" for="' . $id . '">
                         <img src="data:image/png;base64,'.base64_encode($evento->getImagen()).'"/>
