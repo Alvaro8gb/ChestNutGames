@@ -1,6 +1,6 @@
 <?php
 
-namespace es\chestnut\anuncios;
+namespace es\chestnut\publicidad;
 use es\chestnut\Aplicacion;
 
 class Anuncio {
@@ -21,6 +21,7 @@ class Anuncio {
 
     // Consultar/Crear anuncio aleatorio y mandarlo para mostrar
     //  Return object Anuncio
+    
     public static function create_advert(){
 
         $app = Aplicacion::getInstancia();
@@ -39,7 +40,7 @@ class Anuncio {
         }
 
         // Creamos el anuncio
-        $advert = crearElem($fila);
+        $advert = new Anuncio($fila["IdPublicidad"],$fila["nombreEmpresa"],$fila["imagen"],$fila["descripcion"],$fila["enlace"]);;
         $result->free();
 
         // Devolvemos el objeto anuncio
