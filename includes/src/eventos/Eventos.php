@@ -5,7 +5,7 @@ use es\chestnut\Aplicacion;
 use es\chestnut\eventos\BuscadorEventos;
 use es\chestnut\Lista;
 
-class Eventos extends Lista{
+class Eventos extends Lista {
 
     private static $ruta_imagenes;
     private const TABLE= "eventos";
@@ -21,14 +21,19 @@ class Eventos extends Lista{
         $datos = &$_GET;
 
         if (!$this->eventoEnviado($datos)) {
+
             $html = <<<EOS
                 <div class = "msg_centrado">
                     <h3>Demuestra tu habilidad, gana dinero y muchos premios jugando los mejores torneos de la comunidad.</h3>
                 </div>
             EOS;
+
             $buscador = new BuscadorEventos();
+
             $html .= $buscador->gestiona();
+
             $html .= $this->mostrarEventos();
+
             $html .= <<< EOS
                 <div class = "footer_zone">
                 En ChestnutGames no se admiten trampas de ningún tipo y el respeto entre jugadores es esencial. Nuestra comunidad está formada únicamente 
@@ -37,12 +42,15 @@ class Eventos extends Lista{
                 competiciones. !Que gane el mejor! 
                 </div>
             EOS;
+
             return $html;
         }
         else{
+
             return $this->mostrarEvento($datos);
         }
     }
+
     private function eventoEnviado($datos){
         return isset($datos["id"]);
     }
@@ -69,8 +77,10 @@ class Eventos extends Lista{
     }
 
     private function mostrarEvento($datos){
+
         $id = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
         $evento = $this->getElement($id);
+
         $html = "";
 
         // Epoch timestamp
@@ -80,7 +90,7 @@ class Eventos extends Lista{
         */
         
         $remainingTimeToFinish = 2;
-        $remainingTimeToStart = -1;
+        $remainingTimeToStart = 1;
 
         if($remainingTimeToStart > 0) {
        
@@ -112,6 +122,7 @@ class Eventos extends Lista{
                 </div>';
 
             $path = self::$ruta_imagenes;
+
             $html .= <<< EOS
                 <div class = "informacion">
                     <img id="ev" src="{$path}info.png">
@@ -126,7 +137,6 @@ class Eventos extends Lista{
                     <p>Premio: {$evento->getPremio()}$</p>
                 </div>
             EOS;
-
 
             // No se está cogiendo el id del Usuario
             $app = Aplicacion::getInstancia();
