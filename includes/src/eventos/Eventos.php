@@ -48,8 +48,9 @@ class Eventos extends Lista{
     }
 
     protected function crearElem($fila){
-        return new Evento($fila["idEvento"],$fila["nombre"],$fila["imagen"],$fila["descripcion"],$fila["fechaInicio"],$fila["fechaFinal"],$fila["idJuego"],$premio["premio"]);
+        return new Evento($fila["IdEvento"],$fila["nombre"],$fila["imagen"],$fila["descripcion"],$fila["fechaInicio"],$fila["fechaFinal"],$fila["idJuego"],$fila["premio"]);
     }
+
     private static function contador($remainingTime){
 
         $remainingDays = floor($remainingTime / (3600 * 24));
@@ -68,21 +69,22 @@ class Eventos extends Lista{
     }
 
     private function mostrarEvento($datos){
-        $idEvento = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
-        $evento = $this->getElement($idEvento);
+        $id = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
+        $evento = $this->getElement($id);
         $html = "";
 
         // Epoch timestamp
+        /*
+        $remainingTimeToStart = $evento->getFechaInicio() - time();
+        $remainingTimeToFinish = $evento->getFechaFin() - time();
+        */
         
-        /*$fechaFin = $evento->getFechaFin();
-        $remainingTime = $fechaFin - time();*/
+        $remainingTimeToFinish = 2;
+        $remainingTimeToStart = -1;
 
-        //$remainingTime = $evento->getFechaInicio() - time();
-        
-        $remainingTime = 1;
-        if($remainingTime > 0) {
+        if($remainingTimeToStart > 0) {
        
-            $contador = self::contador($remainingTime);
+            $contador = self::contador($remainingTimeToStart);
 
             $html .= 
                 '<div class = "nombreEvento">
@@ -121,15 +123,19 @@ class Eventos extends Lista{
                 </div>
 
                 <div class = "premio">
-                    <p>Premio: {$evento->getPremio()}</p>
+                    <p>Premio: {$evento->getPremio()}$</p>
                 </div>
             EOS;
 
+
+            // No se está cogiendo el id del Usuario
             $app = Aplicacion::getInstancia();
             $idUsuario = $app->idUsuario();
 
+            $idEvento = $evento->getId();
+
             $conn = $app->getConexionBd();
-            $prepared = $conn->prepare("SELECT * FROM inscripcioneseventos WHERE IdEvento = $idEvento AND IdUsuario = $idUsuario");
+            $prepared = $conn->prepare("SELECT * FROM inscripcioneseventos WHERE IdEvento = '$idEvento' AND IdUsuario = '$idUsuario'");
             $prepared->execute();
             $consulta = $prepared->get_result();
             $count_results = mysqli_num_rows($consulta);
@@ -146,7 +152,7 @@ class Eventos extends Lista{
             if(isset($_POST['inscribir'])){
                 if($count_results <= 0){
                     // Insertar en la base de datos
-                    $query=sprintf("INSERT INTO inscripcioneseventos(idUsuario, idEvento) VALUES($idUsuario, $idEvento)");
+                    $query=sprintf("INSERT INTO inscripcioneseventos(IdUsuario, IdEvento) VALUES($idUsuario, $idEvento)");
                     $html .= '<p>La insripción a este evento se ha realizado con éxito. Muchas gracias.</p>';
                 }
                 else {
@@ -154,8 +160,52 @@ class Eventos extends Lista{
                 }
             }
         }
+        else if ($remainingTimeToFinish > 0) {
+
+            $contador = self::contador($remainingTimeToFinish);
+
+            $html .= 
+                '<div class = "nombreEvento">
+                    <p>'.$evento->getNombre().'</p>
+                </div>
+                
+                <div class = "temporizador">
+            
+                    <div class = "bloque">
+                        <div class = "dias">'. $contador["days"] .'</div>
+                        <p>DÍAS</p>
+                    </div>
+                    <div class = "bloque">
+                        <div class = "horas">'. $contador["hours"] .'</div>
+                        <p>HORAS</p>
+                    </div>
+                    <div class = "bloque">
+                        <div class = "minutos">'. $contador["mins"] .'</div>
+                        <p>MINUTOS</p>
+                    </div>
+                    <div class = "bloque">
+                        <div class = "segundos">'. $contador["segs"] .'</div>
+                        <p>SEGUNDOS</p>
+                    </div>
+                </div>';
+
+            $path = self::$ruta_imagenes;
+            $html .= <<< EOS
+                <div class = "informacion">
+                    <img id="ev" src="{$path}info.png">
+                    <p>Para actualizar el temporizador es necesario refrescar la página.</p>
+                </div>
+
+                <p>El evento ya ha comenzado!</p>
+            EOS;
+        }
         else{
-            $html .= '<p>El evento ya ha comenzado!</p>';
+
+            $html .= '<div class = "nombreEvento">
+                <p>'.$evento->getNombre().'</p>
+            </div>
+
+            <p>Has llegado tarde! El evento ya ha terminado!</p>';
         } 
         
         return $html;

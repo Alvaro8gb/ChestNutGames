@@ -25,7 +25,7 @@ class Evento{
     }
 
     public function getId(){
-        return $this->idEvento;
+        return $this->id;
     }
 
     public function getNombre(){

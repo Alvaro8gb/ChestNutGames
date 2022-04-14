@@ -274,7 +274,7 @@ body {
 }
 
 .informacion {
-    margin-left: 490px;
+    margin-left: 440px;
     margin-top: 20px;
     height: 20px;
     width: 550px;
@@ -287,7 +287,7 @@ body {
 }
 
 .informacion p {
-    margin-top: -18px;
+    margin-top: -25px;
     margin-left: 30px;
 }
 
@@ -330,7 +330,6 @@ img#ev{
 }
 
 .premio p {
-    margin-left: 25px;
     font-size: 17px;
     font-weight: bold;
 }
