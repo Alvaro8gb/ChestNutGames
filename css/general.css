@@ -89,9 +89,17 @@ ul#entregas{
 /* PR1.CSS */
 
 .memberdiv {
+    background-color: rgb(219, 208, 171);
+    padding:1%;
     float:left; 
     width: 43%; 
     margin: 2%
+}
+
+.memberlinks{
+    background-color: rgb(130, 160, 183);
+    padding:2%;
+
 }
 
 .imgdiv{
@@ -110,7 +118,15 @@ ul#entregas{
     height: 450px;
     display: block;
     margin:auto;
+    background-color: black;
+    padding:1%;
 }
+
+.back,#entregas{
+    background-color: rgb(167, 216, 216);
+    padding:1%;
+}
+
 
 /* Mensajes CSS */
 

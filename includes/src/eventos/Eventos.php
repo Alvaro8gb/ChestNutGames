@@ -54,9 +54,8 @@ class Eventos extends Lista {
     private function eventoEnviado($datos){
         return isset($datos["id"]);
     }
-
     protected function crearElem($fila){
-        return new Evento($fila["IdEvento"],$fila["nombre"],$fila["imagen"],$fila["descripcion"],$fila["fechaInicio"],$fila["fechaFinal"],$fila["idJuego"],$fila["premio"]);
+        return new Evento($fila["IdEvento"],$fila["nombre"],$fila["imagen"],$fila["descripcion"],$fila["fechaInicio"],$fila["fechaFinal"],$fila["IdJuego"],$fila["premio"]);
     }
 
     private static function contador($remainingTime){
@@ -82,16 +81,12 @@ class Eventos extends Lista {
         $evento = $this->getElement($id);
 
         $html = "";
-
-        // Epoch timestamp
-        /*
-        $remainingTimeToStart = $evento->getFechaInicio() - time();
-        $remainingTimeToFinish = $evento->getFechaFin() - time();
-        */
         
-        $remainingTimeToFinish = 2;
-        $remainingTimeToStart = 1;
+        $remainingTimeToStart = strtotime($evento->getFechaInicio()) - time();
+        $remainingTimeToFinish = strtotime($evento->getFechaFin()) - time();
 
+        //$remainingTime = $evento->getFechaInicio() - time();
+        
         if($remainingTimeToStart > 0) {
        
             $contador = self::contador($remainingTimeToStart);
@@ -134,7 +129,7 @@ class Eventos extends Lista {
                 </div>
 
                 <div class = "premio">
-                    <p>Premio: {$evento->getPremio()}$</p>
+                    <p>Premio: {$evento->getPremio()} $</p>
                 </div>
             EOS;
 

@@ -161,7 +161,7 @@ class Usuario{
         return $this->nombre;
     }
 
-    public function getRoles(){
+    public function getRol(){
         return $this->rol;
     }
 

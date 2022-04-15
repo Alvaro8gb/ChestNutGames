@@ -202,7 +202,7 @@ class Aplicacion{
     public function show_advert(){
         
         // Muestra publicidad con un 20% de probabilidad si el usuario no es admin o si no está logueado en la página
-        if(!$this->esAdmin || !$this->usuarioLogueado()) {
+        if(!$this->esAdmin() || !$this->usuarioLogueado()) {
             $prob = rand(0,10);
 
             if($prob < 2) 
@@ -216,7 +216,7 @@ class Aplicacion{
         $_SESSION['login'] = true;
         $_SESSION['nombre'] = $user->getNombreUsuario();
         $_SESSION['idUsuario'] = $user->getId();
-        $_SESSION['roles'] = $user->getRoles();
+        $_SESSION['rol'] = $user->getRol();
     }
 
     public function logout(){
@@ -225,7 +225,7 @@ class Aplicacion{
         unset($_SESSION['login']);
         unset($_SESSION['nombre']);
         unset($_SESSION['idUsuario']);
-        unset($_SESSION['roles']);
+        unset($_SESSION['rol']);
 
         session_destroy();
         session_start();
@@ -248,12 +248,12 @@ class Aplicacion{
 
     public function esAdmin(){
         $this->compruebaInstanciaInicializada();
-        return $this->usuarioLogueado() && (array_search(Usuario::ADMIN_ROLE, $_SESSION['roles']) !== false);
+        return $this->usuarioLogueado() && (Usuario::ADMIN_ROLE == $_SESSION['rol']);
     }
 
     public function tieneRol($rol){
         $this->compruebaInstanciaInicializada();
-        return $this->usuarioLogueado() && (array_search($rol, $_SESSION['roles']) !== false);
+        return $this->usuarioLogueado() && ($rol ==  $_SESSION['rol']);
     }
 
     public function paginaError($codigoRespuesta, $tituloPagina, $mensajeError, $explicacion = ''){
