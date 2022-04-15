@@ -84,6 +84,7 @@ img#ev{
     position: relative;
     margin: 5% auto;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .slider img {
@@ -225,14 +226,22 @@ input[id="4"]:checked~.pagination .pag-item[for="4"] {
 * {
     margin: 0px;
     padding: 0px;
-    box-sizing: border-box;
+    justify-content: center;
+}
+
+.nombreEvento{
+    display: flex;
+    margin-left:auto;
 }
 
 .nombreEvento p {
     font-size: 45px;
     font-weight: bold;
     font-family: Bangers,Verdana;
-    margin-left: 20px;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    display: flex;
 }
 
 body {
@@ -242,7 +251,6 @@ body {
 .temporizador {
     display: flex;
     justify-content: center;
-    margin-top: -57px;
 }
 
 .temporizador .bloque {
@@ -352,4 +360,23 @@ img#ev{
     color: purple;
     max-width: 100%;
     max-height: 100%;
+    position: relative;
+    text-transform: uppercase;
+    outline: 0;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    font-size: 14px;
+    transition: all ease;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    overflow:hidden;
+    border-radius: 30px;
+    font-family: Bangers;
 }
+
+.inscripcion_button:hover{
+    color: orange;
+    background:purple;
+  }
