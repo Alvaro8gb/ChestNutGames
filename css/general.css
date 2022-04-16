@@ -93,12 +93,14 @@ ul#entregas{
     padding:1%;
     float:left; 
     width: 43%; 
-    margin: 2%
+    margin: 2%;
+    border-radius: 30px;
 }
 
 .memberlinks{
     background-color: rgb(130, 160, 183);
     padding:2%;
+    border-radius: 30px;
 
 }
 
@@ -125,6 +127,7 @@ ul#entregas{
 .back,#entregas{
     background-color: rgb(167, 216, 216);
     padding:1%;
+    border-radius: 30px;
 }
 
 
