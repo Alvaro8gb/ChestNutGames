@@ -78,8 +78,7 @@ class Aplicacion{
 	 * 
 	 * @param array $bdDatosConexion datos de configuración de la BD
 	 */
-	public function init($bdDatosConexion, $rutaApp = '/', $dirInstalacion = __DIR__)
-    {
+	public function init($bdDatosConexion, $rutaApp = '/', $dirInstalacion = __DIR__){
         if (!$this->inicializada) {
             $this->bdDatosConexion = $bdDatosConexion;
 
@@ -202,7 +201,7 @@ class Aplicacion{
     public function show_advert(){
         
         // Muestra publicidad con un 20% de probabilidad si el usuario no es admin o si no está logueado en la página
-        if(!$this->esAdmin() || !$this->usuarioLogueado()) {
+        if( !$this->usuarioLogueado() || !$this->esAdmin() ) {
             $prob = rand(0,10);
 
             if($prob < 2) 

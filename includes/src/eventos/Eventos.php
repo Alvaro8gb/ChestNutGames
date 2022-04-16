@@ -3,7 +3,10 @@
 namespace es\chestnut\eventos;
 use es\chestnut\Aplicacion;
 use es\chestnut\eventos\BuscadorEventos;
+use es\chestnut\eventos\Temporizador;
+
 use es\chestnut\Lista;
+use Temporizador as GlobalTemporizador;
 
 class Eventos extends Lista {
 
@@ -58,65 +61,24 @@ class Eventos extends Lista {
         return new Evento($fila["IdEvento"],$fila["nombre"],$fila["imagen"],$fila["descripcion"],$fila["fechaInicio"],$fila["fechaFinal"],$fila["IdJuego"],$fila["premio"]);
     }
 
-    private static function contador($remainingTime){
-
-        $remainingDays = floor($remainingTime / (3600 * 24));
-        $remainingTime %= (3600 * 24);
-
-        $remainingHours = floor($remainingTime / (60 * 60));
-        $remainingTime %= (60 * 60);
-
-        $remainingMinutes = floor($remainingTime / 60);
-        $remainingTime %= 60;
-
-        $remainingSeconds = substr('0' . $remainingTime, -2);
-
-        return array("days"=>$remainingDays,"hours" => $remainingHours , "mins"=>$remainingMinutes, "segs"=>$remainingSeconds);
-
-    }
-
     private function mostrarEvento($datos){
 
         $id = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
         $evento = $this->getElement($id);
-
+        $path = self::$ruta_imagenes;
         $html = "";
         
-        $remainingTimeToStart = strtotime($evento->getFechaInicio()) - time();
-        $remainingTimeToFinish = strtotime($evento->getFechaFin()) - time();
-
-        //$remainingTime = $evento->getFechaInicio() - time();
+        $temporizadorInicio = new Temporizador($evento->getFechaInicio());
+        $temporizadorFin = new Temporizador($evento->getFechaFin());
         
-        if($remainingTimeToStart > 0) {
+        if($temporizadorInicio->isAlive()) {
        
-            $contador = self::contador($remainingTimeToStart);
-
             $html .= 
                 '<div class = "nombreEvento">
                     <p>'.$evento->getNombre().'</p>
-                </div>
-                
-                <div class = "temporizador">
-            
-                    <div class = "bloque">
-                        <div class = "dias">'. $contador["days"] .'</div>
-                        <p>DÍAS</p>
-                    </div>
-                    <div class = "bloque">
-                        <div class = "horas">'. $contador["hours"] .'</div>
-                        <p>HORAS</p>
-                    </div>
-                    <div class = "bloque">
-                        <div class = "minutos">'. $contador["mins"] .'</div>
-                        <p>MINUTOS</p>
-                    </div>
-                    <div class = "bloque">
-                        <div class = "segundos">'. $contador["segs"] .'</div>
-                        <p>SEGUNDOS</p>
-                    </div>
-                </div>';
+                 </div>';
 
-            $path = self::$ruta_imagenes;
+            $html .= $temporizadorInicio->mostrarContador();
 
             $html .= <<< EOS
                 <div class = "informacion">
@@ -133,12 +95,12 @@ class Eventos extends Lista {
                 </div>
             EOS;
 
-            // No se está cogiendo el id del Usuario
             $app = Aplicacion::getInstancia();
             $idUsuario = $app->idUsuario();
 
-            $idEvento = $evento->getId();
+            echo "ya funca era el nombre de la columna en login".$idUsuario;
 
+            $idEvento = $evento->getId();
             $conn = $app->getConexionBd();
             $prepared = $conn->prepare("SELECT * FROM inscripcioneseventos WHERE IdEvento = '$idEvento' AND IdUsuario = '$idUsuario'");
             $prepared->execute();
@@ -157,7 +119,7 @@ class Eventos extends Lista {
             if(isset($_POST['inscribir'])){
                 if($count_results <= 0){
                     // Insertar en la base de datos
-                    $query=sprintf("INSERT INTO inscripcioneseventos(IdUsuario, IdEvento) VALUES($idUsuario, $idEvento)");
+                    $query = sprintf("INSERT INTO inscripcioneseventos(IdUsuario, IdEvento) VALUES($idUsuario, $idEvento)");
                     $html .= '<p>La insripción a este evento se ha realizado con éxito. Muchas gracias.</p>';
                 }
                 else {
@@ -165,36 +127,15 @@ class Eventos extends Lista {
                 }
             }
         }
-        else if ($remainingTimeToFinish > 0) {
-
-            $contador = self::contador($remainingTimeToFinish);
+        else if ($temporizadorFin->isAlive()) {
 
             $html .= 
                 '<div class = "nombreEvento">
                     <p>'.$evento->getNombre().'</p>
-                </div>
-                
-                <div class = "temporizador">
-            
-                    <div class = "bloque">
-                        <div class = "dias">'. $contador["days"] .'</div>
-                        <p>DÍAS</p>
-                    </div>
-                    <div class = "bloque">
-                        <div class = "horas">'. $contador["hours"] .'</div>
-                        <p>HORAS</p>
-                    </div>
-                    <div class = "bloque">
-                        <div class = "minutos">'. $contador["mins"] .'</div>
-                        <p>MINUTOS</p>
-                    </div>
-                    <div class = "bloque">
-                        <div class = "segundos">'. $contador["segs"] .'</div>
-                        <p>SEGUNDOS</p>
-                    </div>
                 </div>';
 
-            $path = self::$ruta_imagenes;
+            $html .= $temporizadorFin->mostrarContador();
+
             $html .= <<< EOS
                 <div class = "informacion">
                     <img id="ev" src="{$path}info.png">
