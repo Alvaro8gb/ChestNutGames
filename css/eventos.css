@@ -220,7 +220,6 @@ input[id="4"]:checked~.pagination .pag-item[for="4"] {
     }
 }
 
-
 /* Procesar Evento */
 
 * {
@@ -251,6 +250,7 @@ body {
 .temporizador {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .temporizador .bloque {

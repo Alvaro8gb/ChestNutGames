@@ -98,9 +98,8 @@ class Eventos extends Lista {
             $app = Aplicacion::getInstancia();
             $idUsuario = $app->idUsuario();
 
-            echo "ya funca era el nombre de la columna en login".$idUsuario;
-
             $idEvento = $evento->getId();
+
             $conn = $app->getConexionBd();
             $prepared = $conn->prepare("SELECT * FROM inscripcioneseventos WHERE IdEvento = '$idEvento' AND IdUsuario = '$idUsuario'");
             $prepared->execute();
@@ -119,7 +118,8 @@ class Eventos extends Lista {
             if(isset($_POST['inscribir'])){
                 if($count_results <= 0){
                     // Insertar en la base de datos
-                    $query = sprintf("INSERT INTO inscripcioneseventos(IdUsuario, IdEvento) VALUES($idUsuario, $idEvento)");
+                    $query = $conn->prepare("INSERT INTO inscripcioneseventos (IdUsuario, IdEvento) VALUES('$idUsuario', '$idEvento')");
+                    $query->execute();
                     $html .= '<p>La insripción a este evento se ha realizado con éxito. Muchas gracias.</p>';
                 }
                 else {

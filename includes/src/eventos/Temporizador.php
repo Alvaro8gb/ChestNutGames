@@ -16,6 +16,7 @@ class Temporizador {
     }
 
     private function generate(){
+
         $remainingTime = $this->remainingTime;
         
         $remainingDays = floor( $remainingTime / (3600 * 24));
@@ -36,28 +37,26 @@ class Temporizador {
 
         $time = $this->generate();
         $html = <<<EOS
-        <div class = "temporizador">
-            
-                    <div class = "bloque">
-                        <div class = "dias"> {$time["days"]}</div>
-                        <p>DÍAS</p>
-                    </div>
-                    <div class = "bloque">
-                        <div class = "horas">{$time["hours"]} </div>
-                        <p>HORAS</p>
-                    </div>
-                    <div class = "bloque">
-                        <div class = "minutos"> {$time["mins"]} </div>
-                        <p>MINUTOS</p>
-                    </div>
-                    <div class = "bloque">
-                        <div class = "segundos"> {$time["segs"]} </div>
-                        <p>SEGUNDOS</p>
-                    </div>
+            <div class = "temporizador">
+                <div class = "bloque">
+                    <div class = "dias"> {$time["days"]}</div>
+                    <p>DÍAS</p>
                 </div>
+                <div class = "bloque">
+                    <div class = "horas">{$time["hours"]} </div>
+                    <p>HORAS</p>
+                </div>
+                <div class = "bloque">
+                    <div class = "minutos"> {$time["mins"]} </div>
+                    <p>MINUTOS</p>
+                </div>
+                <div class = "bloque">
+                    <div class = "segundos"> {$time["segs"]} </div>
+                    <p>SEGUNDOS</p>
+                </div>
+            </div>
         EOS;
 
         return $html;
-
     }
 }
