@@ -204,7 +204,7 @@ input[id="4"]:checked~.pagination .pag-item[for="4"] {
 
 @keyframes autoplay {
     20% {
-        transform: translate3d(calc(-100% * 0), 0, 0);
+        transform: translate3d(0, 0, 0);
     }
     40% {
         transform: translate3d(calc(-100% * 1), 0, 0);
@@ -225,21 +225,17 @@ input[id="4"]:checked~.pagination .pag-item[for="4"] {
 * {
     margin: 0px;
     padding: 0px;
-    justify-content: center;
 }
 
 .nombreEvento{
     display: flex;
-    margin-left:auto;
+    justify-content: center;
 }
 
 .nombreEvento p {
     font-size: 45px;
     font-weight: bold;
     font-family: Bangers,Verdana;
-    justify-content: center;
-    align-items: center;
-    margin:auto;
     display: flex;
 }
 
