@@ -1,22 +1,22 @@
 <?php
 
 namespace es\chestnut\eventos;
-use es\chestnut\Aplicacion;
 use es\chestnut\eventos\BuscadorEventos;
+use es\chestnut\Aplicacion;
 use es\chestnut\eventos\Temporizador;
 
 use es\chestnut\Lista;
-use Temporizador as GlobalTemporizador;
 
 class Eventos extends Lista {
 
-    private static $ruta_imagenes;
     private const TABLE= "eventos";
 
     public function __construct(){
         parent::__construct(self::TABLE);
-        $app = Aplicacion::getInstancia();
-        self::$ruta_imagenes = $app->resuelve(RUTA_IMGS.'eventos/');
+    }
+
+    protected function crearElem($fila){
+        return new Evento($fila["IdEvento"],$fila["nombre"],$fila["imagen"],$fila["descripcion"],$fila["fechaInicio"],$fila["fechaFinal"],$fila["IdJuego"],$fila["premio"]);
     }
 
     public function gestiona(){
@@ -57,15 +57,11 @@ class Eventos extends Lista {
     private function eventoEnviado($datos){
         return isset($datos["id"]);
     }
-    protected function crearElem($fila){
-        return new Evento($fila["IdEvento"],$fila["nombre"],$fila["imagen"],$fila["descripcion"],$fila["fechaInicio"],$fila["fechaFinal"],$fila["IdJuego"],$fila["premio"]);
-    }
 
     private function mostrarEvento($datos){
 
         $id = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
         $evento = $this->getElement($id);
-        $path = self::$ruta_imagenes;
         $html = "";
         
         $temporizadorInicio = new Temporizador($evento->getFechaInicio());
@@ -81,11 +77,6 @@ class Eventos extends Lista {
             $html .= $temporizadorInicio->mostrarContador();
 
             $html .= <<< EOS
-                <div class = "informacion">
-                    <img id="ev" src="{$path}info.png">
-                    <p>Para actualizar el temporizador es necesario refrescar la página.</p>
-                </div>
-
                 <div class = "descripcion">
                     <p>{$evento->getDesc()}</p>
                 </div>
@@ -136,14 +127,7 @@ class Eventos extends Lista {
 
             $html .= $temporizadorFin->mostrarContador();
 
-            $html .= <<< EOS
-                <div class = "informacion">
-                    <img id="ev" src="{$path}info.png">
-                    <p>Para actualizar el temporizador es necesario refrescar la página.</p>
-                </div>
-
-                <p>El evento ya ha comenzado!</p>
-            EOS;
+            $html .=' <p>El evento ya ha comenzado!</p>';
         }
         else{
 

@@ -17,16 +17,18 @@ for($i = 0; $i<$juegos->getNumElements();$i++){
   $nombre_juegos[$i] = $juegos->getElement($i)->getNombre();
 }
  
+////Ranking por jugadores
+
 $contenidoPrincipal = <<<EOS
 <div>
    <h1 class = "move"> 
-   <span>RANKING GLOBAL</span>
-   <div class="liquid"></div>
+      <span>RANKING GLOBAL</span>
+      <div class="liquid"></div>
    </h1>
     <table class ="out">
       <tr>
-      <th>JUGADOR</th>
-      <th>PUNTUACION</th>
+          <th>JUGADOR</th>
+          <th>PUNTUACION</th>
       </tr>
 EOS;
 $conn = $app->getConexionBd();
@@ -45,18 +47,21 @@ while($fila = @mysqli_fetch_array($consulta)){
 }
 
 $consulta->free();
+
+//Ranking por juegos
+
 $contenidoPrincipal .= <<<EOS
-</table>
-</div>
-<h1 class = "move"> 
-   <span>RANKING POR JUEGO</span>
-   <div class="liquid"></div>
-   </h1>  
-<div class="container">
-  <ul class="slider">
+  </table>
+  </div>
+  <h1 class = "move"> 
+    <span>RANKING POR JUEGO</span>
+    <div class="liquid"></div>
+    </h1>  
+  <div class="container">
+    <ul class="slider">
 EOS;
 
-    foreach($nombre_juegos as $id_juego => $nombre){
+foreach($nombre_juegos as $id_juego => $nombre){
 
       $sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking WHERE IdJuego = '%s' ORDER BY Puntuacion desc", $conn->real_escape_string($id_juego));
       $consulta = @mysqli_query($conn, $sql);
@@ -64,7 +69,7 @@ EOS;
       $contenidoPrincipal .= <<<EOS
       <li id= {$id_juego}>
         <table class="has">
-        <tr>
+        <tr>     
           <th id ="nombreJuegoRanking" colspan = "2">{$nombre}</th>
         <tr>
           <th>JUGADOR</th>
@@ -101,15 +106,15 @@ $contenidoPrincipal .= <<<EOS
    <ul class="menu">
 EOS;
 
-  foreach($nombre_juegos as $id_juego => $nombre){
-      $concat = "#";
-      $concat.= $id_juego;
-      $contenidoPrincipal .= <<<EOS
-          <li>
-          <a href= {$concat} onclick= "tabla({$id_juego})"> $nombre</a>
-          </li>
-        EOS;
-    }
+foreach($nombre_juegos as $id_juego => $nombre){
+    $concat = "#";
+    $concat.= $id_juego;
+    $contenidoPrincipal .= <<<EOS
+        <li>
+        <a href= {$concat} onclick= "tabla({$id_juego})"> $nombre</a>
+        </li>
+      EOS;
+}
   
 $contenidoPrincipal .= <<<EOS
    </ul>

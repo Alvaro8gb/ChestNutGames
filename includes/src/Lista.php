@@ -1,6 +1,7 @@
 <?php
 
 namespace es\chestnut;
+use Exception;
 
 abstract class Lista{
 
@@ -14,8 +15,12 @@ abstract class Lista{
         return count($this->lista);
     }
     public function getElement($id){
-        if ($id < 0 || $id >= count($this->lista) ){
-            throw new \Exception("Error accediendo a lista ");
+
+        if (!is_numeric($id)){
+            throw new Exception("Error accediendo a lista, bad arg");
+        }
+        else if ($id < 0 || $id >= count($this->lista) ){
+            throw new Exception("Error accediendo a lista fuera de limites ");
         }
         return $this->lista[$id];
     }
@@ -27,7 +32,7 @@ abstract class Lista{
         return null;
 
     }
-    protected function cargarLista($table){
+    private function cargarLista($table){
 
         $app = Aplicacion::getInstancia();
         $conn = $app->getConexionBd();

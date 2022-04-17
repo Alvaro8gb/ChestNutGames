@@ -2,13 +2,18 @@
 
 namespace es\chestnut\eventos;
 
+use es\chestnut\Aplicacion;
+
+
 class Temporizador {
 
     private $remainingTime;
+    private static $ruta_imagenes;
 
     public function __construct($fecha){
         $this->remainingTime = strtotime($fecha) - time();
-        
+        $app = Aplicacion::getInstancia();
+        self::$ruta_imagenes = $app->resuelve(RUTA_IMGS.'eventos/');
     }
 
     public function isAlive(){
@@ -35,6 +40,8 @@ class Temporizador {
     }
     public function mostrarContador(){
 
+        $path = self::$ruta_imagenes;
+
         $time = $this->generate();
         $html = <<<EOS
             <div class = "temporizador">
@@ -54,6 +61,11 @@ class Temporizador {
                     <div class = "segundos"> {$time["segs"]} </div>
                     <p>SEGUNDOS</p>
                 </div>
+            </div>
+
+            <div class = "informacion">
+                    <img id="ev" src="{$path}info.png">
+                    <p>Para actualizar el temporizador es necesario refrescar la página.</p>
             </div>
         EOS;
 

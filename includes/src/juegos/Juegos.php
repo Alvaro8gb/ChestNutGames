@@ -3,7 +3,6 @@
 namespace es\chestnut\juegos;
 use es\chestnut\Aplicacion;
 use es\chestnut\Lista;
-use Exception;
 
 class Juegos extends Lista{
     private static $ruta_imagenes;
