@@ -63,7 +63,7 @@ class Usuario{
         }
         else if($correo != null){
 
-            $query = sprintf("SELECT * FROM Usuarios U WHERE U.correo = '%s'", $conn->real_escape_string($correo));
+            $query = sprintf("SELECT * FROM usuarios U WHERE U.correo = '%s'", $conn->real_escape_string($correo));
             $rs = $conn->query($query);
 
             if ($rs &&  $rs->num_rows == 1) {
@@ -84,7 +84,7 @@ class Usuario{
     public static function buscaPorId($idUsuario)
     {
         $conn = Aplicacion::getInstancia()->getConexionBd();
-        $query = sprintf("SELECT * FROM Usuarios WHERE id=%d", $idUsuario);
+        $query = sprintf("SELECT * FROM usuarios WHERE IdUsuario=%d", $idUsuario);
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
@@ -133,7 +133,7 @@ class Usuario{
     private static function actualiza($usuario){
         $result = false;
         $conn = Aplicacion::getInstancia()->getConexionBd();
-        $query=sprintf("UPDATE Usuarios U SET nombreUsuario = '%s', nombre='%s', password='%s', correo='%s' WHERE U.id=%i"
+        $query=sprintf("UPDATE usuarios U SET nombreUsuario = '%s', nombre='%s', password='%s', correo='%s' WHERE U.IdUsuario=%i"
             , $conn->real_escape_string($usuario->nombreUsuario)
             , $conn->real_escape_string($usuario->nombre)
             , $conn->real_escape_string($usuario->password)
@@ -158,7 +158,7 @@ class Usuario{
         } 
 
         $conn = Aplicacion::getInstancia()->getConexionBd();
-        $query = sprintf("DELETE FROM Usuarios U WHERE U.id = %d", $idUsuario);
+        $query = sprintf("DELETE FROM usuarios U WHERE U.IdUsuario = %d", $idUsuario);
         if ( ! $conn->query($query) ) {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
             return false;

@@ -6,7 +6,7 @@ use es\chestnut\Lista;
 
 class Juegos extends Lista{
     private static $ruta_imagenes;
-    private const TABLE ="Juegos";
+    private const TABLE ="juegos";
 
     public function __construct(){
         parent::__construct(self::TABLE);
