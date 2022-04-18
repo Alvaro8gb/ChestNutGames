@@ -5,5 +5,5 @@ Las funcionalidades de nuestra aplicación son:
 	- Gestión de Ranking		- Implementada
 	- Gestión de Publicidad
 	- Gestión de Tienda
-	- Gestión de Eventos		- En proceso
+	- Gestión de Eventos		- Implementada
 

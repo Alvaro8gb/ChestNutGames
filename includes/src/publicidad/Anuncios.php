@@ -40,7 +40,7 @@ class Anuncio {
         }
 
         // Creamos el anuncio
-        $advert = new Anuncio($fila["IdPublicidad"],$fila["nombreEmpresa"],$fila["imagen"],$fila["descripcion"],$fila["enlace"]);;
+        $advert = new Anuncio($fila["IdPublicidad"],$fila["nombreEmpresa"],$fila["imagen"],$fila["descripcion"],$fila["enlace"]);
         $result->free();
 
         // Devolvemos el objeto anuncio

@@ -1,6 +1,7 @@
 <?php 
 
 use es\chestnut\publicidad\Anuncio;
+use es\chestnut\Aplicacion;
 
 $contenido = '';
 $advert = create_advert();
