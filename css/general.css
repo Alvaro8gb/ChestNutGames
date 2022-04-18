@@ -2,7 +2,7 @@ body {
 
     vertical-align: middle;
     color :black; 
-    font-family: "Bangers,Verdana";
+    font-family: "Bangers","Verdana";
 
     /* Gracias a esto la barra ocupa toda la pantalla, para poner margenes en lo demas lo indicamos en 'main' */
     margin:0;
