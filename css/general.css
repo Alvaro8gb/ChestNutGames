@@ -2,7 +2,7 @@ body {
 
     vertical-align: middle;
     color :black; 
-    font-family: Bangers,Verdana;
+    font-family: "Bangers,Verdana";
 
     /* Gracias a esto la barra ocupa toda la pantalla, para poner margenes en lo demas lo indicamos en 'main' */
     margin:0;
@@ -19,14 +19,13 @@ body {
      height: 100vh;
 }
 @font-face {
-    font-family: Bangers;
+    font-family: "Bangers";
     src: url(fonts/Bangers-Regular.ttf);
     font-weight: bold;
 }
 @font-face {
-    font-family: Carter One;
+    font-family: "Carter One";
     src: url(fonts/CarterOne-Regular.ttf);
-    font-weight: regular;
 }
 
 header{
@@ -39,7 +38,7 @@ main{
 }
 p { 
     color:black;
-    font-family:Carter One;
+    font-family:"Carter One";
     text-align: justify; 
 }
 a , a:visited {

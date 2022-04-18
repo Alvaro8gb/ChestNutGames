@@ -19,7 +19,7 @@ $mensajes = mensajesPeticionAnterior();
 		<link rel="icon" type="image/png" href="<?= $params['app']->resuelve(RUTA_IMGS.'logo/Favicon.png') ?>" />
 	
 		<!-- Link to js transition -->
-		<script type="text/javascript" src=<?= $params['app']->resuelve(RUTA_JS.'popup_transition.js')?>></script> 
+		<script src=<?= $params['app']->resuelve(RUTA_JS.'popup_transition.js')?>></script> 
 	
 	</head>
 
@@ -39,11 +39,8 @@ $mensajes = mensajesPeticionAnterior();
 			</header>
 
 			<main>
-				<article>
 					<?= $mensajes ?>
 					<?= $params['contenidoPrincipal'] ?>
-
-				</article>
 			</main>
 
 			<footer>

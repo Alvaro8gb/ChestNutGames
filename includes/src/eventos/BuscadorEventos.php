@@ -33,7 +33,7 @@ class BuscadorEventos{
                 <img id="ev" src="{$rutaimg}buscar.jpg" alt="buscar">
             </div>
 
-            <form action="" method="get">
+            <form action="null" method="get">
                 <div class = "text_buscar">
                     <input class="evi" type ="text" name ="evento" value ="">
                 </div>

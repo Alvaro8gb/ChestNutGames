@@ -21,10 +21,10 @@ for($i = 0; $i<$juegos->getNumElements();$i++){
 
 $contenidoPrincipal = <<<EOS
 <div>
-   <h1 class = "move"> 
+   <div class = "move"> 
       <span>RANKING GLOBAL</span>
       <div class="liquid"></div>
-   </h1>
+   </div>
     <table class ="out">
       <tr>
           <th>JUGADOR</th>
@@ -53,33 +53,33 @@ $consulta->free();
 $contenidoPrincipal .= <<<EOS
   </table>
   </div>
-  <h1 class = "move"> 
+  <div class = "move"> 
     <span>RANKING POR JUEGO</span>
     <div class="liquid"></div>
-    </h1>  
+    </div>  
   <div class="container">
     <ul class="slider">
 EOS;
 
 foreach($nombre_juegos as $id_juego => $nombre){
 
-      $sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking WHERE IdJuego = '%s' ORDER BY Puntuacion desc", $conn->real_escape_string($id_juego));
-      $consulta = @mysqli_query($conn, $sql);
-
       $contenidoPrincipal .= <<<EOS
       <li id= {$id_juego}>
         <table class="has">
         <tr>     
-          <th id ="nombreJuegoRanking" colspan = "2">{$nombre}</th>
+          <th colspan = "2">{$nombre}</th>
         <tr>
           <th>JUGADOR</th>
           <th>PUNTUACION</th>
           </tr>
       EOS;
+
+      $sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking WHERE IdJuego = '%s' ORDER BY Puntuacion desc  LIMIT 10", $conn->real_escape_string($id_juego));
+      $consulta = @mysqli_query($conn, $sql);
      
       while($fila = @mysqli_fetch_array($consulta)){
 
-          $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE IdUsuario = '%s' LIMIT %d", $conn->real_escape_string($fila["IdJugador"]),$maxNumJugadores);
+          $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE IdUsuario = '%s'", $conn->real_escape_string($fila["IdJugador"]));
           $consulta2 = @mysqli_query($conn, $sql2);
           $fila2 = @mysqli_fetch_array($consulta2);
           $contenidoPrincipal .= <<<EOS
@@ -90,6 +90,7 @@ foreach($nombre_juegos as $id_juego => $nombre){
           EOS;
       
       }
+
       $consulta2->free();
       $contenidoPrincipal .= <<<EOS
         </table>

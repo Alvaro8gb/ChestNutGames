@@ -80,7 +80,9 @@ ul.slider li:target {
 #nombreJuegoRanking{
   text-align: center;
 }
-h1.move{
+.move{
+  text-align: center; 
+  font-size: 35px;
   position: relative;
   padding: 10px 50px;
   display: block;
@@ -89,10 +91,10 @@ h1.move{
   overflow: hidden;
   border-radius: 30px;
   border: none;
-  margin-left: auto;
+  margin:1%;
  }
  
- h1 span {
+ .move span {
   position: relative;
   color: white;
   font-family:Bangers;
@@ -100,7 +102,7 @@ h1.move{
   z-index: 1;
  }
  
- h1 .liquid {
+ .liquid {
   position: absolute;
   top: -80px;
   left: 0;
@@ -111,7 +113,7 @@ h1.move{
   transition: .5s;
  }
  
- h1 .liquid::after, h1 .liquid::before {
+ .liquid::after, .liquid::before {
   content: '';
   width: 200%;
   height: 200%;
@@ -122,13 +124,13 @@ h1.move{
   background: white;
  }
  
- h1 .liquid::before {
+ .liquid::before {
   border-radius: 45%;
   background: rgba(20, 20, 20, 1);
   animation: animate 10s linear infinite;
  }
  
- h1 .liquid::after {
+  .liquid::after {
   border-radius: 40%;
   background: rgba(20, 20, 20, .5);
   animation: animate 20s linear infinite;

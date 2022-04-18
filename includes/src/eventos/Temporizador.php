@@ -64,7 +64,7 @@ class Temporizador {
             </div>
 
             <div class = "informacion">
-                    <img id="ev" src="{$path}info.png">
+                    <img id="ev" alt="info" src="{$path}info.png">
                     <p>Para actualizar el temporizador es necesario refrescar la página.</p>
             </div>
         EOS;
