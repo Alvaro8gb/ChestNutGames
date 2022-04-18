@@ -1,7 +1,5 @@
 <?php
 
-use es\chestnut\Aplicacion;
-
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
@@ -14,7 +12,8 @@ $juegos = new \es\chestnut\juegos\Juegos();
 $nombre_juegos = array();
 
 for($i = 0; $i<$juegos->getNumElements();$i++){
-  $nombre_juegos[$i] = $juegos->getElement($i)->getNombre();
+  $juego = $juegos->getElement($i);
+  $nombre_juegos[$juego->getId()] = $juego->getNombre();
 }
  
 ////Ranking por jugadores
@@ -56,7 +55,7 @@ $contenidoPrincipal .= <<<EOS
   <div class = "move"> 
     <span>RANKING POR JUEGO</span>
     <div class="liquid"></div>
-    </div>  
+  </div>  
   <div class="container">
     <ul class="slider">
 EOS;
@@ -71,15 +70,18 @@ foreach($nombre_juegos as $id_juego => $nombre){
         <tr>
           <th>JUGADOR</th>
           <th>PUNTUACION</th>
-          </tr>
+        </tr>
       EOS;
 
-      $sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking WHERE IdJuego = '%s' ORDER BY Puntuacion desc  LIMIT 10", $conn->real_escape_string($id_juego));
+      $consulta = null;
+
+      $sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking WHERE IdJuego = '%s' ORDER BY Puntuacion desc LIMIT 10", $conn->real_escape_string($id_juego));
       $consulta = @mysqli_query($conn, $sql);
-     
+      $fila = "";
+      
       while($fila = @mysqli_fetch_array($consulta)){
 
-          $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE IdUsuario = '%s'", $conn->real_escape_string($fila["IdJugador"]));
+          $sql2 = sprintf("SELECT nombreUsuario FROM usuarios WHERE IdUsuario = '%s'", $conn->real_escape_string($fila["IdJugador"]));
           $consulta2 = @mysqli_query($conn, $sql2);
           $fila2 = @mysqli_fetch_array($consulta2);
           $contenidoPrincipal .= <<<EOS
@@ -88,15 +90,14 @@ foreach($nombre_juegos as $id_juego => $nombre){
               <td>{$fila["Puntuacion"]}</td>
               </tr>
           EOS;
-      
+
+          $consulta2->free();   
       }
 
-      $consulta2->free();
+      $consulta->free();
+
       $contenidoPrincipal .= <<<EOS
         </table>
-      </li>
-      EOS;
-      $contenidoPrincipal .= <<<EOS
       </li>
       EOS;
 
@@ -124,3 +125,5 @@ EOS;
 
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal,'css'=> $css];
 $app->generaVista('/plantillas/plantilla.php', $params);
+
+
