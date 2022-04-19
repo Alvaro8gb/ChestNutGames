@@ -95,18 +95,16 @@ class FormularioRegistro extends Formulario{
         }
 
         if (count($this->errores) === 0) {
-            $usuario = Usuario::buscaUsuario($nombreUsuario, $correoUsuario);
 	
-            if ($usuario) {
+            if ( Usuario::buscaUsuario($nombreUsuario, "nombreUsuario")) {
                 $this->errores[] = "El usuario ya existe";
-                if($correoUsuario == $usuario->getCorreo()){
-                    $this->errores['correo'] = 'El correo ya existe';
-                }
+                $this->errores['nombreUsuario'] = 'El nombre de usuario ya existe';
 
-                if($nombreUsuario == $usuario->getNombre()){
-                    $this->errores['nombreUsuario'] = 'El nombre de usuario ya existe';
-                }
-            } else {
+            }else if( Usuario::buscaUsuario($correoUsuario, "correo")){
+                $this->errores[] = "El usuario ya existe";
+                $this->errores['correo'] = 'El correo ya existe';
+            }
+            else {
                 $usuario = Usuario::crea($nombreUsuario, $nombre, $password, $correoUsuario,Usuario::USER_ROLE);
                 $app = Aplicacion::getInstancia();
                 $app->login($usuario);

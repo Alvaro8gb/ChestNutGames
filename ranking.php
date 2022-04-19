@@ -3,6 +3,8 @@
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
+use \es\chestnut\usuarios\Usuario;
+
 $tituloPagina = 'Ranking';
 $css = link_css($app->resuelve(RUTA_CSS.'ranking.css'));
 
@@ -80,18 +82,14 @@ foreach($nombre_juegos as $id_juego => $nombre){
       $fila = "";
       
       while($fila = @mysqli_fetch_array($consulta)){
-
-          $sql2 = sprintf("SELECT nombreUsuario FROM usuarios WHERE IdUsuario = '%s'", $conn->real_escape_string($fila["IdJugador"]));
-          $consulta2 = @mysqli_query($conn, $sql2);
-          $fila2 = @mysqli_fetch_array($consulta2);
+          $user = Usuario::buscaUsuario($fila["IdJugador"],"IdUsuario");
+          
           $contenidoPrincipal .= <<<EOS
               <tr>
-              <td>{$fila2["nombreUsuario"]}</td>
+              <td>{$user->getNombre()}</td>
               <td>{$fila["Puntuacion"]}</td>
               </tr>
           EOS;
-
-          $consulta2->free();   
       }
 
       $consulta->free();

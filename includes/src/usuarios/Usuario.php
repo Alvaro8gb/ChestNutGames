@@ -30,7 +30,14 @@ class Usuario{
     }
 
     public static function login($nombreUsuario, $correo, $password){
-        $usuario = self::buscaUsuario($nombreUsuario, $correo);
+        if ($nombreUsuario != null){
+            $usuario = self::buscaUsuario($nombreUsuario, "nombreUsuario");
+
+        }
+        else{
+            $usuario = self::buscaUsuario($correo, "correo");
+        }
+
         if ($usuario && $usuario->compruebaPassword($password)) {
             return $usuario;
         }
@@ -42,66 +49,29 @@ class Usuario{
 
     }
 
-    public static function buscaUsuario($nombreUsuario, $correo){
+    public static function buscaUsuario($val, $campo){
+
         $conn = Aplicacion::getInstancia()->getConexionBd();
-        $user = null;
+        $user = false;
 
-        if ($nombreUsuario != null){
-
-            $query = sprintf("SELECT * FROM Usuarios U WHERE U.nombreUsuario = '%s'", $conn->real_escape_string($nombreUsuario));
-            $rs = $conn->query($query);
-
-            if ($rs &&  $rs->num_rows == 1) {
-        
-                $fila = $rs->fetch_assoc();
-                $user = self::createUser($fila);
-                
-            }else{
-                error_log("Error BD ({$conn->errno}): {$conn->error}");
-            }
-
-        }
-        else if($correo != null){
-
-            $query = sprintf("SELECT * FROM usuarios U WHERE U.correo = '%s'", $conn->real_escape_string($correo));
-            $rs = $conn->query($query);
-
-            if ($rs &&  $rs->num_rows == 1) {
-        
-                $fila = $rs->fetch_assoc();
-                $user = self::createUser($fila);
-                
-            }else{
-                error_log("Error BD ({$conn->errno}): {$conn->error}");
-            }
-        }else{
-            throw new Exception("The user or mail cant not be null ");
-        }
-        
-        return $user;
-    }
-
-    public static function buscaPorId($idUsuario)
-    {
-        $conn = Aplicacion::getInstancia()->getConexionBd();
-        $query = sprintf("SELECT * FROM usuarios WHERE IdUsuario=%d", $idUsuario);
+        $query = sprintf("SELECT * FROM Usuarios U WHERE U.%s = '%s'",$campo, $conn->real_escape_string($val));
         $rs = $conn->query($query);
-        $result = false;
+
         if ($rs) {
-            $fila = $rs->fetch_assoc();
-            if($fila){
-                $result = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['correo'], $fila['id'], $fila['rol']);
-            }   
-            $rs->free();
-        } else {
+            if($rs->num_rows == 1){
+                $fila = $rs->fetch_assoc();
+                $user = self::createUser($fila);
+            }
+        
+        }else{
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
-        return $result;
+
+        return $user;
+
     }
 
-
-    private static function hashPassword($password)
-    {
+    private static function hashPassword($password){
         return password_hash($password, PASSWORD_DEFAULT);
     }
 
