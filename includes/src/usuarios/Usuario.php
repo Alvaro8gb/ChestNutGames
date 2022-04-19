@@ -31,11 +31,10 @@ class Usuario{
 
     public static function login($nombreUsuario, $correo, $password){
         if ($nombreUsuario != null){
-            $usuario = self::buscaUsuario($nombreUsuario, "nombreUsuario");
-
+            $usuario = self::buscarUsuarioPorNombre($nombreUsuario);
         }
         else{
-            $usuario = self::buscaUsuario($correo, "correo");
+            $usuario = self::buscarUsuarioPorCorreo($correo);
         }
 
         if ($usuario && $usuario->compruebaPassword($password)) {
@@ -46,10 +45,23 @@ class Usuario{
 
     private static function createUser($fila){
         return  new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['correo'], $fila['IdUsuario'], $fila['rol']);
+    }
+
+    public static function buscarUsuarioPorNombre($nombre){
+        return self::buscaUsuario($nombre,"nombreUsuario");
+
+    }
+    public static function buscarUsuarioPorId($id){
+        return self::buscaUsuario($id,"IdUsuario");
 
     }
 
-    public static function buscaUsuario($val, $campo){
+    public static function buscarUsuarioPorCorreo($nombre){
+        return self::buscaUsuario($nombre,"correo");
+
+    }
+
+    private static function buscaUsuario($val, $campo){
 
         $conn = Aplicacion::getInstancia()->getConexionBd();
         $user = false;
@@ -57,12 +69,11 @@ class Usuario{
         $query = sprintf("SELECT * FROM Usuarios U WHERE U.%s = '%s'",$campo, $conn->real_escape_string($val));
         $rs = $conn->query($query);
 
-        if ($rs) {
-            if($rs->num_rows == 1){
-                $fila = $rs->fetch_assoc();
-                $user = self::createUser($fila);
-            }
-        
+        if ($rs && $rs->num_rows == 1) {
+         
+            $fila = $rs->fetch_assoc();
+            $user = self::createUser($fila);
+            
         }else{
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }

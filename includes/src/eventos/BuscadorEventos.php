@@ -61,8 +61,8 @@ class BuscadorEventos{
             else {
                 // Conexión a la base de datos y seleccion de registros
                 $conn = $app->getConexionBd();
-                $prepared = $conn->prepare("SELECT nombre FROM eventos WHERE nombre LIKE ? ");
-                $prepared->execute(array("%$eventToSearch%"));
+                $prepared = $conn->prepare("SELECT nombre FROM eventos WHERE nombre LIKE'%$eventToSearch%' ");
+                $prepared->execute();
                 $consulta = $prepared->get_result();
                 $count_results = mysqli_num_rows($consulta);
         

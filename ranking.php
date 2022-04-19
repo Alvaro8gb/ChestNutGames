@@ -82,7 +82,7 @@ foreach($nombre_juegos as $id_juego => $nombre){
       $fila = "";
       
       while($fila = @mysqli_fetch_array($consulta)){
-          $user = Usuario::buscaUsuario($fila["IdJugador"],"IdUsuario");
+          $user = Usuario::buscarUsuarioPorId($fila["IdJugador"]);
           
           $contenidoPrincipal .= <<<EOS
               <tr>
