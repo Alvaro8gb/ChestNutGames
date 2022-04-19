@@ -2,7 +2,7 @@ body {
 
     vertical-align: middle;
     color :black; 
-    font-family: Bangers,Verdana;
+    font-family: "Bangers","Verdana";
 
     /* Gracias a esto la barra ocupa toda la pantalla, para poner margenes en lo demas lo indicamos en 'main' */
     margin:0;
@@ -19,14 +19,13 @@ body {
      height: 100vh;
 }
 @font-face {
-    font-family: Bangers;
+    font-family: "Bangers";
     src: url(fonts/Bangers-Regular.ttf);
     font-weight: bold;
 }
 @font-face {
-    font-family: Carter One;
+    font-family: "Carter One";
     src: url(fonts/CarterOne-Regular.ttf);
-    font-weight: regular;
 }
 
 header{
@@ -39,7 +38,7 @@ main{
 }
 p { 
     color:black;
-    font-family:Carter One;
+    font-family:"Carter One";
     text-align: justify; 
 }
 a , a:visited {
@@ -89,9 +88,19 @@ ul#entregas{
 /* PR1.CSS */
 
 .memberdiv {
+    background-color: rgb(219, 208, 171);
+    padding:1%;
     float:left; 
     width: 43%; 
-    margin: 2%
+    margin: 2%;
+    border-radius: 30px;
+}
+
+.memberlinks{
+    background-color: rgb(130, 160, 183);
+    padding:2%;
+    border-radius: 30px;
+
 }
 
 .imgdiv{
@@ -110,7 +119,16 @@ ul#entregas{
     height: 450px;
     display: block;
     margin:auto;
+    background-color: rgb(146, 137, 137);
+    padding:1%;
 }
+
+.back,#entregas{
+    background-color: rgb(167, 216, 216);
+    padding:1%;
+    border-radius: 30px;
+}
+
 
 /* Mensajes CSS */
 

@@ -8,7 +8,6 @@ function advert_close() {
 
 // Mostrar anuncio
 function advert_show() {
-
     document.getElementById("pop_up").style.opacity = 0.2;
     document.getElementById("modal").style.opacity = 1;
     document.getElementById("modal").style.visibility = "visible";      

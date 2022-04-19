@@ -1,7 +1,5 @@
 <?php
 
-use es\chestnut\Aplicacion;
-
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
@@ -14,19 +12,22 @@ $juegos = new \es\chestnut\juegos\Juegos();
 $nombre_juegos = array();
 
 for($i = 0; $i<$juegos->getNumElements();$i++){
-  $nombre_juegos[$i] = $juegos->getElement($i)->getNombre();
+  $juego = $juegos->getElement($i);
+  $nombre_juegos[$juego->getId()] = $juego->getNombre();
 }
  
+////Ranking por jugadores
+
 $contenidoPrincipal = <<<EOS
 <div>
-   <h1 class = "move"> 
-   <span>RANKING GLOBAL</span>
-   <div class="liquid"></div>
-   </h1>
+   <div class = "move"> 
+      <span>RANKING GLOBAL</span>
+      <div class="liquid"></div>
+   </div>
     <table class ="out">
       <tr>
-      <th>JUGADOR</th>
-      <th>PUNTUACION</th>
+          <th>JUGADOR</th>
+          <th>PUNTUACION</th>
       </tr>
 EOS;
 $conn = $app->getConexionBd();
@@ -45,36 +46,42 @@ while($fila = @mysqli_fetch_array($consulta)){
 }
 
 $consulta->free();
+
+//Ranking por juegos
+
 $contenidoPrincipal .= <<<EOS
-</table>
-</div>
-<h1 class = "move"> 
-   <span>RANKING POR JUEGO</span>
-   <div class="liquid"></div>
-   </h1>  
-<div class="container">
-  <ul class="slider">
+  </table>
+  </div>
+  <div class = "move"> 
+    <span>RANKING POR JUEGO</span>
+    <div class="liquid"></div>
+  </div>  
+  <div class="container">
+    <ul class="slider">
 EOS;
 
-    foreach($nombre_juegos as $id_juego => $nombre){
-
-      $sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking WHERE IdJuego = '%s' ORDER BY Puntuacion desc", $conn->real_escape_string($id_juego));
-      $consulta = @mysqli_query($conn, $sql);
+foreach($nombre_juegos as $id_juego => $nombre){
 
       $contenidoPrincipal .= <<<EOS
       <li id= {$id_juego}>
         <table class="has">
-        <tr>
-          <th id ="nombreJuegoRanking" colspan = "2">{$nombre}</th>
+        <tr>     
+          <th colspan = "2">{$nombre}</th>
         <tr>
           <th>JUGADOR</th>
           <th>PUNTUACION</th>
-          </tr>
+        </tr>
       EOS;
-     
+
+      $consulta = null;
+
+      $sql = sprintf("SELECT IdJugador, Puntuacion FROM ranking WHERE IdJuego = '%s' ORDER BY Puntuacion desc LIMIT 10", $conn->real_escape_string($id_juego));
+      $consulta = @mysqli_query($conn, $sql);
+      $fila = "";
+      
       while($fila = @mysqli_fetch_array($consulta)){
 
-          $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE IdUsuario = '%s' LIMIT %d", $conn->real_escape_string($fila["IdJugador"]),$maxNumJugadores);
+          $sql2 = sprintf("SELECT nombreUsuario FROM usuarios WHERE IdUsuario = '%s'", $conn->real_escape_string($fila["IdJugador"]));
           $consulta2 = @mysqli_query($conn, $sql2);
           $fila2 = @mysqli_fetch_array($consulta2);
           $contenidoPrincipal .= <<<EOS
@@ -83,14 +90,14 @@ EOS;
               <td>{$fila["Puntuacion"]}</td>
               </tr>
           EOS;
-      
+
+          $consulta2->free();   
       }
-      $consulta2->free();
+
+      $consulta->free();
+
       $contenidoPrincipal .= <<<EOS
         </table>
-      </li>
-      EOS;
-      $contenidoPrincipal .= <<<EOS
       </li>
       EOS;
 
@@ -101,15 +108,15 @@ $contenidoPrincipal .= <<<EOS
    <ul class="menu">
 EOS;
 
-  foreach($nombre_juegos as $id_juego => $nombre){
-      $concat = "#";
-      $concat.= $id_juego;
-      $contenidoPrincipal .= <<<EOS
-          <li>
-          <a href= {$concat} onclick= "tabla({$id_juego})"> $nombre</a>
-          </li>
-        EOS;
-    }
+foreach($nombre_juegos as $id_juego => $nombre){
+    $concat = "#";
+    $concat.= $id_juego;
+    $contenidoPrincipal .= <<<EOS
+        <li>
+        <a href= {$concat} onclick= "tabla({$id_juego})"> $nombre</a>
+        </li>
+      EOS;
+}
   
 $contenidoPrincipal .= <<<EOS
    </ul>
@@ -118,3 +125,5 @@ EOS;
 
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal,'css'=> $css];
 $app->generaVista('/plantillas/plantilla.php', $params);
+
+
