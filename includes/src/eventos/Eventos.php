@@ -19,50 +19,11 @@ class Eventos extends Lista {
         return new Evento($fila["IdEvento"],$fila["nombre"],$fila["imagen"],$fila["descripcion"],$fila["fechaInicio"],$fila["fechaFinal"],$fila["IdJuego"],$fila["premio"]);
     }
 
-    public function gestiona(){
-       
-        $datos = &$_GET;
+    protected function mostrarElem($datos){
 
-        if (!$this->eventoEnviado($datos)) {
-
-            $html = <<<EOS
-                <div class = "msg_centrado">
-                    <h3>Demuestra tu habilidad, gana dinero y muchos premios jugando los mejores torneos de la comunidad.</h3>
-                </div>
-            EOS;
-
-            $buscador = new BuscadorEventos();
-
-            $html .= $buscador->gestiona();
-
-            $html .= $this->mostrarEventos();
-
-            $html .= <<< EOS
-                <div class = "footer_zone">
-                En ChestnutGames no se admiten trampas de ningún tipo y el respeto entre jugadores es esencial. Nuestra comunidad está formada únicamente 
-                por jugadores que cumplen las Reglas y actúan de forma deportiva. Nuestra plataforma integra sistemas de detección de tramposos, 
-                obtención de resultados de forma automática desde los videojuegos y un equipo de profesionales. Defendemos la integridad de las 
-                competiciones. !Que gane el mejor! 
-                </div>
-            EOS;
-
-            return $html;
-        }
-        else{
-
-            return $this->mostrarEvento($datos);
-        }
-    }
-
-    private function eventoEnviado($datos){
-        return isset($datos["id"]);
-    }
-
-    private function mostrarEvento($datos){
-
+        $html="";
         $id = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
         $evento = $this->getElement($id);
-        $html = "";
         
         $temporizadorInicio = new Temporizador($evento->getFechaInicio());
         $temporizadorFin = new Temporizador($evento->getFechaFin());
@@ -141,9 +102,19 @@ class Eventos extends Lista {
         return $html;
     }
 
-    public function mostrarEventos(){
+    public function mostrarElems(){
 
-        $html = '<div class="slider">';
+        $html = <<<EOS
+        <div class = "msg_centrado">
+            <h3>Demuestra tu habilidad, gana dinero y muchos premios jugando los mejores torneos de la comunidad.</h3>
+        </div>
+        EOS;
+
+        $buscador = new BuscadorEventos();
+
+        $html .= $buscador->gestiona();
+
+        $html.= '<div class="slider">';
     
             foreach($this->lista as $id => $evento ){
                 $html .= '<input type="radio" id="' . $id . '" name="image-slide" hidden />';
@@ -166,6 +137,15 @@ class Eventos extends Lista {
             $html .='</div>';
 
         $html .= '</div>';
+
+        $html .= <<< EOS
+        <div class = "footer_zone">
+        En ChestnutGames no se admiten trampas de ningún tipo y el respeto entre jugadores es esencial. Nuestra comunidad está formada únicamente 
+        por jugadores que cumplen las Reglas y actúan de forma deportiva. Nuestra plataforma integra sistemas de detección de tramposos, 
+        obtención de resultados de forma automática desde los videojuegos y un equipo de profesionales. Defendemos la integridad de las 
+        competiciones. !Que gane el mejor! 
+        </div>
+        EOS;
 
         return $html;
     }

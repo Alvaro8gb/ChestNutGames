@@ -7,6 +7,6 @@ $tituloPagina='Logout';
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
 $app->generaVista('/plantillas/plantilla.php', $params);
 
-header("refresh:4 ,url='index.php'");
+header("refresh:4 ,url=".$app->resuelve("/index.php"));
 exit();
 

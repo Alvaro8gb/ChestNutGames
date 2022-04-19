@@ -33,7 +33,7 @@ class BuscadorEventos{
                 <img id="ev" src="{$rutaimg}buscar.jpg" alt="buscar">
             </div>
 
-            <form action="null" method="get">
+            <form method="get">
                 <div class = "text_buscar">
                     <input class="evi" type ="text" name ="evento" value ="">
                 </div>
@@ -62,7 +62,7 @@ class BuscadorEventos{
                 // Conexión a la base de datos y seleccion de registros
                 $conn = $app->getConexionBd();
                 $prepared = $conn->prepare("SELECT nombre FROM eventos WHERE nombre LIKE ? ");
-                $prepared->execute(array("$eventToSearch"));
+                $prepared->execute(array("%$eventToSearch%"));
                 $consulta = $prepared->get_result();
                 $count_results = mysqli_num_rows($consulta);
         

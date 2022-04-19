@@ -25,11 +25,29 @@ abstract class Lista{
         return $this->lista[$id];
     }
 
+    protected function elemEnviado($datos){
+        return isset($datos['id']);
+    }
+
+    protected function mostrarElem($id){
+        return "";
+    }
+
+    protected function mostrarElems(){
+        return "";
+    }
     public function gestiona(){
-        return '<html> </html>';
+        $datos = &$_GET;
+        
+        if (!$this->elemEnviado($datos)) {
+            return $this->mostrarElems();
+        }
+        else{
+            return $this->mostrarElem($datos);
+        }
     }
     protected function crearElem($fila){
-        return null;
+        return $fila;
 
     }
     private function cargarLista($table){

@@ -6,7 +6,7 @@ use es\chestnut\Lista;
 
 class Juegos extends Lista{
     private static $ruta_imagenes;
-    private const TABLE ="juegos";
+    private const TABLE ="Juegos";
 
     public function __construct(){
         parent::__construct(self::TABLE);
@@ -17,24 +17,8 @@ class Juegos extends Lista{
     protected function crearElem($fila){
         return new Juego($fila["IdJuego"],$fila["Nombre"],$fila["Imagen"],$fila["Descripcion"],$fila["Categoria"],$fila["Enlace"]);
     }
-    public function gestiona(){
 
-        $datos = &$_GET;
-        
-        if (!$this->juegoEnviado($datos)) {
-            return $this->mostrarJuegos();
-        }
-        else{
-            return $this->mostrarJuego($datos);
-        }
-
-    }
-
-    private function juegoEnviado($datos){
-        return isset($datos['id']);
-    }
-
-    private function mostrarJuegos(){
+    protected function mostrarElems(){
         $path = self::$ruta_imagenes;
         $html = "<img class='gif_centrado' src='{$path}play.gif' alt='Gif'>"; 
         $i = 0;
@@ -77,7 +61,7 @@ class Juegos extends Lista{
         return $html;
     }
 
-    private function mostrarJuego($datos){
+    protected function mostrarElem($datos){
 
         $ruta_imagenes = self::$ruta_imagenes;
         $id_juego = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
