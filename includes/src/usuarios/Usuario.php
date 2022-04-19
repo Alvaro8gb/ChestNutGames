@@ -66,7 +66,7 @@ class Usuario{
         $conn = Aplicacion::getInstancia()->getConexionBd();
         $user = false;
 
-        $query = sprintf("SELECT * FROM Usuarios U WHERE U.%s = '%s'",$campo, $conn->real_escape_string($val));
+        $query = sprintf("SELECT * FROM usuarios U WHERE U.%s = '%s'",$campo, $conn->real_escape_string($val));
         $rs = $conn->query($query);
 
         if ($rs && $rs->num_rows == 1) {
