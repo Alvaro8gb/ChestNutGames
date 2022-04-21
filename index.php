@@ -1,16 +1,22 @@
 <?php
 require_once __DIR__.'/includes/config.php';
-$tituloPagina = 'Home';
+require_once __DIR__.'/includes/vistas/helpers/utils.php';
+
+$css_pages = array("index.css","header.css","button.css");
+$css = "";	
+
+foreach($css_pages as $elem){
+	$css .= link_css($app->resuelve(RUTA_CSS.$elem));
+}
+
 ?>
 
 <!DOCTYPE html>
 <html lang='es'>
 	<head>
-		<link rel="stylesheet" type="text/css" href= "<?=$app->resuelve(RUTA_CSS."index.css")?>" />
-		<link rel="stylesheet" type="text/css" href= "<?=$app->resuelve(RUTA_CSS."header.css")?>" />
-        <link rel="stylesheet" type="text/css" href="<?=$app->resuelve(RUTA_CSS.'button.css')?>" />
-    	<link rel="icon" href= "<?= RUTA_IMGS."logo/Favicon.png" ?>" type="image/png">
-		<title><?= $tituloPagina ?></title>
+		<title> Home </title>
+		<link rel="icon" href= "<?= RUTA_IMGS."logo/Favicon.png" ?>" type="image/png">
+		<?= $css."\n" ?>
 	</head>
 	<body>
 

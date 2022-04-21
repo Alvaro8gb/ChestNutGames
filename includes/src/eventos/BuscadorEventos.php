@@ -35,7 +35,7 @@ class BuscadorEventos{
 
             <form method="get">
                 <div class = "text_buscar">
-                    <input class="evi" type ="text" name ="evento" value ="">
+                    <input class="evi" type ="text" maxlength="30" name ="evento" value ="">
                 </div>
                 <div class = "button_buscar">
                     <input class="search" type="submit" name="buscar" value="buscar">

@@ -9,17 +9,18 @@ $mensajes = mensajesPeticionAnterior();
 <html lang='es'>
 
 	<head>
-		<meta charset="UTF-8">
 		<title><?= $params['tituloPagina'] ?></title>
+		<link rel="icon" type="image/png" href="<?= $params['app']->resuelve(RUTA_IMGS.'logo/Favicon.png') ?>" />
+
 		<link rel="stylesheet" type="text/css" href="<?= $params['app']->resuelve(RUTA_CSS.'general.css') ?>" />
 		<link rel="stylesheet" type="text/css" href="<?= $params['app']->resuelve(RUTA_CSS.'header.css') ?>" />
 		<link rel="stylesheet" type="text/css" href="<?= $params['app']->resuelve(RUTA_CSS.'button.css')?>" />
 		<link rel="stylesheet" type="text/css" href="<?= $params['app']->resuelve(RUTA_CSS.'popup.css')?>" />
 		<?php if(isset($params["css"])) echo "\n\t\t".$params["css"]."\n"; ?>
-		<link rel="icon" type="image/png" href="<?= $params['app']->resuelve(RUTA_IMGS.'logo/Favicon.png') ?>" />
-	
-		<!-- Link to js transition -->
-		<script src=<?= $params['app']->resuelve(RUTA_JS.'popup_transition.js')?>></script> 
+
+		<?php if(isset($params["js"])) echo "\n\t\t".$params["js"]."\n"; ?>
+		<script src="<?= $params['app']->resuelve(RUTA_JS.'popup_transition.js')?>"></script> 
+		<script src="<?= $params['app']->resuelve(RUTA_JS.'general.js')?>?v=<?php echo(rand()); ?>"></script> 
 	
 	</head>
 
@@ -27,9 +28,10 @@ $mensajes = mensajesPeticionAnterior();
 
 		<!-- POP UP  -->
 		<?php		
-			// $params['app']->doInclude('/vistas/comun/popup.php');			
+			//$params['app']->doInclude('/vistas/comun/popup.php');			
 		?> 	
-	
+
+			
 		<div class = "pop_up" id = "pop_up">
 
 			<header>
@@ -53,8 +55,8 @@ $mensajes = mensajesPeticionAnterior();
 
 		<!-- Mostrar anuncio -->
 		<?php 
-			// if($params['app']->show_advert())
-			// 	echo '<script type="text/javascript"> advert_show(); </script>';	
+			#if($params['app']->show_advert())
+				#echo '<script type="text/javascript"> advert_show(); </script>';	
 		?>
 	</body>
 </html>

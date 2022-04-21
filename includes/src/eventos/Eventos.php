@@ -49,7 +49,6 @@ class Eventos extends Lista {
 
             $app = Aplicacion::getInstancia();
             $idUsuario = $app->idUsuario();
-
             $idEvento = $evento->getId();
 
             $conn = $app->getConexionBd();

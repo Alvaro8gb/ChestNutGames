@@ -2,7 +2,6 @@
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
-
 $tituloPagina = 'Bocetos';
 
 $path = $app->resuelve(RUTA_IMGS.'bocetos/');

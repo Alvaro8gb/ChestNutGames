@@ -11,8 +11,10 @@ FALTA:
  - 7 Ampliar memoria : Actualizaciones BBDD ,ARQUITECTURA (con justificacion) instrucciones conexion para conectarse ( correr sql y credenciales,
 tabla relacion miembros del grupo y tareas).
 
+* VPS [link](https://vm01.containers.fdi.ucm.es)
+* Memoria [link](https://ucomplutense-my.sharepoint.com:443/:w:/g/personal/davcan01_ucm_es/ETHF79_92lpNpuT01Jy4CFIBD6qCO9dEIVMkjz2kqtEmZw?e=4%3aTOj0Gr&at=9)
 
-Memoria : https://ucomplutense-my.sharepoint.com:443/:w:/g/personal/davcan01_ucm_es/ETHF79_92lpNpuT01Jy4CFIBD6qCO9dEIVMkjz2kqtEmZw?e=4%3aTOj0Gr&at=9>
+
 
 
 

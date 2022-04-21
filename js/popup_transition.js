@@ -12,3 +12,5 @@ function advert_show() {
     document.getElementById("modal").style.opacity = 1;
     document.getElementById("modal").style.visibility = "visible";      
 }
+
+   

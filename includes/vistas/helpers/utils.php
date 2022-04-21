@@ -5,7 +5,7 @@ function link_lista($elc, $name){
 }
 
 function link_css($path){
-    return "<link rel='stylesheet' type='text/css' href={$path}>". "\n\t\t";
+    return "\n\t\t"."<link rel='stylesheet' type='text/css' href='{$path}'>";
 }
 
 function link_img($path, $alt){
