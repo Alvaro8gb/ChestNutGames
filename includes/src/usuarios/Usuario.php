@@ -4,6 +4,7 @@ namespace es\chestnut\usuarios;
 
 use es\chestnut\Aplicacion;
 use es\chestnut\MagicProperties;
+use es\chestnut\eventos;
 use Exception;
 
 class Usuario{
@@ -19,6 +20,7 @@ class Usuario{
     private $nombre;
     private $rol;
     private $correo;
+    private $inscripciones;
 
     private function __construct($nombreUsuario, $nombre, $password,$correo, $id = null, $rol){
         $this->id = $id;
@@ -27,8 +29,33 @@ class Usuario{
         $this->password = $password;
         $this->rol = $rol;
         $this->correo = $correo;
+        self::cargarInscripciones($id);
     }
+    private static function cargarInscripciones($id){
+        if ($inscripciones == null){
+            $incripcionesId = array();
+            $inscripciones = array();
 
+            $app = Aplicacion::getInstancia();
+            $conn = $app->getConexionBd();
+            $sql = sprintf("SELECT IdEvento FROM inscripcioneseventos WHERE IdJugador = '%s' ", $conn->real_escape_string($id));
+            $resultado = @mysqli_query($conn, $sql);
+            $i = 0;
+            while($fila = @mysqli_fetch_array($resultado)){
+                $elem = $fila;
+                incripcionesId[$i] = $elem;
+                $i++;
+            }
+            $i = 0;
+            foreach($inscripcionesId as $id_evento){
+                $sql = sprintf("SELECT * FROM eventos WHERE IdEvento = '%s' ",$conn->real_escape_string($id_evento));
+                $this -> $inscripciones[$i] = @mysqli_query($conn, $sql);
+                $i++;
+            }
+
+        }
+        
+    }
     public static function login($nombreUsuario, $correo, $password){
         if ($nombreUsuario != null){
             $usuario = self::buscarUsuarioPorNombre($nombreUsuario);
