@@ -1,14 +1,12 @@
-DELETE FROM categoriasjuegos;
-DELETE FROM categoriastienda;
 DELETE FROM compras;
-DELETE FROM eventos;
 DELETE FROM inscripcioneseventos;
-DELETE FROM juegos;
 DELETE FROM ranking;
-DELETE FROM tienda;
+DELETE FROM eventos;
+DELETE FROM juegos;
 DELETE FROM usuarios;
-
-
+DELETE FROM tienda;
+DELETE FROM categoriastienda;
+DELETE FROM categoriasjuegos;
 --
 -- Volcado de datos para la tabla `categoriasjuegos`
 --

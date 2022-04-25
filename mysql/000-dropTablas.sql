@@ -1,0 +1,10 @@
+DROP TABLE `inscripcioneseventos`;
+DROP TABLE `publicidad`;
+DROP TABLE `ranking`;
+DROP TABLE `compras`;
+DROP TABLE `tienda`;
+DROP TABLE `eventos`;
+DROP TABLE `juegos`;
+DROP TABLE `categoriasjuegos`;
+DROP TABLE `categoriastienda`;
+DROP TABLE `usuarios`;
