@@ -28,9 +28,8 @@ $mensajes = mensajesPeticionAnterior();
 
 		<!-- POP UP  -->
 		<?php		
-			//$params['app']->doInclude('/vistas/comun/popup.php');			
+			$params['app']->doInclude('/vistas/comun/popup.php');			
 		?> 	
-
 			
 		<div class = "pop_up" id = "pop_up">
 
@@ -55,8 +54,8 @@ $mensajes = mensajesPeticionAnterior();
 
 		<!-- Mostrar anuncio -->
 		<?php 
-			#if($params['app']->show_advert())
-				#echo '<script type="text/javascript"> advert_show(); </script>';	
+			// if($params['app']->show_advert())
+				echo '<script type="text/javascript"> advert_show(); </script>';	
 		?>
 	</body>
 </html>

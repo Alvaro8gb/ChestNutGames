@@ -9,7 +9,7 @@ class Anuncio {
     private $imagen;
     private $desc;
     private $enlace;
-    private const TABLE ="publicidad";
+    // private const TABLE ="publicidad";
 
     public function __construct($id, $nombreEmpresa, $imagen, $desc, $enlace ){
         $this->id = $id;
@@ -26,15 +26,15 @@ class Anuncio {
 
         $app = Aplicacion::getInstancia();
         $conn = $app->getConexionBd();
-        $sql = "SELECT * FROM TABLE";
+        $sql = "SELECT * FROM publicidad";
         $result = @mysqli_query($conn, $sql);
         
         $nAnuncios = $result->num_rows;
-        $advert_index = rand(0,$nAnuncios);
+        $advert_index = rand(1,$nAnuncios);
         $cont = 0;
         $fila = 0;
         // Avanzamos hasta llegar al anuncio que queremos mostrar
-        while($cont <= $advert_index){
+        while($cont <= $advert_index-1){
             $fila = @mysqli_fetch_array($result);
             $cont++;
         }
