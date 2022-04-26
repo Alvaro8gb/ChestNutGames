@@ -17,7 +17,6 @@ $mensajes = mensajesPeticionAnterior();
 		<link rel="stylesheet" type="text/css" href="<?= $params['app']->resuelve(RUTA_CSS.'button.css')?>" />
 		<link rel="stylesheet" type="text/css" href="<?= $params['app']->resuelve(RUTA_CSS.'popup.css')?>" />
 		<?php if(isset($params["css"])) echo "\n\t\t".$params["css"]."\n"; ?>
-
 		<?php if(isset($params["js"])) echo "\n\t\t".$params["js"]."\n"; ?>
 		<script src="<?= $params['app']->resuelve(RUTA_JS.'popup_transition.js')?>"></script> 
 		<script src="<?= $params['app']->resuelve(RUTA_JS.'general.js')?>?v=<?php echo(rand()); ?>"></script> 
@@ -25,9 +24,8 @@ $mensajes = mensajesPeticionAnterior();
 	</head>
 
 	<body>
-
 		<!-- POP UP  -->
-		<?php		// La aparicion del pop up depende de cada pagina individualmente
+		<?php		
 			$params['app']->doInclude('/vistas/comun/popup.php');			
 		?> 	
 			

@@ -40,4 +40,3 @@ $advert = es\chestnut\publicidad\Anuncio::create_advert();
     EOS;
 
     echo $contenido;
-?>

@@ -13,7 +13,6 @@
 
 .form {
   position: relative;
-  z-index: 1;
   background: #57dfe9;
   max-width: 360px;
   margin: 0 auto 100px;
@@ -25,7 +24,6 @@
 
 .form1 {
   position:relative;
-  z-index: 1;
   background: #57dfe9;
   max-width: 1000px;
   margin: 0 auto 100px;
@@ -157,7 +155,6 @@ input.campos{
 
 .container {
   position: relative;
-  z-index: 1;
   max-width: 300px;
   margin: 0 auto;
 }

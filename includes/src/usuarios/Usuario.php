@@ -28,13 +28,10 @@ class Usuario{
         $this->password = $password;
         $this->rol = $rol;
         $this->correo = $correo;
-        self::cargarInscripciones($id);
+        #self::cargarInscripciones($id);
     }
     private static function cargarInscripciones($id){
-        $inscripciones = null;
-        if ($inscripciones == null){
             $incripcionesId = array();
-            $inscripciones = array();
 
             $app = Aplicacion::getInstancia();
             $conn = $app->getConexionBd();
@@ -43,7 +40,7 @@ class Usuario{
             $i = 0;
             while($fila = @mysqli_fetch_array($resultado)){
                 $elem = $fila;
-                $inscripcionesId[$i] = $elem;
+                $incripcionesId[$i] = $elem;
                 $i++;
             }
             $i = 0;
@@ -53,7 +50,7 @@ class Usuario{
                 $incripciones[$i] = @mysqli_query($conn, $sql);
                 $i++;
             }
-        }
+        
     }
     public static function login($nombreUsuario, $correo, $password){
         if ($nombreUsuario != null){

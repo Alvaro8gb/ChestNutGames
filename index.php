@@ -16,9 +16,12 @@ foreach($css_pages as $elem){
 	<head>
 		<title> Home </title>
 		<link rel="icon" href= "<?= RUTA_IMGS."logo/Favicon.png" ?>" type="image/png">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="<?= $app->resuelve(RUTA_JS.'loading.js')?>?v=<?php echo(rand()); ?>"></script> 
 		<?= $css."\n" ?>
 	</head>
 	<body>
+			<div class="loader-page"></div>
 
 			<div class = "wrapper">
 				<div class = "parallax_section">

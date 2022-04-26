@@ -143,17 +143,14 @@ ul#entregas{
 	width: 30%;
 	margin: 0.2em auto;
 	background-color: #b0f5f1;
+    font-size: 2em;
+	line-height: 0.7em;
+	text-align: right;
+	padding: 0 0.1em;
 }
 
 .mensajes input {
 	display: none;
-}
-
-.mensaje {
-	font-size: 2em;
-	line-height: 0.7em;
-	text-align: right;
-	padding: 0 0.1em;
 }
 
 .mensaje, .contenido {
@@ -164,3 +161,4 @@ ul#entregas{
 .mensajes input:checked + .mensaje {
 	display: none;
 }
+
