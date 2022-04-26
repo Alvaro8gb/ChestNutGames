@@ -38,7 +38,7 @@ class Usuario{
 
             $app = Aplicacion::getInstancia();
             $conn = $app->getConexionBd();
-            $sql = sprintf("SELECT IdEvento FROM inscripcioneseventos WHERE IdJugador = '%s' ", $conn->real_escape_string($id));
+            $sql = sprintf("SELECT IdEvento FROM inscripcioneseventos WHERE IdUsuario = $id");
             $resultado = @mysqli_query($conn, $sql);
             $i = 0;
             while($fila = @mysqli_fetch_array($resultado)){
@@ -48,8 +48,9 @@ class Usuario{
             }
             $i = 0;
             foreach($inscripcionesId as $id_evento){
-                $sql = sprintf("SELECT * FROM eventos WHERE IdEvento = '%s' ",$conn->real_escape_string($id_evento));
-                self::getInscripciones()[$i] = @mysqli_query($conn, $sql);
+                $x = $id_evento["IdEvento"];
+                $sql = sprintf("SELECT * FROM eventos WHERE IdEvento = $x");
+                $incripciones[$i] = @mysqli_query($conn, $sql);
                 $i++;
             }
         }
@@ -192,7 +193,7 @@ class Usuario{
         return $this->correo;
     }
 
-    public function getInscripciones(){
+    public static function getInscripciones(){
         return $this->inscripciones;
     }
 
