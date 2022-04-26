@@ -36,12 +36,14 @@ class Tienda extends Lista{
             $alt = "imagen_".$producto->getNombre();
             $nombre = $producto->getNombre();
             $precio = $producto->getPrecio();
+            $descripcion = $producto->getDesc();
             $htmlImagen = '<a href="tienda.php?id='.$id.'"><img class="gr" src="data:image/png;base64,'.base64_encode($imagen).'" alt ="'.$alt.'"></a>';
 
             $html .= <<<EOS
             <div class="borde">
                 <div class="img">
                     $htmlImagen
+                    <p class="oculto"><b>{$descripcion}</b></p>
                 </div>
                 <p class="text"><b></b>{$nombre}</p>
                 <p class="text"><b>Precio:  </b>{$precio}€</p>
@@ -95,18 +97,26 @@ class Tienda extends Lista{
             <p class="txtpr"><b>Descripción: </b>{$tienda->getDesc()}</p>
             <p class="txtpr"><b>Categoría: </b>{$tienda->getCategoria()}</p>
         </div>
-        
-        <form action="" method="post">
-            <div class = "carrito">
+         <div class = "carrito">
                 <p class="txtpr1"><b>Precio: </b>{$tienda->getPrecio()}€</p>
                 <p class="txtpr1"><b>Unidades: </b>{$tienda->getCantidad()}</p>
-                <p class="txtpr1"><b>Cantidad a comprar:</b></p>
-                <input class="evi" type ="text" maxlength="15" name ="evento" value ="">
+        EOS;
+
+        if($tienda->getCantidad() != 0){
+            $html .=<<< EOS
+            <p class="txtpr1"><b>Cantidad a comprar:</b></p>
+            <form action="Carrito.php" method="post">
+                <input class="evi" type ="text" name ="cantidad_prod" value ="">
+                <input class="id_oculto" type ="number" name ="id_producto" value ="{$tienda->getId()}">
                 <div class="car">
-                <button class="anyadir_carrito" type="submit" name="carrito">Añadir al carrito {$htmlimagen}</button>
+                    <input class="anyadir_carrito" type="submit" name="carrito" value="Añadir al carrito">
                 </div>
+            </form>
+            EOS;
+        }
+
+        $html .=<<< EOS
             </div>
-        </form>
        </div> 
     EOS;
 

@@ -36,6 +36,31 @@
     transform:scale(1.1);
 }
 
+.img:hover p.oculto{
+    opacity: 1;
+    margin-top: 80%;
+}
+
+.oculto{
+    position:absolute;
+    overflow:hidden;
+    width: 300px;
+    height: auto;
+    background-color: rgba(81, 204, 211, 0.9);
+    opacity:0;
+    transition: opacity 0.3s;
+    border-radius: 10px;
+    padding: 2%;
+    margin-top: 80%;
+}
+
+.id_oculto{
+    position:absolute;
+    overflow:hidden;
+    opacity:0;
+    transition: opacity 0.3s;
+}
+
 .producto{
     width: 300px;
     height: 300px;
@@ -180,6 +205,7 @@
     border-radius: 30px;
     float: right;
 }
+
 
 
 
