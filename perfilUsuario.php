@@ -7,20 +7,23 @@ use \es\chestnut\usuarios\Usuario;
 
 $tituloPagina = 'perfilUsuario';
 $css = link_css($app->resuelve(RUTA_CSS.'ranking.css'));
-
+$inscripciones = null;
 ////Ranking por jugadores
-
+if($_SESSION["login"]){
+    $user = Usuario::buscarUsuarioPorId($_SESSION["idUsuario"]);
+    $inscripciones = $user->getInscripciones();
+}
 $contenidoPrincipal = <<<EOS
 <div>
-   <div class = "move"> 
-      <span>RANKING GLOBAL</span>
-      <div class="liquid"></div>
-   </div>
-    <table class ="out">
-      <tr>
-          <th>JUGADOR</th>
-          <th>PUNTUACION</th>
-      </tr>
+EOS;
+foreach( $incripciones as $inscripcion){
+    $x = $inscripcion["IdEvento"];
+    $contenidoPrincipal .=<<<EOS
+    <p> 1 </p>
+EOS;
+}
+$contenidoPrincipal .=<<<EOS
+</div>
 EOS;
 
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal,'css'=> $css];

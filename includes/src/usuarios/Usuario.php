@@ -193,7 +193,7 @@ class Usuario{
         return $this->correo;
     }
 
-    public static function getInscripciones(){
+    public function getInscripciones(){
         return $this->inscripciones;
     }
 
