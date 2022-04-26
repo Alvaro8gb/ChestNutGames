@@ -18,5 +18,5 @@ try{
 
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css' => $css];
 $app->generaVista('/plantillas/plantilla.php', $params);
-
+	
 ?>

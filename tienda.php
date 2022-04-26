@@ -9,3 +9,9 @@ $contenidoPrincipal = '<div class = "productos"> <h1 id="cl"> Productos de la ti
 
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
 $app->generaVista('/plantillas/plantilla.php', $params);
+
+// Mostrar anuncio 
+if($app->show_advert())
+echo '<script type="text/javascript"> advert_show(); </script>';
+
+?>

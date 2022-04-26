@@ -31,6 +31,7 @@ class Usuario{
         self::cargarInscripciones($id);
     }
     private static function cargarInscripciones($id){
+        $inscripciones = null;
         if ($inscripciones == null){
             $incripcionesId = array();
             $inscripciones = array();
@@ -42,18 +43,16 @@ class Usuario{
             $i = 0;
             while($fila = @mysqli_fetch_array($resultado)){
                 $elem = $fila;
-                incripcionesId[$i] = $elem;
+                $inscripcionesId[$i] = $elem;
                 $i++;
             }
             $i = 0;
             foreach($inscripcionesId as $id_evento){
                 $sql = sprintf("SELECT * FROM eventos WHERE IdEvento = '%s' ",$conn->real_escape_string($id_evento));
-                $this -> $inscripciones[$i] = @mysqli_query($conn, $sql);
+                self::getInscripciones()[$i] = @mysqli_query($conn, $sql);
                 $i++;
             }
-
         }
-        
     }
     public static function login($nombreUsuario, $correo, $password){
         if ($nombreUsuario != null){
@@ -191,6 +190,10 @@ class Usuario{
 
     public function getCorreo(){
         return $this->correo;
+    }
+
+    public function getInscripciones(){
+        return $this->inscripciones;
     }
 
     public function compruebaPassword($password)

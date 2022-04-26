@@ -27,7 +27,7 @@ $mensajes = mensajesPeticionAnterior();
 	<body>
 
 		<!-- POP UP  -->
-		<?php		
+		<?php		// La aparicion del pop up depende de cada pagina individualmente
 			$params['app']->doInclude('/vistas/comun/popup.php');			
 		?> 	
 			
@@ -51,12 +51,6 @@ $mensajes = mensajesPeticionAnterior();
 			</footer>
 
 		</div>
-
-		<!-- Mostrar anuncio -->
-		<?php 
-			// if($params['app']->show_advert())
-				echo '<script type="text/javascript"> advert_show(); </script>';	
-		?>
 	</body>
 </html>
 
