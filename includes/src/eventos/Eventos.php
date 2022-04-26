@@ -47,19 +47,8 @@ class Eventos extends Lista {
                 </div>
             EOS;
 
-            $app = Aplicacion::getInstancia();
-            $idUsuario = $app->idUsuario();
-            $idEvento = $evento->getId();
-
-            $conn = $app->getConexionBd();
-            $prepared = $conn->prepare("SELECT * FROM inscripcioneseventos WHERE IdEvento = '$idEvento' AND IdUsuario = '$idUsuario'");
-            $prepared->execute();
-            $consulta = $prepared->get_result();
-            $count_results = mysqli_num_rows($consulta);
-            $consulta->free();
-
             $html .= <<< EOS
-                    <form action="" method="post">
+                    <form action="" method="post"  onsubmit="return confirmation("Seguro que quieres inscribierte?")">
                         <div class = "inscripcion">
                             <input class="inscripcion_button" type="submit" name="inscribir" value="Inscríbete aquí">
                         </div>
@@ -67,14 +56,26 @@ class Eventos extends Lista {
             EOS;
 
             if(isset($_POST['inscribir'])){
+
+                $app = Aplicacion::getInstancia();
+                $idUsuario = $app->idUsuario();
+                $idEvento = $evento->getId();
+    
+                $conn = $app->getConexionBd();
+                $prepared = $conn->prepare("SELECT * FROM inscripcioneseventos WHERE IdEvento = '$idEvento' AND IdUsuario = '$idUsuario'");
+                $prepared->execute();
+                $consulta = $prepared->get_result();
+                $count_results = mysqli_num_rows($consulta);
+                $consulta->free();
+
                 if($count_results <= 0){
                     // Insertar en la base de datos
                     $query = $conn->prepare("INSERT INTO inscripcioneseventos (IdUsuario, IdEvento) VALUES('$idUsuario', '$idEvento')");
                     $query->execute();
-                    $html .= '<p>La insripción a este evento se ha realizado con éxito. Muchas gracias.</p>';
+                    $html .= '<script> alert("La insripción a este evento se ha realizado con éxito. Muchas gracias.")</script>';
                 }
                 else {
-                    $html .= '<p>Usted ya está inscrito a este evento.</p>';
+                    $html .= '<script> alert("Usted ya está inscrito a este evento.")</script>';
                 }
             }
         }
@@ -109,7 +110,7 @@ class Eventos extends Lista {
         </div>
         EOS;
 
-        $buscador = new BuscadorEventos();
+        $buscador = new BuscadorEventos($this);
 
         $html .= $buscador->gestiona();
 

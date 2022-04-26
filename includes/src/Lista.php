@@ -48,7 +48,6 @@ abstract class Lista{
     }
     protected function crearElem($fila){
         return $fila;
-
     }
     private function cargarLista($table){
 

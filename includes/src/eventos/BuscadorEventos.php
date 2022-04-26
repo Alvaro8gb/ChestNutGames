@@ -5,11 +5,17 @@ use es\chestnut\Aplicacion;
 
 class BuscadorEventos{
 
-    private static function eventoBuscado($datos){
+    private $eventos;
+
+    public function __construct($eventos){
+        $this->eventos = $eventos;
+    }
+
+    private function eventoBuscado($datos){
         return isset($_GET['buscar']);
     }
 
-    public static function gestiona(){
+    public function gestiona(){
 
         $datos = &$_GET;
         
@@ -22,7 +28,7 @@ class BuscadorEventos{
         return $html;
     }
 
-    private static function mostrarBuscador(){
+    private function mostrarBuscador(){
 
         $app = Aplicacion::getInstancia();
 
@@ -46,7 +52,7 @@ class BuscadorEventos{
         return $html;
     }
 
-    private static function procesarBusqueda(){
+    private function procesarBusqueda(){
 
         $app = Aplicacion::getInstancia();
 
@@ -59,21 +65,25 @@ class BuscadorEventos{
                 $html .= '<br><p>No se ha ingresado ningún evento a buscar</p>';
             }
             else {
-                // Conexión a la base de datos y seleccion de registros
-                $conn = $app->getConexionBd();
-                $prepared = $conn->prepare("SELECT nombre FROM eventos WHERE nombre LIKE'%$eventToSearch%' ");
-                $prepared->execute();
-                $consulta = $prepared->get_result();
-                $count_results = mysqli_num_rows($consulta);
+                
+                $encontrado = false;
+                $i = 0;
+                while(!$encontrado && $i < $this->eventos->getNumElements() ){
+                    $evento  = $this->eventos->getElement($i);
+                    $nombreEvento = $evento->getNombre();
+
+                    if(preg_match("/$nombreEvento/i",$eventToSearch)){
+                        $encontrado = true;
+                    }else{
+                        $i++;
+                    }
+                }
         
-                // Si hay resultados
-                if($count_results > 0){
-                    $html .= 
-                    '<br><p>El evento buscado, '.$eventToSearch.', se encuentra en nuestra página web. Deslícese sobre el siguiente
-                    slide colocado a continuación hasta encontrarlo.<p>';
+                if($encontrado){
+                    $id = $i;
+                    $app->redirige("eventos.php?id=$id");
                 }
                 else{
-                    // Si no hay resultados
                     $html .= '<br><p>No se encuentran resultados con los criterios de búsqueda.</p>';
                 }
             }
