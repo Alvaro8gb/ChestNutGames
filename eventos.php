@@ -12,7 +12,7 @@ $app->verificaLogado($app->buildUrl("noLogeado.php"));
 
 try{
     $eventos = new \es\chestnut\eventos\Eventos();
-    $contenidoPrincipal .= $eventos->gestiona();      
+    $contenidoPrincipal = $eventos->gestiona();      
 
 }catch(\Exception $e){
     $app->paginaError(501,'Error',"Error en eventos: ".$e->getMessage(),$e->getTrace());

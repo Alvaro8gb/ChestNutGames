@@ -47,7 +47,7 @@ class Tienda extends Lista{
                 <p class="text"><b>Precio:  </b>{$precio}€</p>
             EOS;
             
-            if($producto->getCantidad() <= 10){
+            if($producto->getCantidad() <= 10 && $producto->getCantidad() > 0){
                 $html .= <<<EOS
                 
                     <p class="ultimas"><b>Últimas unidades: </b>{$producto->getCantidad()}</p>
