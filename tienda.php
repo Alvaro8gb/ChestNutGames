@@ -1,13 +1,23 @@
 <?php
 require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/vistas/helpers/utils.php';
+
+$app->verificaLogado($app->buildUrl("noLogeado.php"));
 
 $tituloPagina = 'Tienda';
+$css = link_css($app->resuelve(RUTA_CSS.'tienda.css'));
+      
+try{
+    $tienda = new \es\chestnut\tienda\Tienda();
+    $contenidoPrincipal = $tienda->gestiona();      
 
-$contenidoPrincipal = '<div class = "productos"> <h1 id="cl"> Productos de la tienda. No disponible todavía </h1></div>';
+}catch(\Exception $e){
+    $app->paginaError(501,'Error',"Error en tienda: ".$e->getMessage(),$e->getTrace());
+}
 
 #CSS grid
 
-$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
+$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css'=>$css];
 $app->generaVista('/plantillas/plantilla.php', $params);
 
 // Mostrar anuncio 
