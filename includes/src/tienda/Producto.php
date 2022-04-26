@@ -9,14 +9,16 @@ class Producto{
     private $desc;
     private $categoria;
     private $precio;
+    private $cantidad;
 
-    public function __construct($id, $nombre, $imagen, $desc, $categoria, $precio ){
+    public function __construct($id, $nombre, $desc, $categoria, $precio, $imagen,$cantidad ){
         $this->id = $id;
         $this->nombre = $nombre;
         $this->imagen = $imagen;
         $this->desc = $desc;
         $this->categoria = $categoria;
-        $this->enlace = $precio;
+        $this->precio = $precio;
+        $this->cantidad=$cantidad;
     }
 
     public function getId(){
@@ -40,6 +42,10 @@ class Producto{
 
     public function getPrecio(){
         return $this->precio;
+    }
+
+    public function getCantidad(){
+        return $this->cantidad;
     }
 }
 
