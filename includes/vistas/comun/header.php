@@ -18,10 +18,14 @@ function mostrarSaludo(){
     $app = Aplicacion::getInstancia();
     if ($app->usuarioLogueado()) {
         $nombreUsuario = $app->nombreUsuario();
+        $perfilUrl = $app->resuelve('/perfilUsuario.php');
 
         $formLogout = new FormularioLogout();
         $htmlLogout = $formLogout->gestiona();
-        $html = "Bienvenido, ${nombreUsuario}. $htmlLogout";
+
+        $html = <<<EOS
+        Bienvenido, ${nombreUsuario}.<a href="{$perfilUrl}">Perfil</a>.$htmlLogout
+      EOS;
     } else {
         $loginUrl = $app->resuelve('/login.php');
         $registroUrl = $app->resuelve('/registro.php');
