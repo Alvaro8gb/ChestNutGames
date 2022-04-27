@@ -93,7 +93,7 @@ class Tienda extends Lista{
 
         $html .= <<< EOS
         <div class = "informacion">
-            <p class="txtpr"><b>Título: </b>{$tienda->getNombre()}</p>
+            <p class="txtpr"><b>Porducto: </b>{$tienda->getNombre()}</p>
             <p class="txtpr"><b>Descripción: </b>{$tienda->getDesc()}</p>
             <p class="txtpr"><b>Categoría: </b>{$tienda->getCategoria()}</p>
         </div>

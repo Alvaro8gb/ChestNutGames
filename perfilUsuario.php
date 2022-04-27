@@ -5,21 +5,23 @@ require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 use \es\chestnut\usuarios\Usuario;
 
+$app->verificaLogado($app->buildUrl("noLogeado.php"));
+
 $tituloPagina = 'perfilUsuario';
 $css = link_css($app->resuelve(RUTA_CSS.'ranking.css'));
-$inscripciones = null;
-////Ranking por jugadores
-if($_SESSION["login"]){
-    $user = Usuario::buscarUsuarioPorId($_SESSION["idUsuario"]);
-    $inscripciones = $user->getInscripciones();
-}
+
+$user = Usuario::buscarUsuarioPorId($app->idUsuario());
+$eventos_inscritos = $user->getInscripciones();
+
+
 $contenidoPrincipal = <<<EOS
 <div>
+
+Victor la chupa
 EOS;
-foreach( $incripciones as $inscripcion){
-    $x = $inscripcion["IdEvento"];
+foreach( $eventos_inscritos as $id => $nombre){
     $contenidoPrincipal .=<<<EOS
-    <p> 1 </p>
+    <p> $id  $nombre</p>
 EOS;
 }
 $contenidoPrincipal .=<<<EOS

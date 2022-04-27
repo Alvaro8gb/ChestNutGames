@@ -19,7 +19,7 @@ class Usuario{
     private $nombre;
     private $rol;
     private $correo;
-    private $inscripciones;
+    private $eventos_inscritos;
 
     private function __construct($nombreUsuario, $nombre, $password,$correo, $id = null, $rol){
         $this->id = $id;
@@ -28,28 +28,29 @@ class Usuario{
         $this->password = $password;
         $this->rol = $rol;
         $this->correo = $correo;
-        #self::cargarInscripciones($id);
+        $this->cargarInscripciones();
     }
-    private static function cargarInscripciones($id){
-            $incripcionesId = array();
+    private function cargarInscripciones(){
+            $idsEventos_inscritos = array();
+            $eventos_inscritos = array();
 
             $app = Aplicacion::getInstancia();
             $conn = $app->getConexionBd();
-            $sql = sprintf("SELECT IdEvento FROM inscripcioneseventos WHERE IdUsuario = $id");
-            $resultado = @mysqli_query($conn, $sql);
-            $i = 0;
-            while($fila = @mysqli_fetch_array($resultado)){
-                $elem = $fila;
-                $incripcionesId[$i] = $elem;
-                $i++;
+            $sql = sprintf("SELECT distinct IdEvento FROM inscripcioneseventos WHERE IdUsuario = $this->id");
+            $res = @mysqli_query($conn, $sql);
+
+            while($fila = @mysqli_fetch_array($res)){
+                array_push($idsEventos_inscritos, $fila["IdEvento"]);
             }
-            $i = 0;
-            foreach($inscripcionesId as $id_evento){
-                $x = $id_evento["IdEvento"];
-                $sql = sprintf("SELECT * FROM eventos WHERE IdEvento = $x");
-                $incripciones[$i] = @mysqli_query($conn, $sql);
-                $i++;
+
+            foreach($idsEventos_inscritos as $id_evento){
+                $sql = sprintf("SELECT IdEvento, nombre FROM eventos WHERE IdEvento = $id_evento");
+                $res = @mysqli_query($conn, $sql);
+                $fila = @mysqli_fetch_array($res);
+                $eventos_inscritos[$fila["IdEvento"] ] = $fila["nombre"];
             }
+
+            $this->eventos_inscritos = $eventos_inscritos;
         
     }
     public static function login($nombreUsuario, $correo, $password){
@@ -191,7 +192,7 @@ class Usuario{
     }
 
     public function getInscripciones(){
-        return $this->inscripciones;
+        return $this->eventos_inscritos;
     }
 
     public function compruebaPassword($password)

@@ -1,9 +1,12 @@
 <?php
+
+use es\chestnut\Aplicacion;
+
     $id = $_POST['id_producto'];
     $id_user = $_SESSION['idUsuario'];
     if (isset($_POST['cantidad_prod'])) {
         $app = Aplicacion::getInstancia();
-        $conn = $app->conexionBd();
+        $conn = $app->getConexionBd();
         $query = sprintf("SELECT * FROM compras WHERE IdUsuario = '$id_user' AND IdProducto ='$id'", $conn->real_escape_string($id_user),$conn->real_escape_string($id));
         $rs = $conn->query($query);
         if ($rs) {

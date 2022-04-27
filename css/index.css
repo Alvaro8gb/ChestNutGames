@@ -157,4 +157,4 @@ body::-webkit-scrollbar {
     border-top: 2px solid rgba(50, 150, 176, 0);
     animation: rotarload 1s ease-out infinite;
     transform: rotate(0deg);
-  }
+}
