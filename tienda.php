@@ -21,7 +21,7 @@ $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPr
 $app->generaVista('/plantillas/plantilla.php', $params);
 
 // Mostrar anuncio 
-if($app->show_advert())
+// if($app->show_advert())
 echo '<script type="text/javascript"> advert_show(); </script>';
 
 ?>

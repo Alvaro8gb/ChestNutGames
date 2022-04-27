@@ -48,9 +48,20 @@
     margin-top:-20px;
 }
 
-.popup_image {
+.pop_up_desc p  {
+    text-align: center;
 
-max-width: 350px;
-max-height: 350px;
+}
+
+.popup_image {
+    
+border-radius: 30px;
+box-shadow: 0 0 20px 0 rgb(255, 255, 255), 0 0 0 0 rgb(255, 255, 254);
+
+width: 800px;
+height: 400px;
+
+max-width: 800px;
+max-height: 400px;
 
 }
