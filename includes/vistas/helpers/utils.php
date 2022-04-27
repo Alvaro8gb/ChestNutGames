@@ -10,6 +10,9 @@ function link_css($path){
 
 function link_img($path, $alt){
     return "<img src='{$path}' alt='{$alt}' >";
+}
 
+function link_js($path){
+    return "\n\t\t"."<script type='text/javascript' src='{$path}'></script>";
 }
 

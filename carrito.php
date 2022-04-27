@@ -4,14 +4,14 @@ require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $app->verificaLogado($app->buildUrl("noLogeado.php"));
 
-$tituloPagina = 'Tienda';
-$css = link_css($app->resuelve(RUTA_CSS.'tienda.css'));
+$tituloPagina = 'Cesta de la compra';
+$css = link_css($app->resuelve(RUTA_CSS.'carrito.css'));
 $css.=link_js($app->resuelve(RUTA_JS.'jquery-3.6.0.min.js'));
 $css.=link_js($app->resuelve(RUTA_JS.'cantidad.js'));
       
 try{
-    $tienda = new \es\chestnut\tienda\Tienda();
-    $contenidoPrincipal = $tienda->gestiona();      
+    $carrito = new \es\chestnut\tienda\Carritos();
+    $contenidoPrincipal = $carrito->gestiona();      
 
 }catch(\Exception $e){
     $app->paginaError(501,'Error',"Error en tienda: ".$e->getMessage(),$e->getTrace());
@@ -23,7 +23,7 @@ $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPr
 $app->generaVista('/plantillas/plantilla.php', $params);
 
 // Mostrar anuncio 
-//if($app->show_advert())
+if($app->show_advert())
 echo '<script type="text/javascript"> advert_show(); </script>';
 
 

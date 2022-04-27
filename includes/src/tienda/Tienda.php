@@ -93,7 +93,7 @@ class Tienda extends Lista{
 
         $html .= <<< EOS
         <div class = "informacion">
-            <p class="txtpr"><b>Porducto: </b>{$tienda->getNombre()}</p>
+            <p class="txtpr"><b>Título: </b>{$tienda->getNombre()}</p>
             <p class="txtpr"><b>Descripción: </b>{$tienda->getDesc()}</p>
             <p class="txtpr"><b>Categoría: </b>{$tienda->getCategoria()}</p>
         </div>
@@ -105,9 +105,10 @@ class Tienda extends Lista{
         if($tienda->getCantidad() != 0){
             $html .=<<< EOS
             <p class="txtpr1"><b>Cantidad a comprar:</b></p>
-            <form action="Carrito.php" method="post">
-                <input class="evi" type ="text" name ="cantidad_prod" value ="">
-                <input class="id_oculto" type ="number" name ="id_producto" value ="{$tienda->getId()}">
+            <form action="procesarCarritoAnyadir.php" method="POST">
+                <input class="evil" required type ="number" name ="cantidad_prod"  id="campoCantidad"><span id="validCantidad"></span>
+                <input class="id_oculto" type ="number" name ="id_cantidad" id="valida" value="{$tienda->getCantidad()}">
+                <input class="id_oculto" type ="number" name ="id_producto" id="idprod" value ="{$tienda->getId()}">
                 <div class="car">
                     <input class="anyadir_carrito" type="submit" name="carrito" value="Añadir al carrito">
                 </div>

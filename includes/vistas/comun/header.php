@@ -18,13 +18,11 @@ function mostrarSaludo(){
     $app = Aplicacion::getInstancia();
     if ($app->usuarioLogueado()) {
         $nombreUsuario = $app->nombreUsuario();
-        $perfilUrl = $app->resuelve('/perfilUsuario.php');
 
         $formLogout = new FormularioLogout();
         $htmlLogout = $formLogout->gestiona();
-
         $html = <<<EOS
-        Bienvenido, ${nombreUsuario}.<a href="{$perfilUrl}">Perfil</a>.$htmlLogout
+        Bienvenido, ${nombreUsuario}.$htmlLogout
       EOS;
     } else {
         $loginUrl = $app->resuelve('/login.php');
@@ -50,6 +48,14 @@ function mostrarSaludo(){
             foreach($paginas as $name=>$enl){
                 echo link_lista($enl, $name);
             }
+            $ruta_imagenes = $app->resuelve(RUTA_IMGS.'tienda/');
+            $ruta_imagenes1 = $app->resuelve(RUTA_IMGS.'usuario/');
+            $perfilUrl = $app->resuelve('/perfilUsuario.php');
+            $carritoUrl = $app->resuelve('/carrito.php');
+            $alt ="cart";
+            $alt1="perfil";
+            echo "<a href='{$perfilUrl}'><img class='img_cesta' src='{$ruta_imagenes1}perfil.png' alt='{$alt1}' ></a>";
+            echo "<a href='{$carritoUrl}'><img class='img_cesta' src='{$ruta_imagenes}cart.png' alt='{$alt}' ></a>";
             echo '</ul>';    
         ?>                       
     </nav>

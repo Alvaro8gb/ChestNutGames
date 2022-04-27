@@ -41,6 +41,13 @@
     margin-top: 80%;
 }
 
+.evil{
+    border-radius: 20px;
+    border:1px solid black;
+    margin-bottom: 2%;
+    font-family: "Carter One";
+}
+
 .oculto{
     position:absolute;
     overflow:hidden;
