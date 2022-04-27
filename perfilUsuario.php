@@ -12,19 +12,38 @@ $css = link_css($app->resuelve(RUTA_CSS.'ranking.css'));
 
 $user = Usuario::buscarUsuarioPorId($app->idUsuario());
 $eventos_inscritos = $user->getInscripciones();
-
+$nombreUsuario = $user->getNombreUsuario();
+$correo = $user->getCorreo();
 
 $contenidoPrincipal = <<<EOS
 <div>
-
-Victor la chupa
+    <div class = "move"> 
+        <span>PERFIL USUARIO</span>
+        <div class="liquid"></div>
+    </div>
+    <table class ="out">
+      <tr>
+          <th>NOMBRE DE USUARIO </th>
+          <th>$nombreUsuario</th>
+      </tr>
+      <tr>
+          <th>CORREO DE USUARIO </th>
+          <th>$correo</th>
+      </tr>
+      <tr>
+          <th>EVENTOS SUSCRITOS </th>
+          <th>
+      
 EOS;
 foreach( $eventos_inscritos as $id => $nombre){
     $contenidoPrincipal .=<<<EOS
-    <p> $id  $nombre</p>
+     $nombre /
 EOS;
 }
 $contenidoPrincipal .=<<<EOS
+        </th>
+        </tr>
+    </table>
 </div>
 EOS;
 
