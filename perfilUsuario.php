@@ -67,6 +67,11 @@ EOS;
 $contenidoPrincipal .=<<<EOS
     </tr>
     </table>
+    <div class ="padre">
+        <div class= "hijo">
+        <a href="">HISTORIAL DE PEDIDOS</a>
+        </div>
+    </div>
 </div>
 EOS;
 

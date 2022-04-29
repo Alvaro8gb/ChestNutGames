@@ -145,5 +145,15 @@ ul.slider li:target {
    transform: translate(-50%, -75%) rotate(360deg);
   }
  }
+ .padre {
+  height: 150px;
+  /*IMPORTANTE*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.hijo {
+  width: 120px;
+}
 
