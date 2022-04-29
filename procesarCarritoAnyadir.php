@@ -6,7 +6,7 @@
     if (isset($_POST['cantidad_prod'])) {
         $app = \es\chestnut\Aplicacion::getInstancia();
         $conn = $app->getConexionBd();
-        $query = sprintf("SELECT * FROM compras WHERE IdUsuario = '$id_user' AND IdProducto ='$id'", $id_user,$id);
+        $query = sprintf("SELECT * FROM cesta WHERE IdUsuario = '$id_user' AND IdProducto ='$id'", $id_user,$id);
         $rs = $conn->query($query);
         if ($rs) {
             if ( $rs->num_rows == 1) {
@@ -15,13 +15,13 @@
                 $can = $fila['cantidad'];
                 $total = $can + $cantidad;
 
-                $query1=sprintf("UPDATE compras SET cantidad='$total' WHERE IdUsuario = '$id_user' AND IdProducto ='$id'", $total);
+                $query1=sprintf("UPDATE cesta SET cantidad='$total' WHERE IdUsuario = '$id_user' AND IdProducto ='$id'", $total);
                 if ( $conn->query($query1) ) {
                 }
             }
             else{
                 $cantidad = $_POST['cantidad_prod'];
-                $query2=sprintf("INSERT INTO compras(IdUsuario,IdProducto,cantidad) VALUES('$id_user','$id','$cantidad')", $id_user, $id , $cantidad);
+                $query2=sprintf("INSERT INTO cesta(IdUsuario,IdProducto,cantidad) VALUES('$id_user','$id','$cantidad')", $id_user, $id , $cantidad);
                 if ( $conn->query($query2) ) {
                 }
             }

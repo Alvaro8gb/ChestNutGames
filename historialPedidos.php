@@ -4,17 +4,15 @@ require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $app->verificaLogado($app->buildUrl("noLogeado.php"));
 
-$tituloPagina = 'Cesta de la compra';
+$tituloPagina = 'Pedidos';
 $css = link_css($app->resuelve(RUTA_CSS.'carrito.css'));
-$css.=link_js($app->resuelve(RUTA_JS.'jquery-3.6.0.min.js'));
-$css.=link_js($app->resuelve(RUTA_JS.'cantidad_cesta.js'));
       
 try{
-    $carrito = new \es\chestnut\tienda\Carritos();
-    $contenidoPrincipal = $carrito->gestiona();      
+    $pedidos = new \es\chestnut\tienda\Pedidos();
+    $contenidoPrincipal = $pedidos->gestiona();      
 
 }catch(\Exception $e){
-    $app->paginaError(501,'Error',"Error en tienda: ".$e->getMessage(),$e->getTrace());
+    $app->paginaError(501,'Error',"Error en pedidos: ".$e->getMessage(),$e->getTrace());
 }
 
 #CSS grid

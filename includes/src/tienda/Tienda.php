@@ -88,7 +88,7 @@ class Tienda extends Lista{
        
         $html = '<div class="prod">
         <div class = "img_tienda">
-        <img class="producto" src="data:image/png;base64,'.base64_encode($tienda->getImagen()).'"/>
+        <img class="producto" src="data:image/png;base64,'.base64_encode($tienda->getImagen()). '" alt="num_imagen"/>
         </div>';
 
         $html .= <<< EOS

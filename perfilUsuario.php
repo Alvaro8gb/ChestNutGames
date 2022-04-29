@@ -8,20 +8,20 @@ use \es\chestnut\usuarios\Usuario;
 $app->verificaLogado($app->buildUrl("noLogeado.php"));
 
 $tituloPagina = 'perfilUsuario';
-$css = link_css($app->resuelve(RUTA_CSS.'ranking.css'));
+$css = link_css($app->resuelve(RUTA_CSS.'perfil.css'));
 
 $user = Usuario::buscarUsuarioPorId($app->idUsuario());
 $eventos_inscritos = $user->getInscripciones();
 $nombreUsuario = $user->getNombreUsuario();
 $correo = $user->getCorreo();
+$historial = '<a class="pedidos" href="historialPedidos.php">Historial de pedidos</a>';
 $juegos_jugados= $user->getJuegosJugados();
 $puntuacion_juegos = $user->getPuntuacionJuegos();
 
 $contenidoPrincipal = <<<EOS
 <div>
-    <div class = "move"> 
-        <span>PERFIL USUARIO</span>
-        <div class="liquid"></div>
+    <div class = "titular"> 
+        PERFIL USUARIO
     </div>
     <table class ="out">
       <tr>
@@ -43,33 +43,33 @@ foreach( $eventos_inscritos as $id => $nombre){
 EOS;
 }
 $contenidoPrincipal .=<<<EOS
-        </td>
-        </tr>
-    <tr> 
-    <th> JUEGO </th>
-    
+</td>
+</tr>
+<tr> 
+<th> JUEGO </th>
+
 EOS;
 foreach( $juegos_jugados as $nombre){
-    $contenidoPrincipal .=<<<EOS
-     <th> $nombre </th>
+$contenidoPrincipal .=<<<EOS
+<th> $nombre </th>
 EOS;
 }
 $contenidoPrincipal .=<<<EOS
-    </tr>
-    <tr>
-    <th> PUNTUACION </th>
+</tr>
+<tr>
+<th> PUNTUACION </th>
 EOS;
 foreach( $puntuacion_juegos as $puntuacion){
-    $contenidoPrincipal .=<<<EOS
-     <th> $puntuacion </th>
+$contenidoPrincipal .=<<<EOS
+<th> $puntuacion </th>
 EOS;
 }
 $contenidoPrincipal .=<<<EOS
-    </tr>
+</tr>
     </table>
     <div class ="padre">
         <div class= "hijo">
-        <a href="">HISTORIAL DE PEDIDOS</a>
+        $historial
         </div>
     </div>
 </div>

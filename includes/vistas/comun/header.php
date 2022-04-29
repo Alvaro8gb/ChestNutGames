@@ -16,7 +16,21 @@ if (!( isset( $_GET['type']) && $_GET['type'] = "home" )){
 function mostrarSaludo(){
     $html = '';
     $app = Aplicacion::getInstancia();
+
+    $ruta_imagenes = $app->resuelve(RUTA_IMGS.'tienda/');
+    $ruta_imagenes1 = $app->resuelve(RUTA_IMGS.'usuario/');
+    $perfilUrl = $app->resuelve('/perfilUsuario.php');
+    $carritoUrl = $app->resuelve('/carrito.php');
+    $alt ="cart";
+    $alt1="perfil";
+
     if ($app->usuarioLogueado()) {
+        $icono = <<<EOS
+        <a href='{$perfilUrl}'><img class='img_cesta' src='{$ruta_imagenes1}perfil.png' alt='{$alt1}' ></a>
+        <a href='{$carritoUrl}'><img class='img_cesta' src='{$ruta_imagenes}cart.png' alt='{$alt}' ></a>    
+        EOS;
+        echo $icono;
+        
         $nombreUsuario = $app->nombreUsuario();
 
         $formLogout = new FormularioLogout();
@@ -48,14 +62,6 @@ function mostrarSaludo(){
             foreach($paginas as $name=>$enl){
                 echo link_lista($enl, $name);
             }
-            $ruta_imagenes = $app->resuelve(RUTA_IMGS.'tienda/');
-            $ruta_imagenes1 = $app->resuelve(RUTA_IMGS.'usuario/');
-            $perfilUrl = $app->resuelve('/perfilUsuario.php');
-            $carritoUrl = $app->resuelve('/carrito.php');
-            $alt ="cart";
-            $alt1="perfil";
-            echo "<a href='{$perfilUrl}'><img class='img_cesta' src='{$ruta_imagenes1}perfil.png' alt='{$alt1}' ></a>";
-            echo "<a href='{$carritoUrl}'><img class='img_cesta' src='{$ruta_imagenes}cart.png' alt='{$alt}' ></a>";
-            echo '</ul>';    
+            echo '</ul>';
         ?>                       
     </nav>

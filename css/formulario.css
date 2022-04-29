@@ -186,7 +186,7 @@ input.campos{
 @font-face {
   font-family: Carter One;
   src: url(fonts/CarterOne-Regular.ttf);
-  font-weight: regular;
+  font-weight:normal;
 }
 
 .req::after{

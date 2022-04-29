@@ -37,12 +37,15 @@
     height: 30px;
     float: right;
     position: relative;
-    padding:1% 2% 4% 0;
-    margin-bottom: 1%;
+    margin: 5px;
+    padding: 1%;
+    background-color: hsl(30, 86%, 57%);
+    border-radius: 20px;
 }
 
 .img_cesta:hover{
-    transform:scale(1.3);
+    transform:scale(1.1);
+    background-color: blueviolet;
 }
 
 /* TO DO IN HEADER */

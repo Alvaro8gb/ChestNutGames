@@ -4,8 +4,8 @@ namespace es\chestnut\tienda;
 use es\chestnut\Lista;
 use es\chestnut\Aplicacion;
 
-class Carritos extends Lista{
-    private const TABLE ="cesta";
+class Pedidos extends Lista{
+    private const TABLE ="compras";
     private static $ruta_imagenes;
 
     public function __construct(){
@@ -15,13 +15,13 @@ class Carritos extends Lista{
     }
 
     protected function crearElem($fila){
-        return new Carrito($fila["IdUsuario"],$fila["IdProducto"],$fila["cantidad"]);
+        return new Compra($fila["IdUsuario"],$fila["IdProducto"],$fila["cantidad"]);
     }
 
     protected function mostrarElems(){
         $html = <<<EOS
         <div class="titular">
-            Artículos en la cesta
+            Historial de pedidos
         </div>
         EOS;
 
@@ -34,7 +34,6 @@ class Carritos extends Lista{
                         <th class="tamanyo">PRODUCTO</th>
                         <th class="tamanyo">CANTIDAD</th>
                         <th class="tamanyo">PRECIO</th>
-                        <th class="tamanyo">ACCIÓN</th>
                     </tr>
                 </thead>
         EOS;
@@ -68,10 +67,9 @@ class Carritos extends Lista{
                 $precio_total = $precio * $cantidad;
                 $precio_acumulado +=$precio_total;
                 $alt = "imagen_".$nombre;
-                $htmlImagen = '<a href="tienda.php?id='.$id.'"><img class="cesta_img" src="data:image/png;base64,'.base64_encode($imagen).'" alt ="'.$alt.'"></a>'; 
+                $htmlImagen = '<img class="cesta_img" src="data:image/png;base64,'.base64_encode($imagen).'" alt ="'.$alt.'">'; 
             
                 $html .= <<<EOS
-                
                 <div class="cesta">
                     <tr>
                         <td>
@@ -82,17 +80,6 @@ class Carritos extends Lista{
                         </td>
                         <td class="tamanyo">{$cantidad}</td>
                         <td class="tamanyo">{$precio_total}€</td>
-                        <td>
-                            <form action="procesarCarritoEliminar.php" method="POST">
-                                <input class="evil" required type ="number" name ="cantidad_prod" id="campoCantidad"><span id="validCantidad"></span>
-                                <input class="id_oculto" type ="number" name ="id_cantidad" id="valida" value="{$cantidad}">
-                                <input class="id_oculto" type ="number" name ="id_producto" id="idprod" value ="{$id_product}">
-                                <input class="id_oculto" type ="text" name ="id_usuario" id="iduser" value ="{$id_user}">
-                                <div class="car">
-                                    <input class="anyadir_carrito" type="submit" name="carrito" value="Eliminar unidades">
-                                </div>
-                            </form>
-                        </td>
                     </tr>
                 </div>
                 EOS;
@@ -100,28 +87,14 @@ class Carritos extends Lista{
         }
 
         $html .= <<<EOS
-                
-        
-        </table>
-                </div>
+                </table>
                 <div class="total">
-                    <p class="text">Precio total: {$precio_acumulado}€
-        EOS;
-
-        if($precio_acumulado!=0){
-            $html .= <<<EOS
-                        <form action="Compras.php" method="POST">
-                            <div class="car">
-                                <input class="anyadir_carrito" type="submit" name="carrito" value="Tramitar Pedido">
-                            </div>
-                        </form>
-        EOS;
-        }
-        $html .= <<<EOS
-                    </p>
+                    <p class="text">Precio total pagado: {$precio_acumulado}€</p>
                 </div>
             </div>
         EOS;
+
+        
         
         return $html;
     }

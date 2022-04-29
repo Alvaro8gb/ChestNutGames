@@ -33,6 +33,7 @@ class Usuario{
         $this->cargarInscripciones();
         $this->cargarPuntuaciones();
     }
+
     private function cargarPuntuaciones(){
         $id_juegos_jugados= array();
         $juegos_jugados = array();
@@ -62,7 +63,7 @@ class Usuario{
         $this->puntuacion_juegos = $puntuacion_juegos;
         $this->juegos_jugados = $juegos_jugados;
     
-}
+    }
     private function cargarInscripciones(){
             $idsEventos_inscritos = array();
             $eventos_inscritos = array();
@@ -227,12 +228,14 @@ class Usuario{
     public function getInscripciones(){
         return $this->eventos_inscritos;
     }
+
     public function getJuegosJugados(){
         return $this->juegos_jugados;
     }
     public function getPuntuacionJuegos(){
         return $this->puntuacion_juegos;
     }
+
     public function compruebaPassword($password)
     {
         return password_verify($password, $this->password);
