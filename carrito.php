@@ -10,11 +10,11 @@ $css.=link_js($app->resuelve(RUTA_JS.'jquery-3.6.0.min.js'));
 $css.=link_js($app->resuelve(RUTA_JS.'cantidad_cesta.js'));
       
 try{
-    $carrito = new \es\chestnut\tienda\Carritos();
-    $contenidoPrincipal = $carrito->gestiona();      
+    $carrito = new \es\chestnut\carrito\Carrito($app->getCarrito());
+    $contenidoPrincipal = $carrito->mostrarCarrito();      
 
 }catch(\Exception $e){
-    $app->paginaError(501,'Error',"Error en tienda: ".$e->getMessage(),$e->getTrace());
+    $app->paginaError(501,'Error',"Error en carrito: ".$e->getMessage(),$e->getTrace());
 }
 
 #CSS grid

@@ -15,7 +15,7 @@ class Pedidos extends Lista{
     }
 
     protected function crearElem($fila){
-        return new Compra($fila["IdUsuario"],$fila["IdProducto"],$fila["cantidad"]);
+        return new Pedido($fila["IdUsuario"],$fila["IdProducto"],$fila["cantidad"]);
     }
 
     protected function mostrarElems(){

@@ -240,6 +240,16 @@ class Aplicacion{
         return $_SESSION['nombre'] ?? '';
     }
 
+    public function getCarrito(){
+        $this->compruebaInstanciaInicializada();
+        return $_SESSION["carrito"] ?? array();
+    }
+
+    public function updateCarrito($carrito){
+        $this->compruebaInstanciaInicializada();
+        $_SESSION["carrito"] = $carrito;
+    }
+
     public function idUsuario(){
         $this->compruebaInstanciaInicializada();
         return $_SESSION['idUsuario'] ?? '';

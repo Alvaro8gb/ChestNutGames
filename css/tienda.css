@@ -15,7 +15,7 @@
 .gr{
     width: 300px;
     height: 300px;
-    border-radius: 30px;
+    border-radius: 25px;
     background-color:blue;
     border: 20px solid black;
     margin-top: 10%;
@@ -25,7 +25,7 @@
 
 .borde{
     background:hsl(30, 86%, 57%);
-    width: 400px;
+    width: 350px;
     border:5px solid black;
     border-radius: 30px;
     margin-top:10%;
@@ -41,7 +41,7 @@
     margin-top: 80%;
 }
 
-.evil{
+.cantidad_prod{
     border-radius: 20px;
     border:1px solid black;
     margin-bottom: 2%;
@@ -69,8 +69,8 @@
 }
 
 .producto{
-    width: 300px;
-    height: 300px;
+    width: 275px;
+    height: 275px;
     border-radius: 30px;
     background-color:blue;
     border: 20px solid black;

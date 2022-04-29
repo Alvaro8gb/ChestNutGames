@@ -3,6 +3,7 @@
 namespace es\chestnut\tienda;
 use es\chestnut\Lista;
 use es\chestnut\Aplicacion;
+use es\chestnut\carrito\FormularioAdd2Carrito;
 
 class Tienda extends Lista{
     private const TABLE ="tienda";
@@ -83,37 +84,36 @@ class Tienda extends Lista{
 
         $path = self::$ruta_imagenes;
         $htmlimagen = "<img class='carrito_centrado' src='{$path}carrito.png' alt='Gif'>"; 
-        $id_tienda = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
-        $tienda = parent::getElement($id_tienda);
+        $id_producto = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
+        $producto = parent::getElement($id_producto);
+
+        $imagen = $producto->getImagen();
+        $bs = base64_encode($imagen);
+        $nombre = $producto->getNombre();
+        $precio = $producto->getPrecio();
+        $cantidad = $producto->getCantidad();
        
         $html = '<div class="prod">
-        <div class = "img_tienda">
-        <img class="producto" src="data:image/png;base64,'.base64_encode($tienda->getImagen()). '" alt="num_imagen"/>
+        <div class = "img_producto">
+        <img class="producto" src="data:image/png;base64,'.base64_encode($imagen). '" alt="num_imagen"/>
         </div>';
 
         $html .= <<< EOS
         <div class = "informacion">
-            <p class="txtpr"><b>Título: </b>{$tienda->getNombre()}</p>
-            <p class="txtpr"><b>Descripción: </b>{$tienda->getDesc()}</p>
-            <p class="txtpr"><b>Categoría: </b>{$tienda->getCategoria()}</p>
+            <p class="txtpr"><b>Nombre producto: </b>$nombre</p>
+            <p class="txtpr"><b>Descripción: </b>{$producto->getDesc()}</p>
+            <p class="txtpr"><b>Categoría: </b>{$producto->getCategoria()}</p>
         </div>
          <div class = "carrito">
-                <p class="txtpr1"><b>Precio: </b>{$tienda->getPrecio()}€</p>
-                <p class="txtpr1"><b>Unidades: </b>{$tienda->getCantidad()}</p>
+                <p class="txtpr1"><b>Precio: </b>$precio €</p>
+                <p class="txtpr1"><b>Unidades: </b> $cantidad </p>
         EOS;
 
-        if($tienda->getCantidad() != 0){
-            $html .=<<< EOS
-            <p class="txtpr1"><b>Cantidad a comprar:</b></p>
-            <form action="procesarCarritoAnyadir.php" method="POST">
-                <input class="evil" required type ="number" name ="cantidad_prod"  id="campoCantidad"><span id="validCantidad"></span>
-                <input class="id_oculto" type ="number" name ="id_cantidad" id="valida" value="{$tienda->getCantidad()}">
-                <input class="id_oculto" type ="number" name ="id_producto" id="idprod" value ="{$tienda->getId()}">
-                <div class="car">
-                    <input class="anyadir_carrito" type="submit" name="carrito" value="Añadir al carrito">
-                </div>
-            </form>
-            EOS;
+        if($producto->getCantidad() != 0){
+
+            $form = new FormularioAdd2Carrito($id_producto,$cantidad,$nombre,$precio,$bs);
+            $html .= $form->gestiona();
+
         }
 
         $html .=<<< EOS

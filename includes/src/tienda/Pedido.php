@@ -2,7 +2,7 @@
 
 namespace es\chestnut\tienda;
 
-class Compra{
+class Pedido{
     private $id_user;
     private $id_product;
     private $cantidad;

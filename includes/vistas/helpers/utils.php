@@ -13,6 +13,6 @@ function link_img($path, $alt){
 }
 
 function link_js($path){
-    return "\n\t\t"."<script type='text/javascript' src='{$path}'></script>";
+    return "\n\t\t"."<script src='{$path}'></script>";
 }
 

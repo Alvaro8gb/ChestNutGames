@@ -10,7 +10,6 @@ $(function() {
 		campo[0].setCustomValidity(""); // limpia validaciones previas
 		// validación html5, porque el campo es <input type="email" ...>
 		const esCantidadValido = campo[0].checkValidity();
-		console.log("hola");
 		if (cantidadValidoComplu(Ca,Ca1)){
 			// el correo es válido y acaba por @ucm.es: marcamos y limpiamos quejas
 			// tu código aquí: coloca la marca correcta
