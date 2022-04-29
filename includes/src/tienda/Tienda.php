@@ -94,7 +94,7 @@ class Tienda extends Lista{
         $cantidad = $producto->getCantidad();
        
         $html = '<div class="prod">
-        <div class = "img_producto">
+        <div class = "img_tienda">
         <img class="producto" src="data:image/png;base64,'.base64_encode($imagen). '" alt="num_imagen"/>
         </div>';
 

@@ -46,6 +46,7 @@ class Carrito {
                 $htmlImagen = '<a href="tienda.php?id='.$id.'"><img class="cesta_img" src="data:image/png;base64,'.$imagen.'" alt ="'.$alt.'"></a>'; 
                 $formElimnarItem = new FormularioRemove2Carrito($idElemCarrito,$cantidad);
                 $htmlFormRemoveItem = $formElimnarItem->gestiona();
+                $precio_total = $precio * $cantidad;
 
                 $html .= <<<EOS
                 
@@ -58,7 +59,7 @@ class Carrito {
                             <p class="text">$nombre</p>
                         </td>
                         <td class="tamanyo">$cantidad</td>
-                        <td class="tamanyo"> $precio €</td>
+                        <td class="tamanyo"> $precio_total €</td>
                         <td>
                             $htmlFormRemoveItem
                         </td>
@@ -73,7 +74,7 @@ class Carrito {
         </table>
                 </div>
                 <div class="total">
-                    <p class="text">Precio total: {$precio_acumulado} </p>
+                    <p class="text">Precio total: {$precio_acumulado} €</p>
         EOS;
 
         if($precio_acumulado!=0){

@@ -124,3 +124,10 @@ tr:hover td{
     margin-bottom: 20%;
     margin-top: 5%;
 }
+
+.evil{
+    border-radius: 20px;
+    border:1px solid black;
+    margin-bottom: 2%;
+    font-family: "Carter One";
+}
