@@ -8,7 +8,7 @@ $tituloPagina = 'Compra realizada';
 $css = link_css($app->resuelve(RUTA_CSS.'carrito.css'));
       
 try{
-    $compras = new \es\chestnut\tienda\Compras();
+    $compras = new \es\chestnut\tienda\realizarPedido();
     $contenidoPrincipal = $compras->gestiona();      
 
 }catch(\Exception $e){

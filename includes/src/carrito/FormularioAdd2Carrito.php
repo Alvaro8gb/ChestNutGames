@@ -36,7 +36,7 @@ class FormularioAdd2Carrito extends Formulario{
                 <input class="id_oculto" type ="number" name ="precio_producto" value ="{$this->precio}">
 
                 <div class="car">
-                    <input class="anyadir_carrito" type="submit">
+                    <input class="anyadir_carrito" type="submit" value="Añadir al carrito">
                 </div>
         
             EOS;

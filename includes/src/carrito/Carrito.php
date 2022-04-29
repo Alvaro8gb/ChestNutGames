@@ -31,7 +31,6 @@ class Carrito {
         EOS;
 
         $precio_acumulado=0;
-        $precio_acumulado = 0;
 
         foreach($this->carrito as $idElemCarrito => $elemCarrito){
             
@@ -79,7 +78,7 @@ class Carrito {
 
         if($precio_acumulado!=0){
             $html .= <<<EOS
-                        <form action="Compras.php" method="POST">
+                        <form action="compras.php" method="POST">
                             <div class="car">
                                 <input class="anyadir_carrito" type="submit" value="Tramitar Pedido">
                             </div>

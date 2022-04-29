@@ -47,8 +47,6 @@ class Pedidos extends Lista{
             $cantidad = $producto->getCantidad();
             $id_usuario = $_SESSION['idUsuario'];
 
-
-
             if($id_user == $id_usuario){
                 $app = Aplicacion::getInstancia();
                 $conn = $app->getConexionBd();
