@@ -20,6 +20,8 @@ class Usuario{
     private $rol;
     private $correo;
     private $eventos_inscritos;
+    private $puntuacion_juegos;
+    private $juegos_jugados;
 
     private function __construct($nombreUsuario, $nombre, $password,$correo, $id = null, $rol){
         $this->id = $id;
@@ -29,7 +31,38 @@ class Usuario{
         $this->rol = $rol;
         $this->correo = $correo;
         $this->cargarInscripciones();
+        $this->cargarPuntuaciones();
     }
+    private function cargarPuntuaciones(){
+        $id_juegos_jugados= array();
+        $juegos_jugados = array();
+        $puntuacion_juegos = array();
+
+        $app = Aplicacion::getInstancia();
+        $conn = $app->getConexionBd();
+        $sql = sprintf("SELECT distinct IdJuego FROM ranking WHERE IdJugador = $this->id");
+        $res = @mysqli_query($conn, $sql);
+
+        while($fila = @mysqli_fetch_array($res)){
+            array_push($id_juegos_jugados, $fila["IdJuego"]);
+        }
+        foreach( $id_juegos_jugados as $id_juego){
+            $sql = sprintf("SELECT Nombre FROM juegos WHERE IdJuego = $id_juego");
+            $res = @mysqli_query($conn, $sql);
+            $fila = @mysqli_fetch_array($res);
+            array_push($juegos_jugados, $fila["Nombre"]);
+        }
+        foreach($id_juegos_jugados as $id_juego){
+            $sql = sprintf("SELECT MAX(Puntuacion) FROM ranking WHERE IdJuego = $id_juego AND IdJugador = $this->id GROUP BY IdJugador");
+            $res = @mysqli_query($conn, $sql);
+            $fila = @mysqli_fetch_array($res);
+            array_push($puntuacion_juegos, $fila["MAX(Puntuacion)"]);
+        }
+
+        $this->puntuacion_juegos = $puntuacion_juegos;
+        $this->juegos_jugados = $juegos_jugados;
+    
+}
     private function cargarInscripciones(){
             $idsEventos_inscritos = array();
             $eventos_inscritos = array();
@@ -194,7 +227,12 @@ class Usuario{
     public function getInscripciones(){
         return $this->eventos_inscritos;
     }
-
+    public function getJuegosJugados(){
+        return $this->juegos_jugados;
+    }
+    public function getPuntuacionJuegos(){
+        return $this->puntuacion_juegos;
+    }
     public function compruebaPassword($password)
     {
         return password_verify($password, $this->password);
