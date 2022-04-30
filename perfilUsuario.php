@@ -14,7 +14,7 @@ $user = Usuario::buscarUsuarioPorId($app->idUsuario());
 $eventos_inscritos = $user->getInscripciones();
 $nombreUsuario = $user->getNombreUsuario();
 $correo = $user->getCorreo();
-$historial = '<a class="pedidos" href="historialPedidos.php">Historial de pedidos</a>';
+$historial = '<a class="pedidos" href="pedidos.php">Historial de pedidos</a>';
 $juegos_jugados= $user->getJuegosJugados();
 $puntuacion_juegos = $user->getPuntuacionJuegos();
 

@@ -31,10 +31,10 @@ class Usuario{
         $this->rol = $rol;
         $this->correo = $correo;
         $this->cargarInscripciones();
-        $this->cargarPuntuaciones();
+        $this->cargarInfoJuegos();
     }
 
-    private function cargarPuntuaciones(){
+    private function cargarInfoJuegos(){
         $id_juegos_jugados= array();
         $juegos_jugados = array();
         $puntuacion_juegos = array();
@@ -54,10 +54,10 @@ class Usuario{
             array_push($juegos_jugados, $fila["Nombre"]);
         }
         foreach($id_juegos_jugados as $id_juego){
-            $sql = sprintf("SELECT MAX(Puntuacion) FROM ranking WHERE IdJuego = $id_juego AND IdJugador = $this->id GROUP BY IdJugador");
+            $sql = sprintf("SELECT MAX(Puntuacion) as puntuacion FROM ranking WHERE IdJuego = $id_juego AND IdJugador = $this->id GROUP BY IdJugador");
             $res = @mysqli_query($conn, $sql);
             $fila = @mysqli_fetch_array($res);
-            array_push($puntuacion_juegos, $fila["MAX(Puntuacion)"]);
+            array_push($puntuacion_juegos, $fila["puntuacion"]);
         }
 
         $this->puntuacion_juegos = $puntuacion_juegos;
