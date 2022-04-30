@@ -198,10 +198,9 @@ class Aplicacion{
     }
 
     // return bool (true | false)
-    public function show_advert(){
-        
+    public function show_advert(){  
         // Muestra publicidad con un 20% de probabilidad si el usuario no es admin o si no está logueado en la página
-        if( !$this->usuarioLogueado() || !$this->esAdmin() ) {
+        if(!$this->esAdmin()) {
             $prob = rand(0,10);
 
             if($prob < 2) 
@@ -248,6 +247,11 @@ class Aplicacion{
     public function updateCarrito($carrito){
         $this->compruebaInstanciaInicializada();
         $_SESSION["carrito"] = $carrito;
+    }
+
+    public function borrarCarrito(){
+        $this->compruebaInstanciaInicializada();
+        unset($_SESSION["carrito"]);
     }
 
     public function idUsuario(){

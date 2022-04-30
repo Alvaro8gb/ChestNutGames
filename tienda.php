@@ -17,13 +17,17 @@ try{
     $app->paginaError(501,'Error',"Error en tienda: ".$e->getMessage(),$e->getTrace());
 }
 
+// Mostrar anuncio 
+
+if($app->show_advert()){
+    $contenidoPrincipal .=  '<script> advert_show(); </script>';
+}
+
 #CSS grid
 
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css'=>$css];
 $app->generaVista('/plantillas/plantilla.php', $params);
 
-// Mostrar anuncio 
-//if($app->show_advert())
-echo '<script type="text/javascript"> advert_show(); </script>';
+
 
 

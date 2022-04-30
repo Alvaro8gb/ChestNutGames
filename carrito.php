@@ -11,9 +11,9 @@ $css.=link_js($app->resuelve(RUTA_JS.'cantidad_cesta.js'));
       
 try{
     $carrito = new \es\chestnut\carrito\Carrito($app->getCarrito());
-    $contenidoPrincipal = $carrito->mostrarCarrito();      
+    $contenidoPrincipal = $carrito->gestiona();      
 
-}catch(\Exception $e){
+}catch(Exception $e){
     $app->paginaError(501,'Error',"Error en carrito: ".$e->getMessage(),$e->getTrace());
 }
 
@@ -22,8 +22,5 @@ try{
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css'=>$css];
 $app->generaVista('/plantillas/plantilla.php', $params);
 
-// Mostrar anuncio 
-if($app->show_advert())
-echo '<script type="text/javascript"> advert_show(); </script>';
 
 

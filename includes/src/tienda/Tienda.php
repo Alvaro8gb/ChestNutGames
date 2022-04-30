@@ -2,17 +2,13 @@
 
 namespace es\chestnut\tienda;
 use es\chestnut\Lista;
-use es\chestnut\Aplicacion;
 use es\chestnut\carrito\FormularioAdd2Carrito;
 
 class Tienda extends Lista{
     private const TABLE ="tienda";
-    private static $ruta_imagenes;
 
     public function __construct(){
         parent::__construct(self::TABLE);
-        $app = Aplicacion::getInstancia();
-        self::$ruta_imagenes = $app->resuelve(RUTA_IMGS.'tienda/');
     }
 
     protected function crearElem($fila){
@@ -82,16 +78,15 @@ class Tienda extends Lista{
 
     protected function mostrarElem($datos){
 
-        $path = self::$ruta_imagenes;
-        $htmlimagen = "<img class='carrito_centrado' src='{$path}carrito.png' alt='Gif'>"; 
-        $id_producto = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
-        $producto = parent::getElement($id_producto);
+        $id_en_tienda = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
+        $producto = parent::getElement($id_en_tienda);
 
         $imagen = $producto->getImagen();
         $bs = base64_encode($imagen);
         $nombre = $producto->getNombre();
         $precio = $producto->getPrecio();
         $cantidad = $producto->getCantidad();
+        $id_producto = $producto->getId();
        
         $html = '<div class="prod">
         <div class = "img_tienda">
@@ -105,13 +100,13 @@ class Tienda extends Lista{
             <p class="txtpr"><b>Categoría: </b>{$producto->getCategoria()}</p>
         </div>
          <div class = "carrito">
-                <p class="txtpr1"><b>Precio: </b>$precio €</p>
+                <p class="txtpr1"><b>Precio: </b> $precio €</p>
                 <p class="txtpr1"><b>Unidades: </b> $cantidad </p>
         EOS;
 
         if($producto->getCantidad() != 0){
 
-            $form = new FormularioAdd2Carrito($id_producto,$cantidad,$nombre,$precio,$bs);
+            $form = new FormularioAdd2Carrito($id_producto,$id_en_tienda,$cantidad,$nombre,$precio,$bs);
             $html .= $form->gestiona();
 
         }

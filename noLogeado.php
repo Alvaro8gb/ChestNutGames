@@ -9,5 +9,11 @@ $contenidoPrincipal =<<<EOS
         <p id="cl">Debes iniciar sesión para ver el contenido.</p> 
 EOS;
 
+// Mostrar anuncio 
+
+if($app->show_advert()){
+        $contenidoPrincipal .=  '<script> advert_show(); </script>';
+}
+
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
 $app->generaVista('/plantillas/plantilla.php', $params);

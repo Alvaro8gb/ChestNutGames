@@ -6,12 +6,9 @@ use es\chestnut\Aplicacion;
 
 class Pedidos extends Lista{
     private const TABLE ="compras";
-    private static $ruta_imagenes;
 
     public function __construct(){
         parent::__construct(self::TABLE);
-        $app = Aplicacion::getInstancia();
-        self::$ruta_imagenes = $app->resuelve(RUTA_IMGS.'tienda/');
     }
 
     protected function crearElem($fila){
@@ -91,8 +88,6 @@ class Pedidos extends Lista{
                 </div>
             </div>
         EOS;
-
-        
         
         return $html;
     }

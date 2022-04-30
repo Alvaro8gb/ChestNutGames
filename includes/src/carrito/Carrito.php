@@ -2,6 +2,8 @@
 
 namespace es\chestnut\carrito;
 
+use es\chestnut\Aplicacion;
+
 class Carrito {
 
     private $carrito;
@@ -9,27 +11,132 @@ class Carrito {
     public function __construct($carrito) {
         $this->carrito = $carrito;
     }
-    public function mostrarCarrito(){
+
+    public function gestiona(){
+
+        if(!isset($_POST["carrito_tramitado"])){
+            return $this->beforeTramitarCarrito();
+
+        }else{
+            return $this->afterTramitarCarrito();
+        }
+
+    }
+    
+    private function beforeTramitarCarrito(){
         $html = <<<EOS
         <div class="titular">
             Artículos en la cesta
         </div>
         EOS;
 
+        $columnas = array("PRODUCTO","CANTIDAD","PRECIO","ACCIÓN");
+
+        $result = $this->mostrarCarrito($columnas,true);
+        
+        $html .= $result[0];
+        $precio_acumulado = $result[1]; 
+
+        if($precio_acumulado!=0){
+            $html .= <<<EOS
+                        <form action="carrito.php" method="POST">
+                            <div class="car">
+                                <input class="anyadir_carrito" name="carrito_tramitado" type="submit" value="Tramitar Pedido">
+                            </div>
+                        </form>
+        EOS;
+        }
 
         $html .= <<<EOS
+            </div>
+        EOS;
+        
+        return $html;
+    }
+
+    private function afterTramitarCarrito(){
+        
+        $html = <<<EOS
+        <div class="titular">
+            Artículos comprados
+        </div>
+        EOS;
+        
+        $columnas = array("PRODUCTO","CANTIDAD","PRECIO");
+
+        $result = $this->mostrarCarrito($columnas,false);
+        
+        $html .= $result[0];
+
+        $app = Aplicacion::getInstancia();
+        $id_user = $app->idUsuario();
+
+        foreach($this->carrito as $elemCarrito){
+
+            $id = $elemCarrito->getIdProducto();
+            $cantidad = $elemCarrito->getCantidad();
+
+            $conn = $app->getConexionBd();
+            $query = sprintf("SELECT * FROM tienda WHERE IdProducto ='$id'", $id);
+            $rs = $conn->query($query);
+                   
+            if ($rs) {
+                if ( $rs->num_rows == 1) {
+                    $fila = $rs->fetch_assoc();
+                    $cantidad_bd = $fila['cantidad'];
+                    $total = $cantidad_bd - $cantidad;
+
+                    $query1=sprintf("UPDATE tienda SET cantidad='$total' WHERE IdProducto ='$id'",$id, $total);
+                    if ( $conn->query($query1) ) {
+                    }
+                }
+                $rs->free();
+            }
+
+            $query2 = sprintf("SELECT * FROM compras WHERE IdProducto ='$id' AND IdUsuario='$id_user'", $id,$id_user);
+            $rs1 = $conn->query($query2);
+            if ($rs1) {
+                if ( $rs1->num_rows == 1) {
+                    $fila = $rs1->fetch_assoc();
+                    $can = $fila['cantidad'];
+                    $total = $can + $cantidad;
+    
+                    $query2=sprintf("UPDATE compras SET cantidad='$total' WHERE IdUsuario = '$id_user' AND IdProducto ='$id'",$id,$id_user, $total);
+                    if ( $conn->query($query2) ) {
+                    }
+                }
+                else{
+                    $query3=sprintf("INSERT INTO compras(IdUsuario,IdProducto,cantidad) VALUES('$id_user','$id','$cantidad')", $id_user, $id , $cantidad);
+                    if ( $conn->query($query3) ) {
+                    }
+                }
+                
+                $rs1->free();
+            }
+            else {
+                echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+                exit();
+            }
+        }
+
+        $app->borrarCarrito();
+        
+        return $html;
+    }
+
+    private function mostrarCarrito($columnas,$eliminar){
+        $html = <<<EOS
         <div class="grid">
             <table>
                 <thead>
                     <tr>
-                        <th class="tamanyo">PRODUCTO</th>
-                        <th class="tamanyo">CANTIDAD</th>
-                        <th class="tamanyo">PRECIO</th>
-                        <th class="tamanyo">ACCIÓN</th>
-                    </tr>
-                </thead>
         EOS;
 
+        foreach($columnas as $col){
+            $html.= "<th class='tamanyo'>$col</th>";
+        }
+        $html .="</thead>";
+                     
         $precio_acumulado=0;
 
         foreach($this->carrito as $idElemCarrito => $elemCarrito){
@@ -37,14 +144,12 @@ class Carrito {
                 $nombre = $elemCarrito->getNombre();
                 $cantidad = $elemCarrito->getCantidad();
                 $precio = $elemCarrito->getPrecio();
-                $id = $elemCarrito->getId();
+                $id = $elemCarrito->getIdEnTienda();
                 $precio_acumulado+= $precio;
                 $alt = "imagen_".$nombre;
                 $imagen = $elemCarrito->getImagen();
 
                 $htmlImagen = '<a href="tienda.php?id='.$id.'"><img class="cesta_img" src="data:image/png;base64,'.$imagen.'" alt ="'.$alt.'"></a>'; 
-                $formElimnarItem = new FormularioRemove2Carrito($idElemCarrito,$cantidad);
-                $htmlFormRemoveItem = $formElimnarItem->gestiona();
                 $precio_total = $precio * $cantidad;
 
                 $html .= <<<EOS
@@ -59,38 +164,29 @@ class Carrito {
                         </td>
                         <td class="tamanyo">$cantidad</td>
                         <td class="tamanyo"> $precio_total €</td>
-                        <td>
-                            $htmlFormRemoveItem
-                        </td>
+                EOS;
+
+                if($eliminar){
+                    $formElimnarItem = new FormularioRemove2Carrito($idElemCarrito,$cantidad);
+                    $htmlFormRemoveItem = $formElimnarItem->gestiona();
+                    $html .= "<td> $htmlFormRemoveItem </td>";
+                }
+
+                $html .= <<<EOS
                     </tr>
                 </div>
                 EOS;
         }
 
+
         $html .= <<<EOS
-                
-        
         </table>
                 </div>
                 <div class="total">
                     <p class="text">Precio total: {$precio_acumulado} €</p>
+                </div>
         EOS;
 
-        if($precio_acumulado!=0){
-            $html .= <<<EOS
-                        <form action="compras.php" method="POST">
-                            <div class="car">
-                                <input class="anyadir_carrito" type="submit" value="Tramitar Pedido">
-                            </div>
-                        </form>
-        EOS;
-        }
-
-        $html .= <<<EOS
-            </div>
-        EOS;
-        
-        return $html;
+        return array($html,$precio_acumulado);
     }
-
 }

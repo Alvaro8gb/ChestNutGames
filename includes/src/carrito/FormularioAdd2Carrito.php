@@ -7,15 +7,17 @@ use es\chestnut\Formulario;
 
 class FormularioAdd2Carrito extends Formulario{
 
-    private $id;
+    private $idProducto;
+    private $idEnTienda;
     private $cantidad ;
     private $nombre;
     private $precio;
     private $imagen;
 
-    public function __construct($id, $cantidad, $nombre, $precio, $imagen) {
+    public function __construct($idProducto,$idEnTienda, $cantidad, $nombre, $precio, $imagen) {
         parent::__construct('formAddCarrito', ['urlRedireccion' => Aplicacion::getInstancia()->resuelve('/carrito.php')]);
-        $this->id = $id;
+        $this->idProducto = $idProducto;
+        $this->idEnTienda = $idEnTienda;
         $this->cantidad = $cantidad;
         $this->nombre = $nombre;
         $this->precio = $precio;
@@ -30,7 +32,8 @@ class FormularioAdd2Carrito extends Formulario{
             <p class="txtpr1"><b>Cantidad a comprar:</b></p>
                 <input class="cantidad_prod" required type ="number" name ="cantidad_prod"  id="campoCantidad" value="$cantidad_seleccionada"><span id="validCantidad"></span>
                 <input class="id_oculto" type ="number" name ="cantidad" id="valida" value="{$this->cantidad}">
-                <input class="id_oculto" type ="number" name ="id_producto" value ="{$this->id}">
+                <input class="id_oculto" type ="number" name ="id_producto" value ="{$this->idProducto}">
+                <input class="id_oculto" type ="number" name ="id_en_tienda" value ="{$this->idEnTienda}">
                 <input class="id_oculto" name ="nombre_producto" value ="{$this->nombre}">
                 <input class="id_oculto" type="hidden" name ="imagen_producto" value ="{$this->imagen}">
                 <input class="id_oculto" type ="number" name ="precio_producto" value ="{$this->precio}">
@@ -61,12 +64,13 @@ class FormularioAdd2Carrito extends Formulario{
             $carrito = $app->getCarrito();
     
             $id_carrito = count($carrito);
-            $id = $datos["id_producto"] ;
+            $idProducto = $datos["id_producto"] ;
+            $idEnTienda = $datos["id_en_tienda"] ;
             $nombre = $datos["nombre_producto"] ;
             $imagen = $datos["imagen_producto"] ;
             $precio = $datos["precio_producto"] ;
     
-            $carrito[$id_carrito] = new ElemCarrito($id,$nombre,$cantidadProd,$precio,$imagen);
+            $carrito[$id_carrito] = new ElemCarrito($idProducto,$idEnTienda,$nombre,$cantidadProd,$precio,$imagen);
 
             $app->updateCarrito($carrito);
         }

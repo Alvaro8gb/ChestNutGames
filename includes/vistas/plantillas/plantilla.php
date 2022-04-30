@@ -29,7 +29,7 @@ $mensajes = mensajesPeticionAnterior();
 			$params['app']->doInclude('/vistas/comun/popup.php');			
 		?> 	
 			
-		<div class = "pop_up" id = "pop_up">
+		<div class = "pop_up" id = "pop_up"> 
 
 			<header>
 				<?php
