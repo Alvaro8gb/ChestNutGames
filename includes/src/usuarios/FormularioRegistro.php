@@ -27,11 +27,13 @@ class FormularioRegistro extends Formulario{
             <legend class="log">Datos para el registro</legend>{$htmlErroresGlobales}
             <div>
                 <label for="correo">Correo electrónico:</label>
+                <span id="validEmail"></span>
                 <input id="correoUsuario" type="email" name="correoUsuario" value="$correoUsuario" placeholder="Introduzca correo electrónico"/>
                 {$erroresCampos['correo']}
             </div>
             <div>
                 <label for="nombreUsuario">Nombre de usuario:</label>
+                <span id="validUser"></span>
                 <input id="nombreUsuario" type="text" name="nombreUsuario" value="$nombreUsuario" placeholder="Introduzca nombre de usuario"/>
                 {$erroresCampos['nombreUsuario']}
             </div>
@@ -42,15 +44,16 @@ class FormularioRegistro extends Formulario{
             </div>
             <div>
                 <label for="password">Contraseña:</label>
+                <span id="valid_password1"></span>
                 <input id="password" type="password" name="password" placeholder="Introduzca contraseña"/>
                 {$erroresCampos['password']}
             </div>
             <div>
                 <label for="password2">Reintroduce la contraseña:</label>
+                <span id="valid_password2"></span>
                 <input id="password2" type="password" name="password2" placeholder="Vuelva a introducir la contraseña"/>
                 {$erroresCampos['password2']}
             </div>
-            <div>
                 <button type="submit" name="registro">Registrar</button>
             </div>
         </form>

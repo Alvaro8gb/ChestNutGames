@@ -16,11 +16,11 @@ class FormularioLogout extends Formulario
     protected function generaCamposFormulario(&$datos){
 
         $camposFormulario = <<<EOS
-            <div class="logout">
-            <button class="liquid" type="submit">
-                <span>Salir</span>
-            </button>
-            </div>
+                <div class="logout">
+                <button name="enviado" class="liquid" type="submit">
+                    <span>Salir</span>
+                </button>
+                </div>
         EOS;
         return $camposFormulario;
     }
@@ -33,8 +33,8 @@ class FormularioLogout extends Formulario
         $app->logout();
         $mensajes = ['Hasta pronto!'];
         $app->putAtributoPeticion('mensajes', $mensajes);
-        $result = $app->resuelve('/index.php');
-
-        return $result;
+        $result = $app->resuelve($this->urlRedireccion);
+        $app->redirige($result);
+        
     }
 }
