@@ -22,44 +22,6 @@ function check_password($id_password,$id_valid){
 
 }
 
-function check_correo(){
-
-	$("#correoOK").hide();
-
-	$("#correoUsuario").change(function(){
-		const campo = $("#correoUsuario"); // referencia jquery al campo
-		const campo1 = $("#validEmail");
-		campo[0].setCustomValidity(""); // limpia validaciones previas
-		// validación html5, porque el campo es <input type="email" ...>
-		const esCorreoValido = campo[0].checkValidity();
-		if (esCorreoValido && correoValidoComplu(campo.val())) {
-			// el correo es válido y acaba por @ucm.es: marcamos y limpiamos quejas
-			// tu código aquí: coloca la marca correcta
-
-			campo1.text("\u2705");
-			$("#correoOK").show();
-			campo[0].setCustomValidity("");
-		} else {			
-			// correo invalido: ponemos una marca y nos quejamos
-			// tu código aquí: coloca la marca correcta
-
-			campo1.text("\u274C");
-			$("#correoMal").show();
-			campo[0].setCustomValidity("El correo debe ser válido y acabar por @ucm.es");
-		}
-
-	});
-
-}
-
-function correoValidoComplu(correo) {
-	// tu codigo aqui (devuelve true ó false)
-	if(correo.indexOf('@ucm.es',0)==-1){
-		return false;
-	}
-	return true;
-}
-
 function validPassword(password){
 	if(password.length < 8){
 		return false;
@@ -83,13 +45,43 @@ function usuarioExiste(data,status) {
 }	
 function check_user(){
 
-	$("#correoOK").hide();
+	$("#userOK").hide();
 	
 	$("#nombreUsuario").change(function(){
 		var url = "comprobarUsuario.php?user=" + $("#nombreUsuario").val();
 		$.get(url,usuarioExiste);
 	 });
 
+}
+
+function usuarioExisteCorreo(data,status) {
+
+	if(status=='success'){
+
+		const esCorreoValido = $("#correoUsuario")[0].checkValidity();
+
+		if (data =='existe'){
+			$("#validEmail").text("\u274C");
+			window.alert("Correo existente");
+		}
+		else if($("#correoUsuario").val().indexOf('@',0)==-1  && !esCorreoValido){
+			$("#validEmail").text("\u274C");
+			window.alert("Correo incompleto no se ha encontrado el caracter @");
+		}
+		else{
+			$("#validEmail").text("\u2705");
+		}
+	}
+	
+}	
+
+function check_correo(){
+	$("#correoOK").hide();
+	
+	$("#correoUsuario").change(function(){
+		var url = "comprobarCorreo.php?correo=" + $("#correoUsuario").val();
+		$.get(url,usuarioExisteCorreo);
+	 });
 }
 
 function validaForm(){

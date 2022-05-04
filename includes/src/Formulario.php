@@ -211,7 +211,7 @@ abstract class Formulario{
         }
 
         if ($this->urlRedireccion !== null) {
-            header("refresh:0.4;url={$this->urlRedireccion}");
+            header("refresh:1;url={$this->urlRedireccion}");
             exit();
         }
     }

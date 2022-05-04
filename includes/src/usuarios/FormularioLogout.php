@@ -9,8 +9,8 @@ class FormularioLogout extends Formulario
 {
     public function __construct() {
         parent::__construct('formLogout', [
-            'urlRedireccion' => Aplicacion::getInstancia()->resuelve('/logout.php')
-        ]);
+            'action' =>  Aplicacion::getInstancia()->resuelve('/logout.php'),
+            'urlRedireccion' => Aplicacion::getInstancia()->resuelve('/index.php')]);
     }
 
     protected function generaCamposFormulario(&$datos){
@@ -30,11 +30,14 @@ class FormularioLogout extends Formulario
      */
     protected function procesaFormulario(&$datos){
         $app = Aplicacion::getInstancia();
+
         $app->logout();
-        $mensajes = ['Hasta pronto!'];
+        $mensajes = ['Hasta pronto !'];
         $app->putAtributoPeticion('mensajes', $mensajes);
-        $result = $app->resuelve($this->urlRedireccion);
-        $app->redirige($result);
+        $result = $app->resuelve('/index.php');
+
+        return $result;
+        
         
     }
 }
