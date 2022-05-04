@@ -54,15 +54,7 @@ $mensajes = mensajesPeticionAnterior();
 
 				<div class = "parallax_section">
 					<div class = "parallax_level2"></div>
-						
-						<main>
-								<!-- Main Page -->
-						</main>
-
-						<footer>
-								<!-- Aqui ira el pie de pagina -->
-						</footer>
-
+						<!-- Segundo background -->
 				</div>
 			</div>
 

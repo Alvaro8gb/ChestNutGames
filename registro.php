@@ -12,9 +12,11 @@ $css.= link_js($app->resuelve(RUTA_JS.'comprobar_registro.js'));
 try{
     $form = new es\chestnut\usuarios\FormularioRegistro();
     $contenidoPrincipal = $form->gestiona();
+
 }catch(\Exception $e){
     $app->paginaError(501,'Error',"Error en registro: ".$e->getMessage(),$e->getTrace());
 }
+
 
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css' => $css];
 

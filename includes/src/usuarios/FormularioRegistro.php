@@ -98,8 +98,6 @@ class FormularioRegistro extends Formulario{
 
         if (count($this->errores) === 0) {
 
-            
-	
             if ( Usuario::buscarUsuarioPorNombre($nombreUsuario)) {
                 $this->errores[] = "El usuario ya existe";
                 $this->errores['nombreUsuario'] = 'El nombre de usuario ya existe';

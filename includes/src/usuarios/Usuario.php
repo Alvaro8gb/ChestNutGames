@@ -40,7 +40,8 @@ class Usuario{
 
         $app = Aplicacion::getInstancia();
         $conn = $app->getConexionBd();
-        $sql = sprintf("SELECT distinct IdJuego FROM ranking WHERE IdJugador = $this->id");
+        $id_usuario = $this->id;
+        $sql = sprintf("SELECT distinct IdJuego FROM ranking WHERE IdJugador ='$id_usuario'");
         $res = @mysqli_query($conn, $sql);
 
         while($fila = @mysqli_fetch_array($res)){
@@ -69,7 +70,8 @@ class Usuario{
 
             $app = Aplicacion::getInstancia();
             $conn = $app->getConexionBd();
-            $sql = sprintf("SELECT distinct IdEvento FROM inscripcioneseventos WHERE IdUsuario = $this->id");
+            $id_usuario = $this->id;
+            $sql = sprintf("SELECT distinct IdEvento FROM inscripcioneseventos WHERE IdUsuario = '$id_usuario'");
             $res = @mysqli_query($conn, $sql);
 
             while($fila = @mysqli_fetch_array($res)){
