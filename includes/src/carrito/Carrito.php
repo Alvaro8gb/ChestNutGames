@@ -77,7 +77,7 @@ class Carrito {
             $cantidad = $elemCarrito->getCantidad();
 
             $conn = $app->getConexionBd();
-            $query = sprintf("SELECT * FROM tienda WHERE IdProducto ='$id'", $id);
+            $query = sprintf("SELECT * FROM tienda WHERE IdProducto ='$id'", mysqli_real_escape_string($conn,$id));
             $rs = $conn->query($query);
                    
             if ($rs) {
@@ -86,14 +86,15 @@ class Carrito {
                     $cantidad_bd = $fila['cantidad'];
                     $total = $cantidad_bd - $cantidad;
 
-                    $query1=sprintf("UPDATE tienda SET cantidad='$total' WHERE IdProducto ='$id'",$id, $total);
-                    if ( $conn->query($query1) ) {
+                    $query1=sprintf("UPDATE tienda SET cantidad='$total' WHERE IdProducto ='$id'",mysqli_real_escape_string($conn,$id), mysqli_real_escape_string($conn,$total));
+                    if ( !$conn->query($query1) ) {
+                        throw new \Exception("Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error));
                     }
                 }
                 $rs->free();
             }
 
-            $query2 = sprintf("SELECT * FROM compras WHERE IdProducto ='$id' AND IdUsuario='$id_user'", $id,$id_user);
+            $query2 = sprintf("SELECT * FROM compras WHERE IdProducto ='$id' AND IdUsuario='$id_user'", mysqli_real_escape_string($conn,$id),mysqli_real_escape_string($conn,$id_user));
             $rs1 = $conn->query($query2);
             if ($rs1) {
                 if ( $rs1->num_rows == 1) {
@@ -101,21 +102,22 @@ class Carrito {
                     $can = $fila['cantidad'];
                     $total = $can + $cantidad;
     
-                    $query2=sprintf("UPDATE compras SET cantidad='$total' WHERE IdUsuario = '$id_user' AND IdProducto ='$id'",$id,$id_user, $total);
-                    if ( $conn->query($query2) ) {
+                    $query2=sprintf("UPDATE compras SET cantidad='$total' WHERE IdUsuario = '$id_user' AND IdProducto ='$id'",mysqli_real_escape_string($conn,$id),mysqli_real_escape_string($conn,$id_user), mysqli_real_escape_string($conn,$total));
+                    if ( !$conn->query($query2) ) {
+                        throw new \Exception("Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error));
                     }
                 }
                 else{
-                    $query3=sprintf("INSERT INTO compras(IdUsuario,IdProducto,cantidad) VALUES('$id_user','$id','$cantidad')", $id_user, $id , $cantidad);
-                    if ( $conn->query($query3) ) {
+                    $query3=sprintf("INSERT INTO compras(IdUsuario,IdProducto,cantidad) VALUES('$id_user','$id','$cantidad')", mysqli_real_escape_string($conn,$id_user), mysqli_real_escape_string($conn,$id) , mysqli_real_escape_string($conn,$cantidad));
+                    if ( !$conn->query($query3) ) {
+                        throw new \Exception("Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error));
                     }
                 }
                 
                 $rs1->free();
             }
             else {
-                echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
-                exit();
+                throw new \Exception("Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error));
             }
         }
 
@@ -145,12 +147,12 @@ class Carrito {
                 $cantidad = $elemCarrito->getCantidad();
                 $precio = $elemCarrito->getPrecio();
                 $id = $elemCarrito->getIdEnTienda();
-                $precio_acumulado+= $precio;
                 $alt = "imagen_".$nombre;
                 $imagen = $elemCarrito->getImagen();
 
                 $htmlImagen = '<a href="tienda.php?id='.$id.'"><img class="cesta_img" src="data:image/png;base64,'.$imagen.'" alt ="'.$alt.'"></a>'; 
                 $precio_total = $precio * $cantidad;
+                $precio_acumulado += $precio_total;
 
                 $html .= <<<EOS
                 

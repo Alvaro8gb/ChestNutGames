@@ -7,10 +7,15 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) !== 'POST') {
 }
 
 $tituloPagina='Logout';
-$form = new \es\chestnut\usuarios\FormularioLogout();
 
-$htmlFormLogin = $form->gestiona();
-$contenidoPrincipal = $htmlFormLogin;
+try{
+    $form = new \es\chestnut\usuarios\FormularioLogout();
+    $htmlFormLogin = $form->gestiona();
+    $contenidoPrincipal = $htmlFormLogin;      
+
+}catch(\Exception $e){
+    $app->paginaError(501,'Error',"Error en formulario logout: ".$e->getMessage(),$e->getTrace());
+}
 
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
 $app->generaVista('/plantillas/plantilla.php', $params);

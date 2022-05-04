@@ -38,7 +38,7 @@ class FormularioRemove2Carrito extends Formulario{
 
         $this->errores = [];
         $cantidadSelect = trim($datos['cantidad_select'] ?? '');
-        $cantidadProd = filter_var($cantidadSelect, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $cantidadSelect = filter_var($cantidadSelect, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         if ( ! $cantidadSelect || empty($cantidadSelect) ) {
             $this->errores['cantidad_select'] = 'No se ha introducido la cantidad';
@@ -48,18 +48,13 @@ class FormularioRemove2Carrito extends Formulario{
             
             $app = Aplicacion::getInstancia();
             $carrito = $app->getCarrito();
-
-            $app->updateCarrito($carrito);
-
             $id_carrito = $datos['idElemCarrito'];
-            $carrito = $app->getCarrito();
 
             $elemCarrito = $carrito[$id_carrito];
             $cantidad = $elemCarrito->getCantidad();
 
             $nuevaCantidad = $cantidad - $cantidadSelect;
 
-      
             if ($nuevaCantidad <= 0){
                 unset($carrito[$id_carrito]);
                 $app->updateCarrito($carrito);

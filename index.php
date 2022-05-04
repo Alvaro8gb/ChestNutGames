@@ -9,6 +9,9 @@ foreach($css_pages as $elem){
 	$css .= link_css($app->resuelve(RUTA_CSS.$elem));
 }
 
+$app->doInclude('/vistas/helpers/plantilla.php');
+$mensajes = mensajesPeticionAnterior();
+
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +38,8 @@ foreach($css_pages as $elem){
 										$app->doInclude("/vistas/comun/header.php");
 									?>		
 						</header>
+
+						<?= $mensajes ?>
 						<p id="inicio">
 								Nuestra aplicación web trata de un portal web de minijuegos que puedes disfrutar en
 								cualquier momento o lugar, enfocada a todos los públicos, nuestros minijuegos se centran

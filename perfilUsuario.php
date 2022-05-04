@@ -37,32 +37,34 @@ $contenidoPrincipal = <<<EOS
           <td>
       
 EOS;
+
 foreach( $eventos_inscritos as $id => $nombre){
     $contenidoPrincipal .=<<<EOS
      $nombre /
 EOS;
 }
+
 $contenidoPrincipal .=<<<EOS
-</td>
-</tr>
-<tr> 
-<th> JUEGO </th>
+    </td>
+    </tr>
+    <tr> 
+    <th> JUEGO </th>
 
 EOS;
 foreach( $juegos_jugados as $nombre){
-$contenidoPrincipal .=<<<EOS
-<th> $nombre </th>
-EOS;
+    $contenidoPrincipal .=<<<EOS
+    <th> $nombre </th>
+    EOS;
 }
 $contenidoPrincipal .=<<<EOS
-</tr>
-<tr>
-<th> PUNTUACION </th>
+    </tr>
+    <tr>
+    <th> PUNTUACION </th>
 EOS;
 foreach( $puntuacion_juegos as $puntuacion){
-$contenidoPrincipal .=<<<EOS
-<th> $puntuacion </th>
-EOS;
+    $contenidoPrincipal .=<<<EOS
+    <th> $puntuacion </th>
+    EOS;
 }
 $contenidoPrincipal .=<<<EOS
 </tr>

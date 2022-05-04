@@ -130,35 +130,6 @@ ul#entregas{
 }
 
 
-/* Mensajes CSS */
 
-.mensajes {
-	position: fixed;
-	width: 100%;
-  }
-  
-.mensaje {
-	border: 2px solid black;
-	border-radius: 5px;
-	width: 30%;
-	margin: 0.2em auto;
-	background-color: #b0f5f1;
-    font-size: 2em;
-	line-height: 0.7em;
-	text-align: right;
-	padding: 0 0.1em;
-}
 
-.mensajes input {
-	display: none;
-}
-
-.mensaje, .contenido {
-	padding: 0.2em 1em;
-	text-align: center;
-}
-
-.mensajes input:checked + .mensaje {
-	display: none;
-}
 

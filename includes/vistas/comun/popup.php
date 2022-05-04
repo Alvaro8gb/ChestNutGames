@@ -11,7 +11,6 @@ $advert = es\chestnut\publicidad\Anuncio::create_advert();
 
     $contenido .= '<div class = "pop_up_window" id = "modal">
                         <div class = "pop_up_container"> ';
-
     
     // TITULO
     $contenido .= '<div class = "pop_up_title"><h1>'. $advert->getNombre() .'</h1> </div>';

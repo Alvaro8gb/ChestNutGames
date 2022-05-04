@@ -5,7 +5,6 @@ namespace es\chestnut\usuarios;
 use es\chestnut\Aplicacion;
 use es\chestnut\MagicProperties;
 
-
 class Usuario{
 
     use MagicProperties;

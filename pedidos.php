@@ -15,8 +15,6 @@ try{
     $app->paginaError(501,'Error',"Error en pedidos: ".$e->getMessage(),$e->getTrace());
 }
 
-#CSS grid
-
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css'=>$css];
 $app->generaVista('/plantillas/plantilla.php', $params);
 
