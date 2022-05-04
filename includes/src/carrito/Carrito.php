@@ -75,6 +75,7 @@ class Carrito {
 
             $id = $elemCarrito->getIdProducto();
             $cantidad = $elemCarrito->getCantidad();
+            $nombre = $elemCarrito->getNombre();
 
             $conn = $app->getConexionBd();
             $query = sprintf("SELECT * FROM tienda WHERE IdProducto ='$id'", mysqli_real_escape_string($conn,$id));
@@ -85,6 +86,10 @@ class Carrito {
                     $fila = $rs->fetch_assoc();
                     $cantidad_bd = $fila['cantidad'];
                     $total = $cantidad_bd - $cantidad;
+
+                    if($cantidad_bd < $cantidad){
+                        $app->paginaError(400,'Error',"Cantidad no soportada","No se dispone de esas unidades para $nombre");
+                    }
 
                     $query1=sprintf("UPDATE tienda SET cantidad='$total' WHERE IdProducto ='$id'",mysqli_real_escape_string($conn,$id), mysqli_real_escape_string($conn,$total));
                     if ( !$conn->query($query1) ) {

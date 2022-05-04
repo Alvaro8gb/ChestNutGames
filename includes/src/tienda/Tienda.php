@@ -100,8 +100,8 @@ class Tienda extends Lista{
             <p class="txtpr"><b>Categoría: </b>{$producto->getCategoria()}</p>
         </div>
          <div class = "carrito">
-                <p class="txtpr1"><b>Precio: </b> $precio €</p>
-                <p class="txtpr1"><b>Unidades: </b> $cantidad </p>
+                <p class="txtpr1">Precio: $precio €</p>
+                <p class="txtpr1">Unidades: $cantidad</p>
         EOS;
 
         if($producto->getCantidad() != 0){
