@@ -91,16 +91,10 @@ class Tienda extends Lista{
         $id_producto = $producto->getId();
        
         $html = '<div class="prod">
-        <div class = "img_tienda">
-        <img class="producto" src="data:image/png;base64,'.base64_encode($imagen). '" alt="num_imagen"/>
-        </div>';
+                    <div class = "img_tienda">
+                        <img class="producto" src="data:image/png;base64,'.base64_encode($imagen). '" alt="num_imagen"/>';
 
         $html .= <<< EOS
-        <div class = "informacion">
-            <div> <h1 class = "prod_title"> $nombre</h1></div>
-            <div class = "prod_container"> <p class="txtpr"><b>Descripción: </b>{$producto->getDesc()}</p></div>
-            <div class = "prod_container"> <p class="txtpr"><b>Categoría: </b>{$producto->getCategoria()}</p></div>
-        </div></div> 
          <div class = "carrito">
                 <p class="txtpr1">Precio: $precio €</p>
                 <p class="txtpr1">Unidades: $cantidad </p>
@@ -112,12 +106,17 @@ class Tienda extends Lista{
             $form = new FormularioAdd2Carrito($id_producto,$id_en_tienda,$cantidad,$nombre,$precio,$bs);
             $html .= $form->gestiona();
         }
-        
 
-        $html .=<<< EOS
+        $html .= <<< EOS
             </div>
-
-    EOS;
+            </div>
+        <div class = "informacion">
+            <div> <h1 class = "prod_title"> $nombre</h1></div>
+            <div class = "prod_container"> <p class="txtpr"><b>Descripción: </b>{$producto->getDesc()}</p></div>
+            <div class = "prod_container"> <p class="txtpr"><b>Categoría: </b>{$producto->getCategoria()}</p></div>
+        </div>
+        </div>
+        EOS;
 
     return $html;
 
