@@ -42,8 +42,8 @@ class Tienda extends Lista{
                     $htmlImagen
                     <p class="oculto"><b>{$descripcion}</b></p>
                 </div>
-                <p class="text"><b></b>{$nombre}</p>
-                <p class="text"><b>Precio:  </b>{$precio}€</p>
+                <p class="text">{$nombre}</p>
+                <p class="text">Precio: {$precio} €</p>
             EOS;
             
             if($producto->getCantidad() <= 10 && $producto->getCantidad() > 0){
@@ -95,10 +95,10 @@ class Tienda extends Lista{
 
         $html .= <<< EOS
         <div class = "informacion">
-            <p class="txtpr"><b>Nombre producto: </b>$nombre</p>
-            <p class="txtpr"><b>Descripción: </b>{$producto->getDesc()}</p>
-            <p class="txtpr"><b>Categoría: </b>{$producto->getCategoria()}</p>
-        </div>
+            <div> <h1 class = "prod_title"> $nombre</h1></div>
+            <div class = "prod_container"> <p class="txtpr"><b>Descripción: </b>{$producto->getDesc()}</p></div>
+            <div class = "prod_container"> <p class="txtpr"><b>Categoría: </b>{$producto->getCategoria()}</p></div>
+        </div></div> 
          <div class = "carrito">
                 <p class="txtpr1">Precio: $precio €</p>
                 <p class="txtpr1">Unidades: $cantidad</p>
@@ -113,7 +113,7 @@ class Tienda extends Lista{
 
         $html .=<<< EOS
             </div>
-       </div> 
+
     EOS;
 
     return $html;

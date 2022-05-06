@@ -43,8 +43,8 @@
 
 .cantidad_prod{
     border-radius: 20px;
-    border:1px solid black;
-    margin-bottom: 2%;
+    border:3px solid black;
+    margin-bottom: 6%;
     font-family: "Carter One";
 }
 
@@ -95,6 +95,8 @@
     margin-left:1%;
     margin-right:1%;
     font-size: 130%;
+    padding: 6px;
+    font-weight: bold;
 }
 
 .ultimas{
@@ -125,8 +127,10 @@
 
 .prod{
     background-color: aqua;
-    width: 900px;
-    border: 5px solid black;
+    max-width: 900px;
+    min-width: 900px;
+    height: 720px;
+    border: 10px solid black;
     border-radius: 15px;
     margin:auto;
     margin-bottom: 10%;
@@ -138,38 +142,51 @@
 
 .informacion{
     align-items: center;
-    display:grid;
+    display:contents;
     justify-items: center;
 }
 
 .txtpr{
+    margin-left:1%;
+    margin-right:1%;
+    text-align: center;
+    font-size: 120%;
+}
+.txtpr1{
+    font-size: 90%;
+}
+.prod_container {
     background-color:hsl(30, 86%, 57%);
     border:2px solid black;
     border-radius: 20px;
     margin-left:1%;
     margin-right:1%;
     padding: 1%;
+    margin:1%;
 }
 
-.txtpr1{
+.prod_title {
     background-color:hsl(30, 86%, 57%);
-    border:2px solid black;
-    border-radius: 20px;
-    margin-left:1%;
-    margin-right:1%;
-    padding: 1%;
-    font-size: 90%;
+    font-size: 300%;
+}
+
+.shopping_cart_text {
+    color:white;
 }
 
 .carrito{
     float: right;
-    margin-top:-60%;
-    margin-right: 5%;
+    margin-top: -44%;
+    left:60%;
     align-items: center;
-    background-color: blue;
+    background-color: rgb(0,155,255);
     border-radius: 10px;
-    border: 2px solid black;
-    padding: 1%;
+    border: 5px solid black;
+    padding-right: 1%;
+    padding-bottom: 1%;
+    padding-left: 1%;
+    font-size: 19px;
+    position:absolute;
 }
 
 .evi{
@@ -191,7 +208,7 @@
     width: 100%;
     border: 0;
     padding: 15px;
-    font-size: 14px;
+    font-size: 19px;
     transition: all ease;
     cursor: pointer;
     display: block;
@@ -212,7 +229,6 @@
     border-radius: 30px;
     float: right;
 }
-
 
 
 

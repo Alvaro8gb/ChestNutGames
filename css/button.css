@@ -27,17 +27,19 @@ div.logout{
     background: hsl(30, 86%, 57%);
     box-shadow: inset 0 0 50px rgba(0, 0, 0, .5);
     transition: .5s;
+    border:none;
    }
    
    .liquid::after,.liquid::before {
     content: '';
-    width: 200%;
-    height: 200%;
+    width: 220%;
+    height: 220%;
     position: absolute;
     top: 0;
     left: 50%;
     transform: translate(-50%, -75%);
     background: white;
+
    }
    
    .liquid::before {

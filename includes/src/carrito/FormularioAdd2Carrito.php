@@ -29,7 +29,7 @@ class FormularioAdd2Carrito extends Formulario{
         $cantidad_seleccionada = $datos["cantidad_prod"] ?? 0;
 
         $html = <<<EOS
-            <p class="txtpr1"><b>Cantidad a comprar:</b></p>
+            <p class="shopping_cart_text"><b>Cantidad a comprar:</b></p>
                 <input class="cantidad_prod" required type ="number" name ="cantidad_prod"  id="campoCantidad" value="$cantidad_seleccionada"><span id="validCantidad"></span>
                 <input class="id_oculto" type ="number" name ="cantidad" id="valida" value="{$this->cantidad}">
                 <input class="id_oculto" type ="number" name ="id_producto" value ="{$this->idProducto}">

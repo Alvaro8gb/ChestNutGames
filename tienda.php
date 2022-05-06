@@ -28,6 +28,8 @@ if($app->show_advert()){
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css'=>$css];
 $app->generaVista('/plantillas/plantilla.php', $params);
 
-
+// Mostrar anuncio 
+if($app->show_advert())
+    echo '<script type="text/javascript"> advert_show(); </script>';
 
 
