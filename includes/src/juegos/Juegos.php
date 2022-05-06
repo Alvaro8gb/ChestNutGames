@@ -68,7 +68,7 @@ class Juegos extends Lista{
         $juego = parent::getElement($id_juego);
        
         $html = '<div class = "img_juego">
-        <img class="juego" src="data:image/png;base64,'.base64_encode($juego->getImagen()).'"/>
+        <img class="juego" alt="imagen_juego" src="data:image/png;base64,'.base64_encode($juego->getImagen()).'"/>
         </div>';
 
         $html .= <<< EOS

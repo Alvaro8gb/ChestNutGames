@@ -1,6 +1,8 @@
 <?php
 
 namespace es\chestnut\tienda;
+
+use es\chestnut\Aplicacion;
 use es\chestnut\Lista;
 use es\chestnut\carrito\FormularioAdd2Carrito;
 
@@ -101,15 +103,16 @@ class Tienda extends Lista{
         </div></div> 
          <div class = "carrito">
                 <p class="txtpr1">Precio: $precio €</p>
-                <p class="txtpr1">Unidades: $cantidad</p>
+                <p class="txtpr1">Unidades: $cantidad </p>
         EOS;
 
-        if($producto->getCantidad() != 0){
+        $cantidad = $producto->getCantidad();
 
+        if($cantidad > 0){
             $form = new FormularioAdd2Carrito($id_producto,$id_en_tienda,$cantidad,$nombre,$precio,$bs);
             $html .= $form->gestiona();
-
         }
+        
 
         $html .=<<< EOS
             </div>

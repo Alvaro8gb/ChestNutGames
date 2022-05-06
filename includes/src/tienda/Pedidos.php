@@ -37,7 +37,7 @@ class Pedidos extends Lista{
 
         $precio_acumulado=0;
         
-        foreach($this->lista as $id => $producto){
+        foreach($this->lista as $producto){
 
             $id_user = $producto->getIdUser();
             $id_product = $producto->getIdProduct();
@@ -80,6 +80,7 @@ class Pedidos extends Lista{
                 EOS;
             }
         }
+        
 
         $html .= <<<EOS
                 </table>

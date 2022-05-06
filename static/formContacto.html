@@ -2,24 +2,24 @@
 <div class = "formulario">
     <div class="form1">
         <form class="login-form">      
-            <legend class="log">Formulario de consulta</legend>
+            <div class="log">Formulario de consulta</div>
 
             <div class="consulta">
             <!--nombre-->
             <label class="req">NOMBRE : </label>
-            <input type ="text" name ="nombre" maxlength="30" value ="" required="true">
+            <input type ="text" name ="nombre" maxlength="30" value ="" required>
             </div>
 
             <div class="consulta">
             <!--email-->
             <label class="req">EMAIL DE CONTACTO : </label>
-            <input type ="text" name ="mail" type = "email" maxlength="30" value ="" required="true" pattern="*@ucm.es">
+            <input type = "email" name ="mail" maxlength="30" value ="" required pattern="*@ucm.es">
             </div>
 
             <div class="consulta">
             <!--email-->
             <label>NUMERO DE TELEFONO : </label>
-            <input type ="text" name ="mail" type = "number" maxlength="30" value ="" pattern="[0-9]{9}" >
+            <input  type = "tel" name ="numero" maxlength="30" value ="" pattern="[0-9]{9}" >
             </div>
 
             <div class="consulta">
@@ -40,7 +40,7 @@
             <div class="consulta">
             <!--politicas leidas-->
             
-            <input class="campos" name="leido" type="checkbox" value="marked" required="true" /> 
+            <input class="campos" name="leido" type="checkbox" value="marked" required /> 
             <label class="req">He leido y acepto los términos y condiciones del servicio </label>
             </div>
             <button type = "button" onclick = 'href="mailto:sergilor@ucm.es"'>Enviar consulta</button>

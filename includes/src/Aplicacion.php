@@ -34,7 +34,7 @@ class Aplicacion{
      *             la aplicación está accesible en http://localhost/miApp/, este
      *             parámetro debería de tomar el valor "/miApp".
      */
-	private $rutaApp; //??¿¿¿?
+	private $rutaRaizApp; 
 
     /**
      * @var string Ruta absoluta al directorio "includes" de la aplicación.

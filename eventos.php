@@ -5,8 +5,7 @@ require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $tituloPagina = 'Eventos';
 $css =  link_css($app->resuelve(RUTA_CSS.'eventos.css'));
-$link = $app->resuelve(RUTA_JS.'temporizador.js');
-$jss = "<script src= $link </script>" ;
+$jss = link_js($app->resuelve(RUTA_JS.'temporizador.js'));
 
 $app->verificaLogado($app->buildUrl("noLogeado.php"));
 
