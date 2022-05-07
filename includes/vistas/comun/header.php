@@ -1,10 +1,9 @@
 
 <?php
+require_once __DIR__.'/../helpers/utils.php';
 
 use es\chestnut\Aplicacion;
 use es\chestnut\usuarios\FormularioLogout;
-require_once __DIR__.'/../helpers/utils.php';
-
 
 $app = Aplicacion::getInstancia();
 $paginas = array('Juegos'=>'juegos.php','Tienda' => 'tienda.php', 'Ranking'=>'ranking.php', 'Eventos'=>'eventos.php', 'Contacto' => 'contacto.php' , 'Más' => "prevEntrega.php");
@@ -21,29 +20,33 @@ function mostrarSaludo(){
     $ruta_imagenes1 = $app->resuelve(RUTA_IMGS.'usuario/');
     $perfilUrl = $app->resuelve('/perfilUsuario.php');
     $carritoUrl = $app->resuelve('/carrito.php');
-    $alt ="cart";
-    $alt1="perfil";
 
     if ($app->usuarioLogueado()) {
-        $icono = <<<EOS
-        <a href='{$perfilUrl}'><img class='img_cesta' src='{$ruta_imagenes1}perfil.png' alt='{$alt1}' ></a>
-        <a href='{$carritoUrl}'><img class='img_cesta' src='{$ruta_imagenes}cart.png' alt='{$alt}' ></a>    
+        $html .= <<<EOS
+            <a href='{$perfilUrl}'><img class='img_cesta' src='{$ruta_imagenes1}perfil.png' alt='perfil' ></a>
+            <a href='{$carritoUrl}'><img class='img_cesta' src='{$ruta_imagenes}cart.png' alt='carrito' ></a>    
         EOS;
-        echo $icono;
         
         $nombreUsuario = $app->nombreUsuario();
 
-        $formLogout = new FormularioLogout();
-        $htmlLogout = $formLogout->gestiona();
-        $html = <<<EOS
-        Bienvenido, ${nombreUsuario}.$htmlLogout
-      EOS;
+        try{
+            $formLogout = new FormularioLogout();
+            $htmlLogout = $formLogout->gestiona();      
+        
+        }catch(Exception $e){
+            $app->paginaError(501,'Error',"Error en formulario logout: ".$e->getMessage(),$e->getTrace());
+        }
+
+        $html .= <<<EOS
+                Bienvenido, ${nombreUsuario}.$htmlLogout
+        EOS;
+
     } else {
         $loginUrl = $app->resuelve('/login.php');
         $registroUrl = $app->resuelve('/registro.php');
         $html = <<<EOS
-        Usuario desconocido. <a href="{$loginUrl}">Login</a> | <a href="{$registroUrl}">Registro</a>
-      EOS;
+                    Usuario desconocido. <a href="{$loginUrl}">Login</a> | <a href="{$registroUrl}">Registro</a>
+         EOS;
     }
 
     return $html;
@@ -51,7 +54,6 @@ function mostrarSaludo(){
 
 ?>
 
-<!-- HTML HEADER -->
     <div class="saludo">
             <?= mostrarSaludo(); ?>
     </div>

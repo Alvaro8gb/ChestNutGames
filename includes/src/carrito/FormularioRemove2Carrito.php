@@ -41,19 +41,23 @@ class FormularioRemove2Carrito extends Formulario{
         $cantidadSelect = filter_var($cantidadSelect, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         if ( ! $cantidadSelect || empty($cantidadSelect) ) {
-            $this->errores['cantidad_select'] = 'No se ha introducido la cantidad';
+            $this->errores['cantidad_vacia'] = 'No se ha introducido la cantidad';
+        }
+
+        $app = Aplicacion::getInstancia();
+        $carrito = $app->getCarrito();
+        $id_carrito = $datos['idElemCarrito'];
+
+        $elemCarrito = $carrito[$id_carrito];
+        $cantidad = $elemCarrito->getCantidad();
+
+        if($cantidadSelect > $cantidad){
+            $this->errores['cantidad_select'] = 'No se puede superar la cantidad';
+        }else{
+            $nuevaCantidad = $cantidad - $cantidadSelect;
         }
     
         if (count($this->errores) === 0) {
-            
-            $app = Aplicacion::getInstancia();
-            $carrito = $app->getCarrito();
-            $id_carrito = $datos['idElemCarrito'];
-
-            $elemCarrito = $carrito[$id_carrito];
-            $cantidad = $elemCarrito->getCantidad();
-
-            $nuevaCantidad = $cantidad - $cantidadSelect;
 
             if ($nuevaCantidad <= 0){
                 unset($carrito[$id_carrito]);

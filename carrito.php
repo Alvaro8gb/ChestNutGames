@@ -6,9 +6,14 @@ $app->verificaLogado($app->buildUrl("noLogeado.php"));
 
 $tituloPagina = 'Cesta de la compra';
 $css = link_css($app->resuelve(RUTA_CSS.'carrito.css'));
-$css.=link_js($app->resuelve(RUTA_JS.'jquery-3.6.0.min.js'));
-$css.=link_js($app->resuelve(RUTA_JS.'cantidad_cesta.js'));
-      
+
+$jss_pages = array("jquery-3.6.0.min.js","cantidad_cesta.js");	
+$js ='';
+
+foreach($jss_pages as $elem){
+	$js .= link_js($app->resuelve(RUTA_JS.$elem));
+}
+
 try{
     $carrito = new \es\chestnut\carrito\Carrito($app->getCarrito());
     $contenidoPrincipal = $carrito->gestiona();      
@@ -16,7 +21,7 @@ try{
     $app->paginaError(501,'Error',"Error en carrito: ".$e->getMessage(),$e->getTrace());
 }
 
-$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css'=>$css];
+$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css'=>$css, 'js' =>$js];
 $app->generaVista('/plantillas/plantilla.php', $params);
 
 

@@ -3,41 +3,44 @@
 require_once __DIR__.'/../../config.php';
 require_once __DIR__.'/../../src/publicidad/Anuncios.php';
 
+try{
+    $advert = es\chestnut\publicidad\Anuncio::create_advert();
+}
+catch(Exception $e){
+    $app->paginaError(501,'Error',"Error al crear anuncio: ".$e->getMessage(),$e->getTrace());
+}
 
 $contenido = '';
-$advert = es\chestnut\publicidad\Anuncio::create_advert();
 
 // HTML POPUP
+$contenido .= '<div class = "pop_up_window" id = "modal">
+                    <div class = "pop_up_container"> ';
 
-    $contenido .= '<div class = "pop_up_window" id = "modal">
-                        <div class = "pop_up_container"> ';
-    
-    // TITULO
-    $contenido .= '<div class = "pop_up_title"><h1>'. $advert->getNombre() .'</h1> </div>';
-    $contenido .= '<div class = "pop_up_main"> 
-                        <div class = "pop_up_image">';
-    
-    // IMAGEN
-    $contenido .= '<a href="'. $advert->getEnlace(). '">';
-    $contenido .= '<img class = "popup_image"  alt="popup_image" src="data:image/png;base64,'.base64_encode($advert->getImagen()).'"/></a></div>';
+// TITULO
+$contenido .= '<div class = "pop_up_title"><h1>'. $advert->getNombre() .'</h1> </div>';
+$contenido .= '<div class = "pop_up_main"> 
+                    <div class = "pop_up_image">';
 
-    // DESCRIPCION
+// IMAGEN
+$contenido .= '<a href="'. $advert->getEnlace(). '">';
+$contenido .= '<img class = "popup_image"  alt="popup_image" src="data:image/png;base64,'.base64_encode($advert->getImagen()).'"/></a></div>';
 
-    $contenido .= '<div class = "pop_up_desc">'; 
-    $contenido .= '<p>'. $advert->getDesc() .'</p>
-                        </div>
-                  </div>';
+// DESCRIPCION
 
-    // BOTON CERRAR
-    $contenido .= <<<EOS
-                <div class = "pop_up_closebutton">
-                    <div class = "popup_button">
-                        <button type="button" class = "popup_button_link" onclick="advert_close()"> Cerrar </button>
+$contenido .= '<div class = "pop_up_desc">'; 
+$contenido .= '<p>'. $advert->getDesc() .'</p>
                     </div>
-                </div>
+                </div>';
 
+// BOTON CERRAR
+$contenido .= <<<EOS
+            <div class = "pop_up_closebutton">
+                <div class = "popup_button">
+                    <button type="button" class = "popup_button_link" onclick="advert_close()"> Cerrar </button>
+                </div>
             </div>
         </div>
-    EOS;
+    </div>
+EOS;
 
-    echo $contenido;
+echo $contenido;

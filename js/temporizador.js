@@ -1,6 +1,5 @@
 function update_timmer() {
 
-    //var dias = document.getElementById("dias");
     var hours = document.getElementById("horas"); 
     var mins = document.getElementById("minutos"); 
     var segs = document.getElementById("segundos");

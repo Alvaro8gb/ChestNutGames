@@ -11,7 +11,7 @@ $().ready(function() {
 		// validación html5, porque el campo es <input type="email" ...>
 		const esCantidadValido = campo[0].checkValidity();
 		console.log("hola");
-		if (cantidadValidoComplu(Ca,Ca1)){
+		if (cantidadValida(Ca,Ca1)){
 			// el correo es válido y acaba por @ucm.es: marcamos y limpiamos quejas
 			// tu código aquí: coloca la marca correcta
 
@@ -27,7 +27,7 @@ $().ready(function() {
 	});
 
 
-	function cantidadValidoComplu(cantidad,cantidadValida) {
+	function cantidadValida(cantidad,cantidadValida) {
 		// tu codigo aqui (devuelve true ó false)
 		if(cantidad <= cantidadValida && cantidad > 0){
 			return true;

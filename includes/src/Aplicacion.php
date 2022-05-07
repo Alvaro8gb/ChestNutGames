@@ -197,7 +197,6 @@ class Aplicacion{
         $this->doIncludeInternal($rutaVista, $params);
     }
 
-    // return bool (true | false)
     public function show_advert(){  
         // Muestra publicidad con un 20% de probabilidad si el usuario no es admin o si no está logueado en la página
         if(!$this->esAdmin()) {

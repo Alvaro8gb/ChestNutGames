@@ -12,7 +12,6 @@ try{
     $form = new \es\chestnut\usuarios\FormularioLogout();
     $htmlForm = $form->gestiona();
     $contenidoPrincipal = $htmlForm;      
-
 }catch(\Exception $e){
     $app->paginaError(501,'Error',"Error en formulario logout: ".$e->getMessage(),$e->getTrace());
 }
