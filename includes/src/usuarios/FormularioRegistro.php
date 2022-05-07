@@ -22,42 +22,41 @@ class FormularioRegistro extends Formulario{
 
         $html = <<<EOF
         <div class="login-page">
-        <div class="form">
-        <form class="login-form">
-            <legend class="log">Datos para el registro</legend>{$htmlErroresGlobales}
-            <div>
-                <label for="correo">Correo electrónico:</label>
-                <span id="validEmail"></span>
-                <input id="correoUsuario" type="email" minlength="5" name="correoUsuario" value="$correoUsuario" placeholder="Introduzca correo electrónico"/>
-                {$erroresCampos['correo']}
+            <div class="form">
+                <div class="log">Datos para el registro</div>{$htmlErroresGlobales}
+                <div>
+                    <label for="correoUsuario">Correo electrónico:</label>
+                    <span id="validEmail"></span>
+                    <input id="correoUsuario" type="email" minlength="5" name="correoUsuario" value="$correoUsuario" placeholder="Introduzca correo electrónico"/>
+                    {$erroresCampos['correo']}
+                </div>
+                <div>
+                    <label for="nombreUsuario">Nombre de usuario:</label>
+                    <span id="validUser"></span>
+                    <input id="nombreUsuario" type="text" minlength="5" name="nombreUsuario" value="$nombreUsuario" placeholder="Introduzca nombre de usuario"/>
+                    {$erroresCampos['nombreUsuario']}
+                </div>
+                <div>
+                    <label for="nombre">Nombre:</label>
+                    <input id="nombre" type="text"  minlength="5" name="nombre" value="$nombre" placeholder="Introduzca nombre completo"/>
+                    {$erroresCampos['nombre']}
+                </div>
+                <div>
+                    <label for="password">Contraseña:</label>
+                    <span id="valid_password1"></span>
+                    <input id="password" type="password" name="password" placeholder="Introduzca contraseña"/>
+                    {$erroresCampos['password']}
+                </div>
+                <div>
+                    <label for="password2">Reintroduce la contraseña:</label>
+                    <span id="valid_password2"></span>
+                    <input id="password2" type="password" name="password2" placeholder="Vuelva a introducir la contraseña"/>
+                    {$erroresCampos['password2']}
+                </div>
+                <div>
+                    <button type="submit" name="registro">Registrar</button>
+                </div>
             </div>
-            <div>
-                <label for="nombreUsuario">Nombre de usuario:</label>
-                <span id="validUser"></span>
-                <input id="nombreUsuario" type="text" minlength="5" name="nombreUsuario" value="$nombreUsuario" placeholder="Introduzca nombre de usuario"/>
-                {$erroresCampos['nombreUsuario']}
-            </div>
-            <div>
-                <label for="nombre">Nombre:</label>
-                <input id="nombre" type="text"  minlength="5" name="nombre" value="$nombre" placeholder="Introduzca nombre completo"/>
-                {$erroresCampos['nombre']}
-            </div>
-            <div>
-                <label for="password">Contraseña:</label>
-                <span id="valid_password1"></span>
-                <input id="password" type="password" name="password" placeholder="Introduzca contraseña"/>
-                {$erroresCampos['password']}
-            </div>
-            <div>
-                <label for="password2">Reintroduce la contraseña:</label>
-                <span id="valid_password2"></span>
-                <input id="password2" type="password" name="password2" placeholder="Vuelva a introducir la contraseña"/>
-                {$erroresCampos['password2']}
-            </div>
-                <button type="submit" name="registro">Registrar</button>
-            </div>
-        </form>
-        </div>
         </div>
         EOF;
         return $html;
