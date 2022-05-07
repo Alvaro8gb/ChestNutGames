@@ -28,7 +28,7 @@ class FormularioLogin extends Formulario{
                 $htmlErroresGlobales
                 <div class="form-group">
                     <label for="nombreUsuario">Nombre de usuario:</label>
-                    <input id="nombreUsuario" type="text" name="nombreUsuario" value="$nombreUsuario" placeholder="Introduzca nombre de usuario"/>
+                    <input id="nombreUsuario" type="text" minlength="5" name="nombreUsuario" value="$nombreUsuario" placeholder="Introduzca nombre de usuario"/>
                     {$erroresCampos['nombreUsuario']}
                 </div>
                 <div class="form-group">

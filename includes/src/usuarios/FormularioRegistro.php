@@ -28,18 +28,18 @@ class FormularioRegistro extends Formulario{
             <div>
                 <label for="correo">Correo electrónico:</label>
                 <span id="validEmail"></span>
-                <input id="correoUsuario" type="email" name="correoUsuario" value="$correoUsuario" placeholder="Introduzca correo electrónico"/>
+                <input id="correoUsuario" type="email" minlength="5" name="correoUsuario" value="$correoUsuario" placeholder="Introduzca correo electrónico"/>
                 {$erroresCampos['correo']}
             </div>
             <div>
                 <label for="nombreUsuario">Nombre de usuario:</label>
                 <span id="validUser"></span>
-                <input id="nombreUsuario" type="text" name="nombreUsuario" value="$nombreUsuario" placeholder="Introduzca nombre de usuario"/>
+                <input id="nombreUsuario" type="text" minlength="5" name="nombreUsuario" value="$nombreUsuario" placeholder="Introduzca nombre de usuario"/>
                 {$erroresCampos['nombreUsuario']}
             </div>
             <div>
                 <label for="nombre">Nombre:</label>
-                <input id="nombre" type="text" name="nombre" value="$nombre" placeholder="Introduzca nombre completo"/>
+                <input id="nombre" type="text"  minlength="5" name="nombre" value="$nombre" placeholder="Introduzca nombre completo"/>
                 {$erroresCampos['nombre']}
             </div>
             <div>

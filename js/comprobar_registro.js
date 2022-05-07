@@ -6,12 +6,12 @@ function check_password($id_password,$id_valid){
 		const campo = $($id_password); 
 		const campo1 = $($id_valid);
 
-		campo[0].setCustomValidity(""); // limpia validaciones previas
+		campo[0].setCustomValidity(""); 
 
 		if(validPassword(campo.val())){
 			campo1.text("\u2705");
 			$($id_password+"OK").show();
-			campo[0].setCustomValidity("");
+			
 		}else{			
 			campo1.text("\u274C");
 			$($id_password+"BAD").show();
@@ -44,8 +44,6 @@ function usuarioExiste(data,status) {
 	
 }	
 function check_user(){
-
-	$("#userOK").hide();
 	
 	$("#nombreUsuario").change(function(){
 		var url = "comprobarUsuario.php?user=" + $("#nombreUsuario").val();
@@ -58,15 +56,9 @@ function usuarioExisteCorreo(data,status) {
 
 	if(status=='success'){
 
-		const esCorreoValido = $("#correoUsuario")[0].checkValidity();
-
 		if (data =='existe'){
-			$("#validEmail").text("\u274C");
+			$("#correoUsuario").text("\u274C");
 			window.alert("Correo existente");
-		}
-		else if($("#correoUsuario").val().indexOf('@',0)==-1  && !esCorreoValido){
-			$("#validEmail").text("\u274C");
-			window.alert("Correo incompleto no se ha encontrado el caracter @");
 		}
 		else{
 			$("#validEmail").text("\u2705");
@@ -76,11 +68,31 @@ function usuarioExisteCorreo(data,status) {
 }	
 
 function check_correo(){
-	$("#correoOK").hide();
+
+	const campo = $("#correoUsuario"); 
 	
-	$("#correoUsuario").change(function(){
-		var url = "comprobarCorreo.php?correo=" + $("#correoUsuario").val();
-		$.get(url,usuarioExisteCorreo);
+	campo.change(function(){
+
+		const campo_valid = $("#validEmail");
+
+		campo[0].setCustomValidity(""); 
+
+		campo_valid.hide();
+		const esCorreoValido = $(campo)[0].checkValidity();
+
+		if($("#correoUsuario").val().indexOf('@',0)==-1){
+			campo.text("\u274C");
+			campo[0].setCustomValidity("Correo incompleto no se ha encontrado el caracter @");
+		}
+		else if(!esCorreoValido){
+			campo_valid.text("\u274C");
+			campo[0].setCustomValidity("Correo no valido");
+
+		}else{
+			var url = "comprobarCorreo.php?correo=" + $("#correoUsuario").val();
+		    $.get(url,usuarioExisteCorreo);
+		}
+		
 	 });
 }
 
@@ -92,7 +104,6 @@ function validaForm(){
 	check_password("#password2","#valid_password2");
 
 }
-
 
 $(document).ready(function() {	
 	validaForm();
