@@ -141,6 +141,14 @@ img#ev{
     transition: all 800ms;
 }
 
+.info_event{
+
+    font-size: 30px;
+    text-align: center;
+    color:white;
+
+}
+
 .pag-item:hover {
     transform: scale(2);
 }

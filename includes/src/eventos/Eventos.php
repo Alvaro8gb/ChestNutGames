@@ -88,7 +88,7 @@ class Eventos extends Lista {
 
             $html .= $temporizadorFin->mostrarContador();
 
-            $html .=' <p>El evento ya ha comenzado!</p>';
+            $html .=' <p class = "info_event">¡El evento ya ha comenzado!</p>';
         }
         else{
 
@@ -96,7 +96,7 @@ class Eventos extends Lista {
                 <p>'.$evento->getNombre().'</p>
             </div>
 
-            <p>Has llegado tarde! El evento ya ha terminado!</p>';
+            <p class = "info_event">¡Has llegado tarde!  ¡El evento ya ha terminado!</p>';
         } 
         
         return $html;
