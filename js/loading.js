@@ -5,4 +5,3 @@ $(window).on('load', function () {
    
 });
 
-//https://programadorwebvalencia.com/como-hacer-un-cargando-en-mi-web/
