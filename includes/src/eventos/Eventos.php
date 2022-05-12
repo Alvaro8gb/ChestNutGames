@@ -48,7 +48,7 @@ class Eventos extends Lista {
             EOS;
 
             $html .= <<< EOS
-                    <form action="" method="post"  onsubmit="return confirmation("Seguro que quieres inscribierte?")">
+                    <form method="post"  onsubmit="return confirmation('Seguro que quieres inscribierte?')">
                         <div class = "inscripcion">
                             <input class="inscripcion_button" type="submit" name="inscribir" value="Inscríbete aquí">
                         </div>
